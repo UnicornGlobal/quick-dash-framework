@@ -1,0 +1,30 @@
+//COLORS
+
+$primary: #3F51B5;
+$primary-dark: #303F9F;
+$primary-light: #C5CAE9;
+$accent: #FF4081;
+$icons: #FFFFFF;
+$primary-text: #212121;
+$secondary-text: #757575;
+$divider: #BDBDBD;
+$black: rgb(0, 0, 0);
+$white: rgb(255, 255, 255);
+$success: #8BC34A;
+$warn: #FF5722;
+$fail: #D32F2F;
+
+$colors-map: (
+  primary: $primary,
+  primary-dark: $primary-dark,
+  primary-light: $primary-light,
+  accent: $accent,
+  icons: $icons,
+  primary-text: $primary-text,
+  secondary-text: $secondary-text,
+  divider: $divider,
+  black: $black,
+  white: $white,
+  success: $success,
+  fail: $fail
+);
