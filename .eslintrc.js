@@ -21,7 +21,7 @@ module.exports = {
   // add your custom rules here
   'rules': {
     'no-trailing-spaces': 1,
-    'space-before-function-paren': 1,
+    'space-before-function-paren': 0,
     'space-before-blocks': 1,
     'keyword-spacing': 1,
     // allow paren-less arrow functions

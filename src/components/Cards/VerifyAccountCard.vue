@@ -15,12 +15,12 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .action-required-card {
     display: flex;
     flex-direction: row;
     border: 2px solid $success;
-    background-color: lighten($success, 25);
+    background-color: lighten($success, 35%);
     margin: 1em;
     padding: 1em;
     align-items: center;
@@ -67,6 +67,7 @@
       .title {
         font-size: 16px;
         margin: 0;
+        font-weight: bold;
       }
 
       p {
@@ -77,9 +78,8 @@
     }
 
     .action-required-link {
-      border: $success;
       display: inline-block;
-      font-weight: 400;
+      font-weight: bold;
       text-align: center;
       white-space: nowrap;
       vertical-align: middle;
@@ -91,10 +91,10 @@
       line-height: 1.5;
       border-radius: 0;
       transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-      color: $success;
-      background-color: transparent;
+      color: $primary-text;
+      background-color: $primary-light;
       background-image: none;
-      border-color: $success;
+      border-color: lighten($primary, 10%);
       text-decoration: none;
     }
   }

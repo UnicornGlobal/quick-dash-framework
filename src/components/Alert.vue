@@ -13,6 +13,7 @@
     </div>
   </div>
 </template>
+
 <script type="application/javascript">
   import Danger from '@/components/Icons/danger.svg'
   import Warning from '@/components/Icons/warning.svg'
@@ -65,6 +66,7 @@
     }
   }
 </script>
+
 <style lang="scss" scoped>
   .alert {
     border: solid 2px;
@@ -83,17 +85,32 @@
       background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAMAAABHPGVmAAAAbFBMVEUAAACdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ3Kqxw3AAAAI3RSTlMADQ4QERITFBUWNWZrb3Bxc3V3eHl7f4WGiImX1ebo6evt8bJJb24AAAHOSURBVGjevdjJUkIxEEbhKM4jKsRZgbz/O4oiMtxO0sMp77IX/1eVxV2clP71e7xF5/K9ZJRCKrmUobI0SCV/z+0rT6WQSl7NPUgGpeT13LbyXAqp5M3cRDIIJW/PrZUdI67k3bmJZESVvD83XR6npZBKHs5dpXQyH55vSOPjMLFKzSCVusEpLYNS2gaj9AxC6RtxRWNEFZ0RU7RGRNEbfsVieBWb4VOshkexG3bFY1gVn2FTvIZF8Ruycg0bWiVm6JSooVHiRl8hjJ7CGG2FMloKZ9QV0qgprCErb7AhK7ShUsKGQgGMroIYHQUymgpmNBTQqCqoUVFgI6VXAXmBjSw+1/gfDFapGaRSNzilZVBK22CUnkEofSOuaIyoIhjvF3NWkYwD8T/mV2QjoUrNIJW6wSktg1LaBqP0DELpG3FFY0QVnRFTtEZE0Rt+xWJ4FZvhU6yGR7EbdsVjWBWfYVO8hkWRjEjrG8OGVokZOiVqaJS40VcIo6cwRluhjJbCGXXlbniGW99lSucL0JCU2VEaKnDr+zH2Fbj1/RopnS1AY1eZjf7OGwVufVvGRoFb346xVuDWt2esFLj1fY4G59MF3PoEY6mwHe54y/gCPCLAnqZ3I+0AAAAASUVORK5CYII=);
     }
 
-    &.danger .title {
-      color: $fail;
+    &.danger {
+      background: lighten($fail, 25%);
+
+      .title {
+        color: $fail;
+      }
     }
-    &.warning .title {
-      color: $warn;
+    &.warning {
+      background: lighten($warn, 40%);
+
+      .title {
+        color: $warn;
+      }
     }
-    &.info .title {
-      color: $primary;
+    &.info {
+      .title {
+        color: $primary-text;
+      }
     }
-    &.success .title {
-      color: $success;
+
+    &.success {
+      background: lighten($success, 40%);
+
+      .title {
+        color: $success;
+      }
     }
 
     svg {

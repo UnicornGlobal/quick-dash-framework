@@ -16,7 +16,8 @@ module.exports = {
       .assert.cssProperty('div.side-bar', 'display', 'none', 'Sidebar is hidden')
       .click('div[class="menu-toggle"]')
       .assert.elementPresent('div[class="menu-item"]', 'Sidebar is visible after toggle')
-    // Check if SideBar sub-menu is expandable
+
+      // Check if SideBar sub-menu is expandable
       .assert.cssProperty('div[class="sub-menu"]', 'display', 'none', 'Sidebar subsection is collapsed')
       .click('a.toggle')
       .assert.elementPresent('a[class="router-link"]', 'Sidebar subsection is expanded after click')
