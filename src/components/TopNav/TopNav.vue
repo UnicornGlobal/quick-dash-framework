@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="logo">
-        Your Logo Here
+        Quick Dash
       </div>
       <div class="fill"></div>
       <div v-if="user" class="user-menu">
@@ -31,7 +31,7 @@
 <style lang="scss" scoped>
   .top-navigation {
     height: 65px;
-    background: $primary-dark;
+    background: $primary;
     margin: 0;
     padding: 0;
     display: flex;
@@ -65,6 +65,8 @@
     align-items: center;
     justify-content: center;
     margin-left: 2em;
+    color: $white;
+    font-size: 22px;
 
     svg {
       height: 30px;
@@ -73,7 +75,7 @@
   }
 
   .user-menu {
-    background: $primary;
+    background: $accent;
     width: 350px;
     height: 65px;
   }

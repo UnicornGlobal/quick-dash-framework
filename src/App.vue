@@ -78,8 +78,8 @@
   .side-bar {
     height: calc(100% - 65px);
     width: 250px;
-    background: $primary-light;
-    border-right: 1px solid $divider;
+    background: lighten($primary-light, 15%);
+    border-right: 1px solid lighten($divider, 10%);
     z-index: 2;
     overflow-y: auto;
 

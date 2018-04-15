@@ -1,6 +1,8 @@
 <template>
   <page-container title="All Users">
     <card class="card">
+      <h5>Placeholder</h5>
+      <p>We're waiting on vue-data-tables to be complete. Hang tight.</p>
       <!-- <data&#45;table v&#45;if="users" :dataset="users" :options="tableConfig"></data&#45;table> -->
       <!-- <loader v&#45;else class="loader" width="80" height="80"></loader> -->
     </card>

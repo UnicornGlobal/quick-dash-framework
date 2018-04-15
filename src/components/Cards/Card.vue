@@ -11,9 +11,10 @@
     margin: 0.5em;
     padding: 1em;
     background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, .125);
+    border: 2px solid $primary;
     border-radius: 0;
     overflow: hidden;
+    color: $primary-text;
   }
 </style>
 

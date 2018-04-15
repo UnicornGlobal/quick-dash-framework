@@ -81,12 +81,13 @@
   .menu-item {
     &.active {
       background: $primary;
+      color: $icons;
     }
     a.router-link {
       padding: 1rem 0 1rem 1rem;
       display: flex;
       text-decoration: none;
-      color: $secondary-text;
+      color: $primary-text;
       align-items: center;
       svg {
         height: 20px;
@@ -96,13 +97,18 @@
         stroke: $primary-text;
       }
       &.router-link-exact-active {
-        color: $white;
+        color: $icons;
+        svg {
+          fill: $icons;
+          stroke: $icons;
+        }
       }
       &:hover {
-        color: $primary-text;
+        background: $primary;
+        color: $icons;
         svg {
-          fill: $primary-text;
-          stroke: $primary-text;
+          fill: $icons;
+          stroke: $icons;
         }
       }
       &.toggle .toggle-icon {
@@ -121,7 +127,11 @@
     }
 
     .sub-menu > .menu-item {
-      padding-left: 20px;
+      background: $primary-light;
+      &.active {
+        background: $primary;
+        color: $icons;
+      }
     }
   }
 </style>

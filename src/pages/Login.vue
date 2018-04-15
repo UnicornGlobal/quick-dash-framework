@@ -1,5 +1,11 @@
 <template>
   <div class="login-page">
+    <div class="logo-holder">
+      <h1>Quick Dash</h1>
+      <h4 class="text">
+        Sign In
+      </h4>
+    </div>
     <div class="login-form">
       <card>
         <form>
@@ -39,6 +45,7 @@
     </div>
   </div>
 </template>
+
 <script type="text/javascript">
   import Card from '@/components/Cards/Card.vue'
 
@@ -84,26 +91,37 @@
     }
   }
 </script>
+
 <style lang="scss" scoped>
   .login-page {
     display: flex;
     flex-direction: row;
-    background-color: rgb(59, 71, 102);
+    background-color: $primary-dark;
     height: 100%;
     justify-content: center;
-    padding-top: 25vh;
+    padding-top: 15vh;
     @media(max-width: 700px) {
       flex-direction: column;
       padding-top: 0vh;
       align-items: center;
+      justify-content: flex-start;
     }
 
     .login-form {
-      max-width: 360px;
+      max-width: 480px;
       @media(max-width: 560px) {
         width: 100%;
         max-width: unset;
       }
+    }
+
+    .logo-holder {
+      margin: 2.5em 2em 0.5em 0.5em;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: $icons;
     }
 
     .password-box {
@@ -134,7 +152,7 @@
 
     label {
       padding-left: 10px;
-      color: $white;
+      color: $primary-text;
     }
 
     .password-reset-container {
