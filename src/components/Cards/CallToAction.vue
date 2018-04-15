@@ -5,7 +5,7 @@
       <p>
         <slot></slot>
       </p>
-      <div>
+      <div v-if="target">
         <router-link class="call-to-action-link" :to="target">{{ linkText }}</router-link>
       </div>
     </div>
@@ -21,6 +21,8 @@
     .title {
       font-size: 16px;
       margin: 0;
+      color: $primary-dark;
+      font-weight: bold;
     }
 
     p {
@@ -37,13 +39,13 @@
       white-space: nowrap;
       vertical-align: middle;
       user-select: none;
-      border: 1px solid $primary-light;
+      border: 2px solid $primary;
       padding: .375rem .75rem;
       font-size: 1rem;
       line-height: 1.5;
       border-radius: 0;
       transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-      color: $primary-light;
+      color: $primary;
       background-color: transparent;
       background-image: none;
       text-decoration: none;
@@ -65,11 +67,11 @@
         required: true
       },
       target: {
-        required: true
+        required: false
       },
       linkText: {
         type: String,
-        required: true
+        required: false
       }
     }
   }

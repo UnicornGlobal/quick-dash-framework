@@ -1,7 +1,7 @@
 <template>
   <div class="user-account-details-page">
     <page-container title="User Account">
-      <page-section title="User Details">
+      <page-section title="User Details" subtitle="More Info">
         <key-value-card :items="userDetails"></key-value-card>
       </page-section>
     </page-container>

@@ -22,7 +22,9 @@
   .title {
     margin-top: 10px;
     margin-bottom: 10px;
+    font-weight: bold;
   }
+
   .items {
     display: flex;
     flex-direction: row;
@@ -44,6 +46,7 @@
       }
 
       .key {
+        color: $primary-dark;
         font-weight: bolder;
         @media (max-width: 700px) AND (min-width: 481px)  {
           font-size: 3.0vw;

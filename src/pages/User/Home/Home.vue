@@ -6,7 +6,7 @@
       :user="user">
     </verify-account-card>
 
-    <tips-section v-if="tips" :tips="tips" title="Here are some tips to help you get started"></tips-section>
+    <tips-section v-if="tips" :tips="tips" title="Tips Widget Output"></tips-section>
     <summary-section></summary-section>
   </div>
 </template>
@@ -71,11 +71,27 @@
           if (this.$store.state) {
             tips.push({
               title: 'Example tip!',
-              content: 'You can add content here. You can also add a link!',
+              content: 'You can add content here.'
+            })
+          }
+
+          // Make actual conditionals here
+          if (this.$store.state) {
+            tips.push({
+              title: 'Another Example',
+              content: 'You can even add links to your tips.',
               linkText: 'My Account',
               target: {
-                name: 'account'
+                name: 'Account'
               }
+            })
+          }
+
+          // Make actual conditionals here
+          if (this.$store.state) {
+            tips.push({
+              title: 'Please Note',
+              content: 'They do flex and fill the available space.'
             })
           }
 

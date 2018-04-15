@@ -39,6 +39,7 @@
   button{
     margin-left: 4px;
   }
+
   h4.header{
     border-bottom: 1px solid $primary-dark;
   }
