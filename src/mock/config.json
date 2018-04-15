@@ -1,0 +1,61 @@
+{
+  "_id": "de168c81-dfef-4661-9152-765889d2f7d8",
+  "app": "99a9825d-bc91-47b9-89c8-f022c62e5cf6",
+  "signature": "b856fa3a78c7cf70ea4bf4bc4a0e4bc8",
+  "api_url": "https://demo.api.example.com",
+  "name": "Quick Dash",
+  "version": "2.0.0",
+  "built": "201804",
+  "features": {
+    "beta": "true",
+    "signup": "true"
+  },
+  "theme": {
+    "_id": "57db21b6-d35d-419e-bb86-efe2fa999ddb",
+    "primary": "#D10D10",
+    "black": "#000000",
+    "white": "#FFFFFF",
+    "text": "#101010",
+    "lightGrey": "#DADADA",
+    "mediumGrey": "#101010",
+    "darkGrey": "#010101"
+  },
+  "locale": {
+    "_id": "a539e3ae-5ef7-462b-a7e0-0686f5714e37",
+    "version": "1",
+    "locale": "en-ZA",
+    "iso_3": "ZAF",
+    "iso_2": "ZA",
+    "lang": "en",
+    "currency": {
+      "symbol": "R",
+      "symbol_space": true,
+      "symbol_left": true,
+      "seperator": ".",
+      "thousand": ",",
+      "precision": "2"
+    },
+    "telephone": {
+      "code": "27",
+      "show_plus": true,
+      "drop_zero": true,
+      "flags": true,
+      "spaces": true,
+      "plus_regex": "/^\\+27[1-9][0-9]\\ [0-9]{3}\\ [0-9]{4}$/",
+      "zero_regex": "/^0[1-9][0-9]\\ [0-9]{3}\\ [0-9]{4}$/",
+      "format": "+27 __ ___ ____"
+    },
+    "date": {
+      "format": "DD/MM/YYYY",
+      "start_sunday": "false"
+    },
+    "time": {
+      "24": true,
+      "format": "HH:MM:SS",
+      "utc": "+0200",
+      "timezone": "Africa/Johannesburg"
+    },
+    "postcode": "/^[0-9]{4}$/",
+    "vat_regex": "/^[4][0-9]{9}$/"
+  }
+}
