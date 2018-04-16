@@ -21,7 +21,7 @@ before_install:
 - sh -e /etc/init.d/xvfb start
 - npm i chromedriver
 - npm run unit
-- git clone "https://github.com/darrynten/strong-lumen" --branch=dev ../strong-lumen
+- git clone "https://github.com/darrynten/strong-lumen" --branch=master ../strong-lumen
 - cd ../strong-lumen
 - composer self-update
 - composer validate --no-check-all --ansi

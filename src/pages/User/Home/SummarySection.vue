@@ -1,6 +1,6 @@
 <template>
   <div class="summary">
-    <h5>Additional Widgets</h5>
+    <h5>Alert Widgets</h5>
     <div class="summary-section">
       <alert type="info" title="Info">
         This is what an info alert box looks like.

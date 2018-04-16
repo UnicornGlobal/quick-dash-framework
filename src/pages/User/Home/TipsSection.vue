@@ -11,6 +11,8 @@
         {{ tip.content }}
       </call-to-action-card>
     </div>
+    <div class="tip-section">
+    </div>
   </div>
 </template>
 
