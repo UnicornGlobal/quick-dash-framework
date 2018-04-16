@@ -141,7 +141,7 @@
 </style>
 
 <script>
-  import AvatarOrInitials from '@/components/AvatarOrInitials.vue'
+  import AvatarOrInitials from 'vue-avatar-or-initials'
   import { reloadRouter } from '@/lib'
   import HamburgerLines from '@/assets/images/svg/hamburger-lines.svg'
 
