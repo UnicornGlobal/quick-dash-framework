@@ -11,9 +11,12 @@
       </div>
       <div class="fill"></div>
       <div v-if="user" class="user-menu">
-        <avatar-or-initials class="user-avatar" round
-                            :size="40"
-                            :title="user.first_name">
+        <avatar-or-initials
+          class="user-avatar"
+          round
+          :size="40"
+          :title="user.first_name"
+        >
         </avatar-or-initials>
         <div class="user-details">
           <div class="user-name text-white">
@@ -174,7 +177,7 @@
           this.redirectToLogin()
         })
       },
-      redirectToLogin(){
+      redirectToLogin() {
         window.location.pathname = 'login'
       },
       toggleSideBar() {
