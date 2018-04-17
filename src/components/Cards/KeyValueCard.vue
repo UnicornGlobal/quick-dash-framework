@@ -93,7 +93,7 @@
       }
     },
     methods: {
-      isArray(term){
+      isArray(term) {
         return Array.isArray(term)
       }
     }
