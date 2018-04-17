@@ -7,7 +7,8 @@
       <div class="menu-item">
         <a class="logout" @click.prevent="logout" href="#">
           <logout-icon></logout-icon>
-          Logout</a>
+          Logout
+        </a>
       </div>
     </div>
   </div>

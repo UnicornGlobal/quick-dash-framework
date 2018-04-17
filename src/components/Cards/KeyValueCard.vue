@@ -2,7 +2,7 @@
   <card>
     <h4 v-if="title" class="title">{{title}}</h4>
     <div v-if="items.length" class="items">
-      <div v-for="item in items" class="item-box">
+      <div v-for="item in items" :key="item.key" class="item-box">
         <div class="key">{{ item.key }}</div>
         <div class="value">
           <key-value-card v-if="isArray(item.value)" :items="item.value"></key-value-card>
