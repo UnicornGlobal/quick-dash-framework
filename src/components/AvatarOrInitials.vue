@@ -2,11 +2,12 @@
   <div>
     <div class="avatar">
       <img class="avatar-image"
-           v-if="image"
-           :style="radius"
-           :width="width"
-           :height="height"
-           :src="image">
+        v-if="image"
+        :style="radius"
+        :width="width"
+        :height="height"
+        :src="image"
+      />
       <div v-else class="avatar-initials" :style="initialsStyle">
         <span class="initials strong">
           {{ initials }}

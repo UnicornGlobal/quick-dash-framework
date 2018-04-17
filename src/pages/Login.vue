@@ -12,14 +12,14 @@
           <div>
             <label class="required">Email Address&nbsp;</label>
             <input v-validate="'required'" v-model="username" name="username" type="text"
-                   placeholder="Email Address"></input>
+                   placeholder="Email Address" />
             <span v-if="errors.has('username')" class="validation-error">{{errors.first('username')}}</span>
           </div>
           <div class="password-reset-container">
             <label class="required">Password&nbsp;</label>
             <div class="password-box">
               <input v-validate="'required'" v-model="password" name="password" type="password"
-                     placeholder="Password"></input>
+                     placeholder="Password" />
               <router-link v-if="!errors.has('password')" :to="{name: 'ResetPassword'}">Forgot?</router-link>
               <router-link v-if="errors.has('password')" style="padding-right: 30px" :to="{name: 'ResetPassword'}">
                 Forgot?
@@ -27,9 +27,14 @@
             </div>
             <span v-if="errors.has('password')" class="validation-error">{{errors.first('password')}}</span>
           </div>
-          <label> <input type="checkbox"
-                         name="rememberMe"
-                         v-model="remember" :value="true" :unchecked-value="false">
+          <label>
+          <input
+            type="checkbox"
+            name="rememberMe"
+            v-model="remember"
+            :value="true"
+            :unchecked-value="false"
+          >
             <span class="label-checkbox">Remember Me</span>
           </label>
           <div class="login-button-wrapper">
