@@ -38,7 +38,7 @@
           this.redirectToLogin()
         })
       },
-      redirectToLogin(){
+      redirectToLogin() {
         window.location.pathname = 'login'
       }
     }

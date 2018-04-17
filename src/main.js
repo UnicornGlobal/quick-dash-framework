@@ -117,7 +117,7 @@ new Vue({
       const loaderElement = document.getElementById('initialLoader')
       if (loaded) {
         loaderElement.style.display = 'none'
-      }else{
+      } else {
         loaderElement.style.display = 'flex'
       }
     }

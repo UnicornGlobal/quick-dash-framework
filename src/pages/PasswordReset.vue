@@ -40,7 +40,7 @@
         bSending: false
       }
     },
-    mounted(){
+    mounted() {
       this.$store.commit('setLoading', false)
     },
     methods: {
