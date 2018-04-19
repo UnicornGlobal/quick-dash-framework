@@ -24,6 +24,7 @@
   .cont {
     background-color: $white;
     padding: 15px;
+    margin: 0.5em;
   }
   .info-icon {
     height: 50px;

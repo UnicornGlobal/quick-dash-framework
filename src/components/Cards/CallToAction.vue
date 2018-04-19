@@ -39,16 +39,21 @@
       white-space: nowrap;
       vertical-align: middle;
       user-select: none;
-      border: 2px solid $primary;
+      border: 1px solid $primary;
       padding: .375rem .75rem;
       font-size: 1rem;
       line-height: 1.5;
-      border-radius: 0;
+      border-radius: 3px;
       transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
       color: $primary;
       background-color: transparent;
       background-image: none;
       text-decoration: none;
+
+      &:hover {
+        background-color: $primary;
+        color: $white;
+      }
     }
   }
 </style>
