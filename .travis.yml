@@ -13,7 +13,7 @@ addons:
   chrome: stable
 before_install:
 - phpenv global 7.1.11
-- mysql -e 'CREATE DATABASE IF NOT EXISTS strong_lumen;'
+- mysql -e 'CREATE DATABASE IF NOT EXISTS strong;'
 - npm install
 - cp config/secrets.env.js.example config/secrets.env.js
 - export CHROME_BIN=/usr/bin/google-chrome
