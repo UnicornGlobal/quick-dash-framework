@@ -9,6 +9,10 @@
 </template>
 
 <style lang="scss" scoped>
+  .user-account-details-page {
+    background-color: $light-bg;
+    padding: 20px;
+  }
   .link-container {
     display: flex;
     justify-content: flex-end;

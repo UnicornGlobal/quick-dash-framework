@@ -1,5 +1,5 @@
 <template>
-  <page-container title="All Users">
+  <page-container class="page-container" title="All Users">
     <card class="card">
       <h5>Placeholder</h5>
       <p>We're waiting on vue-data-tables to be complete. Hang tight.</p>
@@ -120,6 +120,10 @@
 </script>
 
 <style lang="scss">
+  .page-container {
+    background-color: $light-bg;
+    padding: 20px;
+  }
   .card{
     display: flex;
     flex-direction: column;

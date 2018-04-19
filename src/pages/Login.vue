@@ -1,25 +1,24 @@
 <template>
   <div class="login-page">
-    <div class="logo-holder">
-      <h1>Quick Dash</h1>
-      <h4 class="text">
-        Sign In
-      </h4>
+    <div class="login-header">
+      <div class="logo"><span>Q</span></div>
+      <div class="brand">Quick Dash</div>
     </div>
     <div class="login-form">
-      <card>
+      <card class="card">
+        <h2>Login</h2>
         <form>
           <div>
             <label class="required">Email Address&nbsp;</label>
             <input v-validate="'required'" v-model="username" name="username" type="text"
-                   placeholder="Email Address"></input>
+                   placeholder="Email Address" />
             <span v-if="errors.has('username')" class="validation-error">{{errors.first('username')}}</span>
           </div>
           <div class="password-reset-container">
             <label class="required">Password&nbsp;</label>
             <div class="password-box">
               <input v-validate="'required'" v-model="password" name="password" type="password"
-                     placeholder="Password"></input>
+                     placeholder="Password" />
               <router-link v-if="!errors.has('password')" :to="{name: 'ResetPassword'}">Forgot?</router-link>
               <router-link v-if="errors.has('password')" style="padding-right: 30px" :to="{name: 'ResetPassword'}">
                 Forgot?
@@ -27,9 +26,14 @@
             </div>
             <span v-if="errors.has('password')" class="validation-error">{{errors.first('password')}}</span>
           </div>
-          <label> <input type="checkbox"
-                         name="rememberMe"
-                         v-model="remember" :value="true" :unchecked-value="false">
+          <label>
+          <input
+            type="checkbox"
+            name="rememberMe"
+            v-model="remember"
+            :value="true"
+            :unchecked-value="false"
+          >
             <span class="label-checkbox">Remember Me</span>
           </label>
           <div class="login-button-wrapper">
@@ -93,95 +97,134 @@
 </script>
 
 <style lang="scss" scoped>
+  .card {
+    margin-top: 0px;
+    max-width: 480px;
+    padding: 0px;
+
+    h2 {
+      padding: 10px 20px;
+      margin: 0px;
+      background-color: darken( $primary-light, 20);
+      color: $primary-text;
+    }
+  }
+
+  form {
+    padding: 20px;
+  }
   .login-page {
-    display: flex;
-    flex-direction: row;
-    background-color: $primary-dark;
-    height: 100%;
-    justify-content: center;
-    padding-top: 15vh;
-    @media(max-width: 700px) {
-      flex-direction: column;
-      padding-top: 0vh;
-      align-items: center;
-      justify-content: flex-start;
+    .login-header {
+      min-height: 50px;
+      padding: 10px;
+      background-color: $primary-dark;
+
+      .logo {
+        display: inline-block;
+        margin-right: 10px;
+
+        span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 50px;
+          width: 50px;
+          border-radius: 100%;
+          background-color: $primary;
+          color: $primary-light;
+          text-align: center;
+          font-size: 20px;
+          font-weight: 800;
+        }
+      }
+
+      .brand {
+        display: inline-block;
+        font-size: 18px;
+        text-transform: uppercase;
+        color: $primary-light;
+      }
     }
 
     .login-form {
-      max-width: 480px;
+      height: calc(100vh - 70px);
+      background-color: $primary;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       @media(max-width: 560px) {
         width: 100%;
         max-width: unset;
       }
-    }
 
-    .logo-holder {
-      margin: 2.5em 2em 0.5em 0.5em;
-      padding: 1em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: $icons;
-    }
-
-    .password-box {
-      position: relative;
-      a {
-        position: absolute;
-        display: inline-block;
-        transform: translateY(-50%);
-        bottom: 0;
-        right: 0;
-        text-decoration: none;
-        padding-right: 10px;
-        font-size: 13px;
-        color: $accent;
+      .logo-holder {
+        margin: 2.5em 2em 0.5em 0.5em;
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: $icons;
       }
-    }
 
-    .login-button-wrapper {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 30px;
-    }
+      .password-box {
+        position: relative;
+        a {
+          position: absolute;
+          display: inline-block;
+          transform: translateY(-50%);
+          bottom: 0;
+          right: 0;
+          text-decoration: none;
+          padding-right: 10px;
+          font-size: 13px;
+          color: $accent;
+        }
+      }
 
-    .card {
-      border: none;
-      background-color: $primary-light;
-    }
+      .login-button-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 30px;
+      }
 
-    label {
-      padding-left: 10px;
-      color: $primary-text;
-    }
+      .card {
+        border: none;
+        background-color: $primary-light;
+      }
 
-    .password-reset-container {
-      margin-top: 35px;
-      margin-bottom: 5px;
-    }
+      label {
+        color: $primary-text;
+      }
 
-    .label-checkbox {
-      margin-left: 5px;
-    }
+      .password-reset-container {
+        margin-top: 35px;
+        margin-bottom: 5px;
+      }
 
-    button {
-      line-height: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 150px;
-      color: $white;
-      background-color: $primary;
-      border: none;
-    }
+      .label-checkbox {
+        margin-left: 5px;
+      }
 
-    input {
-      padding-left: 10px;
-      margin-top: 3px;
-    }
+      button {
+        line-height: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 150px;
+        color: $white;
+        background-color: $primary;
+        border: none;
+      }
 
-    .loading {
-      transform: translate(-8px, 2px);
+      input {
+        padding-left: 10px;
+        margin-top: 5px;
+        border-radius: 3px;
+      }
+
+      .loading {
+        transform: translate(-8px, 2px);
+      }
     }
   }
 </style>

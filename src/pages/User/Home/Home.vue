@@ -1,6 +1,6 @@
 <template>
   <div class="home-page" v-if="loaded">
-    <h2 class="welcome" v-if="tips">Welcome {{ user.first_name }}!</h2>
+    <!-- <h2 class="welcome" v-if="tips">Welcome {{ user.first_name }}!</h2> -->
     <verify-account-card
       v-if="userNotVerified"
       :user="user">
@@ -20,6 +20,8 @@
   }
 
   .home-page {
+    background-color: $light-bg;
+    padding: 20px;
     h2 {
       white-space: nowrap;
       overflow: hidden;
