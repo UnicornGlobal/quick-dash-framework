@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="tip-container">
     <h5>{{ title }}</h5>
     <div class="tip-section">
       <call-to-action-card
@@ -17,12 +17,20 @@
 </template>
 
 <style lang="scss">
+  .tip-container {
+    margin: 40px 0px;
+    h5 {
+      margin: 0.5em;
+      font-size: 18px;
+      text-transform: uppercase;
+      font-weight: 300
+    }
+  }
   .tip-section {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0.5em;
   }
 </style>
 
