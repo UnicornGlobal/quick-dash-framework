@@ -9,7 +9,7 @@ localVue.use(Router)
 
 let mocks = {
   $auth: {
-    user(){
+    user() {
       return {
         first_name: 'fn',
         last_name: 'ln'

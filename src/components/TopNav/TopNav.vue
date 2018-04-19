@@ -1,26 +1,34 @@
 <template>
   <div>
     <div class="top-navigation">
-      <div class="menu-toggle">
-        <div @click.prevent="toggleSideBar()">
-          <hamburger-lines></hamburger-lines>
+      <div class="left">
+        <div class="menu-toggle">
+          <div @click.prevent="toggleSideBar()">
+            <hamburger-lines></hamburger-lines>
+          </div>
+        </div>
+        <div class="logo">
+          Quick Dash
         </div>
       </div>
-      <div class="logo">
-        Quick Dash
-      </div>
-      <div class="fill"></div>
-      <div v-if="user" class="user-menu">
-        <avatar-or-initials class="user-avatar" round
-                            :size="40"
-                            :title="user.first_name">
-        </avatar-or-initials>
-        <div class="user-details">
-          <div class="user-name text-white">
-            {{ user.first_name}} {{ user.last_name }}
-          </div>
-          <div class="user-company text-white">
-            <a @click.prevent="logout" href="#" class="logout-button">Logout</a>
+      <!-- <div class="fill"></div> -->
+      <div class="right">
+        <div v-if="user" class="user-menu">
+          <avatar-or-initials
+            class="user-avatar"
+            round
+            :size="40"
+            :title="user.first_name"
+            backgroundColour="#4CAF50"
+          >
+          </avatar-or-initials>
+          <div class="user-details">
+            <div class="user-name text-white">
+              {{ user.first_name}} {{ user.last_name }}
+            </div>
+            <div class="user-company text-white">
+              <a @click.prevent="logout" href="#" class="logout-button">Logout</a>
+            </div>
           </div>
         </div>
       </div>
@@ -30,18 +38,20 @@
 
 <style lang="scss" scoped>
   .top-navigation {
-    height: 65px;
-    background: $primary;
+    height: 60px;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
+    @media (max-width: 1025px) {
+      display: block;
+    }
   }
 
   .menu-toggle {
     width: 65px;
-    height: 65px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,6 +70,26 @@
     }
   }
 
+  .left {
+    width: 250px;
+    border-right: .5px solid $light-bg;
+    display: flex;
+    align-items: center;
+    background-color: $primary;
+    height: 61px;
+    @media (max-width: 1025px) {
+      width: 100%;
+    }
+  }
+
+  .right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    background-color: $primary;
+    padding-right: 20px;
+  }
+
   .logo {
     display: flex;
     align-items: center;
@@ -75,9 +105,9 @@
   }
 
   .user-menu {
-    background: $accent;
-    width: 350px;
-    height: 65px;
+    // background: $accent;
+    // width: 350px;
+    height: 60px;
   }
 
   .fill {
@@ -98,10 +128,15 @@
 
   .user-avatar {
     width: 65px;
-    height: 65px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .avatar-initials {
+      background-color: $accent;
+      border: 2px solid $white;
+    }
   }
 
   .user-details {
@@ -141,7 +176,7 @@
 </style>
 
 <script>
-  import AvatarOrInitials from '@/components/AvatarOrInitials.vue'
+  import AvatarOrInitials from 'vue-avatar-or-initials'
   import { reloadRouter } from '@/lib'
   import HamburgerLines from '@/assets/images/svg/hamburger-lines.svg'
 

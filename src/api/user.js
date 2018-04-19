@@ -2,7 +2,7 @@ import Vue from 'vue'
 import store from '@/store'
 
 export function loadUserDetails(userId) {
-  return Vue.axios.get(`api/users/${userId}`)
+  return Vue.axios.get('api/me')
     .then(response => {
       store.commit('setUser', response.data)
       return response.data
