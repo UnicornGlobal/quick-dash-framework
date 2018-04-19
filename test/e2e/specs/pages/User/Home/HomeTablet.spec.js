@@ -7,8 +7,8 @@ module.exports = {
     browser
       .url(browser.globals.devServerURL)
       .maximizeWindow()
-      .setValue('input[name=username]', 'user')
-      .setValue('input[name=password]', 'user')
+      .setValue('input[name=username]', 'admin')
+      .setValue('input[name=password]', 'admin')
       .click('button')
       .waitForElementVisible('div[class="home-page content-area"]', 30000, 'Arrive on the home page')
       .resizeWindow(1000, 1200)
