@@ -139,8 +139,8 @@
     .sub-menu > .menu-item {
       background: $white;
       &.active {
-        background: $primary;
-        color: $icons;
+        background: $light-hover;
+        color: $black;
       }
     }
   }
