@@ -32,7 +32,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: $white;
+    color: $primary;
 
     @media (min-width: 1025px) {
       display: none;
@@ -43,7 +43,7 @@
     svg {
       width: 30px;
       height: 30px;
-      fill: $white;
+      fill: $primary;
     }
   }
 
