@@ -72,14 +72,13 @@
     display: flex;
     height: calc(100% - 53px);
     width: 100%;
-    top: 65px;
+    top: 60px;
   }
 
   .side-bar {
     height: calc(100% - 65px);
     width: 250px;
-    background: lighten($primary-light, 15%);
-    border-right: 1px solid lighten($divider, 10%);
+    background: $white;
     z-index: 2;
     overflow-y: auto;
 

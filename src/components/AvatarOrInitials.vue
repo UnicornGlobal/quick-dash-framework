@@ -49,6 +49,14 @@
         type: Boolean,
         required: false,
         default: false
+      },
+      backgroundColour: {
+        type: String,
+        required: false
+      },
+      colour: {
+        type: String,
+        required: false
       }
     },
     data() {
@@ -77,14 +85,23 @@
       }
     },
     methods: {
-      colour() {
+      defaultColour() {
+        if (this.colour) {
+          return this.colour
+        }
+
         const length = this.colours.length
         const seed = md5(this.title)
         const selected = seed.replace(/[A-Za-z]/g, '') % length
+        console.log(selected)
         return this.colours[selected]
       },
       textColour() {
-        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(this.colour())
+        if (this.colour) {
+          return this.colour
+        }
+
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(this.defaultColour())
         const red = parseInt(result[1], 16)
         const green = parseInt(result[2], 16)
         const blue = parseInt(result[3], 16)
@@ -95,6 +112,9 @@
         }
 
         return '#FFFFFF'
+      },
+      bgColour() {
+        return this.backgroundColour ? this.backgroundColour : this.defaultColour()
       }
     },
     computed: {
@@ -108,7 +128,7 @@
         return this.title.charAt(0)
       },
       initialsStyle() {
-        return 'width: ' + this.size + 'px; height: ' + this.size + 'px; border-radius: ' + this.size + 'px; background-color: ' + this.colour() + '; text-transform: uppercase; color: ' + this.textColour() + ';'
+        return 'width: ' + this.size + 'px; height: ' + this.size + 'px; border-radius: ' + this.size + 'px; background-color: ' + this.bgColour() + '; text-transform: uppercase; color: ' + this.textColour() + ';'
       },
       radius() {
         if (this.round) {

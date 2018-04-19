@@ -88,35 +88,37 @@
 <style lang="scss">
   .menu-item {
     &.active {
-      background: $primary;
-      color: $icons;
+      background: $light-hover;
+      color: $black;
     }
     a.router-link {
-      padding: 1rem 0 1rem 1rem;
+      padding: 1.5rem 0 1.5rem 1rem;
       display: flex;
       text-decoration: none;
-      color: $primary-text;
+      color: $black;
       align-items: center;
+      border-bottom: 1px solid $line;
       svg {
-        height: 20px;
-        width: 20px;
+        height: 15px;
+        width: 15px;
         margin-right: 0.5em;
-        fill: $primary-text;
-        stroke: $primary-text;
+        fill: $primary;
+        stroke: $primary;
+        margin-right: 10px;
       }
       &.router-link-exact-active {
-        color: $icons;
+        color: $black;
         svg {
-          fill: $icons;
-          stroke: $icons;
+          fill: $primary;
+          stroke: $primary;
         }
       }
       &:hover {
-        background: $primary;
-        color: $icons;
+        background: $light-hover;
+        color: $black;
         svg {
-          fill: $icons;
-          stroke: $icons;
+          fill: $primary;
+          stroke: $primary;
         }
       }
       &.toggle .toggle-icon {
@@ -135,7 +137,7 @@
     }
 
     .sub-menu > .menu-item {
-      background: $primary-light;
+      background: $white;
       &.active {
         background: $primary;
         color: $icons;
