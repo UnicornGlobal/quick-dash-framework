@@ -91,7 +91,7 @@
         }
 
         // put/patch method spoofing
-        if(this.requestMethod === 'patch' || this.requestMethod === 'put'){
+        if (this.requestMethod === 'patch' || this.requestMethod === 'put') {
           params['_method'] = this.requestMethod
           this.requestMethod = 'post'
         }
