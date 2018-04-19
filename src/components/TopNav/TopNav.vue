@@ -44,6 +44,9 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    @media (max-width: 1025px) {
+      display: block;
+    }
   }
 
   .menu-toggle {
@@ -52,7 +55,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: $primary;
+    color: $white;
 
     @media (min-width: 1025px) {
       display: none;
@@ -63,17 +66,20 @@
     svg {
       width: 30px;
       height: 30px;
-      fill: $primary;
+      fill: $white;
     }
   }
 
   .left {
     width: 250px;
-    max-width: 250px;
-    border-bottom: thin solid $line;
+    border-right: .5px solid $light-bg;
     display: flex;
     align-items: center;
-    height: 100%;
+    background-color: $primary;
+    height: 61px;
+    @media (max-width: 1025px) {
+      width: 100%;
+    }
   }
 
   .right {
@@ -89,7 +95,7 @@
     align-items: center;
     justify-content: center;
     margin-left: 2em;
-    color: $primary;
+    color: $white;
     font-size: 22px;
 
     svg {
