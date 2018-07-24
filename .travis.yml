@@ -53,5 +53,5 @@ jobs:
       script: npm run e2e
     - stage: deploy
       name: "No target"
-      install: true
+      before_install: true
       script: echo "Add deployment settings!"
