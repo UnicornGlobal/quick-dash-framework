@@ -37,6 +37,7 @@ jobs:
   include:
     - stage: tests
       script: npm run unit
+    - stage: tests
       script: npm run e2e
       install:
         git clone "https://github.com/darrynten/strong-lumen" --branch=master ../strong-lumen
