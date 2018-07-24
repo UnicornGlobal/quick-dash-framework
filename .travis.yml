@@ -36,22 +36,22 @@ after_success:
 jobs:
   include:
     - stage: tests
-    - script: npm run unit
-    - script: npm run e2e
-        install:
-          git clone "https://github.com/darrynten/strong-lumen" --branch=master ../strong-lumen
-          cd ../strong-lumen
-          composer self-update
-          composer validate --no-check-all --ansi
-          composer install -n
-          cp .env.example .env
-          mysql -e 'CREATE DATABASE IF NOT EXISTS strong;'
-          php artisan migrate
-          php artisan db:seed
-          pwd
-          touch ./storage/logs/lumen.log
-          sudo chmod 777 ./storage/logs/lumen.log
-          nohup php -S 127.0.0.1:8000 -t public &
-          cd -
+      script: npm run unit
+      script: npm run e2e
+      install:
+        git clone "https://github.com/darrynten/strong-lumen" --branch=master ../strong-lumen
+        cd ../strong-lumen
+        composer self-update
+        composer validate --no-check-all --ansi
+        composer install -n
+        cp .env.example .env
+        mysql -e 'CREATE DATABASE IF NOT EXISTS strong;'
+        php artisan migrate
+        php artisan db:seed
+        pwd
+        touch ./storage/logs/lumen.log
+        sudo chmod 777 ./storage/logs/lumen.log
+        nohup php -S 127.0.0.1:8000 -t public &
+        cd -
     - stage: deploy
-    - script: echo "Add deployment settings!"
+      script: echo "Add deployment settings!"
