@@ -1,6 +1,7 @@
 stages:
   - tests
-  - deploy
+  - name: deploy
+    if: branch = master
 
 dist: trusty
 language: node_js
@@ -19,6 +20,7 @@ addons:
 # Default steps within each job
 before_install:
 - phpenv global 7.1.11
+- mysql -e 'CREATE DATABASE IF NOT EXISTS strong;'
 - npm install
 - cp config/secrets.env.js.example config/secrets.env.js
 - export CHROME_BIN=/usr/bin/google-chrome
@@ -26,36 +28,32 @@ before_install:
 - sh -e /etc/init.d/xvfb start
 - npm i chromedriver
 
-install:
--  git clone "https://github.com/darrynten/strong-lumen" --branch=master ../strong-lumen
--  cd ../strong-lumen
--  composer self-update
--  composer validate --no-check-all --ansi
--  composer install -n
--  cp .env.example .env
--  mysql -e 'CREATE DATABASE IF NOT EXISTS strong;'
--  php artisan migrate
--  php artisan db:seed
--  pwd
--  touch ./storage/logs/lumen.log
--  sudo chmod 777 ./storage/logs/lumen.log
--  nohup php -S 127.0.0.1:8000 -t public &
--  cd -
-
-
 jobs:
   include:
     - stage: tests
       name: "Unit Tests"
       script: npm run unit
-      install: echo ""
       after_success:
-        codecov test/unit/coverage/lcov.info -t ${CODECOV_TOKEN}
-        echo "Done"
+        - codecov test/unit/coverage/lcov.info -t ${CODECOV_TOKEN}
+        - echo "Done"
     - stage: tests
       name: "e2e Tests"
       script: npm run e2e
+      install:
+      -  git clone "https://github.com/darrynten/strong-lumen" --branch=master ../strong-lumen
+      -  cd ../strong-lumen
+      -  composer self-update
+      -  composer validate --no-check-all --ansi
+      -  composer install -n
+      -  cp .env.example .env
+      -  mysql -e 'CREATE DATABASE IF NOT EXISTS strong;'
+      -  php artisan migrate
+      -  php artisan db:seed
+      -  pwd
+      -  touch ./storage/logs/lumen.log
+      -  sudo chmod 777 ./storage/logs/lumen.log
+      -  nohup php -S 127.0.0.1:8000 -t public &
+      -  cd -
     - stage: deploy
       name: "No target"
-      install: echo ""
       script: echo "Add deployment settings!"
