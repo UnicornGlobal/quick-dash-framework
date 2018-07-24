@@ -36,8 +36,10 @@ after_success:
 jobs:
   include:
     - stage: tests
+      name: "Unit Tests"
       script: npm run unit
     - stage: tests
+      name: "e2e Tests"
       script: npm run e2e
       install:
         git clone "https://github.com/darrynten/strong-lumen" --branch=master ../strong-lumen
