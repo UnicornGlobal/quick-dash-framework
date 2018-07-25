@@ -1,6 +1,7 @@
 stages:
   - tests
-  - deploy
+  - name: deploy
+    if: branch = master
 
 dist: trusty
 language: node_js
