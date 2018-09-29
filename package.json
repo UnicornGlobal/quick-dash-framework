@@ -20,7 +20,7 @@
     "md5": "^2.2.1",
     "moment": "^2.21.0",
     "pikaday": "^1.6.1",
-    "vee-validate": "^2.0.0-rc.25",
+    "vee-validate": "^2.0.9",
     "vue": "^2.5.16",
     "vue-avatar-or-initials": "^1.0.0",
     "vue-axios": "^2.0.2",
