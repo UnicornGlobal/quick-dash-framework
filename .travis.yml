@@ -1,3 +1,8 @@
+stages:
+  - tests
+  - name: deploy
+    if: branch = master
+
 dist: trusty
 language: node_js
 node_js:
@@ -11,6 +16,8 @@ addons:
     packages:
       - mysql-server
   chrome: stable
+
+# Default steps within each job
 before_install:
 - phpenv global 7.1.11
 - mysql -e 'CREATE DATABASE IF NOT EXISTS strong;'
@@ -20,7 +27,6 @@ before_install:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 - npm i chromedriver
-- npm run unit
 - git clone "https://github.com/darrynten/strong-lumen" --branch=master ../strong-lumen
 - cd ../strong-lumen
 - composer self-update
@@ -34,7 +40,19 @@ before_install:
 - sudo chmod 777 ./storage/logs/lumen.log
 - nohup php -S 127.0.0.1:8000 -t public &
 - cd -
-- npm run e2e
-after_success:
-- codecov test/unit/coverage/lcov.info -t ${CODECOV_TOKEN}
-- echo "Done"
+
+jobs:
+  include:
+    - stage: tests
+      name: "Unit Tests"
+      script: npm run unit
+      after_success:
+        - codecov test/unit/coverage/lcov.info -t ${CODECOV_TOKEN}
+        - echo "Done"
+    - stage: tests
+      name: "e2e Tests"
+      script: npm run e2e
+    - stage: deploy
+      name: "No target"
+      before_install: true
+      script: echo Add deployment settings!
