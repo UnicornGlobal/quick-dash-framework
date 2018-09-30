@@ -2,7 +2,7 @@
 // http://nightwatchjs.org/guide#usage
 
 module.exports = {
-  'Home Page': function (browser) {
+  'User Home Page': function (browser) {
     // logging in
     browser
       .url(browser.globals.devServerURL)
@@ -15,8 +15,6 @@ module.exports = {
       .assert.elementPresent('.top-navigation', 'Navbar is present')
       .assert.elementPresent('.side-bar', 'Sidebar is present')
 
-      .click('div.menu-toggle')
-      .assert.elementPresent('a[class="router-link"]', 'SideBar is expanded after click')
       .pause(1000)
       .click('a.toggle')
       .assert.cssProperty('div[class="sub-menu"]', 'display', 'block', 'SideBar sub-section is expanded after click')

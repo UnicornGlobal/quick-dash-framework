@@ -1,5 +1,5 @@
 import Checkbox from '@/components/Form/Checkbox.vue'
-import { createLocalVue, shallow } from '@vue/test-utils'
+import { createLocalVue, shallowMount } from '@vue/test-utils'
 
 const localVue = createLocalVue()
 
@@ -9,17 +9,17 @@ describe('Checkbox.vue', () => {
   })
 
   it('is unchecked by default', () => {
-    let checkbox = shallow(Checkbox, {localVue})
+    let checkbox = shallowMount(Checkbox, {localVue})
     expect(checkbox.vm.checked).to.equal(undefined)
   })
 
   it('changes checked state from prop', () => {
-    let checkbox = shallow(Checkbox, {localVue, propsData: {value: true}})
+    let checkbox = shallowMount(Checkbox, {localVue, propsData: {value: true}})
     expect(checkbox.vm.checked).to.equal(true)
   })
 
   it('changes checked status when clicked', () => {
-    let checkbox = shallow(Checkbox, {localVue})
+    let checkbox = shallowMount(Checkbox, {localVue})
     expect(checkbox.vm.checked).to.equal(undefined)
 
     checkbox.find('label').trigger('click')
@@ -27,7 +27,7 @@ describe('Checkbox.vue', () => {
   })
 
   it('emits input event with correct value', () => {
-    let checkbox = shallow(Checkbox, {localVue})
+    let checkbox = shallowMount(Checkbox, {localVue})
     checkbox.setData({checked: true})
     expect(checkbox.emitted()).to.have.all.keys('input')
     expect(checkbox.emitted('input')[0][0]).to.equal(true)
