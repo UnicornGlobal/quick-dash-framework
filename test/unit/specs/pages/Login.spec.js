@@ -57,14 +57,24 @@ describe('Login.vue', () => {
   it('handles sign in error', () => {
     let localVue = createLocalVue()
     localVue.use(Validator)
-    const wrapper = shallowMount(Login, {localVue, mocks})
-    localVue.$auth.login = (conf) => {
-      return wrapper.vm.$http.post(conf)
-    }
+    const wrapper = shallowMount(Login, {
+      localVue,
+      mocks: {
+        $http: axios,
+        $store: store,
+        $auth: {
+          login: (conf) => {
+            return wrapper.vm.$http.post(conf)
+          }
+        }
+      }
+    })
 
     let post = sinon.stub(wrapper.vm.$http, 'post').rejects(Error('Invalid username'))
+
     return wrapper.vm.sendSignInRequest().catch((err) => {
       expect(err.message).to.equal('Invalid username')
+      sinon.assert.called(post)
       post.restore()
     })
   })
