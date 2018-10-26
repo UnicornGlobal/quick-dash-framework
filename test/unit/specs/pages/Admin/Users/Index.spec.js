@@ -1,18 +1,31 @@
-import * as Api from '@/api/admin/users'
 import UsersPage from '@/pages/Admin/Users/Index.vue'
-import { createLocalVue, shallow } from '@vue/test-utils'
+import { createLocalVue, shallowMount } from '@vue/test-utils'
 import sinon from 'sinon'
 
-describe('UsersPage', () => {
+describe('Admin All Users', () => {
   it('is an object', () => {
     expect(UsersPage).to.be.an('object')
   })
 
-  it('loads all users when mouted', () => {
-    let localVue = createLocalVue()
-    let load = sinon.stub(Api, 'loadAllUsers').resolves([])
-    shallow(UsersPage, {localVue})
-    expect(load.called).to.equal(true)
-    load.restore()
+  it('loads all users when mouted', async () => {
+    const localVue = createLocalVue()
+    const loadUsers = sinon.stub().resolves([])
+
+    let wrapper = shallowMount(UsersPage, {
+      localVue,
+      methods: {
+        loadUsers
+      },
+      mocks: {
+        $http: {
+          get: sinon.stub().resolves({data: {}})
+        }
+      }
+    })
+
+    await wrapper.vm.$nextTick()
+
+    sinon.assert.called(loadUsers)
+    expect(wrapper.vm.users).to.be.an('array').that.is.empty
   })
 })
