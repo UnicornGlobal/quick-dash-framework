@@ -2,6 +2,7 @@
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve(dir) {
@@ -10,8 +11,9 @@ function resolve(dir) {
 
 module.exports = {
   entry: {
-    app: ['babel-polyfill', './src/main.js']
+    app: ['@babel/polyfill', './src/main.js']
   },
+  mode: 'development',
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
@@ -27,6 +29,9 @@ module.exports = {
       '@': resolve('src')
     }
   },
+  plugins: [
+    new VueLoaderPlugin()
+  ],
   module: {
     rules: [
       {
