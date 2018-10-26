@@ -17,7 +17,7 @@ module.exports = function (config) {
     concurrency: 1,
     frameworks: ['mocha', 'sinon-chai'],
     reporters: ['spec', 'coverage'],
-    files: ['../../node_modules/babel-polyfill/dist/polyfill.js', 'index.js'],
+    files: ['../../node_modules/@babel/polyfill/dist/polyfill.js', 'index.js'],
     preprocessors: {
       './index.js': ['webpack', 'sourcemap']
     },
