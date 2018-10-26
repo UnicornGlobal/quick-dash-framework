@@ -68,7 +68,7 @@ describe('Prompt.vue', () => {
     prompt.vm.ok()
     expect(doAction.called).to.equal(true)
 
-    doAction.reset()
+    doAction.resetHistory()
     prompt.setProps({url: ''})
     prompt.vm.ok()
     expect(doAction.called).to.equal(false)
@@ -147,7 +147,7 @@ describe('Prompt.vue', () => {
     return prompt.vm.doAction()
       .then(() => {
         expect(spy.called).to.equal(true)
-        spy.reset()
+        spy.resetHistory()
         spy.restore()
         expect(prompt.vm.bSending).to.equal(false)
       })

@@ -1,6 +1,6 @@
 import Login from '@/pages/Login'
 import sinon from 'sinon'
-import { createLocalVue, shallow } from '@vue/test-utils'
+import { createLocalVue, shallowMount } from '@vue/test-utils'
 import store from '@/store'
 import axios from 'axios'
 import Validator from 'vee-validate'
@@ -23,7 +23,7 @@ describe('Login.vue', () => {
   it('triggers sign in method', () => {
     let localVue = createLocalVue()
     localVue.use(Validator)
-    const wrapper = shallow(Login, {localVue, mocks})
+    const wrapper = shallowMount(Login, {localVue, mocks})
     expect(wrapper.vm.signIn).to.be.a('function')
     expect(wrapper.vm.sendSignInRequest).to.be.a('function')
 
@@ -40,7 +40,7 @@ describe('Login.vue', () => {
   it('triggers sign in with failed validation', () => {
     let localVue = createLocalVue()
     localVue.use(Validator)
-    const wrapper = shallow(Login, {localVue, mocks})
+    const wrapper = shallowMount(Login, {localVue, mocks})
     expect(wrapper.vm.signIn).to.be.a('function')
     expect(wrapper.vm.sendSignInRequest).to.be.a('function')
 
@@ -57,7 +57,7 @@ describe('Login.vue', () => {
   it('handles sign in error', () => {
     let localVue = createLocalVue()
     localVue.use(Validator)
-    const wrapper = shallow(Login, {localVue, mocks})
+    const wrapper = shallowMount(Login, {localVue, mocks})
     localVue.$auth.login = (conf) => {
       return wrapper.vm.$http.post(conf)
     }

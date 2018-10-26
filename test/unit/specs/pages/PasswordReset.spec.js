@@ -1,7 +1,7 @@
 // http://chaijs.com/api/bdd/
 import PasswordReset from '@/pages/PasswordReset'
 import sinon from 'sinon'
-import { createLocalVue, shallow } from '@vue/test-utils'
+import { createLocalVue, shallowMount } from '@vue/test-utils'
 import Validator from 'vee-validate'
 import store from '@/store'
 import axios from 'axios'
@@ -32,7 +32,7 @@ describe('PasswordReset.vue', () => {
   it('has three methods', () => {
     let localVue = createLocalVue()
     localVue.use(Validator)
-    const wrapper = shallow(PasswordReset, {localVue, mocks})
+    const wrapper = shallowMount(PasswordReset, {localVue, mocks})
 
     expect(wrapper.vm.submit).to.be.a('function')
     expect(wrapper.vm.sendRequest).to.be.a('function')
@@ -43,7 +43,7 @@ describe('PasswordReset.vue', () => {
     let localVue = createLocalVue()
     localVue.prototype.$eventBus = new Vue()
     localVue.use(Validator)
-    const wrapper = shallow(PasswordReset, {localVue, mocks})
+    const wrapper = shallowMount(PasswordReset, {localVue, mocks})
     wrapper.setData({email: 'name@example.com', sent: false})
 
     sinon.stub(wrapper.vm.$validator, 'validateAll').resolves(true)
@@ -63,7 +63,7 @@ describe('PasswordReset.vue', () => {
     let localVue = createLocalVue()
     localVue.prototype.$eventBus = new Vue()
     localVue.use(Validator)
-    const wrapper = shallow(PasswordReset, {localVue, mocks})
+    const wrapper = shallowMount(PasswordReset, {localVue, mocks})
     wrapper.setData({email: 'name@example.com', sent: false})
 
     sinon.stub(wrapper.vm.$validator, 'validateAll').resolves(true)

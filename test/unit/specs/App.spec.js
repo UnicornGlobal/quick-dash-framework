@@ -1,7 +1,7 @@
 // http://chaijs.com/api/bdd/
 import App from '@/App'
 import Router from 'vue-router'
-import { createLocalVue, shallow } from '@vue/test-utils'
+import { createLocalVue, shallowMount } from '@vue/test-utils'
 
 const localVue = createLocalVue()
 localVue.use(Router)
@@ -35,7 +35,7 @@ describe('App.vue', () => {
   })
 
   it('Renders when loaded and authenticated', () => {
-    let app = shallow(App, {
+    let app = shallowMount(App, {
       localVue,
       mocks
     })
