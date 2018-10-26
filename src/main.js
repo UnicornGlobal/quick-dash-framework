@@ -16,6 +16,8 @@ import store from './store'
 import { loadRoutes } from '@/lib'
 import { loadUserData } from '@/api/user'
 
+import DataTable from 'unicorn-vue-datatable'
+
 Vue.use(Router)
 Vue.use(VeeValidate, {fieldsBagName: 'formFields', classes: false, events: 'input'})
 Vue.use(VueAxios, axios)
@@ -64,7 +66,21 @@ Vue.axios.interceptors.response.use((response) => {
   // Do something with response data
   return response
 }, (error) => {
-  if (error.response && (error.response.status === 500) && (error.response.data.error === 'Token has expired and can no longer be refreshed')) {
+  if (
+    error.response &&
+    error.response.status === 500 &&
+    error.response.data.error ===
+      'Token has expired and can no longer be refreshed'
+  ) {
+    localStorage.clear()
+    router.push('login')
+  }
+
+  if (
+    error.response &&
+    error.response.status === 500 &&
+    error.response.data.error === 'Token Signature could not be verified.'
+  ) {
     localStorage.clear()
     router.push('login')
   }
@@ -74,7 +90,20 @@ Vue.axios.interceptors.response.use((response) => {
     router.push('login')
   }
 
-  if (error.response && (error.response.status === 500) && (error.response.data.error === 'Wrong number of segments')) {
+  if (
+    error.response &&
+    error.response.status === 500 &&
+    error.response.data.error === 'The token has been blacklisted'
+  ) {
+    localStorage.clear()
+    router.push('login')
+  }
+
+  if (
+    error.response &&
+    error.response.status === 500 &&
+    error.response.data.error === 'Wrong number of segments'
+  ) {
     localStorage.clear()
     router.push('login')
   }
@@ -121,5 +150,16 @@ new Vue({
         loaderElement.style.display = 'flex'
       }
     }
+  }
+})
+
+Vue.use(DataTable, {
+  theme: {
+    primary: '#B7C7E0',
+    primaryText: 'black',
+    secondaryText: '#1B2638',
+    secondary: '#343',
+    padding: '1em',
+    rowHeight: '65px'
   }
 })
