@@ -36,7 +36,6 @@ const webpackConfig = merge(baseWebpackConfig, {
       parallel: true,
       extractComments: true,
       uglifyOptions: {
-        mangle: true,
         topLevel: true,
         compress: {
           drop_console: true,
