@@ -1,33 +1,45 @@
-// 1. start the dev server using production config
-process.env.NODE_ENV = 'testing'
+/**
+ * Module dependencies
+ */
+const Nightwatch = require('nightwatch')
+
+process.env.NODE_ENV = 'development'
 var server = require('../../build/dev-server.js')
 
 server.ready.then(() => {
-  // 2. run the nightwatch test suite against it
-  // to run in additional browsers:
-  //    1. add an entry in test/e2e/nightwatch.conf.json under "test_settings"
-  //    2. add it to the --env flag below
-  // or override the environment flag, for example: `npm run e2e -- --env chrome,firefox`
-  // For more information on Nightwatch's config file, see
-  // http://nightwatchjs.org/guide#settings-file
-  var opts = process.argv.slice(2)
-  if (opts.indexOf('--config') === -1) {
-    opts = opts.concat(['--config', 'test/e2e/nightwatch.conf.js'])
-  }
-  if (opts.indexOf('--env') === -1) {
-    opts = opts.concat(['--env', 'chrome'])
-  }
+  try {
+    Nightwatch.cli(function(argv) {
+      argv._source = argv['_'].slice(0)
 
-  var spawn = require('cross-spawn')
-  var runner = spawn('./node_modules/.bin/nightwatch', opts, {stdio: 'inherit'})
-
-  runner.on('exit', function (code) {
+      const runner = Nightwatch.CliRunner(argv)
+      runner.setup()
+        .startWebDriver()
+        .catch(err => {
+          throw err
+        })
+        .then(() => {
+          return runner.runTests()
+        })
+        .catch(err => {
+          console.log(err)
+          runner.processListener.setExitCode(10)
+          server.close()
+          process.exit(10)
+        })
+        .then(() => {
+          server.close()
+          return runner.stopWebDriver().then(() => { process.exit(0) })
+        })
+        .catch(err => {
+          console.log(err)
+          runner.processListener.setExitCode(10)
+          server.close()
+          process.exit(10)
+        })
+    })
+  } catch (err) {
+    console.log(err)
     server.close()
-    process.exit(code)
-  })
-
-  runner.on('error', function (err) {
-    server.close()
-    throw err
-  })
+    process.exit(2)
+  }
 })
