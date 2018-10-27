@@ -4,14 +4,12 @@
       <h3>{{title}}</h3>
       <h4 v-if="subtitle">{{subtitle}}</h4>
       <slot name="additional-info"></slot>
-    </div>
-    <div class="section-content">
       <slot></slot>
     </div>
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .section-details {
     flex: 1;
     @media (max-width: 555px) {
@@ -26,10 +24,6 @@
       justify-content: space-between;
       align-items: center;
       margin: 0 0.5em;
-    }
-
-    @media (min-width: 1025px) {
-      max-width: 225px;
     }
   }
 
@@ -50,6 +44,7 @@
         font-size: 1em;
         margin: 7px 0px;
       }
+
       h4 {
         font-size: 80%;
         font-weight: 400;
@@ -69,12 +64,10 @@
   .page-section:last-child {
     border-bottom: none;
   }
-
 </style>
 
 <script>
   export default {
-    name: 'page-section',
     props: {
       title: {
         type: String,
@@ -87,5 +80,3 @@
     }
   }
 </script>
-
-

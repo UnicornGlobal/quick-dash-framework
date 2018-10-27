@@ -77,7 +77,6 @@
   import Card from '@/components/Cards/Card.vue'
 
   export default {
-    name: 'key-value-card',
     components: {Card},
     props: {
       items: {
@@ -99,4 +98,3 @@
     }
   }
 </script>
-

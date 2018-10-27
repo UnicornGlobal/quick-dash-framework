@@ -8,7 +8,6 @@
 
 <script>
   export default {
-    name: 'Checkbox',
     props: ['label', 'value', 'color', 'name', 'props'],
     data() {
       return {
