@@ -11,7 +11,6 @@
           Quick Dash
         </div>
       </div>
-      <!-- <div class="fill"></div> -->
       <div class="right">
         <div v-if="user" class="user-menu">
           <avatar-or-initials

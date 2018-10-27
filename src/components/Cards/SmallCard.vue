@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .small-card {
     flex: 0 25%;
     flex-grow: 1;
@@ -15,9 +15,3 @@
     border-radius: 0;
   }
 </style>
-
-<script>
-  export default {
-    name: 'small-card'
-  }
-</script>

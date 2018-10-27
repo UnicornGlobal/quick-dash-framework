@@ -34,29 +34,6 @@
           >
           </animateTransform>
         </circle>
-        <circle
-          cx="0"
-          cy="0"
-          r="25"
-          fill="none"
-          :stroke="fill"
-          stroke-width="4"
-          stroke-dasharray="78.53981633974483 78.53981633974483"
-          transform="rotate(324.511)"
-        >
-          <animateTransform
-            attributeName="transform"
-            type="rotate"
-            values="0 0 0;-360 0 0"
-            times="0;1"
-            dur="1.4s"
-            calcMode="spline"
-            keySplines="0.2 0 0.8 1"
-            begin="-0.3333333333333333"
-            repeatCount="indefinite"
-          >
-          </animateTransform>
-        </circle>
       </g>
     </svg>
     <span class="text"><slot></slot></span>
@@ -72,7 +49,6 @@
 
 <script>
   export default {
-    name: 'loader',
     props: {
       height: {
         type: String,
@@ -84,7 +60,7 @@
       },
       fill: {
         type: String,
-        default: '#2962ff'
+        default: '#9C27B0'
       }
     }
   }

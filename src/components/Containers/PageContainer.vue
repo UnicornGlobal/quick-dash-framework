@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .page-container {
     margin: 0.5em;
     min-height: calc(100% - 16px);
@@ -22,7 +22,6 @@
 
 <script>
   export default {
-    name: 'page-container',
     props: {
       title: {
         type: String,
