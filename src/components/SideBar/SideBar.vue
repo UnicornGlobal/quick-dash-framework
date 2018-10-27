@@ -20,7 +20,6 @@
   import LogoutIcon from '@/components/SideBar/icons/sign_out.svg'
 
   export default {
-    name: 'side-bar',
     props: [
       'menus',
       'root-path'
@@ -46,7 +45,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .logout-link-menu-item {
     @media (min-width: 1025px) {
       display: none;

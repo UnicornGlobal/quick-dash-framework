@@ -20,12 +20,12 @@ export default [
         }
       },
       {
-        name: 'Details',
-        path: 'details',
+        name: 'Settings',
+        path: 'settings',
         component: {template: '<router-view></router-view>'},
         meta: {
           main: true,
-          label: 'Details',
+          label: 'Settings',
           icon: require('@/components/SideBar/icons/details_settings.svg')
         }
       }

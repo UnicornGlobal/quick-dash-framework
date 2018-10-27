@@ -134,7 +134,6 @@
   import { resendVerification } from '@/api/user'
 
   export default {
-    name: 'action-required-card',
     components: {
       Card,
       Info
