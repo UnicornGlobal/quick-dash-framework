@@ -12,7 +12,7 @@ module.exports = {
       .click('button')
       .waitForElementVisible('div[class="home-page content-area"]', 30000, 'Arrive on the home page')
 
-      .assert.elementPresent('.top-navigation', 'Navbar is present')
+      .waitForElementVisible('.top-navigation', 30000, 'Navbar is present')
       .assert.elementPresent('.side-bar', 'Sidebar is present')
 
       .pause(1000)
