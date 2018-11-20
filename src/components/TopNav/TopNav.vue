@@ -7,9 +7,9 @@
             <hamburger-lines></hamburger-lines>
           </div>
         </div>
-        <div class="logo">
+        <router-link class="logo" to="/">
           Quick Dash
-        </div>
+        </router-link>
       </div>
       <div class="right">
         <div v-if="user" class="user-menu">
@@ -96,6 +96,7 @@
     margin-left: 2em;
     color: $white;
     font-size: 22px;
+    text-decoration: none;
 
     svg {
       height: 30px;
