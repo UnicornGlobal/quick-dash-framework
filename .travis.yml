@@ -1,8 +1,8 @@
 stages:
   - tests
+  - build
   - name: deploy
     if: branch = master
-
 dist: trusty
 language: node_js
 node_js:
@@ -15,18 +15,16 @@ addons:
       - mysql-5.7-trusty
     packages:
       - mysql-server
-  chrome: stable
-
+install: true
+cache:
+  directories:
+    - $HOME/.npm
+    - $HOME/.cache
 # Default steps within each job
 before_install:
 - phpenv global 7.1.11
 - mysql -e 'CREATE DATABASE IF NOT EXISTS strong;'
-- npm install
 - cp config/secrets.env.js.example config/secrets.env.js
-- export CHROME_BIN=/usr/bin/google-chrome
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
-- npm i chromedriver
 - git clone "https://github.com/darrynten/strong-lumen" --branch=master ../strong-lumen
 - cd ../strong-lumen
 - composer self-update
@@ -40,7 +38,7 @@ before_install:
 - sudo chmod 777 ./storage/logs/lumen.log
 - nohup php -S 127.0.0.1:8000 -t public &
 - cd -
-
+- npm install
 jobs:
   include:
     - stage: tests
@@ -50,8 +48,11 @@ jobs:
         - codecov test/unit/coverage/lcov.info -t ${CODECOV_TOKEN}
         - echo "Done"
     - stage: tests
-      name: "e2e Tests"
-      script: npm run e2e
+      name: "Cypress Tests"
+      script: ./scripts/setup_cypress.sh && $(npm bin)/cypress run
+    - stage: build
+      name: "Build"
+      script: npm run build
     - stage: deploy
       name: "No target"
       before_install: true
