@@ -20,3 +20,7 @@ yarn.lock
 coverage
 *.orig
 config/secrets.env.js
+
+cypress/videos
+cypress/screenshots
+cypress.json
