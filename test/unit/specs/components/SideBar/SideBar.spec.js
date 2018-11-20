@@ -10,10 +10,6 @@ describe('SideBar.vue', () => {
     expect(SideBar).to.be.an('object')
   })
 
-  it('has a name', () => {
-    expect(SideBar).to.have.property('name', 'side-bar')
-  })
-
   it('accepts menus and root-path props', () => {
     expect(SideBar.props).to.be.an('array')
     let menu = {
