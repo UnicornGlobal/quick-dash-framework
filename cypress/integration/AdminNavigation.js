@@ -16,8 +16,6 @@ describe('Admin Navigation', function() {
 
   it('Has Clickable Logo', function () {
     cy.get('.logo').should('exist').and('be.visible')
-      .children('a')
-      .should('exist').and('be.visible')
       .and('have.attr', 'href', '/')
   })
 
@@ -26,16 +24,16 @@ describe('Admin Navigation', function() {
 
     cy.get('.menu-items')
       .children('div')
-      .should('have.length', 4)
+      .should('have.length', 3)
 
     cy.get('.menu-items')
       .children('.menu-item')
       .first()
       .should('have.class', 'active')
 
-    cy.get('.menu-item').contains('Products')
-    cy.get('.menu-item').contains('Frames')
-    cy.get('.menu-item').contains('Users')
+    cy.get('.menu-item').contains('Account')
+    cy.get('.menu-item').contains('Admin Account')
+    cy.get('.menu-item').contains('Home')
   })
 
   it('Has correct User Info box', function() {
@@ -59,41 +57,28 @@ describe('Admin Navigation', function() {
       .should('have.class', 'user-name')
       .contains('Admin User')
 
-    cy.get('.user-menu')
-      .children()
-      .last()
-      .children()
-      .last()
-      .should('have.class', 'logout-button-box')
-      .children('a')
-      .first()
+    cy.get('div.user-company > a')
       .should('have.class', 'logout-button')
       .contains('Logout')
   })
 
   it('Navigates to different Pages', function () {
-    cy.get('a[href="/products"]').click()
-    cy.url().should('include', '/products')
+    cy.get('a.router-link[href="/account"]').click()
+    cy.url().should('include', '/account')
     cy.go('back')
     cy.url().should('be', '/')
 
-    cy.get('a[href="/frames"]').click()
-    cy.url().should('include', '/frames')
-    cy.go('back')
-    cy.url().should('be', '/')
+    cy.get('.router-link.toggle').click()
 
-    cy.get('a[href="/users"]').click()
+    cy.get('a[href="/admin/users"]').click()
     cy.url().should('include', '/users')
     cy.go('back')
     cy.url().should('be', '/')
   })
 
   it('Navigate home via Logo', function () {
-    cy.visit('/frames')
-    cy.get('.logo').should('exist').and('be.visible')
-      .children('a')
-      .click()
-
+    cy.visit('/account')
+    cy.get('.logo').should('exist').and('be.visible').click()
     cy.url().should('be', '/')
   })
 })
