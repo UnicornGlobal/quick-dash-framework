@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "es6-promise": "^4.2.5",
     "unicorn-vue-datatable": "^1.2.1",
     "unicorn-vue-toaster": "^1.0.1",
     "vee-validate": "^2.1.0-beta.11",
