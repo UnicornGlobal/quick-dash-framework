@@ -49,11 +49,11 @@ jobs:
         - echo "Done"
     - stage: tests
       name: "Cypress Tests"
-      script: ./scripts/setup_cypress.sh && $(npm bin)/cypress run
+      script: ./scripts/setup_cypress.sh && npm run dev && $(npm bin)/cypress run
     - stage: build
       name: "Build"
       script: npm run build
     - stage: deploy
-      name: "No target"
+      name: "No Target"
       before_install: true
       script: echo Add deployment settings!
