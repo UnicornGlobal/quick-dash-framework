@@ -49,7 +49,10 @@ jobs:
         - echo "Done"
     - stage: tests
       name: "Cypress Tests"
-      script: ./scripts/setup_cypress.sh && npm run dev && $(npm bin)/cypress run
+      script:
+        - ./scripts/setup_cypress.sh
+        - nohup npm run dev &
+        - $(npm bin)/cypress run
     - stage: build
       name: "Build"
       script: npm run build
