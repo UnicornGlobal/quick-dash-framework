@@ -178,7 +178,7 @@
 <script>
   import AvatarOrInitials from 'vue-avatar-or-initials'
   import { reloadRouter } from '@/lib'
-  import HamburgerLines from '@/assets/images/svg/hamburger-lines.svg'
+  import HamburgerLines from '@/components/Icons/hamburger.svg'
 
   export default {
     name: 'top-nav',
