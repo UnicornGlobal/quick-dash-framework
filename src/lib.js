@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import store from '@/store'
 import Router from 'vue-router'
-import userRoutes from './router/UserRoutes'
-import adminRoutes from './router/AdminRoutes'
+import userRoutes from '@/router/UserRoutes'
+import adminRoutes from '@/router/AdminRoutes'
 import SharedRoutes from '@/router/SharedRoutes'
 
 export async function loadRoutes(user) {
@@ -12,7 +12,7 @@ export async function loadRoutes(user) {
     meta: {
       main: true,
       label: 'Home',
-      icon: require('@/components/SideBar/icons/home.svg')
+      icon: require('@/components/SideBar/icons/home.svg').default
     },
     children: []
   }

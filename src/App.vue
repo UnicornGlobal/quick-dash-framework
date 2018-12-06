@@ -22,7 +22,7 @@
 <script>
   import SideBar from '@/components/SideBar/SideBar'
   import TopNav from '@/components/TopNav/TopNav'
-  import Loader from '@/components/Loader.vue'
+  import Loader from '@/components/Loader'
 
   export default {
     name: 'app',

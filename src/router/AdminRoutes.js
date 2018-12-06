@@ -6,17 +6,17 @@ export default [
     meta: {
       main: true,
       label: 'Admin Account',
-      icon: require('@/components/SideBar/icons/Details.svg')
+      icon: require('../components/SideBar/icons/Details.svg').default
     },
     children: [
       {
         name: 'AllUsers',
         path: 'users',
-        component: require('@/pages/Admin/Users/Index.vue').default,
+        component: require('../pages/Admin/Users/Index.vue').default,
         meta: {
           main: true,
           label: 'All Users',
-          icon: require('@/components/SideBar/icons/Customers.svg')
+          icon: require('../components/SideBar/icons/Customers.svg').default
         }
       },
       {
@@ -26,7 +26,7 @@ export default [
         meta: {
           main: true,
           label: 'Settings',
-          icon: require('@/components/SideBar/icons/details_settings.svg')
+          icon: require('../components/SideBar/icons/details_settings.svg').default
         }
       }
     ]
