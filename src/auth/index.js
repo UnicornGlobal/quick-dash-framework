@@ -2,9 +2,11 @@ import Vue from 'vue'
 import Auth from '@websanova/vue-auth'
 import store from '@/store'
 import { loadUserData } from '@/api/user'
-import { loadRoutes } from '@/lib'
-// TODO ?
-import router from '@/router'
+import { loadRoutes } from '@/router'
+
+export function userHasRole(user, role) {
+  return user.roles.findIndex(userRole => userRole.name.toUpperCase() === role.toUpperCase()) > -1
+}
 
 export default {
   init: () => {
@@ -31,6 +33,7 @@ export default {
         let user = await loadUserData(response)
 
         let appRoute = await loadRoutes(user)
+        console.log(appRoute)
         await Vue.router.addRoutes([appRoute])
 
         // 'refresh' current route
@@ -53,7 +56,7 @@ export default {
           'Token has expired and can no longer be refreshed'
       ) {
         localStorage.clear()
-        router.push('login')
+        Vue.router.push('login')
       }
 
       if (
@@ -62,12 +65,12 @@ export default {
         error.response.data.error === 'Token Signature could not be verified.'
       ) {
         localStorage.clear()
-        router.push('login')
+        Vue.router.push('login')
       }
 
       if (error.response && (error.response.status === 500) && (error.response.data.error === 'The token has been blacklisted')) {
         localStorage.clear()
-        router.push('login')
+        Vue.router.push('login')
       }
 
       if (
@@ -76,7 +79,7 @@ export default {
         error.response.data.error === 'The token has been blacklisted'
       ) {
         localStorage.clear()
-        router.push('login')
+        Vue.router.push('login')
       }
 
       if (
@@ -85,12 +88,12 @@ export default {
         error.response.data.error === 'Wrong number of segments'
       ) {
         localStorage.clear()
-        router.push('login')
+        Vue.router.push('login')
       }
 
       if (Vue.auth.token() === null) {
         localStorage.clear()
-        router.push('login')
+        Vue.router.push('login')
       }
 
       return Promise.reject(error)
