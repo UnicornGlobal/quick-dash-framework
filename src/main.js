@@ -1,32 +1,14 @@
 import '@/assets/sass/base.scss'
 
 import Vue from 'vue'
-import VeeValidate from 'vee-validate'
-import DataTable from 'unicorn-vue-datatable'
 
 import router from '@/router'
 import store from '@/store'
 import auth from '@/auth'
-import comms from '@/comms'
+import comms from '@/http'
+import lib from '@/lib'
 
 Vue.config.productionTip = false
-
-Vue.use(VeeValidate, {
-  fieldsBagName: 'formFields',
-  classes: false,
-  events: 'input'
-})
-
-Vue.use(DataTable, {
-  theme: {
-    primary: '#B7C7E0',
-    primaryText: 'black',
-    secondaryText: '#1B2638',
-    secondary: '#343',
-    padding: '1em',
-    rowHeight: '65px'
-  }
-})
 
 const start = () => {
   /* eslint-disable no-new */
@@ -55,6 +37,8 @@ const start = () => {
 
 comms.init()
 auth.init()
+lib.load()
+// lib.init()
 
 export default {
   install: (Vue, options) => {

@@ -16,7 +16,7 @@
 
 <script>
   import SideBarMenuItem from '@/components/SideBar/SideBarMenuItem'
-  import { reloadRouter } from '@/lib'
+  import { reloadRouter } from '@/router'
   import LogoutIcon from '@/components/SideBar/icons/sign_out.svg'
 
   export default {
