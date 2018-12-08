@@ -6,7 +6,7 @@ export default [
     meta: {
       main: true,
       label: 'Admin Account',
-      icon: require('../components/SideBar/icons/Details.svg').default
+      icon: require('@/assets/icons/info.svg').default
     },
     children: [
       {
@@ -16,7 +16,7 @@ export default [
         meta: {
           main: true,
           label: 'All Users',
-          icon: require('../components/SideBar/icons/Customers.svg').default
+          icon: require('@/assets/icons/users.svg').default
         }
       },
       {
@@ -26,7 +26,7 @@ export default [
         meta: {
           main: true,
           label: 'Settings',
-          icon: require('../components/SideBar/icons/details_settings.svg').default
+          icon: require('@/assets/icons/settings.svg').default
         }
       }
     ]
