@@ -18,7 +18,7 @@ export async function loadRoutes(user) {
     meta: {
       main: true,
       label: 'Home',
-      icon: require('@/components/SideBar/icons/home.svg').default
+      icon: require('@/assets/icons/home.svg').default
     },
     children: []
   }

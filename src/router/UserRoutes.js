@@ -6,7 +6,7 @@ export default [
     meta: {
       main: true,
       label: 'Home',
-      icon: require('@/components/SideBar/icons/home.svg').default
+      icon: require('@/assets/icons/home.svg').default
     }
   },
   {
@@ -16,7 +16,7 @@ export default [
     meta: {
       main: true,
       label: 'Account',
-      icon: require('@/components/SideBar/icons/PersonalAccount.svg').default
+      icon: require('@/assets/icons/user.svg').default
     }
   }
 ]

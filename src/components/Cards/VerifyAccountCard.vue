@@ -130,7 +130,7 @@
 
 <script>
   import Card from '@/components/Cards/Card.vue'
-  import Info from '@/components/Icons/info.svg'
+  import Info from '@/assets/icons/info.svg'
   import { resendVerification } from '@/api/user'
 
   export default {
