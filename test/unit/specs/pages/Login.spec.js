@@ -3,7 +3,7 @@ import sinon from 'sinon'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import store from '@/store'
 import axios from 'axios'
-import Validator from 'vee-validate'
+import { ErrorBag } from 'vee-validate'
 
 let mocks = {
   $http: axios,
@@ -12,6 +12,7 @@ let mocks = {
     user: sinon.stub().returns({}),
     login: sinon.stub().resolves(true)
   },
+  errors: new ErrorBag(),
   $store: store
 }
 
@@ -22,7 +23,6 @@ describe('Login.vue', () => {
 
   it('triggers sign in method', () => {
     let localVue = createLocalVue()
-    localVue.use(Validator)
     const wrapper = shallowMount(Login, {localVue, mocks})
     expect(wrapper.vm.signIn).to.be.a('function')
     expect(wrapper.vm.sendSignInRequest).to.be.a('function')
@@ -39,7 +39,6 @@ describe('Login.vue', () => {
 
   it('triggers sign in with failed validation', () => {
     let localVue = createLocalVue()
-    localVue.use(Validator)
     const wrapper = shallowMount(Login, {localVue, mocks})
     expect(wrapper.vm.signIn).to.be.a('function')
     expect(wrapper.vm.sendSignInRequest).to.be.a('function')
@@ -56,7 +55,6 @@ describe('Login.vue', () => {
 
   it('handles sign in error', () => {
     let localVue = createLocalVue()
-    localVue.use(Validator)
     const wrapper = shallowMount(Login, {
       localVue,
       mocks: {
