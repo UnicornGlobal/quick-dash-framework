@@ -11,7 +11,15 @@ describe('SideBar.vue', () => {
   })
 
   it('accepts menus and root-path props', () => {
+    let mocks = {
+      $route: {
+        name: 'Home',
+        matched: []
+      }
+    }
+
     expect(SideBar.props).to.be.an('array')
+
     let menu = {
       name: 'Home',
       path: '',
@@ -20,7 +28,16 @@ describe('SideBar.vue', () => {
       }
     }
 
-    let sidebar = shallowMount(SideBar, {localVue, propsData: {menus: [menu], rootPath: '/test'}})
+    let sidebar = shallowMount(SideBar, {
+      localVue,
+      propsData: {
+        menus: [ menu ],
+        rootPath: '/test'
+      },
+      stubs: ['router-link'],
+      mocks
+    })
+
     expect(sidebar.vm.rootPath).to.equal('/test')
     expect(sidebar.vm.menus).to.be.an('array').that.has.lengthOf(1)
     expect(sidebar.vm.menus[0].name).to.equal('Home')

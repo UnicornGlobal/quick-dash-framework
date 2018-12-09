@@ -1,13 +1,35 @@
+// http://chaijs.com/api/bdd/
+import Router from 'vue-router'
 import Vue from 'vue'
-import axios from 'axios'
+import { createLocalVue } from '@vue/test-utils'
 import UserRoutes from '@/router/UserRoutes'
 import AdminRoutes from '@/router/AdminRoutes'
+import router, { loadRoutes, reloadRouter } from '@/router'
 
-import { loadRoutes, reloadRouter } from '@/lib'
+let localVue = createLocalVue()
+localVue.use(Router)
+localVue.router = router
+if (Vue.auth) {
+  Vue.auth.check = () => {
+    return true
+  }
+} else {
+  Vue.auth = {
+    check() {
+      return true
+    }
+  }
+}
 
-Vue.axios = axios.create()
+localVue.router.addRoutes([{name: 'Home', path: ''}])
 
-describe('lib.js', () => {
+describe('router/index.js', () => {
+  it('Exports an Object', () => {
+    expect(router).to.be.an('Object')
+  })
+})
+
+describe('Router Exports', () => {
   describe('loadRoutes', () => {
     it('loads user routes', async () => {
       let appRoute = await loadRoutes({_id: 1, roles: []})

@@ -1,8 +1,8 @@
 // http://chaijs.com/api/bdd/
-import router from '@/router'
 import Router from 'vue-router'
 import Vue from 'vue'
 import { createLocalVue } from '@vue/test-utils'
+import router from '@/router'
 
 let localVue = createLocalVue()
 localVue.use(Router)
@@ -21,12 +21,8 @@ if (Vue.auth) {
 
 localVue.router.addRoutes([{name: 'Home', path: ''}])
 
-describe('router/index.js', () => {
-  it('is an Object', () => {
-    expect(router).to.be.an('Object')
-  })
-
-  it('does not load login page if already logged in', () => {
+describe('Authentication Redirects', () => {
+  it('Does not load login page if already logged in', () => {
     localVue.router.push({name: 'Home'})
     expect(localVue.router.currentRoute).to.be.an('Object')
     expect(localVue.router.currentRoute.name).to.equal('Home')
@@ -35,7 +31,7 @@ describe('router/index.js', () => {
     expect(localVue.router.currentRoute.name).to.equal('Home')
   })
 
-  it('loads password reset page if already logged in', () => {
+  it('Loads password reset page if already logged in', () => {
     localVue.router.push({name: 'Home'})
     expect(localVue.router.currentRoute).to.be.an('Object')
     expect(localVue.router.currentRoute.name).to.equal('Home')
