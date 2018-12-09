@@ -2,8 +2,8 @@
 import Router from 'vue-router'
 import Vue from 'vue'
 import { createLocalVue } from '@vue/test-utils'
-import UserRoutes from '@/router/UserRoutes'
-import AdminRoutes from '@/router/AdminRoutes'
+import UserRoutes from '@/router/user'
+import AdminRoutes from '@/router/admin'
 import router, { loadRoutes, reloadRouter } from '@/router'
 
 let localVue = createLocalVue()
