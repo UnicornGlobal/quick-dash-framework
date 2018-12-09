@@ -46,6 +46,7 @@
 
 <script>
   export default {
+    name: 'side-bar-menu-item',
     props: [
       'menu',
       'base'
