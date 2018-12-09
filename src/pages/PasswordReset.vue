@@ -2,12 +2,12 @@
   <div class="password-reset-page">
     <div class="reset-header">
       <h4 class="text-header">
-        Forgot your password?
+        {{ strings.header }}
       </h4>
-      <p class="text">We'll email you instructions on how to reset it.</p>
+      <p class="text">{{ strings.details }}</p>
     </div>
     <p v-if="sent" class="sent-success" style="color: white">
-      Please check your inbox for instructions to reset your password.
+      {{ strings.success }}
     </p>
     <div class="password-reset-form" v-else>
       <card class="card">
@@ -21,13 +21,14 @@
             <div class="loading" v-if="bSending">
               <loader fill="#ffffff" width="25px" height="25px"></loader>
             </div>
-            Submit
+            {{ strings.button }}
           </button>
         </div>
       </card>
     </div>
   </div>
 </template>
+
 <script type="text/javascript">
   import Card from '@/components/Cards/Card.vue'
 
@@ -39,6 +40,9 @@
         sent: false,
         bSending: false
       }
+    },
+    created() {
+      this.strings = require('@/i18n/en/password-reset').default
     },
     mounted() {
       this.$store.commit('setLoading', false)
@@ -74,19 +78,29 @@
 </script>
 
 <style lang="scss" scoped>
+  h4 {
+    top: 20px;
+    left: 80px;
+    font-size: 2em;
+    align-self: flex-start;
+  }
+
   .password-reset-page {
-    background-color: rgb(59, 71, 102);
+    background-color: $primary;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    display: flex;
+    justify-content: center;
 
     .reset-header {
-      margin: 20vh 0.5em 0.5em 0.5em;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 0 1em;
+      align-self: flex-start;
+      flex: 1;
     }
 
     .text-header {
@@ -98,6 +112,9 @@
     .text {
       color: $white;
       font-size: 20px;
+      top: 100px;
+      left: 82px;
+      font-size: 1em;
     }
 
     .logo {
@@ -107,7 +124,11 @@
 
     .card {
       border: none;
-      background-color: rgb(59, 71, 102);
+      border-radius: $border-radius;
+      background-color: $primary-dark;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
     }
 
     label {
@@ -115,13 +136,10 @@
     }
 
     .password-reset-form {
-      width: 30%;
+      width: 420px;
       align-self: center;
       max-width: 360px;
-
-      @media(max-width: 769px) and (min-width: 481px) {
-        width: 50%;
-      }
+      flex: 2;
 
       @media(max-width: 480px) {
         width: 100%;
@@ -149,11 +167,13 @@
         margin-left: 15px;
         display: flex;
         align-items: center;
+        border-radius: $border-radius;
+        cursor: pointer;
       }
     }
 
     input {
-      margin: 3px 0 20px 0;
+      margin: 0px 0 22px 0;
     }
 
     .sent-success {
