@@ -6,9 +6,17 @@ describe('SideBarMenuItem.vue', () => {
   it('renders menu item without children', () => {
     let localVue = createLocalVue()
 
+    let mocks = {
+      $route: {
+        name: 'Home',
+        matched: []
+      }
+    }
+
     let sidebarMenuItem = shallowMount(SideBarMenuItem, {
       localVue,
       propsData: {
+        base: 'xxx',
         menu: {
           name: 'home',
           path: '/',
@@ -19,13 +27,8 @@ describe('SideBarMenuItem.vue', () => {
           }
         }
       },
-      stubs: ['router-link'],
-      mocks: {
-        $route: {
-          name: 'Home',
-          matched: []
-        }
-      }
+      mocks,
+      stubs: ['router-link']
     })
 
     expect(sidebarMenuItem.vm).to.have.property('hasChildren', false)

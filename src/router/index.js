@@ -42,10 +42,7 @@ export function reloadRouter() {
   })
 }
 
-Vue.use(Router)
-Vue.router = router
-
-Vue.router.afterEach(function (to, from) {
+router.afterEach(function (to, from) {
   store.commit('showSideBar', false)
 })
 

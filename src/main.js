@@ -1,6 +1,7 @@
 import '@/assets/sass/base.scss'
 
 import Vue from 'vue'
+import Router from 'vue-router'
 
 import router from '@/router'
 import store from '@/store'
@@ -9,6 +10,9 @@ import comms from '@/http'
 import lib from '@/lib'
 
 Vue.config.productionTip = false
+
+Vue.use(Router)
+Vue.router = router
 
 const start = () => {
   /* eslint-disable no-new */
