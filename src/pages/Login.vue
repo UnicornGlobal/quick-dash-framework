@@ -101,6 +101,7 @@
     margin-top: 0px;
     max-width: 480px;
     padding: 0px;
+    border-radius: $border-radius;
 
     h2 {
       padding: 10px 20px;
@@ -184,7 +185,6 @@
       .login-button-wrapper {
         display: flex;
         justify-content: flex-end;
-        margin-top: 30px;
       }
 
       .card {
@@ -214,6 +214,8 @@
         color: $white;
         background-color: $primary;
         border: none;
+        border-radius: $border-radius;
+        cursor: pointer;
       }
 
       input {
