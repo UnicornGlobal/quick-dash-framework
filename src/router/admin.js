@@ -12,7 +12,7 @@ export default [
       {
         name: 'AllUsers',
         path: 'users',
-        component: require('../pages/Admin/Users/Index.vue').default,
+        component: require('@/pages/Admin/Users/Index.vue').default,
         meta: {
           main: true,
           label: 'All Users',
