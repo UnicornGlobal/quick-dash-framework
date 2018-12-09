@@ -19,7 +19,7 @@
             <div class="password-box">
               <input v-validate="'required'" v-model="password" name="password" type="password"
                      placeholder="Password" />
-              <router-link v-if="!errors.has('password')" :to="{name: 'ResetPassword'}">Forgot?</router-link>
+              <router-link v-if="!errors.has('password')" :to="{name: 'ResetPassword'}">Forgot</router-link>
               <router-link v-if="errors.has('password')" style="padding-right: 30px" :to="{name: 'ResetPassword'}">
                 Forgot?
               </router-link>
