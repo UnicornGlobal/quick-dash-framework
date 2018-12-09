@@ -40,34 +40,39 @@ let getters = {
  * ~/ represents the host application `src` directory
  * @/ represents this frameworks `src` directory
  */
-const req = require.context('~/store', true, /\.js$/)
-req.keys().forEach(function(key) {
-  /**
-   * Do not load any index.js files that are placed in the host
-   * applications `store` folder
-   */
-  if (key === './index.js') {
-    console.error('Do not place `index.js` files in your `/store` directory')
-    return
-  }
+let custom = false
+try {
+  custom = require.context('~/store', true, /\.js$/)
+  custom.keys().forEach(function(key) {
+    /**
+     * Do not load any index.js files that are placed in the host
+     * applications `store` folder
+     */
+    if (key === './index.js') {
+      console.error('Do not place `index.js` files in your `/store` directory')
+      return
+    }
 
-  console.log('Found custom store: ', key)
+    console.log('Found custom store: ', key)
 
-  state = {
-    ...state,
-    ...req.state
-  }
+    state = {
+      ...state,
+      ...custom.state
+    }
 
-  mutations = {
-    ...mutations,
-    ...req.mutations
-  }
+    mutations = {
+      ...mutations,
+      ...custom.mutations
+    }
 
-  getters = {
-    ...getters,
-    ...req.getters
-  }
-})
+    getters = {
+      ...getters,
+      ...custom.getters
+    }
+  })
+} catch (e) {
+  console.error('Application level `store` folder is missing')
+}
 
 export default new VueX.Store({
   state,

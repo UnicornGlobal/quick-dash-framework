@@ -1,10 +1,13 @@
+import Vue from 'vue'
+import sinon from 'sinon'
+import axios from 'axios'
+
 import {
   loadUserDetails,
   loadUserData
 } from '@/api/user'
 
-import Vue from 'vue'
-import sinon from 'sinon'
+Vue.axios = axios.create()
 
 describe('users.js', () => {
   describe('loadUserDetails', () => {
