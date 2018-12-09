@@ -1,39 +1,4 @@
-import config from '@/config'
-import icons from '@/icons'
-
-const users = config.admin.users ? [
-  {
-    name: 'AllUsers',
-    path: 'users',
-    component: require('@/pages/Admin/Users/Index.vue').default,
-    meta: {
-      main: true,
-      label: 'All Users',
-      icon: icons.users
-    }
-  },
-  {
-    name: 'UserDetails',
-    path: 'users/:userId',
-    component: require('@/pages/Admin/Users/UserDetails.vue').default,
-    props: true
-  }
-] : []
-
-const settings = config.admin.settings.enabled ? [
-  {
-    name: 'Settings',
-    path: 'settings',
-    component: config.admin.settings.component,
-    meta: {
-      main: true,
-      label: 'Settings',
-      icon: icons.settings
-    }
-  }
-] : []
-
-export default config.admin.enabled ? [
+export default [
   {
     name: 'AdminAccount',
     path: 'admin',
@@ -41,11 +6,29 @@ export default config.admin.enabled ? [
     meta: {
       main: true,
       label: 'Admin Account',
-      icon: icons.admin
+      icon: require('@/assets/icons/info.svg').default
     },
     children: [
-      ...users,
-      ...settings
+      {
+        name: 'AllUsers',
+        path: 'users',
+        component: require('@/pages/Admin/Users/Index.vue').default,
+        meta: {
+          main: true,
+          label: 'All Users',
+          icon: require('@/assets/icons/users.svg').default
+        }
+      },
+      {
+        name: 'Settings',
+        path: 'settings',
+        component: {template: '<router-view></router-view>'},
+        meta: {
+          main: true,
+          label: 'Settings',
+          icon: require('@/assets/icons/settings.svg').default
+        }
+      }
     ]
   }
-] : []
+]
