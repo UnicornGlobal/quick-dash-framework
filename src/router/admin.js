@@ -1,3 +1,6 @@
+import Settings from '@/assets/icons/settings'
+import User from '@/assets/icons/user'
+
 export default [
   {
     name: 'AdminAccount',
@@ -6,7 +9,7 @@ export default [
     meta: {
       main: true,
       label: 'Admin Account',
-      icon: require('@/assets/icons/info.svg').default
+      icon: Settings
     },
     children: [
       {
@@ -16,7 +19,7 @@ export default [
         meta: {
           main: true,
           label: 'All Users',
-          icon: require('@/assets/icons/users.svg').default
+          icon: User
         }
       },
       {
@@ -26,7 +29,7 @@ export default [
         meta: {
           main: true,
           label: 'Settings',
-          icon: require('@/assets/icons/settings.svg').default
+          icon: Settings
         }
       }
     ]

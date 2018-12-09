@@ -4,7 +4,7 @@ export default {
   meta: {
     main: true,
     label: 'Home',
-    icon: require('@/assets/icons/home.svg').default
+    icon: require('@/assets/icons/home.svg')
   },
   children: []
 }

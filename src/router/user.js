@@ -1,3 +1,6 @@
+import Home from '@/assets/icons/home'
+import User from '@/assets/icons/user'
+
 export default [
   {
     name: 'Home',
@@ -6,7 +9,7 @@ export default [
     meta: {
       main: true,
       label: 'Home',
-      icon: require('@/assets/icons/home.svg').default
+      icon: Home
     }
   },
   {
@@ -16,7 +19,7 @@ export default [
     meta: {
       main: true,
       label: 'Account',
-      icon: require('@/assets/icons/user.svg').default
+      icon: User
     }
   }
 ]
