@@ -1,28 +1,25 @@
+dist: xenial
+language: node_js
+node_js:
+  - 10
+services:
+  - mysql
+
+cache:
+  directories:
+    - $HOME/.npm
+    - $HOME/.cache
+    - $HOME/.composer/cache/files
+    - node_modules
+
 stages:
   - tests
   - build
   - name: deploy
     if: branch = master
-dist: trusty
-language: node_js
-node_js:
-- 9
-services:
-- mysql
-addons:
-  apt:
-    sources:
-      - mysql-5.7-trusty
-    packages:
-      - mysql-server
-install: true
-cache:
-  directories:
-    - $HOME/.npm
-    - $HOME/.cache
+
 # Default steps within each job
 before_install:
-- phpenv global 7.1.11
 - mysql -e 'CREATE DATABASE IF NOT EXISTS strong;'
 - cp config/secrets.env.js.example config/secrets.env.js
 - git clone "https://github.com/darrynten/strong-lumen" --branch=master ../strong-lumen
