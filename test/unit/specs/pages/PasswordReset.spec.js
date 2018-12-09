@@ -2,7 +2,7 @@
 import PasswordReset from '@/pages/PasswordReset'
 import sinon from 'sinon'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
-import Validator from 'vee-validate'
+import { ErrorBag } from 'vee-validate'
 import store from '@/store'
 import axios from 'axios'
 import Vue from 'vue'
@@ -14,6 +14,7 @@ let mocks = {
     user: sinon.stub().returns({}),
     login: sinon.stub().resolves(true)
   },
+  errors: new ErrorBag(),
   $store: store
 }
 
@@ -31,7 +32,6 @@ describe('PasswordReset.vue', () => {
 
   it('has three methods', () => {
     let localVue = createLocalVue()
-    localVue.use(Validator)
     const wrapper = shallowMount(PasswordReset, {localVue, mocks})
 
     expect(wrapper.vm.submit).to.be.a('function')
@@ -42,7 +42,6 @@ describe('PasswordReset.vue', () => {
   it('submits successful request', () => {
     let localVue = createLocalVue()
     localVue.prototype.$eventBus = new Vue()
-    localVue.use(Validator)
     const wrapper = shallowMount(PasswordReset, {localVue, mocks})
     wrapper.setData({email: 'name@example.com', sent: false})
 
@@ -62,7 +61,6 @@ describe('PasswordReset.vue', () => {
   it('submits failed request', () => {
     let localVue = createLocalVue()
     localVue.prototype.$eventBus = new Vue()
-    localVue.use(Validator)
     const wrapper = shallowMount(PasswordReset, {localVue, mocks})
     wrapper.setData({email: 'name@example.com', sent: false})
 
