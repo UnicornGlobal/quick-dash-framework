@@ -49,7 +49,7 @@ try {
      * applications `store` folder
      */
     if (key === './index.js') {
-      console.error('Do not place `index.js` files in your `/store` directory')
+      console.warn('Do not place `index.js` files in your `/store` directory, they are ignored.')
       return
     }
 

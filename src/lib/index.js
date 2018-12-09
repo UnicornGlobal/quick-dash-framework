@@ -28,7 +28,7 @@ export default {
       console.log('Host application has custom `lib` folder')
       host.keys().forEach(function(key) {
         if (key === './index.js') {
-          console.error('Do not place `index.js` files in your `/lib` directory')
+          console.warn('Do not place `index.js` files in your `/lib` directory, they are ignored.')
           return
         }
 
