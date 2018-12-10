@@ -130,7 +130,7 @@
   .content-area {
     overflow-y: auto;
     flex: 1;
-    margin: 0 auto 1em auto;
+    margin: 0 auto 0.5em;
     overflow-x: hidden;
     @media(max-width: 400px) {
       margin: 0 auto 0 auto;

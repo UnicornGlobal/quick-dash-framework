@@ -23,6 +23,12 @@ export default [
         }
       },
       {
+        name: 'UserDetails',
+        path: 'users/:userId',
+        component: require('@/pages/Admin/Users/UserDetails.vue').default,
+        props: true
+      },
+      {
         name: 'Settings',
         path: 'settings',
         component: {template: '<router-view></router-view>'},
