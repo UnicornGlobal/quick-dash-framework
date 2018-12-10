@@ -40,6 +40,13 @@ Enable the specific ones you want to use, do not enable all!
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Montserrat-SemiBold';
+  src: url('../fonts/Montserrat-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
 /**
 @font-face {
   font-family: 'Montserrat-Italic';
@@ -48,12 +55,6 @@ Enable the specific ones you want to use, do not enable all!
   font-style: italic;
 }
 
-@font-face {
-  font-family: 'Montserrat-SemiBold';
-  src: url('../fonts/Montserrat-SemiBold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
-}
 
 @font-face {
   font-family: 'Montserrat-SemiBoldItalic';
@@ -245,4 +246,13 @@ select {
 span.validation-error {
   color: $fail;
   font-size: .9em;
+}
+
+a.link {
+  margin: 3px;
+  background: #f44336;
+  color: white !important;
+  padding: 4px;
+  text-decoration: none;
+  border-radius: 2px;
 }

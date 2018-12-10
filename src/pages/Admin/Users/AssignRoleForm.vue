@@ -4,14 +4,12 @@
       <label v-for="role in roles">
         <input type="radio" name="role" :value="role._id" v-model="currentRoleId">
         <span class="radiomark"></span>
-        <span style="text-transform: capitalize; color: black;">{{role.name}}</span>
+        <span class="role-name">{{role.name}}</span>
       </label>
-      <div style="display: flex; justify-content: flex-end; margin-top: 10px">
-        <button type="submit" v-if="currentRoleId" @click.prevent="assignRole" class="button-positive button-with-loader">
-          <span class="button-loader">
-            <loader v-if="sending" fill="#ffffff" strokeEdges="#ffffff"></loader>
-          </span>
-          <span class="button-text">Assign</span>
+      <div class="button-block">
+        <button type="submit" v-if="currentRoleId" @click.prevent="assignRole">
+          <loader v-if="sending" fill="#ffffff" strokeEdges="#ffffff"></loader>
+          <span>Assign</span>
         </button>
       </div>
     </template>
@@ -41,12 +39,12 @@
           .catch(
             (error) => {
               this.$emit('error', error)
-              this.$toaster.addToast({
-                type: 'error',
-                title: 'Error',
-                message: 'Failed to assign role',
-                timeOut: 5000
-              })
+              // this.$toaster.addToast({
+              //   type: 'error',
+              //   title: 'Error',
+              //   message: 'Failed to assign role',
+              //   timeOut: 5000
+              // })
             })
           .finally(() => {
             this.sending = false
@@ -95,11 +93,22 @@
       height: 15px;
       width: 15px;
       border-radius: 50%;
-      border: thin solid $grey-2;
+      border: thin solid grey;
     }
 
     .radiomark:hover {
-      background: $grey-2;
+      background: grey;
     }
+
+    .role-name {
+      text-transform: capitalize;
+      color: black;
+    }
+  }
+
+  .button-block {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
   }
 </style>
