@@ -21,7 +21,6 @@
     },
     data() {
       return {
-        users: null,
         tableConfig: {
           config: {
             actionComponent: {
@@ -54,6 +53,14 @@
                   enabled: true
                 }
               ]
+            },
+            linking: {
+              enabled: true,
+              route: {
+                name: 'UserDetails'
+              },
+              field: 'id',
+              param: 'userId'
             }
           },
           fields: [
@@ -108,11 +115,16 @@
       }
     },
     async mounted() {
-      this.users = await this.loadUsers()
+      await this.loadUsers()
     },
     methods: {
       loadUsers() {
         return loadAllUsers()
+      }
+    },
+    computed: {
+      users() {
+        return this.$store.state.users
       }
     }
   }

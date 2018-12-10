@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueX from 'vuex'
 
 import user from '@/store/user'
+import users from '@/store/users'
 import auth from '@/store/auth'
 import routes from '@/store/routes'
 import common from '@/store/common'
@@ -16,6 +17,7 @@ Vue.use(VueX)
  */
 let state = {
   ...user.state,
+  ...users.state,
   ...auth.state,
   ...routes.state,
   ...common.state
@@ -23,6 +25,7 @@ let state = {
 
 let mutations = {
   ...user.mutations,
+  ...users.mutations,
   ...auth.mutations,
   ...routes.mutations,
   ...common.mutations
@@ -30,6 +33,7 @@ let mutations = {
 
 let getters = {
   ...user.getters,
+  ...users.getters,
   ...auth.getters,
   ...routes.getters,
   ...common.getters
