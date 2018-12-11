@@ -1,6 +1,5 @@
 <template>
   <div class="home-page" v-if="loaded">
-    <!-- <h2 class="welcome" v-if="tips">Welcome {{ user.first_name }}!</h2> -->
     <verify-account-card
       v-if="userNotVerified"
       :user="user">
