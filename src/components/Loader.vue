@@ -20,7 +20,7 @@
 </template>
 
 <style lang="scss" scoped>
-  @keyframes role {
+  @keyframes roll {
     from {
       transform: rotate(0deg);
       opacity: 1;
@@ -37,7 +37,7 @@
   }
 
   .spinner {
-    animation: role 1s infinite linear;
+    animation: roll 1s infinite linear;
   }
 </style>
 
