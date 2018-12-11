@@ -39,6 +39,7 @@ let getters = {
   ...auth.getters,
   ...routes.getters,
   ...common.getters,
+  ...users.getters,
   ...roles.getters
 }
 
