@@ -2,7 +2,7 @@
   <page-container class="page-container" title="All Users">
     <card class="card">
       <h5>Placeholder</h5>
-      <data-table v-if="users" :dataset="users" :options="tableConfig"></data-table>
+      <data-table v-if="users" :dataset="users" :options="tableConfig" class="data-table"></data-table>
       <loader v-else width="80" height="80"></loader>
     </card>
   </page-container>
@@ -55,6 +55,10 @@
                   value: true
                 }
               ]
+            },
+            headers: {
+              enabled: true,
+              gap: true
             },
             linking: {
               enabled: true,

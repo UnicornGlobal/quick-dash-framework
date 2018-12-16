@@ -7,7 +7,7 @@ describe('Admin Users List', function() {
     cy.loginXhr('admin', 'admin')
     cy.location('href').then((address) => {
       if (address !== `${Cypress.config().baseUrl}/users`) {
-        cy.visit('/users')
+        cy.visit('/admin/users')
         console.log(address)
       }
     })
@@ -15,7 +15,7 @@ describe('Admin Users List', function() {
 
   it('Loads All Users List Page', function() {
     cy.url().should('not.include', '/login')
-    cy.url().should('include', '/users')
+    cy.url().should('include', '/admin/users')
     cy.get('h2').contains('All Users')
   })
 
@@ -24,7 +24,7 @@ describe('Admin Users List', function() {
   })
 
   it('The correct Menu Item is highlighted', function () {
-    cy.get('a[href="/users"]')
+    cy.get('a[href="/admin/users"]')
       .should('exist')
       .and('have.class', 'router-link-active')
       .and('have.class', 'router-link-exact-active')
@@ -32,15 +32,13 @@ describe('Admin Users List', function() {
   })
 
   it('Has a DataTable', function() {
-    cy.get('.table-card')
+    cy.get('.data-table')
       .should('exist')
       .should('be.visible')
-      .children('div')
-      .should('have.class', 'data-table')
   })
 
   it('Has a Search First Names', function () {
-    cy.get('input[placeholder="Search First Names"]')
+    cy.get('input[placeholder="Search User"]')
       .should('exist')
       .should('be.visible')
 
@@ -53,12 +51,24 @@ describe('Admin Users List', function() {
       .should('exist')
       .should('be.visible')
       .children()
-      .contains('Name')
+      .contains('First Name')
+
+    cy.get('div.header-bar')
+      .children('div.headers')
+      .should('exist')
+      .should('be.visible')
+      .children()
+      .contains('Last Name')
 
     cy.get('div.header-bar')
       .children('div.headers')
       .children()
       .contains('Email')
+
+    cy.get('div.header-bar')
+      .children('div.headers')
+      .children()
+      .contains('Phone')
 
     cy.get('div.header-bar')
       .children('div.headers')
@@ -71,7 +81,7 @@ describe('Admin Users List', function() {
       .contains('Confirmed')
 
     cy.get('.header-cell')
-      .should('have.length', 4)
+      .should('have.length', 6)
 
     cy.get('.empty-header-cell')
       .should('have.length', 0)
@@ -92,14 +102,22 @@ describe('Admin Users List', function() {
       .first()
       .should('exist').and('be.visible')
       .children('div.list-row-field')
-      .should('have.length', 4)
+      .should('have.length', 6)
       .first()
       .children('div')
-      .should('have.class', 'name')
+      .should('have.class', 'first_name')
+      .parent()
+      .next()
+      .children()
+      .should('have.class', 'last_name')
       .parent()
       .next()
       .children()
       .should('have.class', 'email')
+      .parent()
+      .next()
+      .children()
+      .should('have.class', 'phone')
       .parent()
       .next()
       .children()
@@ -110,22 +128,16 @@ describe('Admin Users List', function() {
       .should('have.class', 'confirmed')
   })
 
-  it('Has an Add User button', function () {
-    cy.get('button').should('exist')
-      .and('have.class', 'button-main')
-      .contains('Add User')
-  })
-
   it('Handles an empty Search', function () {
-    cy.get('input[placeholder="Search First Names"')
+    cy.get('input[placeholder="Search User"')
       .focus()
       .type('xxxx')
       .wait(10)
 
     cy.get('.no-results').should('exist')
-      .contains('No Users Found')
+      .contains('No Results. Please broaden your search parameters.')
 
-    cy.get('input[placeholder="Search First Names"')
+    cy.get('input[placeholder="Search User"')
       .focus()
       .type('{selectall}{backspace}')
       .wait(10)
