@@ -6,26 +6,24 @@ describe('Make a User a Developer', function() {
   beforeEach(function () {
     cy.server()
     let url = Cypress.env('apiUrl')
-    cy.fixture('admin-all-roles').then((json) => {
-      cy.route(url + '/api/admin/roles', json).as('getRoles')
-    })
+    cy.route(url + '/api/admin/roles').as('getRoles')
     cy.loginXhr('admin', 'admin')
   })
 
   it('Loads All Users List Page as Admin', function() {
-    cy.visit('/users')
+    cy.visit('/admin/users')
     cy.url().should('not.include', '/login')
     cy.url().should('include', '/users')
     cy.get('h2').contains('All Users')
   })
 
-  it('Loads a Non Admin Courier User', function () {
-    cy.visit('/users')
+  it('Loads a Non Admin User', function () {
+    cy.visit('/admin/users')
 
     cy.get('a.list-row')
       .children('.list-row-field')
       .children('div')
-      .contains('Courier User')
+      .contains('User')
       .parent()
       .parent()
       .click()
@@ -38,14 +36,12 @@ describe('Make a User a Developer', function() {
     cy.get('a.logout-button').click()
   })
 
-  it('Login as Courier User', function () {
+  it('Login as User', function () {
     cy.server()
     let url = Cypress.env('apiUrl')
-    cy.fixture('user-me').then((json) => {
-      cy.route(url + '/api/me', json).as('getUserMe')
-    })
+    cy.route(url + '/api/me').as('getUserMe')
 
-    cy.loginXhr('courier', 'courier')
+    cy.loginXhr('user', 'password')
     cy.visit('/')
     cy.wait('@getUserMe')
 
@@ -53,12 +49,12 @@ describe('Make a User a Developer', function() {
   })
 
   it('Login as Admin User again', function () {
-    cy.visit('/users')
+    cy.visit('/admin/users')
 
     cy.get('a.list-row')
       .children('.list-row-field')
       .children('div')
-      .contains('Courier User')
+      .contains('User')
       .parent()
       .parent()
       .click()
@@ -66,11 +62,10 @@ describe('Make a User a Developer', function() {
     cy.url().should('include', '/user')
   })
 
-  it('Opens Courier User Roles modal', function () {
+  it('Opens User Roles modal', function () {
     cy.get('span.role-name').contains('developer').should('not.exist')
 
     cy.get('button').should('exist')
-      .and('have.class', 'button-main')
       .contains('Add Role')
       .click()
 
@@ -80,7 +75,7 @@ describe('Make a User a Developer', function() {
     cy.get('.modal-wrapper').should('exist').and('be.visible')
   })
 
-  it('Assigns the Developer role to the Courier User', function () {
+  it('Assigns the Developer role to the User', function () {
     cy.get('button.button-positive').should('not.exist')
 
     cy.get('span')
@@ -91,35 +86,35 @@ describe('Make a User a Developer', function() {
       .should('have.attr', 'type', 'radio')
       .click()
 
-    cy.get('button.button-positive').contains('Assign')
+    cy.get('button').contains('Assign')
       .should('exist').and('be.visible')
 
-    cy.get('button.button-positive').contains('Assign').click()
+    cy.get('button').contains('Assign').click()
 
     cy.get('span')
       .contains('developer')
       .should('not.exist')
   })
 
-  it('Confirm Courier User is a Developer', function () {
-    cy.loginXhr('courier', 'courier')
+  it('Confirm User is a Developer', function () {
+    cy.loginXhr('user', 'password')
     cy.visit('/')
     cy.get('.side-bar').should('exist')
     cy.get('h5').contains('Tips Widget Output')
   })
 
   it('Revoke Developer role', function () {
-    cy.visit('/users')
+    cy.visit('/admin/users')
 
     cy.get('a.list-row')
       .children('.list-row-field')
       .children('div')
-      .contains('Courier User')
+      .contains('User')
       .parent()
       .parent()
       .click()
 
-    cy.url().should('include', '/users/')
+    cy.url().should('include', '/admin/users/')
 
     cy.get('span.role-name')
       .contains('developer')
@@ -128,10 +123,11 @@ describe('Make a User a Developer', function() {
       .children('div')
       .should('have.class', 'wrapper')
       .children('a')
-      .should('have.class', 'btn')
       .click()
 
-    cy.get('.modal-footer > .text-right > button.button-positive').click()
+    cy.get('button.ok-button').click()
+
+    cy.wait(100)
 
     cy.get('span.role-name')
       .contains('developer')
