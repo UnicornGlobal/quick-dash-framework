@@ -76,6 +76,9 @@ describe('Admin Mobile Navigation', function() {
   })
 
   it('Has the Logout link in the Side Bar', function() {
+    cy.get('.menu-toggle').click().wait(50)
+    cy.get('a.router-link[href="/account"]').click().wait(50)
+
     cy.get('.menu-toggle').click()
 
     cy.get('.logout-link-menu-item')
