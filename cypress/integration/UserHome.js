@@ -26,7 +26,7 @@ describe('User Home', function() {
   })
 
   it('Has the My Account button', function () {
-    cy.get('a.button').contains('My Account').click()
+    cy.get('a.call-to-action-link').contains('My Account').click()
     cy.url().should('include', '/account')
   })
 })
