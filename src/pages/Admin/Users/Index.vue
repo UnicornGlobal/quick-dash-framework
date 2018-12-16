@@ -3,7 +3,7 @@
     <card class="card">
       <h5>Placeholder</h5>
       <data-table v-if="users" :dataset="users" :options="tableConfig"></data-table>
-      <loader v-else class="loader" width="80" height="80"></loader>
+      <loader v-else width="80" height="80"></loader>
     </card>
   </page-container>
 </template>
@@ -21,7 +21,6 @@
     },
     data() {
       return {
-        users: null,
         tableConfig: {
           config: {
             actionComponent: {
@@ -45,7 +44,7 @@
                   type: 'checkbox',
                   field: 'is_verified',
                   text: 'Include Not Verified',
-                  enabled: true
+                  enabled: false
                 },
                 {
                   type: 'checkbox',
@@ -54,6 +53,14 @@
                   enabled: true
                 }
               ]
+            },
+            linking: {
+              enabled: true,
+              route: {
+                name: 'UserDetails'
+              },
+              field: 'id',
+              param: 'userId'
             }
           },
           fields: [
@@ -108,11 +115,28 @@
       }
     },
     async mounted() {
-      this.users = await this.loadUsers()
+      await this.loadUsers()
     },
     methods: {
       loadUsers() {
         return loadAllUsers()
+      }
+    },
+    computed: {
+      users() {
+        const users = this.$store.state.users
+        if (users) {
+          return users.map(user => ({
+            id: user._id,
+            username: user.username,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email,
+            phone: user.mobile,
+            is_verified: user.is_verified,
+            confirmed: user.confirmed
+          }))
+        }
       }
     }
   }
