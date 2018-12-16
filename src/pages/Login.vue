@@ -84,7 +84,10 @@
           fetchUser: true,
           data: {username: this.username, password: this.password},
           error: function () {
-            this.errors.add('username', 'Invalid username or password')
+            this.errors.add({
+              field: 'username',
+              msg: 'Invalid username or password'
+            })
             this.bSending = false
           }
         })
