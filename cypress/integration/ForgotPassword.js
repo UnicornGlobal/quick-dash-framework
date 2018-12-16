@@ -26,7 +26,7 @@ describe('Forgot Password', function() {
       .children('div')
       .should('have.class', 'password-box')
       .children('a')
-      .contains('Forgot?')
+      .contains('Forgot')
       .should('be.visible')
       .should('have.attr', 'href', '/password/reset')
   })
@@ -41,7 +41,7 @@ describe('Forgot Password', function() {
       .children('div')
       .should('have.class', 'password-box')
       .children('a')
-      .contains('Forgot?')
+      .contains('Forgot')
       .should('be.visible')
       .should('have.attr', 'href', '/password/reset')
       .click()
@@ -49,7 +49,7 @@ describe('Forgot Password', function() {
     cy.url().should('not.include', '/login')
     cy.url().should('include', '/password/reset')
 
-    cy.get('h4').contains('Forgot your password?')
+    cy.get('h4').contains('Forgot Password?')
     cy.get('input[name="email"]').should('exist')
 
     cy.get('button').click()
@@ -70,11 +70,11 @@ describe('Forgot Password', function() {
       .first()
       .contains('A user with that email address does not exist')
 
-    cy.get('input[name="email"]').type('{selectall}{backspace}admin@everframe.co.za')
+    cy.get('input[name="email"]').type('{selectall}{backspace}admin@example.com')
 
     cy.get('button').click()
 
-    cy.get('p.sent-success').contains('Please check your inbox for instructions to reset your password.')
+    cy.get('p.sent-success').contains('Check your inbox for more info')
 
     cy.visit('/')
   })

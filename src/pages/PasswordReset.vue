@@ -61,7 +61,11 @@
         this.$http.post('reset', {email: this.email})
           .then(({data}) => {
             if (data.success === false) {
-              this.errors.add('email', 'A user with that email address does not exist', 'required')
+              this.errors.add({
+                field: 'email',
+                msg: 'A user with that email address does not exist',
+                rule: 'required'
+              })
             } else {
               this.sent = true
             }
