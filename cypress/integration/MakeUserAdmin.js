@@ -11,7 +11,7 @@ describe('Make a User an Admin', function() {
   })
 
   it('Loads All Users List Page as Admin', function() {
-    cy.visit('/users')
+    cy.visit('/admin/users')
     cy.url().should('not.include', '/login')
     cy.get('h2').contains('All Users')
   })
@@ -20,12 +20,12 @@ describe('Make a User an Admin', function() {
     cy.get('a.list-row')
       .children('.list-row-field')
       .children('div')
-      .contains('Test User')
+      .contains('Test')
       .parent()
       .parent()
       .click()
 
-    cy.url().should('include', '/users/')
+    cy.url().should('include', '/admin/users/')
   })
 
   it('User does not have Admin role', function () {
@@ -50,30 +50,30 @@ describe('Make a User an Admin', function() {
 
   it('Tries to visit User Admin page and fails', function () {
     cy.loginXhr('user', 'password')
-    cy.visit('/users')
+    cy.visit('/admin/users')
     cy.get('h2').should('not.exist')
     cy.get('.side-bar').should('not.exist')
   })
 
   it('Login as Admin User again', function () {
-    cy.visit('/users')
+    cy.loginXhr('admin', 'admin')
+    cy.visit('/admin/users')
 
     cy.get('a.list-row')
       .children('.list-row-field')
       .children('div')
-      .contains('Test User')
+      .contains('Test')
       .parent()
       .parent()
       .click()
 
-    cy.url().should('include', '/user')
+    cy.url().should('include', '/admin/user')
   })
 
   it('Opens Test User Roles modal', function () {
     cy.get('span.role-name').contains('ADMIN').should('not.exist')
 
     cy.get('button').should('exist')
-      .and('have.class', 'button-main')
       .contains('Add Role')
       .click()
 
@@ -94,10 +94,10 @@ describe('Make a User an Admin', function() {
       .should('have.attr', 'type', 'radio')
       .click()
 
-    cy.get('button.button-positive').contains('Assign')
+    cy.get('button').contains('Assign')
       .should('exist').and('be.visible')
 
-    cy.get('button.button-positive').contains('Assign').click()
+    cy.get('button').contains('Assign').click()
 
     cy.get('span')
       .contains('admin')
@@ -114,29 +114,29 @@ describe('Make a User an Admin', function() {
       .should('exist')
       .and('have.class', 'router-link-active')
       .and('have.class', 'router-link-exact-active')
-      .contains('Orders')
+      .contains('Home')
   })
 
   it('Successfully visits the Users page', function () {
     cy.loginXhr('user', 'password')
-    cy.visit('/users')
+    cy.visit('/admin/users')
     cy.url().should('include', '/users')
     cy.url().should('not.include', '/login')
   })
 
   it('Opens own User Details', function () {
     cy.loginXhr('user', 'password')
-    cy.visit('/users')
+    cy.visit('/admin/users')
 
     cy.get('a.list-row')
       .children('.list-row-field')
       .children('div')
-      .contains('Test User')
+      .contains('Test')
       .parent()
       .parent()
       .click()
 
-    cy.url().should('include', '/users/')
+    cy.url().should('include', '/admin/users/')
   })
 
   it('Revokes own Admin role', function () {
@@ -149,10 +149,9 @@ describe('Make a User an Admin', function() {
       .children('div')
       .should('have.class', 'wrapper')
       .children('a')
-      .should('have.class', 'btn')
       .click()
 
-    cy.get('.modal-footer > .text-right > button.button-positive').click()
+    cy.get('button.ok-button').click()
 
     cy.get('span.role-name')
       .contains('admin')
@@ -161,7 +160,7 @@ describe('Make a User an Admin', function() {
 
   it('Tries to visit User Admin page again and fails', function () {
     cy.loginXhr('user', 'password')
-    cy.visit('/users')
+    cy.visit('/admin/users')
     cy.get('h2').should('not.exist')
     cy.get('.side-bar').should('not.exist')
   })
