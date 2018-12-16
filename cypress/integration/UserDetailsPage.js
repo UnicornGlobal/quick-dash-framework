@@ -2,7 +2,7 @@ describe('User Details Page', function() {
   before(function () {
     cy.reload(true)
     cy.loginXhr('admin', 'admin')
-    cy.visit('/users')
+    cy.visit('/admin/users')
   })
 
   beforeEach(function () {
@@ -14,7 +14,7 @@ describe('User Details Page', function() {
 
   it('Loads All Users List Page as Admin', function() {
     cy.url().should('not.include', '/login')
-    cy.url().should('include', '/users')
+    cy.url().should('include', '/admin/users')
     cy.get('h2').contains('All Users')
   })
 
@@ -22,12 +22,12 @@ describe('User Details Page', function() {
     cy.get('a.list-row')
       .children('.list-row-field')
       .children('div')
-      .contains('Admin User')
+      .contains('Admin')
       .parent()
       .parent()
       .click()
 
-    cy.url().should('include', '/user')
+    cy.url().should('include', '/admin/user')
     cy.get('h2').contains('User Details')
   })
 
@@ -43,7 +43,6 @@ describe('User Details Page', function() {
     cy.get('button')
       .should('exist')
       .should('have.attr', 'type', 'submit')
-      .should('have.class', 'button-main')
       .contains('Add Role')
   })
 
@@ -54,7 +53,6 @@ describe('User Details Page', function() {
     cy.get('button')
       .should('exist')
       .should('have.attr', 'type', 'submit')
-      .should('have.class', 'button-main')
       .contains('Add Role')
       .click()
 
@@ -67,7 +65,7 @@ describe('User Details Page', function() {
   })
 
   it('Closes the Assign Role modal on the top right', function () {
-    cy.get('h5').contains('Assign Roles')
+    cy.get('h4').contains('Assign Roles')
       .parent()
       .parent()
       .children('.close')
@@ -79,7 +77,6 @@ describe('User Details Page', function() {
 
   it('Has Revoke Role button', function () {
     cy.get('a').should('exist')
-      .and('have.class', 'btn')
       .contains('Revoke')
   })
 
@@ -88,7 +85,6 @@ describe('User Details Page', function() {
     cy.get('.modal-wrapper').should('not.exist')
 
     cy.get('a').should('exist')
-      .and('have.class', 'btn')
       .contains('Revoke')
       .click()
 
@@ -106,14 +102,9 @@ describe('User Details Page', function() {
     cy.get('div.modal-footer > .text-right')
       .children('button')
       .contains('Cancel')
-      .should('have.attr', 'type', 'button')
-      .should('have.class', 'button-alert')
 
     cy.get('div.modal-footer > .text-right')
       .children('button')
-      .should('have.attr', 'type', 'button')
-      .should('have.class', 'button-positive')
-      .children('span')
       .contains('Ok')
   })
 
@@ -121,7 +112,11 @@ describe('User Details Page', function() {
     cy.get('.modal-mask').should('exist')
     cy.get('.modal-container').should('exist')
 
-    cy.get('.modal-footer > .text-right > button.button-alert').click().wait(100)
+    cy.get('div.modal-footer > .text-right')
+      .children('button')
+      .contains('Cancel')
+      .click()
+
     cy.get('.modal-mask').should('not.exist')
     cy.get('.modal-container').should('not.exist')
   })
@@ -131,7 +126,6 @@ describe('User Details Page', function() {
     cy.get('.modal-wrapper').should('not.exist')
 
     cy.get('a').should('exist')
-      .and('have.class', 'btn')
       .contains('Revoke')
       .click()
 
