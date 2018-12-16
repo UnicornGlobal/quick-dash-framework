@@ -44,13 +44,15 @@
                   type: 'checkbox',
                   field: 'is_verified',
                   text: 'Include Not Verified',
-                  enabled: false
+                  enabled: true,
+                  value: true
                 },
                 {
                   type: 'checkbox',
                   field: 'confirmed',
                   text: 'Include Not Confirmed',
-                  enabled: true
+                  enabled: true,
+                  value: true
                 }
               ]
             },
