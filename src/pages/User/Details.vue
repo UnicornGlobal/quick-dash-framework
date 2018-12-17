@@ -41,23 +41,23 @@
         return [
           {
             key: 'First Name',
-            value: user.first_name
+            value: user.first_name || '-'
           },
           {
             key: 'Last Name',
-            value: user.last_name
+            value: user.last_name || '-'
           },
           {
             key: 'Email',
-            value: user.email
+            value: user.email || '-'
           },
           {
             key: 'Mobile',
-            value: user.mobile
+            value: user.mobile || '-'
           },
           {
             key: 'User ID',
-            value: user._id
+            value: user._id || '-'
           }
         ]
       }
