@@ -20,4 +20,12 @@ describe('store/index.js', () => {
     store.commit('showSideBar', false)
     expect(store.getters.sideBarState).to.equal(false)
   })
+
+  it('sets and gets sidebar enabled state', () => {
+    store.commit('sideBarEnabled', true)
+    expect(store.getters.sideBarEnabled).to.equal(true)
+
+    store.commit('sideBarEnabled', false)
+    expect(store.getters.sideBarEnabled).to.equal(false)
+  })
 })

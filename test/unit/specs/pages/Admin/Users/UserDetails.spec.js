@@ -1,15 +1,14 @@
 import UserDetails from '@/pages/Admin/Users/UserDetails.vue'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import * as Api from '@/api/admin/users'
-import * as RolesApi from '@/api/admin/roles'
 
 const role1 = {
   name: 'Role 1',
-  _id: 'hf7rhfesf37rfef'
+  _id: 'r1'
 }
 const role2 = {
   name: 'Role 2',
-  _id: 'ejkesksdsdsd'
+  _id: 'r2'
 }
 
 describe('UserDetails.vue', () => {
@@ -38,7 +37,7 @@ describe('UserDetails.vue', () => {
               'username': 'user',
               'first_name': 'Test',
               'last_name': 'User',
-              'email': 'developer@everframe.co.za',
+              'email': 'developer@test.co.za',
               'is_verified': 0,
               'mobile': '',
               'confirmed': false
@@ -48,7 +47,9 @@ describe('UserDetails.vue', () => {
       }
     }
 
-    let loadUserRoles = sinon.stub(RolesApi, 'loadUserRoles').resolves(null)
+    let loadUserRoles = sinon
+      .stub(localVue.axios, 'get')
+      .resolves({ data: [] })
 
     let wrapper = shallowMount(UserDetails, {
       localVue,
@@ -88,7 +89,7 @@ describe('UserDetails.vue', () => {
     expect(users).to.be.a('function')
   })
 
-  it('it loads users roles', () => {
+  it('it loads users roles', async () => {
     let localVue = createLocalVue()
     let mocks = {
       $store: {
@@ -109,7 +110,7 @@ describe('UserDetails.vue', () => {
               'username': 'user',
               'first_name': 'Test',
               'last_name': 'User',
-              'email': 'developer@everframe.co.za',
+              'email': 'developer@test.co.za',
               'is_verified': 0,
               'mobile': '',
               'confirmed': false
@@ -119,7 +120,9 @@ describe('UserDetails.vue', () => {
       }
     }
 
-    let loadUserRoles = sinon.stub(RolesApi, 'loadUserRoles').resolves(null)
+    let loadUserRoles = sinon
+      .stub(localVue.axios, 'get')
+      .resolves({ data: [] })
 
     let wrapper = shallowMount(UserDetails, {
       localVue,
@@ -135,8 +138,8 @@ describe('UserDetails.vue', () => {
 
     wrapper.setData({userRoles: [role1]})
 
-    return wrapper.vm.$nextTick(() => {
-      setTimeout(() => {
+    await wrapper.vm.$nextTick(async () => {
+      await setTimeout(() => {
         expect(wrapper.vm.availableRoles).to.be.an('array').that.has.lengthOf(1)
         expect(wrapper.vm.availableRoles[0]._id).to.equal(role2._id)
         expect(wrapper.vm.availableRoles).to.equal(null)
