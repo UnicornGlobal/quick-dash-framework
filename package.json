@@ -20,7 +20,7 @@
     "unicorn-vue-datatable": "^1.2.1",
     "unicorn-vue-toaster": "^1.0.1",
     "vee-validate": "^2.1.3",
-    "vue": "^2.5.17",
+    "vue": "^2.5.21",
     "vue-avatar-or-initials": "^1.0.7",
     "vue-axios": "^2.1.4",
     "vue-router": "^3.0.2"
@@ -106,7 +106,7 @@
     "vue-server-renderer": "^2.5.17",
     "vue-style-loader": "^4.1.2",
     "vue-svg-loader": "^0.11.0",
-    "vue-template-compiler": "^2.5.17",
+    "vue-template-compiler": "^2.5.21",
     "vuex": "^3.0.1",
     "webpack": "^4.26.1",
     "webpack-bundle-analyzer": "^3.0.3",
