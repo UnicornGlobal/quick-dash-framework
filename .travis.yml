@@ -39,9 +39,6 @@ before_install:
   - cd -
 install:
   - npm install
-before_script:
-  - nohup npm run dev &
-  - sleep 20
 jobs:
   include:
     - stage: tests
@@ -53,6 +50,8 @@ jobs:
     - stage: tests
       name: "Cypress Tests"
       script:
+        - nohup npm run dev &
+        - sleep 20
         - ./scripts/setup_cypress.sh
         - $(npm bin)/cypress run
     - stage: build
