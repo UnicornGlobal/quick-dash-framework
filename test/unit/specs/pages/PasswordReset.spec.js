@@ -39,7 +39,7 @@ describe('PasswordReset.vue', () => {
     expect(wrapper.vm.goBack).to.be.a('function')
   })
 
-  it('submits successful request', () => {
+  it('submits successful request', async () => {
     let localVue = createLocalVue()
     localVue.prototype.$eventBus = new Vue()
     const wrapper = shallowMount(PasswordReset, {localVue, mocks})
@@ -49,7 +49,7 @@ describe('PasswordReset.vue', () => {
     let post = sinon.stub(wrapper.vm.$http, 'post').resolves({data: {success: true}})
     let sendRequest = sinon.spy(wrapper.vm, 'sendRequest')
 
-    return wrapper.vm.submit().then(() => {
+    await wrapper.vm.submit().then(() => {
       expect(sendRequest.called).to.equal(true)
       expect(wrapper.vm.sent).to.equal(true)
       sendRequest.restore()
@@ -58,7 +58,7 @@ describe('PasswordReset.vue', () => {
     })
   })
 
-  it('submits failed request', () => {
+  it('submits failed request', async () => {
     let localVue = createLocalVue()
     localVue.prototype.$eventBus = new Vue()
     const wrapper = shallowMount(PasswordReset, {localVue, mocks})
@@ -68,8 +68,10 @@ describe('PasswordReset.vue', () => {
     let post = sinon.stub(wrapper.vm.$http, 'post').resolves({data: {success: false}})
     let sendRequest = sinon.spy(wrapper.vm, 'sendRequest')
 
-    return wrapper.vm.submit().then(() => {
+    await wrapper.vm.submit().then(() => {
       expect(sendRequest.called).to.equal(true)
+      expect(wrapper.vm.sent).to.equal(false)
+      sendRequest.restore()
       post.restore()
       post.reset()
     })

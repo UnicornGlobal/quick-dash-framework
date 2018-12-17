@@ -19,6 +19,11 @@ describe('Admin All Users', () => {
       mocks: {
         $http: {
           get: sinon.stub().resolves({data: {}})
+        },
+        $store: {
+          state: {
+            users: []
+          }
         }
       }
     })

@@ -1,5 +1,5 @@
 import Prompt from '@/components/Prompt.vue'
-import { createLocalVue, mount } from '@vue/test-utils'
+import { createLocalVue, shallowMount } from '@vue/test-utils'
 import { ErrorBag } from 'vee-validate'
 import Vue from 'vue'
 
@@ -21,7 +21,7 @@ describe('Prompt.vue', () => {
       localVue
     }
 
-    let prompt = mount(Prompt, options)
+    let prompt = shallowMount(Prompt, options)
     let cancel = sinon.spy(prompt.vm, 'cancel')
     prompt.setData({show: true})
     prompt.find('button.cancel-button').trigger('click')
@@ -42,7 +42,7 @@ describe('Prompt.vue', () => {
       localVue
     }
 
-    let prompt = mount(Prompt, options)
+    let prompt = shallowMount(Prompt, options)
     let ok = sinon.stub(prompt.vm, 'ok')
     prompt.setData({show: true})
     prompt.find('button.ok-button').trigger('click')
@@ -61,7 +61,7 @@ describe('Prompt.vue', () => {
       localVue
     }
 
-    let prompt = mount(Prompt, options)
+    let prompt = shallowMount(Prompt, options)
     let doAction = sinon.stub(prompt.vm, 'doAction').resolves({})
     prompt.setProps({url: 'api/test'})
     prompt.setData({show: true})
@@ -94,7 +94,7 @@ describe('Prompt.vue', () => {
       localVue
     }
 
-    let prompt = mount(Prompt, options)
+    let prompt = shallowMount(Prompt, options)
     prompt.vm.ok()
     expect(prompt.vm.$http.get.calledWith('api/test', {params: {id: '1'}})).to.equal(true)
   })
@@ -117,7 +117,7 @@ describe('Prompt.vue', () => {
       localVue
     }
 
-    let prompt = mount(Prompt, options)
+    let prompt = shallowMount(Prompt, options)
     return prompt.vm.doAction()
       .then(() => {
         expect(prompt.emitted()).to.have.key('success')
@@ -143,7 +143,7 @@ describe('Prompt.vue', () => {
       localVue
     }
 
-    let prompt = mount(Prompt, options)
+    let prompt = shallowMount(Prompt, options)
     return prompt.vm.doAction()
       .then(() => {
         expect(spy.called).to.equal(true)

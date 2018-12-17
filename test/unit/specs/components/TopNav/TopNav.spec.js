@@ -2,10 +2,8 @@
 import TopNav from '@/components/TopNav/TopNav'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import sinon from 'sinon'
-import Router from 'vue-router'
 
 const localVue = createLocalVue()
-localVue.use(Router)
 
 let mocks = {
   $auth: {

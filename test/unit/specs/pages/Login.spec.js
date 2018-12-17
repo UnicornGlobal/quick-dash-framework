@@ -2,11 +2,9 @@ import Login from '@/pages/Login'
 import sinon from 'sinon'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import store from '@/store'
-import axios from 'axios'
 import { ErrorBag } from 'vee-validate'
 
 let mocks = {
-  $http: axios,
   $auth: {
     check: sinon.stub().returns(true),
     user: sinon.stub().returns({}),
@@ -37,7 +35,7 @@ describe('Login.vue', () => {
     })
   })
 
-  it('triggers sign in with failed validation', () => {
+  it('triggers sign in with failed validation', async () => {
     let localVue = createLocalVue()
     const wrapper = shallowMount(Login, {localVue, mocks})
     expect(wrapper.vm.signIn).to.be.a('function')
@@ -47,34 +45,35 @@ describe('Login.vue', () => {
     sinon.stub(wrapper.vm.$validator, 'validateAll').resolves(false)
     let sendSignInRequest = sinon.spy(wrapper.vm, 'sendSignInRequest')
 
-    return wrapper.vm.signIn().then(() => {
-      expect(sendSignInRequest.called).to.equal(false)
-      sendSignInRequest.restore()
-    })
+    await wrapper.vm.signIn()
+    expect(sendSignInRequest.called).to.equal(false)
+    sendSignInRequest.restore()
   })
 
-  it('handles sign in error', () => {
+  it('handles sign in error', async () => {
     let localVue = createLocalVue()
+    let post = sinon.stub(localVue.axios, 'post').rejects(Error('Invalid username'))
+
     const wrapper = shallowMount(Login, {
       localVue,
       mocks: {
-        $http: axios,
         $store: store,
         $auth: {
           login: (conf) => {
-            return wrapper.vm.$http.post(conf)
+            return localVue.axios.post()
           }
         }
       }
     })
 
-    let post = sinon.stub(wrapper.vm.$http, 'post').rejects(Error('Invalid username'))
+    try {
+      await wrapper.vm.sendSignInRequest()
+    } catch (e) {
+      expect(e.message).to.equal('Invalid username')
+    }
 
-    return wrapper.vm.sendSignInRequest().catch((err) => {
-      expect(err.message).to.equal('Invalid username')
-      sinon.assert.called(post)
-      post.restore()
-    })
+    sinon.assert.called(post)
+    post.restore()
   })
 
   it('has default data', () => {
