@@ -6,6 +6,10 @@ export default {
     setAllRoles: (state, roles) => {
       state.allRoles = roles
     }
-
+  },
+  getters: {
+    allRoles(state, _getters) {
+      return state.allRoles
+    }
   }
 }
