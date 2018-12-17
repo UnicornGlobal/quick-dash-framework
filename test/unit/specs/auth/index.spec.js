@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import { createLocalVue } from '@vue/test-utils'
 import router from '@/router'
+import { userHasRole } from '@/auth'
 
 let localVue = createLocalVue()
 localVue.router = router
@@ -34,5 +35,25 @@ describe('Authentication Redirects', () => {
 
     localVue.router.push({name: 'ResetPassword'})
     expect(localVue.router.currentRoute.name).to.equal('ResetPassword')
+  })
+})
+
+describe('User roles', () => {
+  it('User has role', () => {
+    const result = userHasRole({
+      roles: [{
+        name: 'xx'
+      }]
+    }, 'xx')
+    expect(result).to.equal(true)
+  })
+
+  it('User doesn not have role', () => {
+    const result = userHasRole({
+      roles: [{
+        name: 'a'
+      }]
+    }, 'xx')
+    expect(result).to.equal(false)
   })
 })
