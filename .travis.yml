@@ -13,7 +13,6 @@ cache:
     - $HOME/.npm
     - $HOME/.cache
     - $HOME/.composer/cache/files
-    - node_modules
 
 stages:
   - tests
@@ -23,24 +22,26 @@ stages:
 
 # Default steps within each job
 before_install:
-- mysql -e 'CREATE DATABASE IF NOT EXISTS strong;'
-- cp config/secrets.env.js.example config/secrets.env.js
-- git clone "https://github.com/darrynten/strong-lumen" --branch=master ../strong-lumen
-- cd ../strong-lumen
-- cp .env.example .env
-- composer self-update
-- composer validate --no-check-all --ansi
-- composer install -n
-- php artisan migrate
-- php artisan db:seed
-- pwd
-- touch ./storage/logs/lumen.log
-- sudo chmod 777 ./storage/logs/lumen.log
-- nohup php -S 127.0.0.1:8000 -t public &
-- cd -
-- npm install
-- nohup npm run dev &
-- sleep 20
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS strong;'
+  - cp config/secrets.env.js.example config/secrets.env.js
+  - git clone "https://github.com/darrynten/strong-lumen" --branch=master ../strong-lumen
+  - cd ../strong-lumen
+  - cp .env.example .env
+  - composer self-update
+  - composer validate --no-check-all --ansi
+  - composer install -n
+  - php artisan migrate
+  - php artisan db:seed
+  - pwd
+  - touch ./storage/logs/lumen.log
+  - sudo chmod 777 ./storage/logs/lumen.log
+  - nohup php -S 127.0.0.1:8000 -t public &
+  - cd -
+install:
+  - npm install
+before_script:
+  - nohup npm run dev &
+  - sleep 20
 jobs:
   include:
     - stage: tests
