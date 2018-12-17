@@ -19,12 +19,18 @@ describe('AssignRoleForm', () => {
       }
     })
 
-    form.setData({currentRoleId: 'ui83jkqwq'})
+    form.setData({currentRoleId: 'successroleid'})
+
+    let post = sinon
+      .stub(localVue.axios, 'post')
+      .resolves({ data: { status: 'ok' } })
 
     let assignRole = sinon.stub(RolesApi, 'assignRole').resolves({status: 'ok'})
-    form.vm.assignRole().then((result) => {
+
+    await form.vm.assignRole().then((result) => {
       expect(form.emitted()).to.have.key('success')
       assignRole.restore()
+      post.restore()
     })
   })
 
@@ -42,12 +48,15 @@ describe('AssignRoleForm', () => {
       }
     })
 
-    form.setData({currentRoleId: 'ui83jkqwq'})
+    form.setData({currentRoleId: 'notokrole'})
 
-    let assignRole = sinon.stub(RolesApi, 'assignRole').rejects({status: 'not ok'})
-    return form.vm.assignRole().then(() => {
+    let post = sinon
+      .stub(localVue.axios, 'post')
+      .rejects({ data: { status: 'nok' } })
+
+    await form.vm.assignRole().then(() => {
       expect(form.emitted()).to.have.key('error')
-      assignRole.restore()
+      post.restore()
     })
   })
 })

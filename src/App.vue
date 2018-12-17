@@ -2,12 +2,12 @@
   <div>
     <div v-if="loaded">
       <div id="app-component">
-        <top-nav class="top-nav" :loaded="loaded" :user="user"></top-nav>
+        <top-nav class="top-nav" :loaded="loaded" :user="user" :sidebar="enableSideBar"></top-nav>
         <div class="main-content">
-          <transition name="slide">
+          <transition name="slide" v-if="enableSideBar">
             <side-bar class="side-bar" v-show="showSideBar" :menus="menu" root-path="/"></side-bar>
           </transition>
-          <transition name="fade">
+          <transition name="fade" v-if="enableSideBar">
             <div class="shadow" v-show="showSideBar" @click.prevent="closeSidebar"></div>
           </transition>
           <router-view class="content-area"></router-view>
@@ -40,6 +40,9 @@
       },
       showSideBar() {
         return this.$store.getters.sideBarState
+      },
+      enableSideBar() {
+        return this.$store.getters.sideBarEnabled
       },
       menu() {
         let routes = Object.assign([], this.$store.state.routes[0].children)
