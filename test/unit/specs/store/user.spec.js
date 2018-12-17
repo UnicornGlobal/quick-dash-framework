@@ -1,0 +1,8 @@
+import store from '@/store'
+
+describe('store/user.js', () => {
+  it('sets and gets user', () => {
+    store.commit('setUser', [{ '_id': 5 }])
+    expect(store.getters.user).to.deep.equal([{ '_id': 5 }])
+  })
+})
