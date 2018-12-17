@@ -1,6 +1,6 @@
 import store from '@/store'
 
-describe('store/index.js', () => {
+describe('store/common.js', () => {
   it('is an object', () => {
     expect(store).to.be.an('Object')
   })
@@ -27,5 +27,13 @@ describe('store/index.js', () => {
 
     store.commit('sideBarEnabled', false)
     expect(store.getters.sideBarEnabled).to.equal(false)
+  })
+
+  it('sets and gets config', () => {
+    store.commit('setConfig', false)
+    expect(store.getters.config).to.equal(false)
+
+    store.commit('setConfig', true)
+    expect(store.getters.config).to.equal(true)
   })
 })
