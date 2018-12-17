@@ -27,10 +27,10 @@ before_install:
 - cp config/secrets.env.js.example config/secrets.env.js
 - git clone "https://github.com/darrynten/strong-lumen" --branch=master ../strong-lumen
 - cd ../strong-lumen
+- cp .env.example .env
 - composer self-update
 - composer validate --no-check-all --ansi
 - composer install -n
-- cp .env.example .env
 - php artisan migrate
 - php artisan db:seed
 - pwd
