@@ -7,3 +7,11 @@ export function loadAllUsers() {
     return response.data
   })
 }
+
+export function addNewUser(user) {
+  return Vue.axios.post('/register/email', user, {
+    headers: {
+      'Registration-Access-Key': process.env.registrationAccessKey
+    }
+  })
+}
