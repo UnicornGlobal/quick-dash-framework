@@ -1,11 +1,9 @@
 // http://chaijs.com/api/bdd/
-import Router from 'vue-router'
 import Vue from 'vue'
 import { createLocalVue } from '@vue/test-utils'
 import router from '@/router'
 
 let localVue = createLocalVue()
-localVue.use(Router)
 localVue.router = router
 if (Vue.auth) {
   Vue.auth.check = () => {
@@ -18,8 +16,6 @@ if (Vue.auth) {
     }
   }
 }
-
-localVue.router.addRoutes([{name: 'Home', path: ''}])
 
 describe('Authentication Redirects', () => {
   it('Does not load login page if already logged in', () => {
