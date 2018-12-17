@@ -39,6 +39,7 @@ before_install:
 - nohup php -S 127.0.0.1:8000 -t public &
 - cd -
 - npm install
+- npm run dev
 jobs:
   include:
     - stage: tests
@@ -50,8 +51,6 @@ jobs:
     - stage: tests
       name: "Cypress Tests"
       script:
-        - nohup npm run dev &
-        - sleep 20
         - ./scripts/setup_cypress.sh
         - $(npm bin)/cypress run
     - stage: build
