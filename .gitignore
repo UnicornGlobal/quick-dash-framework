@@ -19,4 +19,9 @@ yarn.lock
 *.sln
 coverage
 *.orig
+*.log
 config/secrets.env.js
+
+cypress/videos
+cypress/screenshots
+cypress.json

@@ -1,6 +1,6 @@
 // http://chaijs.com/api/bdd/
 import SideBar from '@/components/SideBar/SideBar'
-import { createLocalVue, shallow } from '@vue/test-utils'
+import { createLocalVue, shallowMount } from '@vue/test-utils'
 import sinon from 'sinon'
 
 let localVue = createLocalVue()
@@ -10,12 +10,16 @@ describe('SideBar.vue', () => {
     expect(SideBar).to.be.an('object')
   })
 
-  it('has a name', () => {
-    expect(SideBar).to.have.property('name', 'side-bar')
-  })
-
   it('accepts menus and root-path props', () => {
+    let mocks = {
+      $route: {
+        name: 'Home',
+        matched: []
+      }
+    }
+
     expect(SideBar.props).to.be.an('array')
+
     let menu = {
       name: 'Home',
       path: '',
@@ -24,14 +28,23 @@ describe('SideBar.vue', () => {
       }
     }
 
-    let sidebar = shallow(SideBar, {localVue, propsData: {menus: [menu], rootPath: '/test'}})
+    let sidebar = shallowMount(SideBar, {
+      localVue,
+      propsData: {
+        menus: [ menu ],
+        rootPath: '/test'
+      },
+      stubs: ['router-link'],
+      mocks
+    })
+
     expect(sidebar.vm.rootPath).to.equal('/test')
     expect(sidebar.vm.menus).to.be.an('array').that.has.lengthOf(1)
     expect(sidebar.vm.menus[0].name).to.equal('Home')
   })
 
   it('loads main menu routes', () => {
-    let sidebar = shallow(SideBar, {
+    let sidebar = shallowMount(SideBar, {
       localVue,
       propsData: {
         menus: [
@@ -57,7 +70,7 @@ describe('SideBar.vue', () => {
   })
 
   it('logs out', () => {
-    let sidebar = shallow(SideBar, {
+    let sidebar = shallowMount(SideBar, {
       localVue,
       propsData: {
         menus: [

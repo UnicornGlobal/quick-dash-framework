@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .card {
     flex: 0 48%;
     flex-grow: 1;
@@ -16,9 +16,3 @@
     color: $primary-text;
   }
 </style>
-
-<script>
-  export default {
-    name: 'card'
-  }
-</script>

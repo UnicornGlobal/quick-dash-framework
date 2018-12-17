@@ -1,7 +1,7 @@
 // http://chaijs.com/api/bdd/
 import App from '@/App'
 import Router from 'vue-router'
-import { createLocalVue, shallow } from '@vue/test-utils'
+import { createLocalVue, shallowMount } from '@vue/test-utils'
 
 const localVue = createLocalVue()
 localVue.use(Router)
@@ -35,7 +35,7 @@ describe('App.vue', () => {
   })
 
   it('Renders when loaded and authenticated', () => {
-    let app = shallow(App, {
+    let app = shallowMount(App, {
       localVue,
       mocks
     })
@@ -43,5 +43,61 @@ describe('App.vue', () => {
     expect(app.contains('div')).to.equal(true)
     const element = app.find('.main-content')
     expect(element.is('div')).to.equal(true)
+  })
+
+  it('closes side bar', () => {
+    let localVue = createLocalVue()
+    let app = shallowMount(App, {
+      localVue,
+      stubs: [ 'router-view' ],
+      mocks: {
+        $store: {
+          getters: {
+            loading: false,
+            user: {}
+          },
+          commit: sinon.spy()
+        }
+      }
+    })
+
+    app.vm.closeSidebar()
+    expect(app.vm.$store.commit.calledWith('showSideBar', false)).to.equal(true)
+  })
+
+  it('initializes side bar menu', () => {
+    let localVue = createLocalVue()
+    let app = shallowMount(App, {
+      localVue,
+      stubs: [ 'router-view' ],
+      mocks: {
+        $store: {
+          getters: {
+            user: {},
+            sideBarState: true
+          },
+          state: {
+            routes: [
+              {
+                children: [
+                  {
+                    children: [
+                      {
+                        meta: {
+                          main: true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    })
+
+    expect(app.vm.showSideBar).to.equal(true)
+    expect(app.vm.menu).to.be.an('array').that.has.lengthOf(1)
   })
 })

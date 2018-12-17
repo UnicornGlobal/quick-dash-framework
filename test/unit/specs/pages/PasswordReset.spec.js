@@ -1,8 +1,8 @@
 // http://chaijs.com/api/bdd/
 import PasswordReset from '@/pages/PasswordReset'
 import sinon from 'sinon'
-import { createLocalVue, shallow } from '@vue/test-utils'
-import Validator from 'vee-validate'
+import { createLocalVue, shallowMount } from '@vue/test-utils'
+import { ErrorBag } from 'vee-validate'
 import store from '@/store'
 import axios from 'axios'
 import Vue from 'vue'
@@ -14,6 +14,7 @@ let mocks = {
     user: sinon.stub().returns({}),
     login: sinon.stub().resolves(true)
   },
+  errors: new ErrorBag(),
   $store: store
 }
 
@@ -31,26 +32,24 @@ describe('PasswordReset.vue', () => {
 
   it('has three methods', () => {
     let localVue = createLocalVue()
-    localVue.use(Validator)
-    const wrapper = shallow(PasswordReset, {localVue, mocks})
+    const wrapper = shallowMount(PasswordReset, {localVue, mocks})
 
     expect(wrapper.vm.submit).to.be.a('function')
     expect(wrapper.vm.sendRequest).to.be.a('function')
     expect(wrapper.vm.goBack).to.be.a('function')
   })
 
-  it('submits successful request', () => {
+  it('submits successful request', async () => {
     let localVue = createLocalVue()
     localVue.prototype.$eventBus = new Vue()
-    localVue.use(Validator)
-    const wrapper = shallow(PasswordReset, {localVue, mocks})
+    const wrapper = shallowMount(PasswordReset, {localVue, mocks})
     wrapper.setData({email: 'name@example.com', sent: false})
 
     sinon.stub(wrapper.vm.$validator, 'validateAll').resolves(true)
     let post = sinon.stub(wrapper.vm.$http, 'post').resolves({data: {success: true}})
     let sendRequest = sinon.spy(wrapper.vm, 'sendRequest')
 
-    return wrapper.vm.submit().then(() => {
+    await wrapper.vm.submit().then(() => {
       expect(sendRequest.called).to.equal(true)
       expect(wrapper.vm.sent).to.equal(true)
       sendRequest.restore()
@@ -59,19 +58,20 @@ describe('PasswordReset.vue', () => {
     })
   })
 
-  it('submits failed request', () => {
+  it('submits failed request', async () => {
     let localVue = createLocalVue()
     localVue.prototype.$eventBus = new Vue()
-    localVue.use(Validator)
-    const wrapper = shallow(PasswordReset, {localVue, mocks})
+    const wrapper = shallowMount(PasswordReset, {localVue, mocks})
     wrapper.setData({email: 'name@example.com', sent: false})
 
     sinon.stub(wrapper.vm.$validator, 'validateAll').resolves(true)
     let post = sinon.stub(wrapper.vm.$http, 'post').resolves({data: {success: false}})
     let sendRequest = sinon.spy(wrapper.vm, 'sendRequest')
 
-    return wrapper.vm.submit().then(() => {
+    await wrapper.vm.submit().then(() => {
       expect(sendRequest.called).to.equal(true)
+      expect(wrapper.vm.sent).to.equal(false)
+      sendRequest.restore()
       post.restore()
       post.reset()
     })

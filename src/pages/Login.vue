@@ -19,7 +19,7 @@
             <div class="password-box">
               <input v-validate="'required'" v-model="password" name="password" type="password"
                      placeholder="Password" />
-              <router-link v-if="!errors.has('password')" :to="{name: 'ResetPassword'}">Forgot?</router-link>
+              <router-link v-if="!errors.has('password')" :to="{name: 'ResetPassword'}">Forgot</router-link>
               <router-link v-if="errors.has('password')" style="padding-right: 30px" :to="{name: 'ResetPassword'}">
                 Forgot?
               </router-link>
@@ -84,7 +84,10 @@
           fetchUser: true,
           data: {username: this.username, password: this.password},
           error: function () {
-            this.errors.add('username', 'Invalid username or password')
+            this.errors.add({
+              field: 'username',
+              msg: 'Invalid username or password'
+            })
             this.bSending = false
           }
         })
@@ -101,6 +104,7 @@
     margin-top: 0px;
     max-width: 480px;
     padding: 0px;
+    border-radius: $border-radius;
 
     h2 {
       padding: 10px 20px;
@@ -184,7 +188,6 @@
       .login-button-wrapper {
         display: flex;
         justify-content: flex-end;
-        margin-top: 30px;
       }
 
       .card {
@@ -214,6 +217,8 @@
         color: $white;
         background-color: $primary;
         border: none;
+        border-radius: $border-radius;
+        cursor: pointer;
       }
 
       input {

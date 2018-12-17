@@ -12,12 +12,12 @@ module.exports = function (config) {
     //    http://karma-runner.github.io/0.13/config/browsers.html
     // 2. add it to the `browsers` array below.
     basePath: '.',
-    browserNoActivityTimeout: 30000,
+    browserNoActivityTimeout: 3000,
     browsers: ['ChromeHeadless'],
     concurrency: 1,
     frameworks: ['mocha', 'sinon-chai'],
     reporters: ['spec', 'coverage'],
-    files: ['../../node_modules/babel-polyfill/dist/polyfill.js', 'index.js'],
+    files: ['../../node_modules/@babel/polyfill/dist/polyfill.js', 'index.js'],
     preprocessors: {
       './index.js': ['webpack', 'sourcemap']
     },

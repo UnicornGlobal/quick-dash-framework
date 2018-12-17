@@ -1,105 +1,113 @@
-@import "./variables";
+@import "./_variables.scss";
+
+/**
+Enable the specific ones you want to use, do not enable all!
 
 @font-face {
-  font-family: 'NunitoSans-Regular';
-  src: url('../fonts/NunitoSans-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'NunitoSans-Italic';
-  src: url('../fonts/NunitoSans-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'NunitoSans-SemiBold';
-  src: url('../fonts/NunitoSans-SemiBold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'NunitoSans-SemiBoldItalic';
-  src: url('../fonts/NunitoSans-SemiBoldItalic.ttf') format('truetype');
-  font-weight: 600;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'NunitoSans-Black';
-  src: url('../fonts/NunitoSans-Black.ttf') format('truetype');
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'NunitoSans-BlackItalic';
-  src: url('../fonts/NunitoSans-BlackItalic.ttf') format('truetype');
-  font-weight: 900;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'NunitoSans-Bold';
-  src: url('../fonts/NunitoSans-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'NunitoSans-BoldItalic';
-  src: url('../fonts/NunitoSans-BoldItalic.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'NunitoSans-ExtraBold';
-  src: url('../fonts/NunitoSans-ExtraBold.ttf') format('truetype');
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'NunitoSans-ExtraBoldItalic';
-  src: url('../fonts/NunitoSans-ExtraBoldItalic.ttf') format('truetype');
-  font-weight: 800;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'NunitoSans-ExtraLight';
-  src: url('../fonts/NunitoSans-ExtraLight.ttf') format('truetype');
-  font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'NunitoSans-ExtraLightItalic';
-  src: url('../fonts/NunitoSans-ExtraLightItalic.ttf') format('truetype');
-  font-weight: 200;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'NunitoSans-Light';
-  src: url('../fonts/NunitoSans-Light.ttf') format('truetype');
+  font-family: 'Montserrat-Light';
+  src: url('../fonts/Montserrat-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'NunitoSans-LightItalic';
-  src: url('../fonts/NunitoSans-LightItalic.ttf') format('truetype');
+  font-family: 'Montserrat-LightItalic';
+  src: url('../fonts/Montserrat-LightItalic.ttf') format('truetype');
   font-weight: 300;
   font-style: italic;
 }
+
+
+@font-face {
+  font-family: 'Montserrat-Medium';
+  src: url('../fonts/Montserrat-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat-MediumItalic';
+  src: url('../fonts/Montserrat-MediumItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+**/
+
+@font-face {
+  font-family: 'Montserrat-Regular';
+  src: url('../fonts/Montserrat-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat-SemiBold';
+  src: url('../fonts/Montserrat-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+/**
+@font-face {
+  font-family: 'Montserrat-Italic';
+  src: url('../fonts/Montserrat-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+
+@font-face {
+  font-family: 'Montserrat-SemiBoldItalic';
+  src: url('../fonts/Montserrat-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Montserrat-Black';
+  src: url('../fonts/Montserrat-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat-BlackItalic';
+  src: url('../fonts/Montserrat-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Montserrat-Bold';
+  src: url('../fonts/Montserrat-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat-BoldItalic';
+  src: url('../fonts/Montserrat-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Montserrat-ExtraBold';
+  src: url('../fonts/Montserrat-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat-ExtraBoldItalic';
+  src: url('../fonts/Montserrat-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+}
+**/
 
 html * {
-  font-family: 'NunitoSans-Regular', serif;
+  font-family: 'Montserrat-Regular', sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -197,21 +205,22 @@ input[type=checkbox] {
   -moz-appearance: none;
   appearance: none;
   background-color: $icons;
-  border: 1px solid $primary;
+  border: 2px solid $primary;
   display: inline-block;
   position: relative;
   padding: 7px !important;
   top: 0.25rem;
 
   &:focus {
+    border: 2px solid $primary;
     outline: $primary solid 2px;
     outline-offset: 1px;
   }
 
   &:checked {
-    border: 1px solid $divider;
-    background-color: $white;
-    background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20d%3D%22M173.898%20439.404l-166.4-166.4c-9.997-9.997-9.997-26.206%200-36.204l36.203-36.204c9.997-9.998%2026.207-9.998%2036.204%200L192%20312.69%20432.095%2072.596c9.997-9.997%2026.207-9.997%2036.204%200l36.203%2036.204c9.997%209.997%209.997%2026.206%200%2036.204l-294.4%20294.401c-9.998%209.997-26.207%209.997-36.204-.001z%22%20fill%3D%22blue%22/%3E%3C/svg%3E);
+    border: 2px solid $primary;
+    background-color: $primary;
+    background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20d%3D%22M173.898%20439.404l-166.4-166.4c-9.997-9.997-9.997-26.206%200-36.204l36.203-36.204c9.997-9.998%2026.207-9.998%2036.204%200L192%20312.69%20432.095%2072.596c9.997-9.997%2026.207-9.997%2036.204%200l36.203%2036.204c9.997%209.997%209.997%2026.206%200%2036.204l-294.4%20294.401c-9.998%209.997-26.207%209.997-36.204-.001z%22%20fill%3D%22white%22/%3E%3C/svg%3E);
     &:after {
       position: absolute;
       top: 0;
@@ -237,4 +246,13 @@ select {
 span.validation-error {
   color: $fail;
   font-size: .9em;
+}
+
+a.link {
+  margin: 3px;
+  background: #f44336;
+  color: white !important;
+  padding: 4px;
+  text-decoration: none;
+  border-radius: 2px;
 }

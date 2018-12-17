@@ -1,11 +1,9 @@
 // http://chaijs.com/api/bdd/
 import TopNav from '@/components/TopNav/TopNav'
-import { createLocalVue, shallow } from '@vue/test-utils'
+import { createLocalVue, shallowMount } from '@vue/test-utils'
 import sinon from 'sinon'
-import Router from 'vue-router'
 
 const localVue = createLocalVue()
-localVue.use(Router)
 
 let mocks = {
   $auth: {
@@ -32,7 +30,7 @@ describe('TopNav.vue', () => {
   })
 
   it('has a logout method', () => {
-    const wrapper = shallow(TopNav, {
+    const wrapper = shallowMount(TopNav, {
       localVue,
       mocks,
       propsData: {
@@ -52,7 +50,7 @@ describe('TopNav.vue', () => {
   })
 
   it('has a toggle sidebar method', () => {
-    const wrapper = shallow(TopNav, {
+    const wrapper = shallowMount(TopNav, {
       localVue,
       mocks,
       propsData: {
@@ -72,7 +70,7 @@ describe('TopNav.vue', () => {
   })
 
   it('logs out', () => {
-    let wrapper = shallow(TopNav, {
+    let wrapper = shallowMount(TopNav, {
       localVue,
       mocks,
       propsData: {

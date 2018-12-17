@@ -12,7 +12,7 @@
   </card>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .call-to-action-card {
     display: flex;
     flex-direction: column;

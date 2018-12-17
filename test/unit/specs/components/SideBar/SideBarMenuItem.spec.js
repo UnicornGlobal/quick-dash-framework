@@ -1,31 +1,34 @@
 // http://chaijs.com/api/bdd/
 import SideBarMenuItem from '@/components/SideBar/SideBarMenuItem'
-import { shallow, createLocalVue } from '@vue/test-utils'
+import { shallowMount, createLocalVue } from '@vue/test-utils'
 
 describe('SideBarMenuItem.vue', () => {
   it('renders menu item without children', () => {
     let localVue = createLocalVue()
 
-    let sidebarMenuItem = shallow(SideBarMenuItem, {
+    let mocks = {
+      $route: {
+        name: 'Home',
+        matched: []
+      }
+    }
+
+    let sidebarMenuItem = shallowMount(SideBarMenuItem, {
       localVue,
       propsData: {
+        base: 'xxx',
         menu: {
           name: 'home',
           path: '/',
           meta: {
-            icon: 'fa fa-home',
+            icon: '',
             label: 'Home',
             main: true
           }
         }
       },
-      stubs: ['router-link'],
-      mocks: {
-        $route: {
-          name: 'Home',
-          matched: []
-        }
-      }
+      mocks,
+      stubs: ['router-link']
     })
 
     expect(sidebarMenuItem.vm).to.have.property('hasChildren', false)
@@ -34,7 +37,7 @@ describe('SideBarMenuItem.vue', () => {
   it('renders menu items with children', () => {
     let localVue = createLocalVue()
 
-    let sidebarMenuItem = shallow(SideBarMenuItem, {
+    let sidebarMenuItem = shallowMount(SideBarMenuItem, {
       localVue,
       propsData: {
         menu: {
@@ -71,14 +74,14 @@ describe('SideBarMenuItem.vue', () => {
   it('shows current route', () => {
     let localVue = createLocalVue()
 
-    let sidebarMenuItem = shallow(SideBarMenuItem, {
+    let sidebarMenuItem = shallowMount(SideBarMenuItem, {
       localVue,
       propsData: {
         menu: {
           name: 'Home',
           path: '/',
           meta: {
-            icon: 'fa fa-home',
+            icon: '',
             label: 'Home',
             main: true
           }
@@ -99,7 +102,7 @@ describe('SideBarMenuItem.vue', () => {
   it("computes route's full path", () => {
     let localVue = createLocalVue()
 
-    let sidebarMenuItem = shallow(SideBarMenuItem, {
+    let sidebarMenuItem = shallowMount(SideBarMenuItem, {
       localVue,
       propsData: {
         base: '/base/path',
@@ -127,7 +130,7 @@ describe('SideBarMenuItem.vue', () => {
   it('it opens menu if its matched in current route', () => {
     let localVue = createLocalVue()
 
-    let sidebarMenuItem = shallow(SideBarMenuItem, {
+    let sidebarMenuItem = shallowMount(SideBarMenuItem, {
       propsData: {
         localVue,
         base: '/',
@@ -165,7 +168,7 @@ describe('SideBarMenuItem.vue', () => {
   it('it closes sidebar when clicked', () => {
     let localVue = createLocalVue()
 
-    let sidebarMenuItem = shallow(SideBarMenuItem, {
+    let sidebarMenuItem = shallowMount(SideBarMenuItem, {
       localVue,
       propsData: {
         base: '/',

@@ -1,17 +1,16 @@
 import Login from '@/pages/Login'
 import sinon from 'sinon'
-import { createLocalVue, shallow } from '@vue/test-utils'
+import { createLocalVue, shallowMount } from '@vue/test-utils'
 import store from '@/store'
-import axios from 'axios'
-import Validator from 'vee-validate'
+import { ErrorBag } from 'vee-validate'
 
 let mocks = {
-  $http: axios,
   $auth: {
     check: sinon.stub().returns(true),
     user: sinon.stub().returns({}),
     login: sinon.stub().resolves(true)
   },
+  errors: new ErrorBag(),
   $store: store
 }
 
@@ -22,8 +21,7 @@ describe('Login.vue', () => {
 
   it('triggers sign in method', () => {
     let localVue = createLocalVue()
-    localVue.use(Validator)
-    const wrapper = shallow(Login, {localVue, mocks})
+    const wrapper = shallowMount(Login, {localVue, mocks})
     expect(wrapper.vm.signIn).to.be.a('function')
     expect(wrapper.vm.sendSignInRequest).to.be.a('function')
 
@@ -37,10 +35,9 @@ describe('Login.vue', () => {
     })
   })
 
-  it('triggers sign in with failed validation', () => {
+  it('triggers sign in with failed validation', async () => {
     let localVue = createLocalVue()
-    localVue.use(Validator)
-    const wrapper = shallow(Login, {localVue, mocks})
+    const wrapper = shallowMount(Login, {localVue, mocks})
     expect(wrapper.vm.signIn).to.be.a('function')
     expect(wrapper.vm.sendSignInRequest).to.be.a('function')
 
@@ -48,25 +45,35 @@ describe('Login.vue', () => {
     sinon.stub(wrapper.vm.$validator, 'validateAll').resolves(false)
     let sendSignInRequest = sinon.spy(wrapper.vm, 'sendSignInRequest')
 
-    return wrapper.vm.signIn().then(() => {
-      expect(sendSignInRequest.called).to.equal(false)
-      sendSignInRequest.restore()
-    })
+    await wrapper.vm.signIn()
+    expect(sendSignInRequest.called).to.equal(false)
+    sendSignInRequest.restore()
   })
 
-  it('handles sign in error', () => {
+  it('handles sign in error', async () => {
     let localVue = createLocalVue()
-    localVue.use(Validator)
-    const wrapper = shallow(Login, {localVue, mocks})
-    localVue.$auth.login = (conf) => {
-      return wrapper.vm.$http.post(conf)
+    let post = sinon.stub(localVue.axios, 'post').rejects(Error('Invalid username'))
+
+    const wrapper = shallowMount(Login, {
+      localVue,
+      mocks: {
+        $store: store,
+        $auth: {
+          login: (conf) => {
+            return localVue.axios.post()
+          }
+        }
+      }
+    })
+
+    try {
+      await wrapper.vm.sendSignInRequest()
+    } catch (e) {
+      expect(e.message).to.equal('Invalid username')
     }
 
-    let post = sinon.stub(wrapper.vm.$http, 'post').rejects(Error('Invalid username'))
-    return wrapper.vm.sendSignInRequest().catch((err) => {
-      expect(err.message).to.equal('Invalid username')
-      post.restore()
-    })
+    sinon.assert.called(post)
+    post.restore()
   })
 
   it('has default data', () => {

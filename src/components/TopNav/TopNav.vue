@@ -7,11 +7,10 @@
             <hamburger-lines></hamburger-lines>
           </div>
         </div>
-        <div class="logo">
+        <router-link class="logo" to="/">
           Quick Dash
-        </div>
+        </router-link>
       </div>
-      <!-- <div class="fill"></div> -->
       <div class="right">
         <div v-if="user" class="user-menu">
           <avatar-or-initials
@@ -97,6 +96,7 @@
     margin-left: 2em;
     color: $white;
     font-size: 22px;
+    text-decoration: none;
 
     svg {
       height: 30px;
@@ -177,8 +177,8 @@
 
 <script>
   import AvatarOrInitials from 'vue-avatar-or-initials'
-  import { reloadRouter } from '@/lib'
-  import HamburgerLines from '@/assets/images/svg/hamburger-lines.svg'
+  import { reloadRouter } from '@/router'
+  import HamburgerLines from '@/assets/icons/hamburger.svg'
 
   export default {
     name: 'top-nav',

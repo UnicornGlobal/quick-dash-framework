@@ -9,7 +9,7 @@ $blue-2: #0f88e3;
 $accent: #4CAF50;
 $icons: #FFFFFF;
 $primary-text: #212121;
-$secondary-text: #757575;
+$secondary-text: #fff;
 $black: #000;
 $divider: #BDBDBD;
 $black: rgb(0, 0, 0);
@@ -35,3 +35,5 @@ $colors-map: (
   success: $success,
   fail: $fail
 );
+
+$border-radius: 2em;
