@@ -1,8 +1,13 @@
-# quick-dash
+# @unicorns/quick-dash-framework
 
-> A starter vuejs dashboard
+Do not base your projects on this one.
 
-Designed to work with darrynten/strong-lumen
+This is the base framework package.
+
+Use or fork https://github.com/UnicornGlobal/quick-dash for your
+projects.
+
+Designed to work with UnicornGlobal/strong-lumen
 
 ## Build Setup
 

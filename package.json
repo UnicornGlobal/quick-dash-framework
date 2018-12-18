@@ -1,6 +1,6 @@
 {
   "name": "@unicorns/quick-dash-framework",
-  "version": "2.0.0-alpha",
+  "version": "2.0.1",
   "description": "Quick Dashboard Framework",
   "author": "Unicorn Global et al",
   "license": "MIT",
@@ -16,6 +16,14 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
     "eslint": "node_modules/bin/eslint ."
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UnicornGlobal/quick-dash-framework.git"
+  },
+  "bugs": {
+    "url": "https://github.com/UnicornGlobal/quick-dash-framework/issues"
+  },
+  "homepage": "https://github.com/UnicornGlobal/quick-dash-framework#readme",
   "dependencies": {
     "@unicorns/avatars": "^1.1.2",
     "@unicorns/data-table": "^1.3.1",
