@@ -2,7 +2,7 @@ import AssignRoleForm from '@/pages/Admin/Users/AssignRoleForm.vue'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import * as RolesApi from '@/api/admin/roles'
 import sinon from 'sinon'
-import { ToasterEvents } from 'unicorn-vue-toaster'
+import { ToasterEvents } from '@unicorns/toaster'
 
 describe('AssignRoleForm', () => {
   it('emits success event', async () => {
