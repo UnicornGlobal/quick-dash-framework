@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import DataTable from 'unicorn-vue-datatable'
+import DataTable from '@unicorns/data-table'
 
 Vue.use(DataTable, {
   theme: {

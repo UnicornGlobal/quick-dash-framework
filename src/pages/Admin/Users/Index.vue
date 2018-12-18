@@ -10,7 +10,7 @@
 <script>
   import PageContainer from '@/components/Containers/PageContainer'
   import Card from '@/components/Cards/Card'
-  import DataTable from 'unicorn-vue-datatable'
+  import DataTable from '@unicorns/data-table'
   import { loadAllUsers } from '@/api/admin/users'
 
   export default {
