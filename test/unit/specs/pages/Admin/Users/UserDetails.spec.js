@@ -1,6 +1,7 @@
 import UserDetails from '@/pages/Admin/Users/UserDetails.vue'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import * as Api from '@/api/admin/users'
+import Vue from 'vue'
 
 const role1 = {
   name: 'Role 1',
@@ -47,9 +48,9 @@ describe('UserDetails.vue', () => {
       }
     }
 
-    let loadUserRoles = sinon
-      .stub(localVue.axios, 'get')
-      .resolves({ data: [] })
+    Vue.axios = {
+      get: sinon.stub().rejects({data:[]})
+    }
 
     let wrapper = shallowMount(UserDetails, {
       localVue,
@@ -64,7 +65,6 @@ describe('UserDetails.vue', () => {
     )
     expect(wrapper.vm.$store.state.users).to.be.an('array').that.has.lengthOf(2)
     expect(wrapper.vm.$store.state.users[1]._id).to.to.equal('e000f88e-2850-4ef6-8f38-d411269a3393')
-    loadUserRoles.restore()
   })
 
   it('loads all users when mouted', () => {
@@ -120,9 +120,9 @@ describe('UserDetails.vue', () => {
       }
     }
 
-    let loadUserRoles = sinon
-      .stub(localVue.axios, 'get')
-      .resolves({ data: [] })
+    Vue.axios = {
+      get: sinon.stub().rejects({data:[]})
+    }
 
     let wrapper = shallowMount(UserDetails, {
       localVue,
@@ -143,7 +143,6 @@ describe('UserDetails.vue', () => {
         expect(wrapper.vm.availableRoles).to.be.an('array').that.has.lengthOf(1)
         expect(wrapper.vm.availableRoles[0]._id).to.equal(role2._id)
         expect(wrapper.vm.availableRoles).to.equal(null)
-        loadUserRoles.restore()
       }, 500)
     })
   })
