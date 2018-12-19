@@ -33,6 +33,7 @@ describe('TopNav.vue', () => {
     const wrapper = shallowMount(TopNav, {
       localVue,
       mocks,
+      stubs: ['router-link'],
       propsData: {
         user: {
           first_name: 'User',
@@ -53,6 +54,7 @@ describe('TopNav.vue', () => {
     const wrapper = shallowMount(TopNav, {
       localVue,
       mocks,
+      stubs: ['router-link'],
       propsData: {
         user: {
           first_name: 'User',
@@ -73,6 +75,7 @@ describe('TopNav.vue', () => {
     let wrapper = shallowMount(TopNav, {
       localVue,
       mocks,
+      stubs: ['router-link'],
       propsData: {
         user: {
           first_name: 'User',

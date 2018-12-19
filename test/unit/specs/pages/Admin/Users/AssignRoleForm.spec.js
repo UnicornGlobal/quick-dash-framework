@@ -3,6 +3,7 @@ import { createLocalVue, shallowMount } from '@vue/test-utils'
 import * as RolesApi from '@/api/admin/roles'
 import sinon from 'sinon'
 import { ToasterEvents } from '@unicorns/toaster'
+import Vue from 'vue'
 
 describe('AssignRoleForm', () => {
   it('emits success event', async () => {
@@ -19,18 +20,18 @@ describe('AssignRoleForm', () => {
       }
     })
 
-    form.setData({currentRoleId: 'successroleid'})
+    Vue.axios = {
+      post: sinon.stub().resolves({data:{status:'ok'}})
+    }
 
-    let post = sinon
-      .stub(localVue.axios, 'post')
-      .resolves({ data: { status: 'ok' } })
+    form.setData({currentRoleId: 'successroleid'})
 
     let assignRole = sinon.stub(RolesApi, 'assignRole').resolves({status: 'ok'})
 
     await form.vm.assignRole().then((result) => {
       expect(form.emitted()).to.have.key('success')
+      sinon.assert.called(Vue.axios.post)
       assignRole.restore()
-      post.restore()
     })
   })
 
@@ -50,13 +51,13 @@ describe('AssignRoleForm', () => {
 
     form.setData({currentRoleId: 'notokrole'})
 
-    let post = sinon
-      .stub(localVue.axios, 'post')
-      .rejects({ data: { status: 'nok' } })
+    Vue.axios = {
+      post: sinon.stub().rejects({data:{status:'nok'}})
+    }
 
     await form.vm.assignRole().then(() => {
       expect(form.emitted()).to.have.key('error')
-      post.restore()
+      sinon.assert.called(Vue.axios.post)
     })
   })
 })

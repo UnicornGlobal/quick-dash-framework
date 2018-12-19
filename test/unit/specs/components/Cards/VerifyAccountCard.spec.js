@@ -1,6 +1,7 @@
 import VerifyAccountCard from '@/components/Cards/VerifyAccountCard.vue'
 import {createLocalVue, shallowMount} from '@vue/test-utils'
 import sinon from 'sinon'
+import Vue from 'vue'
 
 describe('VerifyAccountCard.vue', () => {
   it('resends mail', () => {
@@ -19,6 +20,10 @@ describe('VerifyAccountCard.vue', () => {
         }
       }
     })
+
+    Vue.axios = {
+      get: sinon.stub().resolves({data: {}})
+    }
 
     card.vm.resendMail()
     expect(card.vm.$store.commit.called).to.equal(true)
