@@ -61,9 +61,7 @@ async function getCustomRoutes() {
 }
 
 export async function loadRoutes(user) {
-  console.log('x')
   let customRoutes = await getCustomRoutes()
-  console.log(customRoutes)
   let routes = [...userRoutes, ...customRoutes]
 
   if (userHasRole(user, 'ADMIN')) {
@@ -72,7 +70,6 @@ export async function loadRoutes(user) {
 
   // Unique
   routes = await [...new Set(routes)]
-  console.log('f', routes)
   appRoute.children = routes
 
   store.commit('setRoutes', [appRoute])

@@ -47,8 +47,8 @@ lib.load()
 export default {
   install: (Vue, options) => {
     // router = [...options.router]
-    console.log(options.router, Vue.router, router)
-    Vue.router.addRoutes(options.router)
+    console.log(options)
+    // Vue.router.addRoutes(options.router)
     // await Vue.router.replace(window.location.pathname)
     // console.log(store.getters.routes)
     // store.commit('setRoutes', [options.router])
