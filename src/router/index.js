@@ -72,9 +72,7 @@ async function getCustomRoutes() {
 }
 
 export async function loadRoutes(user) {
-  console.log('x')
   let customRoutes = await getCustomRoutes()
-  console.log(customRoutes)
   let routes = [...userRoutes, ...customRoutes]
 
   /**
