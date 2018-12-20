@@ -80,7 +80,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "eventsource-polyfill": "^0.9.6",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "file-loader": "^2.0.0",
+    "file-loader": "^3.0.0",
     "flush-promises": "^1.0.2",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "fs": "0.0.1-security",
