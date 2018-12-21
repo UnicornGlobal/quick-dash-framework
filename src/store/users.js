@@ -1,4 +1,5 @@
 export default {
+  namespaced: true,
   state: {
     users: null,
     usersLoaded: null

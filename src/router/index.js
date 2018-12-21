@@ -72,7 +72,7 @@ export async function loadRoutes(user) {
   routes = await [...new Set(routes)]
   appRoute.children = routes
 
-  store.commit('setRoutes', [appRoute])
+  store.commit('routes/setRoutes', [appRoute])
   return appRoute
 }
 

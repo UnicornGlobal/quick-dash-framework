@@ -4,7 +4,7 @@ import store from '@/store'
 export function loadAndStoreAllRoles() {
   return Vue.axios.get('api/admin/roles').then(
     (response) => {
-      store.commit('setAllRoles', response.data)
+      store.commit('roles/setAllRoles', response.data)
       return response.data
     })
 }
