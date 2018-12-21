@@ -18,29 +18,29 @@ Vue.use(VueX)
  */
 let state = {
   ...user.state,
-  ...auth.state,
-  ...routes.state,
-  ...common.state,
-  ...users.state,
-  ...roles.state
+  // ...auth.state,
+  // ...routes.state,
+  // ...users.state,
+  // ...roles.state,
+  ...common.state
 }
 
 let mutations = {
   ...user.mutations,
-  ...auth.mutations,
-  ...routes.mutations,
-  ...common.mutations,
-  ...users.mutations,
-  ...roles.mutations
+  // ...auth.mutations,
+  // ...routes.mutations,
+  // ...users.mutations,
+  // ...roles.mutations,
+  ...common.mutations
 }
 
 let getters = {
   ...user.getters,
-  ...auth.getters,
-  ...routes.getters,
-  ...common.getters,
-  ...users.getters,
-  ...roles.getters
+  // ...auth.getters,
+  // ...routes.getters,
+  // ...users.getters,
+  // ...roles.getters,
+  ...common.getters
 }
 
 /**
@@ -91,6 +91,12 @@ try {
 }
 
 export default new VueX.Store({
+  modules: {
+    auth,
+    users,
+    routes,
+    roles
+  },
   state,
   mutations,
   getters
