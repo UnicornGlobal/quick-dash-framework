@@ -144,7 +144,7 @@
         return null
       },
       availableRoles() {
-        if (!this.$store.state.allRoles) {
+        if (!this.$store.state['roles/allRoles']) {
           this.loadAndStoreAllRoles()
           return null
         }
@@ -153,7 +153,7 @@
           return null
         }
 
-        return this.$store.state.allRoles.filter((role) => {
+        return this.$store.state['roles/allRoles'].filter((role) => {
           return !this.userRoles.find((_role) => {
             return _role._id === role._id
           })

@@ -61,4 +61,4 @@ jobs:
     - stage: deploy
       name: "No Target"
       before_install: true
-      script: echo Add deployment settings!
+      script: echo "Add deployment settings!"
