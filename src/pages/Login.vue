@@ -94,7 +94,7 @@
       }
     },
     mounted() {
-      this.$store.commit('setLoading', false)
+      this.$store.commit('app/loading', false)
     }
   }
 </script>

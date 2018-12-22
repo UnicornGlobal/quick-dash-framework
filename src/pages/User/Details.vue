@@ -36,7 +36,7 @@
     },
     computed: {
       userDetails() {
-        const user = this.$store.state.user
+        const user = this.$store.getters['auth/user']
 
         return [
           {

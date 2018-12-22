@@ -131,20 +131,20 @@
       }
     },
     async mounted() {
-      if (!this.$store.state.users) {
+      if (!this.$store.getters['admin/users']) {
         await this.loadAllUsers()
       }
       this.loadUserRoles()
     },
     computed: {
       userDetails() {
-        if (this.$store.state.users) {
-          return (this.$store.state.users).find(user => user._id === this.userId)
+        if (this.$store.getters['admin/users']) {
+          return (this.$store.getters['admin/users']).find(user => user._id === this.userId)
         }
         return null
       },
       availableRoles() {
-        if (!this.$store.state['roles/allRoles']) {
+        if (!this.$store.getters['admin/roles']) {
           this.loadAndStoreAllRoles()
           return null
         }
@@ -153,7 +153,7 @@
           return null
         }
 
-        return this.$store.state['roles/allRoles'].filter((role) => {
+        return this.$store.getters['admin/roles'].filter((role) => {
           return !this.userRoles.find((_role) => {
             return _role._id === role._id
           })

@@ -1,7 +1,7 @@
 export default {
+  namespaced: true,
   state: {
-    user: {},
-    userLoaded: true
+    user: {}
   },
   mutations: {
     setUser(state, user) {
