@@ -32,57 +32,64 @@ Vue.use(VueX)
  */
 
 let custom = false
-let state = {}
-let mutations = {}
-let getters = {}
+let external = {}
+
+/**
+ * These filenames are reserved for the time being.
+ *
+ * The future roadmap will allow the host application the ability
+ * to overload the file and have their one loaded instead of the
+ * base framework one.
+ *
+ * It's important to add the filenames of everything in the base
+ * `/store` folder.
+ */
+const reserved = [
+  'admin',
+  'auth',
+  'index',
+  'roles',
+  'routes',
+  'sidebar',
+  'user',
+  'users'
+]
 
 try {
   custom = require.context('~/store', true, /\.js$/)
   custom.keys().forEach(function(key) {
+    const name = /\.\/(\S+)\.js/.exec(key)[1]
+
     /**
-     * Do not load any index.js files that are placed in the host
-     * applications `store` folder
+     * Do not load any files with reserved names from the host
+     * applications `store` folder and leave a warning.
      */
-    if (key === './index.js') {
-      console.warn('Do not place `index.js` files in your `/store` directory, they are ignored.')
+    if (reserved.includes(name)) {
+      console.warn(`Do not place '${name}.js' files in your '/store' directory, the filenames are reserved and ignored.`)
       return
     }
 
-    if (key === './auth.js') {
-      console.warn('Do not place `auth.js` files in your `/store` directory, they are ignored.')
-      return
-    }
+    console.log('Found custom store: ', name)
 
-    if (key === './user.js') {
-      console.warn('Do not place `user.js` files in your `/store` directory, they are ignored.')
-      return
-    }
-
-    if (key === './users.js') {
-      console.warn('Do not place `users.js` files in your `/store` directory, they are ignored.')
-      return
-    }
-
-    if (key === './roles.js') {
-      console.warn('Do not place `roles.js` files in your `/store` directory, they are ignored.')
-      return
-    }
-
-    console.log('Found custom store: ', key)
-
-    state = {
-      ...state,
-      ...custom.state
-    }
-
-    mutations = {
-      ...mutations,
-      ...custom.mutations
-    }
-
-    getters = {
-      ...getters,
-      ...custom.getters
+    /**
+     * Put together an object containing all the external store exports
+     * and collate them into a single object, using their filename as
+     * the key.
+     *
+     * This results in the VueX store being configured with the
+     * trimmed filename as the root namespace.
+     *
+     * As an example, if you have a custom store called `awesome` then
+     * you will have a VueX namespace on the root called `awesome` that
+     * will contain your getters and setters.
+     *
+     * It's best to namespace in the external application, and access
+     * your getters like `store.getters['awesome/thing']` and do your
+     * custom commits like `store.commit('awesome/thing', value)`.
+     */
+    external = {
+      ...external,
+      [name]: custom(key).default
     }
   })
 } catch (e) {
@@ -91,11 +98,9 @@ try {
 
 export default new VueX.Store({
   modules: {
+    ...external,
     app,
     auth,
     admin
-  },
-  state,
-  mutations,
-  getters
+  }
 })
