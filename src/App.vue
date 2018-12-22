@@ -2,7 +2,7 @@
   <div>
     <div v-if="loaded">
       <div id="app-component">
-        <top-nav class="top-nav" :loaded="loaded" :user="user" :sidebar="enableSideBar"></top-nav>
+        <top-nav class="top-nav" :loaded="loaded" :user="user" :sidebar="enableSideBar" v-if="user"></top-nav>
         <div class="main-content">
           <transition name="slide" v-if="enableSideBar">
             <side-bar class="side-bar" v-show="showSideBar" :menus="menu" root-path="/"></side-bar>

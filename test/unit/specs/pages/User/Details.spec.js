@@ -1,6 +1,7 @@
 // http://chaijs.com/api/bdd/
 import Details from '@/pages/User/Details'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
+import store from '@/store'
 
 describe('Details.vue', () => {
   it('is an Object', () => {
@@ -10,17 +11,7 @@ describe('Details.vue', () => {
   it('gets an empty User', async () => {
     let localVue = createLocalVue()
     let mocks = {
-      $store: {
-        state: {
-          user: {
-            'first_name': '',
-            'last_name': '',
-            'email': '',
-            'mobile': '',
-            '_id': ''
-          }
-        }
-      }
+      $store: store
     }
 
     let wrapper = shallowMount(Details, {

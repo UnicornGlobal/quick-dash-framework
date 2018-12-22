@@ -1,6 +1,7 @@
 import UsersPage from '@/pages/Admin/Users/Index.vue'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import sinon from 'sinon'
+import store from '@/store'
 
 describe('Admin All Users', () => {
   it('is an object', () => {
@@ -11,6 +12,8 @@ describe('Admin All Users', () => {
     const localVue = createLocalVue()
     const loadUsers = sinon.stub().resolves([])
 
+    store.commit('admin/users', [])
+
     let wrapper = shallowMount(UsersPage, {
       localVue,
       methods: {
@@ -20,11 +23,7 @@ describe('Admin All Users', () => {
         $http: {
           get: sinon.stub().resolves({data: {}})
         },
-        $store: {
-          state: {
-            users: []
-          }
-        }
+        $store: store
       }
     })
 

@@ -2,6 +2,7 @@ import UserDetails from '@/pages/Admin/Users/UserDetails.vue'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import * as Api from '@/api/admin/users'
 import Vue from 'vue'
+import store from '@/store'
 
 const role1 = {
   name: 'Role 1',
@@ -19,33 +20,34 @@ describe('UserDetails.vue', () => {
 
   it('gets a User', () => {
     let localVue = createLocalVue()
-    let mocks = {
-      $store: {
-        state: {
-          users: [
-            {
-              '_id': 'c3e2a355-74e3-4f5b-b854-e393f19b47a2',
-              'username': '20c2f0cb-9d45-4139-bfb5-d9924dda9273',
-              'first_name': 'System',
-              'last_name': 'User',
-              'email': 'system@example.com',
-              'is_verified': 0,
-              'mobile': '',
-              'confirmed': false
-            },
-            {
-              '_id': 'e000f88e-2850-4ef6-8f38-d411269a3393',
-              'username': 'user',
-              'first_name': 'Test',
-              'last_name': 'User',
-              'email': 'developer@test.co.za',
-              'is_verified': 0,
-              'mobile': '',
-              'confirmed': false
-            }
-          ]
+
+    store.commit('admin/users',
+      [
+        {
+          '_id': 'c3e2a355-74e3-4f5b-b854-e393f19b47a2',
+          'username': '20c2f0cb-9d45-4139-bfb5-d9924dda9273',
+          'first_name': 'System',
+          'last_name': 'User',
+          'email': 'system@example.com',
+          'is_verified': 0,
+          'mobile': '',
+          'confirmed': false
+        },
+        {
+          '_id': 'e000f88e-2850-4ef6-8f38-d411269a3393',
+          'username': 'user',
+          'first_name': 'Test',
+          'last_name': 'User',
+          'email': 'developer@test.co.za',
+          'is_verified': 0,
+          'mobile': '',
+          'confirmed': false
         }
-      }
+      ]
+    )
+
+    let mocks = {
+      $store: store
     }
 
     Vue.axios = {
@@ -91,33 +93,32 @@ describe('UserDetails.vue', () => {
 
   it('it loads users roles', async () => {
     let localVue = createLocalVue()
-    let mocks = {
-      $store: {
-        state: {
-          users: [
-            {
-              '_id': 'c3e2a355-74e3-4f5b-b854-e393f19b47a2',
-              'username': '20c2f0cb-9d45-4139-bfb5-d9924dda9273',
-              'first_name': 'System',
-              'last_name': 'User',
-              'email': 'system@example.com',
-              'is_verified': 0,
-              'mobile': '',
-              'confirmed': false
-            },
-            {
-              '_id': 'e000f88e-2850-4ef6-8f38-d411269a3393',
-              'username': 'user',
-              'first_name': 'Test',
-              'last_name': 'User',
-              'email': 'developer@test.co.za',
-              'is_verified': 0,
-              'mobile': '',
-              'confirmed': false
-            }
-          ]
-        }
+
+    store.commit('admin/users', [
+      {
+        '_id': 'c3e2a355-74e3-4f5b-b854-e393f19b47a2',
+        'username': '20c2f0cb-9d45-4139-bfb5-d9924dda9273',
+        'first_name': 'System',
+        'last_name': 'User',
+        'email': 'system@example.com',
+        'is_verified': 0,
+        'mobile': '',
+        'confirmed': false
+      },
+      {
+        '_id': 'e000f88e-2850-4ef6-8f38-d411269a3393',
+        'username': 'user',
+        'first_name': 'Test',
+        'last_name': 'User',
+        'email': 'developer@test.co.za',
+        'is_verified': 0,
+        'mobile': '',
+        'confirmed': false
       }
+    ])
+
+    let mocks = {
+      $store: store
     }
 
     Vue.axios = {

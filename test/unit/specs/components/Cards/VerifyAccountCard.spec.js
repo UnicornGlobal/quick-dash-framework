@@ -2,6 +2,7 @@ import VerifyAccountCard from '@/components/Cards/VerifyAccountCard.vue'
 import {createLocalVue, shallowMount} from '@vue/test-utils'
 import sinon from 'sinon'
 import Vue from 'vue'
+import store from '@/store'
 
 describe('VerifyAccountCard.vue', () => {
   it('resends mail', () => {
@@ -12,12 +13,7 @@ describe('VerifyAccountCard.vue', () => {
         user: {}
       },
       mocks: {
-        $store: {
-          getters: {
-            resentVerification: false
-          },
-          commit: sinon.stub()
-        }
+        $store: {...store, ...{ commit: sinon.spy() }}
       }
     })
 
@@ -28,7 +24,7 @@ describe('VerifyAccountCard.vue', () => {
     card.vm.resendMail()
     expect(card.vm.$store.commit.called).to.equal(true)
 
-    card.vm.$store.getters.resentVerification = true
+    card.vm.$store.commit('auth/resentVerification', true)
     card.vm.resendMail()
     expect(card.vm.$store.commit.calledTwice).to.equal(false)
   })
