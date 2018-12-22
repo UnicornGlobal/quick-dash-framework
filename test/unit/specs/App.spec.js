@@ -13,7 +13,12 @@ let mocks = {
     },
     getters: {
       loading: false,
-      user: {}
+      user: {},
+      app: {
+        sidebar: {
+          open: true
+        }
+      }
     }
   },
   $auth: {
@@ -53,6 +58,7 @@ describe('App.vue', () => {
       mocks: {
         $store: {
           getters: {
+            'app/sidebar/open': true,
             loading: false,
             user: {}
           },
@@ -62,7 +68,7 @@ describe('App.vue', () => {
     })
 
     app.vm.closeSidebar()
-    expect(app.vm.$store.commit.calledWith('showSideBar', false)).to.equal(true)
+    expect(app.vm.$store.commit.calledWith('app/sidebar/open', false)).to.equal(true)
   })
 
   it('initializes side bar menu', () => {
@@ -74,10 +80,8 @@ describe('App.vue', () => {
         $store: {
           getters: {
             user: {},
-            sideBarState: true
-          },
-          state: {
-            routes: [
+            'app/sidebar/open': true,
+            'app/routes': [
               {
                 children: [
                   {
