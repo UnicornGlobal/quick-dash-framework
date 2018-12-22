@@ -35,7 +35,7 @@ export default {
         // 'refresh' current route
         await Vue.router.replace(window.location.pathname)
 
-        await store.commit('auth/setUser', user)
+        await store.commit('auth/user', user)
         await store.commit('app/loading', false)
       }
     })
