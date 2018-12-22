@@ -9,7 +9,7 @@
       </div>
       <div class="actions">
         <a class="button"
-          v-if="!this.$store.getters.resentVerification"
+          v-if="!this.$store.getters['auth/resentVerification']"
           @click="resendMail">
             Resend
         </a>
@@ -102,14 +102,14 @@
     },
     data() {
       return {
-        closed: false
+        closed: this.$store.getters['auth/resentVerification']
       }
     },
     methods: {
       resendMail() {
-        if (!this.$store.getters.resentVerification) {
+        if (!this.$store.getters['auth/resentVerification']) {
           resendVerification()
-          this.$store.commit('setResentVerification')
+          this.$store.commit('auth/setResentVerification')
         }
       }
     }

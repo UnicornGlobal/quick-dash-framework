@@ -1,9 +1,6 @@
 describe('Admin Users List', function() {
   before(function () {
     cy.reload(true)
-  })
-
-  beforeEach(function () {
     cy.loginXhr('admin', 'admin')
     cy.location('href').then((address) => {
       if (address !== `${Cypress.config().baseUrl}/users`) {
@@ -11,6 +8,10 @@ describe('Admin Users List', function() {
         console.log(address)
       }
     })
+  })
+
+  beforeEach(function () {
+    cy.loginXhr('admin', 'admin')
   })
 
   it('Loads All Users List Page', function() {

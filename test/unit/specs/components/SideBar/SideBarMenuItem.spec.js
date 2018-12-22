@@ -1,6 +1,7 @@
 // http://chaijs.com/api/bdd/
 import SideBarMenuItem from '@/components/SideBar/SideBarMenuItem'
 import { shallowMount, createLocalVue } from '@vue/test-utils'
+import store from '@/store'
 
 describe('SideBarMenuItem.vue', () => {
   it('renders menu item without children', () => {
@@ -168,6 +169,8 @@ describe('SideBarMenuItem.vue', () => {
   it('it closes sidebar when clicked', () => {
     let localVue = createLocalVue()
 
+    store.commit('app/sidebar/open', true)
+
     let sidebarMenuItem = shallowMount(SideBarMenuItem, {
       localVue,
       propsData: {
@@ -187,13 +190,11 @@ describe('SideBarMenuItem.vue', () => {
           name: 'Home',
           matched: []
         },
-        $store: {
-          commit: sinon.spy()
-        }
+        $store: {...store, ...{ commit: sinon.spy() }}
       }
     })
 
     sidebarMenuItem.vm.closeSidebar()
-    expect(sidebarMenuItem.vm.$store.commit.calledWith('showSideBar', false)).to.equal(true)
+    expect(sidebarMenuItem.vm.$store.commit.calledWith('app/sidebar/open', false)).to.equal(true)
   })
 })

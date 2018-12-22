@@ -71,7 +71,9 @@
     },
     methods: {
       closeSidebar() {
-        this.$store.commit('showSideBar', false)
+        if (this.$store.getters['app/sidebar/open']) {
+          this.$store.commit('app/sidebar/open', false)
+        }
       }
     },
     mounted() {

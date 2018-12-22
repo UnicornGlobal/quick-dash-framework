@@ -45,7 +45,7 @@
       this.strings = require('@/i18n/en/password-reset').default
     },
     mounted() {
-      this.$store.commit('setLoading', false)
+      this.$store.commit('app/loading', false)
     },
     methods: {
       submit() {

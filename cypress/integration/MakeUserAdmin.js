@@ -45,7 +45,7 @@ describe('Make a User an Admin', function() {
     cy.visit('/')
     cy.wait('@getUserMe')
 
-    cy.get('h5').contains('Tips Widget Output')
+    cy.get('h5').contains('Alert Widgets')
   })
 
   it('Tries to visit User Admin page and fails', function () {
