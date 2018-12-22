@@ -102,7 +102,7 @@
     },
     data() {
       return {
-        closed: false
+        closed: this.$store.getters['auth/resentVerification']
       }
     },
     methods: {

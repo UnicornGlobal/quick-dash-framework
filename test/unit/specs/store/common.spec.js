@@ -15,10 +15,10 @@ describe('store/app', () => {
 
   it('sets and gets sidebar state', () => {
     store.commit('app/sidebar/open', true)
-    expect(store.getters.sideBarState).to.equal(true)
+    expect(store.getters['app/sidebar/open']).to.equal(true)
 
     store.commit('app/sidebar/open', false)
-    expect(store.getters.sideBarState).to.equal(false)
+    expect(store.getters['app/sidebar/open']).to.equal(false)
   })
 
   it('sets and gets sidebar enabled state', () => {

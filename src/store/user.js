@@ -4,7 +4,7 @@ export default {
     user: {}
   },
   mutations: {
-    setUser(state, user) {
+    user(state, user) {
       state.user = user
     }
   },

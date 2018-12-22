@@ -2,6 +2,7 @@
 import TopNav from '@/components/TopNav/TopNav'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import sinon from 'sinon'
+import store from '@/store'
 
 const localVue = createLocalVue()
 
@@ -15,12 +16,7 @@ let mocks = {
     },
     logout: sinon.stub().resolves(true)
   },
-  $store: {
-    getters: {
-      sideBarState: true
-    },
-    commit: sinon.spy()
-  }
+  $store: {...store, ...{ commit: sinon.spy() }}
 }
 
 describe('TopNav.vue', () => {
@@ -65,10 +61,8 @@ describe('TopNav.vue', () => {
     })
 
     expect(wrapper.vm.toggleSideBar).to.be.a('function')
-
-    expect(wrapper.vm.$store.getters.sideBarState).to.equal(true)
     wrapper.vm.toggleSideBar()
-    expect(wrapper.vm.$store.commit.calledWith('showSideBar', false)).to.equal(true)
+    expect(wrapper.vm.$store.commit.calledWith('app/sidebar/open', false)).to.equal(true)
   })
 
   it('logs out', () => {
