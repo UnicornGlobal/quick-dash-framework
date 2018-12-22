@@ -27,7 +27,7 @@ export default {
         method: 'GET'
       },
       async parseUserData(user) {
-        await store.commit('setLoading', true)
+        await store.commit('app/loading', true)
 
         let appRoute = await loadRoutes(user)
         await Vue.router.addRoutes([appRoute])
@@ -35,8 +35,8 @@ export default {
         // 'refresh' current route
         await Vue.router.replace(window.location.pathname)
 
-        await store.commit('user/setUser', user)
-        await store.commit('setLoading', false)
+        await store.commit('auth/setUser', user)
+        await store.commit('app/loading', false)
       }
     })
 

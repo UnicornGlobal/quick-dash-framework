@@ -1,47 +1,21 @@
 import Vue from 'vue'
 import VueX from 'vuex'
 
-import user from '@/store/user'
-import users from '@/store/users'
-import roles from '@/store/roles'
-import auth from '@/store/auth'
-import routes from '@/store/routes'
-import common from '@/store/common'
-
-Vue.use(VueX)
-
 /**
  * Base framework level store
  *
  * We load these explicitly, we do not autoload all files found in
  * the framework level store folder.
+ *
+ * They contain their own imports.
+ *
+ * VueX modules are used extensively.
  */
-let state = {
-  ...user.state,
-  // ...auth.state,
-  // ...routes.state,
-  // ...users.state,
-  // ...roles.state,
-  ...common.state
-}
+import admin from '@/store/admin'
+import auth from '@/store/auth'
+import app from '@/store/app'
 
-let mutations = {
-  ...user.mutations,
-  // ...auth.mutations,
-  // ...routes.mutations,
-  // ...users.mutations,
-  // ...roles.mutations,
-  ...common.mutations
-}
-
-let getters = {
-  ...user.getters,
-  // ...auth.getters,
-  // ...routes.getters,
-  // ...users.getters,
-  // ...roles.getters,
-  ...common.getters
-}
+Vue.use(VueX)
 
 /**
  * Custom store
@@ -56,7 +30,12 @@ let getters = {
  * ~/ represents the host application `src` directory
  * @/ represents this frameworks `src` directory
  */
+
 let custom = false
+let state = {}
+let mutations = {}
+let getters = {}
+
 try {
   custom = require.context('~/store', true, /\.js$/)
   custom.keys().forEach(function(key) {
@@ -66,6 +45,26 @@ try {
      */
     if (key === './index.js') {
       console.warn('Do not place `index.js` files in your `/store` directory, they are ignored.')
+      return
+    }
+
+    if (key === './auth.js') {
+      console.warn('Do not place `auth.js` files in your `/store` directory, they are ignored.')
+      return
+    }
+
+    if (key === './user.js') {
+      console.warn('Do not place `user.js` files in your `/store` directory, they are ignored.')
+      return
+    }
+
+    if (key === './users.js') {
+      console.warn('Do not place `users.js` files in your `/store` directory, they are ignored.')
+      return
+    }
+
+    if (key === './roles.js') {
+      console.warn('Do not place `roles.js` files in your `/store` directory, they are ignored.')
       return
     }
 
@@ -92,10 +91,9 @@ try {
 
 export default new VueX.Store({
   modules: {
+    app,
     auth,
-    users,
-    routes,
-    roles
+    admin
   },
   state,
   mutations,

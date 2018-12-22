@@ -33,19 +33,19 @@
     },
     computed: {
       user() {
-        return this.$store.getters.user
+        return this.$store.getters['auth/user']
       },
       loaded() {
-        return !this.$store.getters.loading
+        return !this.$store.getters['app/loading']
       },
       showSideBar() {
-        return this.$store.getters.sideBarState
+        return this.$store.getters['app/sidebar/open']
       },
       enableSideBar() {
-        return this.$store.getters.sideBarEnabled
+        return this.$store.getters['app/sidebar/enabled']
       },
       menu() {
-        let routes = Object.assign([], this.$store.state.routes[0].children)
+        let routes = Object.assign([], this.$store.getters['app/routes'][0].children)
         return routes.filter(function filter(route) {
           if (route.children) {
             route.children = route.children.filter(filter)
@@ -56,7 +56,9 @@
     },
     methods: {
       closeSidebar() {
-        this.$store.commit('showSideBar', false)
+        if (this.$store.getters['app/sidebar/open']) {
+          this.$store.commit('app/sidebar/open', false)
+        }
       }
     }
   }

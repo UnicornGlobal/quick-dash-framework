@@ -72,7 +72,7 @@ export async function loadRoutes(user) {
   routes = await [...new Set(routes)]
   appRoute.children = routes
 
-  store.commit('routes/setRoutes', [appRoute])
+  store.commit('app/setRoutes', [appRoute])
   return appRoute
 }
 
@@ -89,7 +89,9 @@ let router = new Router({
 })
 
 router.afterEach(function (to, from) {
-  store.commit('showSideBar', false)
+  if (store.getters['app/sidebar/open']) {
+    store.commit('app/sidebar/open', false)
+  }
 })
 
 export default router

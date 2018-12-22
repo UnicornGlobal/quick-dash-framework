@@ -1,11 +1,10 @@
 export default {
   namespaced: true,
   state: {
-    users: null,
-    usersLoaded: null
+    users: null
   },
   mutations: {
-    setAllUsers(state, users) {
+    users(state, users) {
       state.users = users
     }
   },

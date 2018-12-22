@@ -63,8 +63,8 @@ describe('UserDetails.vue', () => {
     expect(wrapper.vm.userDetails._id).to.equal(
       'c3e2a355-74e3-4f5b-b854-e393f19b47a2'
     )
-    expect(wrapper.vm.$store.state.users).to.be.an('array').that.has.lengthOf(2)
-    expect(wrapper.vm.$store.state.users[1]._id).to.to.equal('e000f88e-2850-4ef6-8f38-d411269a3393')
+    expect(wrapper.vm.$store.getters['admin/users']).to.be.an('array').that.has.lengthOf(2)
+    expect(wrapper.vm.$store.getters['admin/users'][1]._id).to.to.equal('e000f88e-2850-4ef6-8f38-d411269a3393')
   })
 
   it('loads all users when mouted', () => {

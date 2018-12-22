@@ -5,7 +5,6 @@
       :user="user">
     </verify-account-card>
 
-    <tips-section v-if="tips" :tips="tips" title="Tips Widget Output"></tips-section>
     <summary-section></summary-section>
   </div>
 </template>
@@ -34,14 +33,12 @@
 </style>
 
 <script>
-  import TipsSection from './TipsSection.vue'
   import SummarySection from './SummarySection.vue'
   import VerifyAccountCard from '@/components/Cards/VerifyAccountCard.vue'
 
   export default {
     name: 'home',
     components: {
-      TipsSection,
       SummarySection,
       VerifyAccountCard
     },
@@ -55,49 +52,14 @@
     },
     computed: {
       user() {
-        return this.$store.getters.user
+        return this.$store.getters['auth/user']
       },
       userNotVerified() {
-        if (this.$store.state.user) {
-          return !this.$store.state.user.confirmed
+        if (this.$store.getters['auth/user']) {
+          return !this.$store.getters['auth/user'].confirmed
         }
 
         return false
-      },
-      tips() {
-        if (this.$store.state) {
-          let tips = []
-
-          // Make actual conditionals here
-          if (this.$store.state) {
-            tips.push({
-              title: 'Example tip!',
-              content: 'You can add content here.'
-            })
-          }
-
-          // Make actual conditionals here
-          if (this.$store.state) {
-            tips.push({
-              title: 'Another Example',
-              content: 'You can even add links to your tips.',
-              linkText: 'My Account',
-              target: {
-                name: 'Account'
-              }
-            })
-          }
-
-          // Make actual conditionals here
-          if (this.$store.state) {
-            tips.push({
-              title: 'Please Note',
-              content: 'They do flex and fill the available space.'
-            })
-          }
-
-          return tips
-        }
       }
     }
   }
