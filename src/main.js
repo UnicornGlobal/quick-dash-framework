@@ -23,7 +23,7 @@ const start = () => {
     template: '<router-view></router-view>',
     computed: {
       loaded() {
-        return !this.$store.getters.loading
+        return !this.$store.getters['app/loading']
       }
     },
     watch: {

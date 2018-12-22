@@ -3,7 +3,7 @@ import store from '@/store'
 
 export function loadAllUsers() {
   return Vue.axios.get('/api/admin/users').then((response) => {
-    store.commit('setAllUsers', response.data.users)
+    store.commit('admin/users', response.data.users)
     return response.data
   })
 }

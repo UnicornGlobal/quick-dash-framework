@@ -1,16 +1,16 @@
 export default {
   namespaced: true,
   state: {
-    allRoles: null
+    roles: null
   },
   mutations: {
-    setAllRoles: (state, roles) => {
-      state.allRoles = roles
+    roles: (state, roles) => {
+      state.roles = roles
     }
   },
   getters: {
-    allRoles(state, _getters) {
-      return state.allRoles
+    roles(state, _getters) {
+      return state.roles
     }
   }
 }

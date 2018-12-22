@@ -213,7 +213,7 @@
         window.location.pathname = 'login'
       },
       toggleSideBar() {
-        this.$store.commit('showSideBar', !this.$store.getters.sideBarState)
+        this.$store.commit('app/sidebar/open', !this.$store.getters['app/sidebar/open'])
       }
     }
   }

@@ -130,7 +130,7 @@
     },
     computed: {
       users() {
-        const users = this.$store.state.users
+        const users = this.$store.getters['admin/users']
         if (users) {
           return users.map(user => ({
             id: user._id,
