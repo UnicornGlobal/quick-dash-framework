@@ -17,14 +17,17 @@
 <script>
   import SideBarMenuItem from '@/components/SideBar/SideBarMenuItem'
   import { reloadRouter } from '@/router'
-  import LogoutIcon from '@/assets/icons/sign_out.svg'
+  import icons from '@/icons'
 
   export default {
     props: [
       'menus',
       'root-path'
     ],
-    components: {SideBarMenuItem, LogoutIcon},
+    components: {
+      SideBarMenuItem,
+      'logout-icon': icons.sign_out
+    },
     methods: {
       logout() {
         return this.$auth.logout({

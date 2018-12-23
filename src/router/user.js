@@ -1,6 +1,5 @@
-import Home from '@/assets/icons/home'
-import User from '@/assets/icons/user'
 import config from '@/config'
+import icons from '@/icons'
 
 console.log(config)
 const home = config.router.home.enabled ? [{
@@ -10,7 +9,7 @@ const home = config.router.home.enabled ? [{
   meta: {
     main: true,
     label: 'Home',
-    icon: Home
+    icon: icons.home
   }
 }] : []
 
@@ -21,7 +20,7 @@ const account = config.router.account.enabled ? [{
   meta: {
     main: true,
     label: 'Account',
-    icon: User
+    icon: icons.user
   }
 }] : []
 

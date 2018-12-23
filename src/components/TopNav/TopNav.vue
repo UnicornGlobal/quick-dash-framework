@@ -4,7 +4,7 @@
       <div class="left">
         <div class="menu-toggle">
           <div @click.prevent="toggleSideBar()">
-            <hamburger-lines></hamburger-lines>
+            <hamburger></hamburger>
           </div>
         </div>
         <router-link class="logo" to="/">
@@ -178,13 +178,13 @@
 <script>
   import AvatarOrInitials from '@unicorns/avatars'
   import { reloadRouter } from '@/router'
-  import HamburgerLines from '@/assets/icons/hamburger.svg'
+  import icons from '@/icons'
 
   export default {
     name: 'top-nav',
     components: {
       AvatarOrInitials,
-      HamburgerLines
+      hamburger: icons.hamburger
     },
     props: {
       user: {

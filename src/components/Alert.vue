@@ -15,10 +15,10 @@
 </template>
 
 <script type="application/javascript">
-  import Danger from '@/assets/icons/danger.svg'
-  import Warning from '@/assets/icons/warning.svg'
-  import Info from '@/assets/icons/info.svg'
-  import Check from '@/assets/icons/check.svg'
+  import Danger from '@/icons/danger.svg'
+  import Warning from '@/icons/warning.svg'
+  import Info from '@/icons/info.svg'
+  import Check from '@/icons/check.svg'
 
   export default {
     components: {Danger, Warning, Info, Check},
