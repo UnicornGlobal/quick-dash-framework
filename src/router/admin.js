@@ -1,6 +1,5 @@
-import Settings from '@/assets/icons/settings'
-import User from '@/assets/icons/user'
 import config from '@/config'
+import icons from '@/icons'
 
 const users = config.admin.users ? [
   {
@@ -10,7 +9,7 @@ const users = config.admin.users ? [
     meta: {
       main: true,
       label: 'All Users',
-      icon: User
+      icon: icons.user
     }
   },
   {
@@ -29,7 +28,7 @@ const settings = config.admin.settings.enabled ? [
     meta: {
       main: true,
       label: 'Settings',
-      icon: Settings
+      icon: icons.settings
     }
   }
 ] : []
@@ -42,7 +41,7 @@ export default config.admin.enabled ? [
     meta: {
       main: true,
       label: 'Admin Account',
-      icon: Settings
+      icon: icons.admin
     },
     children: [
       ...users,
