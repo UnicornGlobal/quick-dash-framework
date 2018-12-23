@@ -2,12 +2,31 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import store from '@/store'
+import admin from '@/store/admin'
 import adminRoutes from '@/router/admin'
 import authRoutes from '@/router/auth'
 import userRoutes from '@/router/user'
 import appRoute from '@/router/base'
 
 import { userHasRole } from '@/auth'
+
+/**
+ * These filenames are reserved for the time being.
+ *
+ * The future roadmap will allow the host application the ability
+ * to overload the file and have their one loaded instead of the
+ * base framework one.
+ *
+ * It's important to add the filenames of everything in the base
+ * `/store` folder.
+ */
+const reserved = [
+  'admin',
+  'auth',
+  'base',
+  'index',
+  'user'
+]
 
 /**
  * Custom routes
@@ -28,26 +47,18 @@ async function getCustomRoutes() {
   try {
     custom = require.context('~/router', true, /\.js$/)
     custom.keys().forEach(function(key) {
+      const name = /\.\/(\S+)\.js/.exec(key)[1]
+
       /**
-       * Do not load any index.js files that are placed in the host
-       * applications `store` folder
+       * Do not load any files with reserved names from the host
+       * applications `router` folder and leave a warning.
        */
-      if (key === './index.js') {
-        console.warn('Do not place `index.js` files in your `/router` directory, they are ignored.')
+      if (reserved.includes(name)) {
+        console.warn(`Do not place '${name}.js' files in your '/router' directory, the filenames are reserved and ignored.`)
         return
       }
 
-      if (key === './auth.js') {
-        console.warn('Do not place `auth.js` files in your `/router` directory, they are ignored.')
-        return
-      }
-
-      if (key === './base.js') {
-        console.warn('Do not place `base.js` files in your `/router` directory, they are ignored.')
-        return
-      }
-
-      console.log('Found custom routes: ', key)
+      console.log('Found custom routes: ', name)
       const value = custom(key).default
       console.log('val', value)
       result = [...result, ...value]
@@ -64,8 +75,13 @@ export async function loadRoutes(user) {
   let customRoutes = await getCustomRoutes()
   let routes = [...userRoutes, ...customRoutes]
 
+  /**
+   * If the user is an admin then we need to add the admin specific
+   * routes _and_ the admin specific stores into the mix.
+   */
   if (userHasRole(user, 'ADMIN')) {
     routes = [...routes, ...adminRoutes]
+    store.registerModule('admin', admin)
   }
 
   // Unique
@@ -73,6 +89,7 @@ export async function loadRoutes(user) {
   appRoute.children = routes
 
   store.commit('app/setRoutes', [appRoute])
+
   return appRoute
 }
 
