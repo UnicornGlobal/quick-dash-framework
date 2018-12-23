@@ -3,8 +3,7 @@ export default {
   component: require('@/App.vue').default,
   meta: {
     main: true,
-    label: 'Home',
-    icon: require('@/assets/icons/home.svg')
+    label: 'Home'
   },
   children: []
 }

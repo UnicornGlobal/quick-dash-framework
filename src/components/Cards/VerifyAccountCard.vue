@@ -86,13 +86,11 @@
 
 <script>
   import Card from '@/components/Cards/Card.vue'
-  import Info from '@/assets/icons/info.svg'
   import { resendVerification } from '@/api/user'
 
   export default {
     components: {
-      Card,
-      Info
+      Card
     },
     props: {
       user: {
