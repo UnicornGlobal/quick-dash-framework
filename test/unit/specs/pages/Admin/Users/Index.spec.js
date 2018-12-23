@@ -2,6 +2,9 @@ import UsersPage from '@/pages/Admin/Users/Index.vue'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import sinon from 'sinon'
 import store from '@/store'
+import admin from '@/store/admin'
+
+store.registerModule('admin', admin)
 
 describe('Admin All Users', () => {
   it('is an object', () => {

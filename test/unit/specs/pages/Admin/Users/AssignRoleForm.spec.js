@@ -21,7 +21,11 @@ describe('AssignRoleForm', () => {
     })
 
     Vue.axios = {
-      post: sinon.stub().resolves({data:{status:'ok'}})
+      post: sinon.stub().resolves({
+        data: {
+          status: 'ok'
+        }
+      })
     }
 
     form.setData({currentRoleId: 'successroleid'})
@@ -52,7 +56,11 @@ describe('AssignRoleForm', () => {
     form.setData({currentRoleId: 'notokrole'})
 
     Vue.axios = {
-      post: sinon.stub().rejects({data:{status:'nok'}})
+      post: sinon.stub().rejects({
+        data: {
+          status: 'nok'
+        }
+      })
     }
 
     await form.vm.assignRole().then(() => {
