@@ -1,7 +1,8 @@
 import Settings from '@/assets/icons/settings'
 import User from '@/assets/icons/user'
+import config from '@/config'
 
-export default [
+export default config.admin.enabled ? [
   {
     name: 'AdminAccount',
     path: 'admin',
@@ -40,4 +41,4 @@ export default [
       }
     ]
   }
-]
+] : []
