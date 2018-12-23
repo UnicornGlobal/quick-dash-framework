@@ -11,7 +11,6 @@ import VueX from 'vuex'
  *
  * VueX modules are used extensively.
  */
-import admin from '@/store/admin'
 import auth from '@/store/auth'
 import app from '@/store/app'
 
@@ -100,7 +99,6 @@ export default new VueX.Store({
   modules: {
     ...external,
     app,
-    auth,
-    admin
+    auth
   }
 })
