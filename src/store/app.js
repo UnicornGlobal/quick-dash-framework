@@ -1,5 +1,6 @@
 import routes from '@/store/routes'
 import sidebar from '@/store/sidebar'
+import configuration from '@/config'
 
 export default {
   namespaced: true,
@@ -9,7 +10,7 @@ export default {
   state: {
     ...routes.state,
     loading: true,
-    config: {}
+    config: configuration
   },
   mutations: {
     ...routes.mutations,

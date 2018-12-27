@@ -15,7 +15,6 @@
         <div v-if="user" class="user-menu">
           <avatar-or-initials
             class="user-avatar"
-            round
             :size="40"
             :title="user.first_name"
             backgroundColour="#4CAF50"

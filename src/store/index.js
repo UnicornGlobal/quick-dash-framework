@@ -51,7 +51,8 @@ const reserved = [
   'routes',
   'sidebar',
   'user',
-  'users'
+  'users',
+  'sidebar'
 ]
 
 try {
