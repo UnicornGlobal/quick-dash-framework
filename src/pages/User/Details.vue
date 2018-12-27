@@ -1,6 +1,6 @@
 <template>
   <page-container title="User Account">
-    <page-section title="User Details" subtitle="More Info">
+    <page-section title="User Details">
       <key-value-card :items="userDetails"></key-value-card>
     </page-section>
   </page-container>
