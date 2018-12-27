@@ -1,6 +1,6 @@
 <template>
   <div class="summary">
-    <h5>Alert Widgets</h5>
+    <h2>Alert Widgets</h2>
     <div class="summary-section">
       <alert type="info" title="Info">
         This is what an info alert box looks like.
@@ -18,12 +18,7 @@
   </div>
 </template>
 
-<style lang="scss">
-  h5 {
-    font-size: 1em;
-    margin: 0.5rem 1rem;
-  }
-
+<style lang="scss" scoped>
   .summary-section {
     display: flex;
     flex-wrap: wrap;
@@ -33,12 +28,6 @@
 
     @media (max-width: 1023px) {
       flex-direction: column;
-    }
-
-    div {
-      flex: 1;
-      min-width: calc(50% - 1em);
-      margin: 0.5em;
     }
   }
 

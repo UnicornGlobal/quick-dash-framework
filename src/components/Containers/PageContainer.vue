@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .page-container {
     background-color: $light-bg;
   }
