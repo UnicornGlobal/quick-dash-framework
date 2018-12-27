@@ -3,9 +3,13 @@
     <div v-if="loaded">
       <div id="app-component">
         <top-nav class="top-nav" :loaded="loaded" :user="user" :sidebar="enableSideBar" v-if="user"></top-nav>
-        <div class="main-content">
-          <transition name="slide" v-if="enableSideBar">
-            <side-bar class="side-bar" v-show="showSideBar" :menus="menu" root-path="/"></side-bar>
+        <div class="main-content" :style="layoutStyle">
+          <transition :name="transitionStyle" v-if="enableSideBar">
+            <side-bar class="side-bar"
+              v-show="showSideBar"
+              :menus="menu"
+              root-path="/">
+            </side-bar>
           </transition>
           <transition name="fade" v-if="enableSideBar">
             <div class="shadow" v-show="showSideBar" @click.prevent="closeSidebar"></div>
@@ -43,6 +47,18 @@
       },
       enableSideBar() {
         return this.$store.getters['app/sidebar/enabled']
+      },
+      layoutStyle() {
+        if (this.$store.getters['app/config'].sidebar.position === 'right') {
+          return 'flex-direction: row-reverse'
+        }
+      },
+      transitionStyle() {
+        if (this.$store.getters['app/config'].sidebar.position === 'right') {
+          return 'slideright'
+        }
+
+        return 'slideleft'
       },
       menu() {
         let routes = Object.assign([], this.$store.getters['app/routes'][0].children)
@@ -106,15 +122,27 @@
     }
   }
 
-  .slide-enter-active {
+  .slideright-enter-active {
     transition: all .3s ease;
   }
 
-  .slide-leave-active {
+  .slideright-leave-active {
     transition: all .3s
   }
 
-  .slide-enter, .slide-leave-to {
+  .slideright-enter, .slideright-leave-to {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  .slideleft-enter-active {
+    transition: all .3s ease;
+  }
+
+  .slideleft-leave-active {
+    transition: all .3s
+  }
+
+  .slideleft-enter, .slideleft-leave-to {
     transform: translate3d(-100%, 0, 0);
   }
 
