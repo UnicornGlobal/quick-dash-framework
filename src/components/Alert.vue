@@ -2,7 +2,7 @@
   <div class="alert" :class="type">
     <div v-if="dismissible" @click="$emit('close')" class="close"></div>
     <div class="title text-uppercase">
-      <danger v-if="type === 'danger'" class="danger"></danger>
+      <cross v-if="type === 'danger'" class="danger"></cross>
       <info v-else-if="type === 'info'" class="info"></info>
       <warning v-else-if="type === 'warning'" class="warning"></warning>
       <check v-else-if="type === 'success'" class="success"></check>
@@ -15,13 +15,13 @@
 </template>
 
 <script type="application/javascript">
-  import Danger from '@/icons/danger.svg'
+  import Cross from '@/icons/cross.svg'
   import Warning from '@/icons/warning.svg'
   import Info from '@/icons/info.svg'
   import Check from '@/icons/check.svg'
 
   export default {
-    components: {Danger, Warning, Info, Check},
+    components: {Cross, Warning, Info, Check},
     props: {
       timeOut: {
         type: Number,

@@ -3,7 +3,6 @@
     <div class="section-details">
       <h2>{{title}}</h2>
       <h3 v-if="subtitle">{{subtitle}}</h3>
-      <slot name="additional-info"></slot>
       <slot></slot>
     </div>
   </div>
