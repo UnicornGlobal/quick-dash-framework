@@ -9,7 +9,7 @@ const users = config.admin.users ? [
     meta: {
       main: true,
       label: 'All Users',
-      icon: icons.user
+      icon: icons.users
     }
   },
   {
