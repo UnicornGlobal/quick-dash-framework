@@ -46,7 +46,7 @@
         return this.$store.getters['app/sidebar/open']
       },
       enableSideBar() {
-        return this.$store.getters['app/sidebar/enabled']
+        return this.$store.getters['app/sidebar/enabled'] && this.$store.getters['app/config'].sidebar.enabled
       },
       layoutStyle() {
         if (this.$store.getters['app/config'].sidebar.position === 'right') {
