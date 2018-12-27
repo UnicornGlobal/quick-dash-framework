@@ -3,7 +3,7 @@
     <div class="menu-items">
       <side-bar-menu-item v-for="menu in menus" :key="menu.name" :menu="menu" :base="rootPath"></side-bar-menu-item>
     </div>
-    <div class="logout-link-menu-item" style="logoutStyle">
+    <div class="logout-link-menu-item" :style="logoutStyle">
       <div class="menu-item">
         <a class="logout" @click.prevent="logout" href="#">
           <logout-icon></logout-icon>
