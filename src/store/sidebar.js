@@ -1,8 +1,11 @@
 export default {
   namespaced: true,
   state: {
+    enabled: true,
     open: true,
-    enabled: true
+    position: 'left',
+    logout: false,
+    profile: false
   },
   mutations: {
     open(state, show) {
