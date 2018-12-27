@@ -1,6 +1,4 @@
-import remote from '~/config/router'
-
-const local = {
+export default {
   home: {
     enabled: true,
     component: require('@/pages/User/Home/Home').default
@@ -9,9 +7,4 @@ const local = {
     enabled: true,
     component: require('@/pages/User/Details').default
   }
-}
-
-export default {
-  ...local,
-  ...remote
 }

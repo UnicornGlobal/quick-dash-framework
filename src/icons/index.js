@@ -33,7 +33,7 @@ try {
     }
   })
 } catch (e) {
-  console.warn('No local icons found')
+  console.warn('No extra icons found')
 }
 
 export default icons
