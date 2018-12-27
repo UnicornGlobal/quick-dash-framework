@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="top-navigation">
-      <div class="left">
+      <div class="header" :style="headerStyle">
         <div class="menu-toggle">
           <div @click.prevent="toggleSideBar()">
             <hamburger></hamburger>
@@ -10,8 +10,6 @@
         <router-link class="logo" to="/">
           Quick Dash
         </router-link>
-      </div>
-      <div class="right">
         <div v-if="user" class="user-menu">
           <avatar-or-initials
             class="user-avatar"
@@ -38,7 +36,6 @@
   .top-navigation {
     height: 60px;
     margin: 0;
-    padding: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -68,31 +65,24 @@
     }
   }
 
-  .left {
-    width: 250px;
-    border-right: .5px solid $light-bg;
+  .header {
+    width: 100%;
+    padding: 0 1em;
     display: flex;
     align-items: center;
     background-color: $primary;
     height: 61px;
     @media (max-width: 1025px) {
+      padding-left: 1em;
       width: 100%;
     }
-  }
-
-  .right {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    background-color: $primary;
-    padding-right: 20px;
   }
 
   .logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 2em;
+    margin: 0;
     color: $white;
     font-size: 22px;
     text-decoration: none;
@@ -193,6 +183,15 @@
       loaded: {
         type: Boolean,
         required: true
+      }
+    },
+    computed: {
+      headerStyle() {
+        if (this.$store.getters['app/config'].sidebar.position === 'right') {
+          return 'flex-direction: row-reverse; justify-content: space-between;'
+        }
+
+        return 'justify-content: space-between'
       }
     },
     methods: {

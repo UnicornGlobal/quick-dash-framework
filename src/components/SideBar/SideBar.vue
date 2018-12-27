@@ -3,7 +3,7 @@
     <div class="menu-items">
       <side-bar-menu-item v-for="menu in menus" :key="menu.name" :menu="menu" :base="rootPath"></side-bar-menu-item>
     </div>
-    <div class="logout-link-menu-item">
+    <div class="logout-link-menu-item" style="logoutStyle">
       <div class="menu-item">
         <a class="logout" @click.prevent="logout" href="#">
           <logout-icon></logout-icon>
@@ -27,6 +27,13 @@
     components: {
       SideBarMenuItem,
       'logout-icon': icons.sign_out
+    },
+    computed: {
+      logoutStyle() {
+        if (this.$store.getters['app/config'].sidebar.logout) {
+          return 'display: block'
+        }
+      }
     },
     methods: {
       logout() {
@@ -53,6 +60,7 @@
     @media (min-width: 1025px) {
       display: none;
     }
+
     bottom: 0;
 
     a.logout {
