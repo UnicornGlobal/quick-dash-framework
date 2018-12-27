@@ -76,24 +76,6 @@
     }
   }
 
-  .card {
-    display: flex;
-    @media (max-width: 540px) {
-      flex-direction: column;
-      margin: 0.5em 0;
-    }
-
-    p {
-      @media (max-width: 540px) {
-        margin: 6px 0;
-      }
-    }
-  }
-
-  .page-container {
-    margin: 0;
-  }
-
   .detail-title {
     font-family: "Montserrat-SemiBold", sans-serif;
   }

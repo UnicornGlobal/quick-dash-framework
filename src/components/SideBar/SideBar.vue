@@ -1,5 +1,6 @@
 <template>
   <div class="menu-element">
+    <user-profile v-if="showUserProfile" :user="user"></user-profile>
     <div class="menu-items">
       <side-bar-menu-item v-for="menu in menus" :key="menu.name" :menu="menu" :base="rootPath"></side-bar-menu-item>
     </div>
@@ -16,19 +17,34 @@
 
 <script>
   import SideBarMenuItem from '@/components/SideBar/SideBarMenuItem'
+  import UserProfile from '@/components/SideBar/UserProfile'
   import { reloadRouter } from '@/router'
   import icons from '@/icons'
 
   export default {
-    props: [
-      'menus',
-      'root-path'
-    ],
+    props: {
+      rootPath: {
+        required: false,
+        default: '/'
+      },
+      menus: {
+        required: true
+      },
+      user: {
+        required: true
+      }
+    },
     components: {
       SideBarMenuItem,
+      UserProfile,
       'logout-icon': icons.sign_out
     },
     computed: {
+      showUserProfile() {
+        if (this.$store.getters['app/config'].sidebar.profile) {
+          return 'display: block'
+        }
+      },
       logoutStyle() {
         if (this.$store.getters['app/config'].sidebar.logout) {
           return 'display: block'

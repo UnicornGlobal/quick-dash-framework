@@ -10,25 +10,8 @@
 </template>
 
 <style lang="scss">
-  .welcome {
-    font-family: inherit;
-    font-weight: 500;
-    line-height: 1.2;
-    margin: 0.75em 0.5em;
-  }
-
   .home-page {
     background-color: $light-bg;
-    padding: 20px;
-    h2 {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      @media (max-width: 1024px) {
-        margin: 0.7em;
-      }
-    }
   }
 </style>
 

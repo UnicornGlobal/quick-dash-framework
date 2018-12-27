@@ -1,15 +1,15 @@
 <template>
   <div class="page-section">
     <div class="section-details">
-      <h3>{{title}}</h3>
-      <h4 v-if="subtitle">{{subtitle}}</h4>
+      <h2>{{title}}</h2>
+      <h3 v-if="subtitle">{{subtitle}}</h3>
       <slot name="additional-info"></slot>
       <slot></slot>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .section-details {
     flex: 1;
     @media (max-width: 555px) {
@@ -30,30 +30,13 @@
   .page-section {
     display: flex;
     flex-direction: row;
-    padding: 1em 0.5em;
     border-bottom: 1px solid lightgray;
 
     @media (max-width: 1024px) {
       flex-direction: column;
     }
 
-    .section-details {
-
-      h3 {
-        font-weight: 700;
-        font-size: 1em;
-        margin: 7px 0px;
-      }
-
-      h4 {
-        font-size: 80%;
-        font-weight: 400;
-        margin: 7px 0px;
-      }
-    }
-
     .section-content {
-      flex: 5;
 
       @media (min-width: 1025px) {
         max-width: 80%;
