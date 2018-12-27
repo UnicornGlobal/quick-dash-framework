@@ -20,8 +20,6 @@
 
 <style lang="scss">
   .title {
-    margin-top: 10px;
-    margin-bottom: 10px;
     font-weight: bold;
   }
 
@@ -35,14 +33,11 @@
     }
 
     .item-box {
-      margin: 0.5em;
       display: flex;
       flex-direction: column;
-      width: 45%;
 
       @media (max-width: 480px) {
         flex: 1;
-        width: 100%;
       }
 
       .key {
