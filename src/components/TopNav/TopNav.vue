@@ -6,7 +6,7 @@
           <hamburger></hamburger>
         </div>
       </div>
-      <router-link class="logo" to="/">
+      <router-link class="logo" to="/" v-if="showLogo">
         Quick Dash
       </router-link>
       <user-menu v-if="user" :user="user"></user-menu>
@@ -104,6 +104,13 @@
         }
 
         return 'justify-content: space-between'
+      },
+      showLogo() {
+        if (this.$store.getters['app/config'].header.logo) {
+          return true
+        }
+
+        return false
       }
     },
     methods: {

@@ -1,14 +1,17 @@
 <template>
-  <page-container class="page-container" title="All Users">
-    <card class="card">
-      <h5>Placeholder</h5>
-      <data-table v-if="users" :dataset="users" :options="tableConfig" class="data-table"></data-table>
-      <loader v-else width="80" height="80"></loader>
-    </card>
+  <page-container class="page-container" title="Manage Users">
+    <page-section title="All Users" subtitle="Select a User to manage Roles.">
+      <card class="card">
+        <data-table v-if="users" :dataset="users" :options="tableConfig" class="data-table"></data-table>
+        <loader v-else width="80" height="80"></loader>
+      </card>
+    </page-section>
   </page-container>
 </template>
+
 <script>
   import PageContainer from '@/components/Containers/PageContainer'
+  import PageSection from '@/components/Containers/PageSection'
   import Card from '@/components/Cards/Card'
   import DataTable from '@unicorns/data-table'
   import { loadAllUsers } from '@/api/admin/users'
@@ -17,7 +20,8 @@
     components: {
       Card,
       DataTable,
-      PageContainer
+      PageContainer,
+      PageSection
     },
     data() {
       return {
@@ -147,17 +151,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-  .page-container {
-    background-color: $light-bg;
-    padding: 20px;
-  }
-  .card{
-    display: flex;
-    flex-direction: column;
-    .loader{
-      align-self: center;
-    }
-  }
-</style>

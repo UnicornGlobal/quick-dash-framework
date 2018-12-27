@@ -1,22 +1,13 @@
 <template>
   <div class="page-container">
-    <h2>{{title}}</h2>
+    <h1>{{title}}</h1>
     <slot></slot>
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .page-container {
-    margin: 0.5em;
-    min-height: calc(100% - 16px);
-
-    @media (max-width: 480px) {
-      margin: 0;
-    }
-
-    h2 {
-      margin: 0.25em;
-    }
+    background-color: $light-bg;
   }
 </style>
 
@@ -30,4 +21,3 @@
     }
   }
 </script>
-
