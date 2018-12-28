@@ -2,31 +2,68 @@
 import App from '@/App'
 import Router from 'vue-router'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
+import Vuex from 'vuex'
 
 const localVue = createLocalVue()
 localVue.use(Router)
+localVue.use(Vuex)
 
 let mocks = {
-  $store: {
-    state: {
-      routes: [{children: []}]
-    },
+  $store: new Vuex.Store({
     getters: {
-      loading: false,
-      user: {},
+      loading: () => false,
+      user: () => {}
+    },
+    modules: {
       app: {
-        sidebar: {
-          open: true
+        namespaced: true,
+        getters: {
+          config: () => {
+            return {
+              sidebar: {
+                enabled: true,
+                position: 'left'
+              }
+            }
+          },
+          routes: () => {
+            return [{
+              children: [
+                {
+                  children: [
+                    {
+                      meta: {
+                        main: true
+                      }
+                    }
+                  ]
+                }
+              ]
+            }]
+          }
+        },
+        modules: {
+          sidebar: {
+            namespaced: true,
+            getters: {
+              open: () => true
+            },
+            mutations: {
+              open: sinon.spy()
+            }
+          }
         }
       }
     }
-  },
+  }),
   $auth: {
     ready() {
       return true
     }
   }
 }
+
+mocks.$store.commit = sinon.spy()
 
 describe('App.vue', () => {
   it('The name is "app"', () => {
@@ -50,55 +87,24 @@ describe('App.vue', () => {
     expect(element.is('div')).to.equal(true)
   })
 
-  it('closes side bar', () => {
-    let localVue = createLocalVue()
+  it('closes side bar', async () => {
     let app = shallowMount(App, {
       localVue,
       stubs: [ 'router-view' ],
-      mocks: {
-        $store: {
-          getters: {
-            'app/sidebar/open': true,
-            loading: false,
-            user: {}
-          },
-          commit: sinon.spy()
-        }
-      }
+      mocks
     })
 
-    app.vm.closeSidebar()
+    expect(app.vm.showSideBar).to.equal(true)
+    await app.vm.closeSidebar()
+
     expect(app.vm.$store.commit.calledWith('app/sidebar/open', false)).to.equal(true)
   })
 
   it('initializes side bar menu', () => {
-    let localVue = createLocalVue()
     let app = shallowMount(App, {
       localVue,
       stubs: [ 'router-view' ],
-      mocks: {
-        $store: {
-          getters: {
-            user: {},
-            'app/sidebar/open': true,
-            'app/routes': [
-              {
-                children: [
-                  {
-                    children: [
-                      {
-                        meta: {
-                          main: true
-                        }
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      }
+      mocks
     })
 
     expect(app.vm.showSideBar).to.equal(true)

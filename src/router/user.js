@@ -1,7 +1,6 @@
 import config from '@/config'
 import icons from '@/icons'
 
-console.log(config)
 const home = config.router.home.enabled ? [{
   name: 'Home',
   path: '',

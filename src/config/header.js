@@ -1,6 +1,7 @@
 export default {
-  profile: false,
+  profile: true,
+  name: false,
   logo: true,
-  avatar: true,
-  logout: false
+  avatar: false,
+  logout: true
 }
