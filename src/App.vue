@@ -161,7 +161,7 @@
   }
 
   .content-area {
-    padding: 1em;
+    padding: 1em 2em;
     overflow-y: auto;
     flex: 1;
     overflow-x: hidden;
