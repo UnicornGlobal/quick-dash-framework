@@ -79,7 +79,6 @@
 
 <script>
   import UserMenu from '@/components/TopNav/UserMenu'
-  import { reloadRouter } from '@/router'
   import icons from '@/icons'
 
   export default {
@@ -116,21 +115,6 @@
       }
     },
     methods: {
-      logout() {
-        return this.$auth.logout({
-          makeRequest: true,
-          method: 'POST',
-          url: '/logout',
-          success: () => {
-            reloadRouter()
-          }
-        }).then(() => {
-          this.redirectToLogin()
-        })
-      },
-      redirectToLogin() {
-        window.location.pathname = 'login'
-      },
       toggleSideBar() {
         this.$store.commit('app/sidebar/open', !this.$store.getters['app/sidebar/open'])
       }
