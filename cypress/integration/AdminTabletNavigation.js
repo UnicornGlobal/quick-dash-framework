@@ -33,7 +33,7 @@ describe('Admin Tablet Navigation', function() {
   it('Opens and closes the Side Bar', function () {
     cy.get('.menu-toggle').click()
     cy.get('.shadow').should('exist').and('be.visible')
-    cy.get('.menu-toggle').click()
+    cy.get('.shadow').click({force:true})
     cy.get('.shadow').should('exist').and('not.be.visible')
   })
 
@@ -83,7 +83,7 @@ describe('Admin Tablet Navigation', function() {
       .should('exist').and('be.visible')
       .contains('Logout')
 
-    cy.get('.menu-toggle').click().wait(50)
+    cy.get('.shadow').click({force:true})
   })
 
   it('Navigates between Pages', function () {
