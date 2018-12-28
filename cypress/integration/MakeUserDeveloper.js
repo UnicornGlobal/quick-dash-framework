@@ -45,7 +45,7 @@ describe('Make a User a Developer', function() {
     cy.visit('/')
     cy.wait('@getUserMe')
 
-    cy.get('h5').contains('Alert Widgets')
+    cy.get('h1').contains('Welcome to Quick Dash!')
   })
 
   it('Login as Admin User again', function () {
@@ -100,7 +100,7 @@ describe('Make a User a Developer', function() {
     cy.loginXhr('user', 'password')
     cy.visit('/')
     cy.get('.side-bar').should('exist')
-    cy.get('h5').contains('Alert Widgets')
+    cy.get('h1').contains('Welcome to Quick Dash!')
   })
 
   it('Revoke Developer role', function () {
