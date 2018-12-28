@@ -33,11 +33,13 @@ describe('Admin Mobile Navigation', function() {
   it('Opens and closes the Side Bar', function () {
     cy.get('.menu-toggle').click()
     cy.get('.shadow').should('exist').and('be.visible')
-    cy.get('.menu-toggle').click()
+    cy.get('.shadow').click({force:true})
+    cy.wait(100)
     cy.get('.shadow').should('exist').and('not.be.visible')
   })
 
   it('Opens and closes the Side Bar Admin folder', function () {
+    cy.get('.shadow').should('exist').and('not.be.visible')
     cy.get('.menu-toggle').click()
 
     cy.get('.router-link.toggle').should('exist').and('be.visible')
@@ -49,9 +51,12 @@ describe('Admin Mobile Navigation', function() {
       .click()
 
     cy.get('.menu-item > a.router-link[href="/admin/users"]').should('exist').and('not.be.visible')
+
+    cy.get('.shadow').click({force:true})
   })
 
   it('Has a the correct Side Bar links', function () {
+    cy.get('.shadow').should('exist').and('not.be.visible')
     cy.get('.menu-toggle').click()
     cy.get('.shadow').should('exist').and('be.visible')
 
@@ -69,6 +74,7 @@ describe('Admin Mobile Navigation', function() {
     cy.get('.menu-item').contains('Home').and('be.visible')
     cy.get('.menu-item').contains('Account').and('be.visible')
     cy.get('.menu-item').contains('Admin Account').and('be.visible')
+    cy.get('.shadow').click({force:true})
   })
 
   it('Does not have the User Info box', function() {
@@ -90,7 +96,7 @@ describe('Admin Mobile Navigation', function() {
       .should('exist').and('be.visible')
       .contains('Logout')
 
-    cy.get('.menu-toggle').click().wait(50)
+    cy.get('.shadow').click({force:true})
   })
 
   it('Navigates between Pages', function () {
