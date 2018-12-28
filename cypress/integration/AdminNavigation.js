@@ -36,28 +36,20 @@ describe('Admin Navigation', function() {
     cy.get('.menu-item').contains('Home')
   })
 
-  it('Has correct User Info box', function() {
-    cy.get('.user-menu').should('exist').and('be.visible')
-      .children()
-      .first().should('have.class', 'user-avatar')
-      .next().should('have.class', 'user-details')
-
-    cy.get('.user-menu')
-      .children()
-      .first()
-      .children()
-      .first()
-      .should('have.class', 'avatar')
-
-    cy.get('.user-menu')
-      .children()
-      .last()
-      .children()
-      .first()
-      .should('have.class', 'user-name')
+  it('Has correct User Profile box', function() {
+    cy.get('.user-profile').should('exist').and('be.visible')
+    cy.get('.user-profile > h4')
       .contains('Admin User')
+      .should('exist').and('be.visible')
+    cy.get('.user-profile > h5')
+      .contains('admin@example.com')
+      .should('exist').and('be.visible')
 
-    cy.get('div.user-company > a')
+    cy.get('.user-profile > .profile-avatar > div')
+      .should('have.class', 'avatar')
+      .and('be.visible')
+
+    cy.get('div.user-details > div > a')
       .should('have.class', 'logout-button')
       .contains('Logout')
   })
