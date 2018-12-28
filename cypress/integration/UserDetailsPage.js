@@ -35,8 +35,8 @@ describe('User Details Page', function() {
     cy.get('.page-section')
       .should('have.length', 2)
 
-    cy.get('h3').contains('User Details')
-    cy.get('h3').contains('User Roles')
+    cy.get('h2').contains('User Details')
+    cy.get('h2').contains('User Roles')
   })
 
   it('Has an Assign Role button', function () {
