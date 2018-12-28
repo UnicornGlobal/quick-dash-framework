@@ -7,7 +7,7 @@
         </div>
       </div>
       <router-link class="logo" to="/" v-if="showLogo">
-        Quick Dash
+        <quick></quick>&nbsp;Quick Dash
       </router-link>
       <user-menu v-if="user" :user="user"></user-menu>
     </div>
@@ -70,7 +70,8 @@
     text-decoration: none;
 
     svg {
-      height: 30px;
+      height: 40px;
+      width: 45px;
       fill: $white;
     }
   }
@@ -85,7 +86,8 @@
     name: 'top-nav',
     components: {
       UserMenu,
-      hamburger: icons.hamburger
+      hamburger: icons.hamburger,
+      quick: icons.quick
     },
     props: {
       user: {
