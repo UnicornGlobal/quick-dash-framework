@@ -9,7 +9,7 @@
       >
     </avatar-or-initials>
     <div class="user-details">
-      <div class="user-name text-white">
+      <div class="user-name text-white" v-if="showUserName">
         {{ user.first_name}} {{ user.last_name }}
       </div>
       <div class="text-white" v-if="showLogout">
@@ -69,6 +69,7 @@
 
 <script>
   import AvatarOrInitials from '@unicorns/avatars'
+  import { reloadRouter } from '@/router'
 
   export default {
     components: {
@@ -94,12 +95,36 @@
 
         return false
       },
+      showUserName() {
+        if (this.$store.getters['app/config'].header.name) {
+          return true
+        }
+
+        return false
+      },
       showLogout() {
         if (this.$store.getters['app/config'].header.logout) {
           return true
         }
 
         return false
+      }
+    },
+    methods: {
+      logout() {
+        return this.$auth.logout({
+          makeRequest: true,
+          method: 'POST',
+          url: '/logout',
+          success: () => {
+            reloadRouter()
+          }
+        }).then(() => {
+          this.redirectToLogin()
+        })
+      },
+      redirectToLogin() {
+        window.location.pathname = 'login'
       }
     }
   }

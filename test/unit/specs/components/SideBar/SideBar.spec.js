@@ -4,6 +4,22 @@ import { createLocalVue, shallowMount } from '@vue/test-utils'
 import sinon from 'sinon'
 
 let localVue = createLocalVue()
+let mocks = {
+  $route: {
+    name: 'Home',
+    matched: []
+  },
+  $store: {
+    getters: {
+      'app/config': {
+        sidebar: {
+          profile: true,
+          logout: true
+        }
+      }
+    }
+  }
+}
 
 describe('SideBar.vue', () => {
   it('it is an object', () => {
@@ -11,14 +27,7 @@ describe('SideBar.vue', () => {
   })
 
   it('accepts menus and root-path props', () => {
-    let mocks = {
-      $route: {
-        name: 'Home',
-        matched: []
-      }
-    }
-
-    expect(SideBar.props).to.be.an('array')
+    expect(SideBar.props).to.be.an('object')
 
     let menu = {
       name: 'Home',
@@ -31,6 +40,7 @@ describe('SideBar.vue', () => {
     let sidebar = shallowMount(SideBar, {
       localVue,
       propsData: {
+        user: {},
         menus: [ menu ],
         rootPath: '/test'
       },
@@ -47,6 +57,7 @@ describe('SideBar.vue', () => {
     let sidebar = shallowMount(SideBar, {
       localVue,
       propsData: {
+        user: {},
         menus: [
           {
             name: 'home',
@@ -58,7 +69,8 @@ describe('SideBar.vue', () => {
             }
           }
         ]
-      }
+      },
+      mocks
     })
     const menus = sidebar.vm.menus
     expect(menus).to.be.an('array')
@@ -73,6 +85,7 @@ describe('SideBar.vue', () => {
     let sidebar = shallowMount(SideBar, {
       localVue,
       propsData: {
+        user: {},
         menus: [
           {
             name: 'home',
@@ -86,6 +99,7 @@ describe('SideBar.vue', () => {
         ]
       },
       mocks: {
+        ...mocks,
         $auth: {
           user() {
             return {
