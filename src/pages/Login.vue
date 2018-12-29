@@ -2,7 +2,7 @@
   <div class="login-page">
     <div class="login-header">
       <div class="logo"><span>Q</span></div>
-      <div class="brand">Quick Dash</div>
+      <div class="brand">{{ appName }}</div>
     </div>
     <div class="login-form">
       <card class="card">
@@ -91,6 +91,11 @@
             this.bSending = false
           }
         })
+      }
+    },
+    computed: {
+      appName() {
+        return process.env.appName
       }
     },
     mounted() {

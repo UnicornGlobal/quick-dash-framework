@@ -6,5 +6,8 @@ export default {
   account: {
     enabled: true,
     component: require('@/pages/User/Details').default
+  },
+  admin: {
+    enabled: false
   }
 }
