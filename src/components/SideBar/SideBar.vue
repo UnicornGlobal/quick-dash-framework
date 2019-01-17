@@ -2,7 +2,14 @@
   <div class="menu-element">
     <user-profile v-if="showUserProfile" :user="user"></user-profile>
     <div class="menu-items">
-      <side-bar-menu-item v-for="menu in menus" :key="menu.name" :menu="menu" :base="rootPath"></side-bar-menu-item>
+      <side-bar-menu-item
+        v-for="menu in menus"
+        :key="menu.name"
+        :menu="menu"
+        :base="rootPath"
+        @open="setAsCurrentMenu"
+      >
+      </side-bar-menu-item>
     </div>
     <div class="logout-link-menu-item" :style="logoutStyle">
       <div class="menu-item">
@@ -39,6 +46,11 @@
       UserProfile,
       'logout-icon': icons.sign_out
     },
+    data() {
+      return {
+        currentMenu: null
+      }
+    },
     computed: {
       showUserProfile() {
         if (this.$store.getters['app/config'].sidebar.profile) {
@@ -66,6 +78,13 @@
       },
       redirectToLogin() {
         window.location.pathname = 'login'
+      },
+      setAsCurrentMenu(menuId) {
+        if (this.currentMenu && this.currentMenu !== menuId) {
+          this.$refs[this.currentMenu][0].close()
+        }
+
+        this.currentMenu = menuId
       }
     }
   }
