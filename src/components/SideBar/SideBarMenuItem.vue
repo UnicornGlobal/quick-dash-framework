@@ -2,7 +2,7 @@
   <div class="menu-item" :class="{'active': isCurrent}">
     <template v-if="hasChildren && menu.children.length > 1">
       <a href="#"
-         @click.prevent="open = !open"
+         @click.prevent="openMenu"
          class="router-link toggle"
          :class="{'menu-item-with-children-opened': open,
           'menu-item-space': !open}"
@@ -37,7 +37,11 @@
       </side-bar-menu-item>
     </template>
 
-    <router-link v-else :to="{name: menu.name}" class="router-link menu-item-space" @click.native="closeSidebar">
+    <router-link
+      v-else
+      :to="{name: menu.name}"
+      class="router-link menu-item-space"
+      @click.native="closeSidebar">
       <component v-if="menu.meta.icon" :is="menu.meta.icon"></component>
       <span class="false-icon-space" v-else></span>
       <span>
@@ -82,7 +86,12 @@
           this.$store.commit('app/sidebar/open', false)
         }
       },
-      close() {
+      openMenu() {
+        this.open = !this.open
+        let name = this.menu.name
+        this.$emit('open', name)
+      },
+      close(){
         this.open = false
       }
     },

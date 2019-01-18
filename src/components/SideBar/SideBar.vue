@@ -7,7 +7,8 @@
         :key="menu.name"
         :menu="menu"
         :base="rootPath"
-        @open="setAsCurrentMenu"
+        :ref="menu.name"
+        @open="getCurrentMenu"
       >
       </side-bar-menu-item>
     </div>
@@ -46,7 +47,7 @@
       UserProfile,
       'logout-icon': icons.sign_out
     },
-    data() {
+    data () {
       return {
         currentMenu: null
       }
@@ -79,12 +80,11 @@
       redirectToLogin() {
         window.location.pathname = 'login'
       },
-      setAsCurrentMenu(menuId) {
-        if (this.currentMenu && this.currentMenu !== menuId) {
+      getCurrentMenu (name) {
+        if (this.currentMenu !== name && this.$refs[this.currentMenu]) {
           this.$refs[this.currentMenu][0].close()
         }
-
-        this.currentMenu = menuId
+        this.currentMenu = name
       }
     }
   }
