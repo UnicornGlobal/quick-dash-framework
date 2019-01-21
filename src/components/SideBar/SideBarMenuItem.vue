@@ -93,7 +93,7 @@
         let name = this.menu.name
         this.$emit('open', name)
       },
-      close(){
+      close() {
         this.open = false
       }
     },

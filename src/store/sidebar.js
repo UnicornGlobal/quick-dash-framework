@@ -5,7 +5,8 @@ export default {
     open: true,
     position: 'left',
     logout: false,
-    profile: false
+    profile: false,
+    currentMenu: ''
   },
   mutations: {
     open(state, show) {
@@ -13,6 +14,9 @@ export default {
     },
     enabled(state, show) {
       state.enabled = show
+    },
+    currentMenu(state, show) {
+      state.currentMenu = show
     }
   },
   getters: {
@@ -21,6 +25,9 @@ export default {
     },
     enabled(state, _getters) {
       return state.enabled
+    },
+    currentMenu(state, _getters) {
+      return state.currentMenu
     }
   }
 }

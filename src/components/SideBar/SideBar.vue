@@ -12,6 +12,13 @@
       >
       </side-bar-menu-item>
     </div>
+    <div class="toggle-sidebar-button-menu-item">
+      <div class="menu-item">
+        <a class="toggle-sidebar-button" @click.prevent="toggleSideBar()" href="#">
+          <collapse-icon></collapse-icon>
+          Hide</a>
+      </div>
+    </div>
     <div class="logout-link-menu-item" :style="logoutStyle">
       <div class="menu-item">
         <a class="logout" @click.prevent="logout" href="#">
@@ -45,11 +52,12 @@
     components: {
       SideBarMenuItem,
       UserProfile,
-      'logout-icon': icons.sign_out
+      'logout-icon': icons.sign_out,
+      'collapse-icon': icons.collapse
     },
     data () {
       return {
-        currentMenu: null
+        currentMenu: this.$store.getters['app/sidebar/currentMenu'] || this.$route.name
       }
     },
     computed: {
@@ -85,6 +93,10 @@
           this.$refs[this.currentMenu][0].close()
         }
         this.currentMenu = name
+      },
+      toggleSideBar() {
+        this.$store.commit('app/sidebar/enabled', !this.$store.getters['app/sidebar/enabled'])
+        this.$store.commit('app/sidebar/currentMenu', this.currentMenu)
       }
     }
   }
@@ -140,5 +152,30 @@
 
   .logout-link-menu-item {
     margin-bottom: 0;
+  }
+
+  .toggle-sidebar-button-menu-item {
+    @media (max-width: 1025px) {
+      display: none;
+    }
+    bottom: 0;
+    a.toggle-sidebar-button {
+      height: 55px;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      text-decoration: none;
+      color: $black;
+      background: $divider;
+      svg {
+        width: 25px;
+        height: 25px;
+        fill: $primary-dark;
+        stroke: $primary-dark;
+        stroke-width: 10;
+        padding-right: 8px;
+      }
+    }
   }
 </style>

@@ -15,6 +15,11 @@
         <top-nav class="top-nav" :loaded="loaded" :user="user" :sidebar="enableSideBar" v-if="user"></top-nav>
         <router-view class="content-area"></router-view>
       </div>
+      <div>
+        <div class="sideBarButton" v-if="sideBarStateGetter()" @click.prevent="expandSideBar()">
+          <expand></expand>
+        </div>
+      </div>
     </div>
     <loader width="100px" height="100px" v-else></loader>
   </div>
@@ -24,13 +29,15 @@
   import SideBar from '@/components/SideBar/SideBar'
   import TopNav from '@/components/TopNav/TopNav'
   import Loader from '@/components/Loader'
+  import icons from '@/icons'
 
   export default {
     name: 'app',
     components: {
       SideBar,
       TopNav,
-      Loader
+      Loader,
+      'expand': icons.expand
     },
     computed: {
       user() {
@@ -72,6 +79,12 @@
         if (this.$store.getters['app/sidebar/open']) {
           this.$store.commit('app/sidebar/open', false)
         }
+      },
+      sideBarStateGetter() {
+        return !this.$store.getters['app/sidebar/enabled']
+      },
+      expandSideBar() {
+        this.$store.commit('app/sidebar/enabled', !this.$store.getters['app/sidebar/enabled'])
       }
     }
   }
@@ -182,5 +195,40 @@
     left: 0;
     z-index: 1;
     background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .sideBarButton {
+    position: fixed;
+    align-self: flex-end;
+    bottom: 5px;
+    left: 1em;
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    background-color: $primary;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    @media (max-width: 1025px) {
+      display: none;
+    }
+    svg{
+      padding-left: 3px;
+      height: 55%;
+      width: 55%;
+      fill: $white;
+    }
+  }
+
+  .sideBarButton:hover {
+    height: 65px;
+    width: 65px;
+    svg {
+      padding-left: 5px;
+      height: 60%;
+      width: 60%;
+    }
   }
 </style>
