@@ -16,15 +16,17 @@
           <path d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"/>
         </svg>
       </a>
-      <div v-show="open" class="sub-menu">
-        <side-bar-menu-item
-          v-for="child in menu.children"
-          :menu="child"
-          :key="child.name"
-          :base="fullPath"
-        >
-        </side-bar-menu-item>
-      </div>
+      <transition name="show-sub-menu">
+        <div v-show="open" class="sub-menu">
+          <side-bar-menu-item
+            v-for="child in menu.children"
+            :menu="child"
+            :key="child.name"
+            :base="fullPath"
+          >
+          </side-bar-menu-item>
+        </div>
+      </transition>
     </template>
 
     <template v-else-if="hasChildren">
@@ -176,7 +178,7 @@
     }
 
     .closed {
-      transition: transform .70s;
+      transition: transform .50s;
       transform: rotate(-90deg)
     }
 
@@ -185,8 +187,19 @@
     }
 
     .open {
-      transition: transform .70s;
+      transition: transform .50s;
       transform: rotate(0deg)
     }
+  }
+
+  .show-sub-menu-leave-active, .show-sub-menu-enter-to {
+    transform: scaleY(1) translate3d(0, 0, 0);
+    opacity: 1;
+    transition: all .45s linear;
+  }
+
+  .show-sub-menu-leave-to, .show-sub-menu-enter  {
+    opacity: 0;
+    transform: scaleY(0) translate3d(0, -100%, 0);
   }
 </style>
