@@ -73,7 +73,7 @@ describe('App.vue', () => {
 
   it('Includes a SideBar, TopNav, Loader and Toast components', () => {
     const val = App.components
-    expect(val).to.have.all.keys('SideBar', 'TopNav', 'Loader')
+    expect(val).to.have.all.keys('SideBar', 'TopNav', 'Loader', 'expand')
   })
 
   it('Renders when loaded and authenticated', () => {
