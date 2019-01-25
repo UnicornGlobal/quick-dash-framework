@@ -197,4 +197,83 @@ describe('SideBarMenuItem.vue', () => {
     sidebarMenuItem.vm.closeSidebar()
     expect(sidebarMenuItem.vm.$store.commit.calledWith('app/sidebar/open', false)).to.equal(true)
   })
+
+  it('it closes sidebar via close() method', async () => {
+    let localVue = createLocalVue()
+
+    let sidebarMenuItem = shallowMount(SideBarMenuItem, {
+      propsData: {
+        localVue,
+        base: '/',
+        menu: {
+          name: 'Home',
+          path: 'home',
+          meta: {
+            label: 'Home',
+            main: true
+          },
+          children: [
+            {
+              name: 'Test',
+              path: 'test',
+              meta: {
+                label: 'Test',
+                main: true
+              }
+            }
+          ]
+        }
+      },
+      stubs: ['router-link', 'side-bar-menu-item'],
+      mocks: {
+        $route: {
+          name: 'Home',
+          matched: [{path: '/'}, {path: '/home'}]
+        }
+      }
+    })
+
+    sidebarMenuItem.vm.close()
+    expect(sidebarMenuItem.vm.open).to.equal(false)
+  })
+
+  it('opens when clicked', async () => {
+    let localVue = createLocalVue()
+
+    let sidebarMenuItem = shallowMount(SideBarMenuItem, {
+      propsData: {
+        localVue,
+        base: '/',
+        menu: {
+          name: 'Home',
+          path: 'home',
+          meta: {
+            label: 'Home',
+            main: true
+          },
+          children: [
+            {
+              name: 'Test',
+              path: 'test',
+              meta: {
+                label: 'Test',
+                main: true
+              }
+            }
+          ]
+        }
+      },
+      stubs: ['router-link', 'side-bar-menu-item'],
+      mocks: {
+        $route: {
+          name: 'Home',
+          matched: [{path: '/'}, {path: '/home'}]
+        }
+      }
+    })
+
+    sidebarMenuItem.vm.openMenu()
+    expect(sidebarMenuItem.vm.open).to.equal(false)
+    expect(sidebarMenuItem.emitted()).to.have.key('open')
+  })
 })

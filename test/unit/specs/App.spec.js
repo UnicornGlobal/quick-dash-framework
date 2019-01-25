@@ -110,4 +110,18 @@ describe('App.vue', () => {
     expect(app.vm.showSideBar).to.equal(true)
     expect(app.vm.menu).to.be.an('array').that.has.lengthOf(1)
   })
+
+  it('Changes the state of side bar after click on expand button', () => {
+    let app = shallowMount(App, {
+      localVue,
+      stubs: [ 'router-view' ],
+      mocks
+    })
+
+    expect(app.vm.showSideBar).to.equal(true)
+    expect(app.vm.closeSidebar).to.be.a('function')
+    expect(app.vm.expandSideBar).to.be.a('function')
+    app.vm.expandSideBar()
+    expect(app.vm.$store.commit.calledWith('app/sidebar/enabled', true)).to.equal(true)
+  })
 })

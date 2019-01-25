@@ -57,7 +57,7 @@
     },
     data () {
       return {
-        currentMenu: this.$store.getters['app/sidebar/currentMenu'] || this.$route.name
+        currentMenu: this.$store.getters['app/sidebar/currentMenu'] || this.$route.name || null
       }
     },
     computed: {

@@ -118,4 +118,66 @@ describe('SideBar.vue', () => {
     logout.trigger('click')
     expect(sidebar.vm.$auth.logout.called).to.equal(true)
   })
+
+  it('only keeps one folder open', () => {
+    let sidebar = shallowMount(SideBar, {
+      localVue,
+      propsData: {
+        user: {},
+        menus: [
+          {
+            name: 'home',
+            path: '/',
+            meta: {
+              icon: 'fa fa-home',
+              label: 'Home',
+              main: true
+            }
+          },
+          {
+            name: 'profile',
+            path: '/',
+            meta: {
+              icon: 'fa fa-user',
+              label: 'Profile',
+              main: true
+            }
+          }
+        ],
+        rootPath: '/'
+      },
+      mocks
+    })
+
+    expect(sidebar.vm.currentMenu).to.equal('Home')
+
+    sidebar.vm.getCurrentMenu('menu_0')
+    expect(sidebar.vm.currentMenu).to.equal('menu_0')
+
+    sidebar.vm.getCurrentMenu('menu_1')
+    expect(sidebar.vm.currentMenu).to.equal('menu_1')
+  })
+
+  it('Has functions to alter SideBar state', () => {
+    let app = shallowMount(SideBar, {
+      localVue,
+      propsData: {
+        user: {},
+        menus: [
+          {
+            name: 'home',
+            path: '/',
+            meta: {
+              icon: 'fa fa-home',
+              label: 'Home',
+              main: true
+            }
+          }
+        ]
+      },
+      mocks
+    })
+
+    expect(app.vm.toggleSideBar).to.be.a('function')
+  })
 })
