@@ -33,7 +33,7 @@ export default {
         await Vue.router.addRoutes([appRoute])
 
         // 'refresh' current route
-        await Vue.router.replace(window.location.pathname)
+        await Vue.router.replace(window.location.pathname).catch(err => { if (err.name === 'NavigationDuplicated') { return true } else { throw err } })
 
         await store.commit('auth/user', user)
         await store.commit('app/loading', false)
