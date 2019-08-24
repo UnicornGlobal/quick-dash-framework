@@ -51,7 +51,7 @@ describe('UserDetails.vue', () => {
     }
 
     Vue.axios = {
-      get: sinon.stub().rejects({data:[]})
+      get: sinon.stub().rejects({ data: [] })
     }
 
     let wrapper = shallowMount(UserDetails, {
@@ -122,7 +122,7 @@ describe('UserDetails.vue', () => {
     }
 
     Vue.axios = {
-      get: sinon.stub().rejects({data:[]})
+      get: sinon.stub().rejects({ data: [] })
     }
 
     let wrapper = shallowMount(UserDetails, {
