@@ -121,11 +121,11 @@
     "vue-style-loader": "^4.1.2",
     "vue-svg-loader": "^0.11.0",
     "vue-template-compiler": "^2.6.6",
-    "webpack": "^4.29.4",
+    "webpack": "^4.39.2",
     "webpack-bundle-analyzer": "^3.4.1",
-    "webpack-cli": "^3.2.3",
-    "webpack-dev-middleware": "^3.5.2",
-    "webpack-hot-middleware": "^2.24.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-middleware": "^3.7.0",
+    "webpack-hot-middleware": "^2.25.0",
     "webpack-merge": "^4.2.1"
   },
   "engines": {
