@@ -20,7 +20,7 @@ describe('Admin Tablet Navigation', function() {
     cy.get('.logo').should('exist')
       .wait(50)
       .and('be.visible')
-      .and('have.attr', 'href', '/')
+      // .and('have.attr', 'href', '/')
   })
 
   it('Has a hidden Side Bar', function () {
