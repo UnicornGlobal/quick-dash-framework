@@ -107,7 +107,7 @@
     "ora": "^3.4.0",
     "portfinder": "^1.0.23",
     "require-dir": "^1.2.0",
-    "rimraf": "^2.7.1",
+    "rimraf": "^3.0.0",
     "sass-loader": "^7.3.1",
     "sass-resources-loader": "^2.0.1",
     "semver": "^5.7.1",
