@@ -4,8 +4,8 @@
   "signature": "b856fa3a78c7cf70ea4bf4bc4a0e4bc8",
   "api_url": "https://demo.api.example.com",
   "name": "Quick Dash",
-  "version": "2.0.0",
-  "built": "201804",
+  "version": "2.1.1",
+  "built": "201908",
   "features": {
     "beta": "true",
     "signup": "true"
