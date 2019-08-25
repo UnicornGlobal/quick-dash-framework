@@ -80,11 +80,11 @@ describe('Login', function() {
       .should('exist')
       .should('have.length', 2)
       .first()
-      .contains('The username field is required.')
+      .contains('The username field is required')
 
     cy.get('span.validation-error')
       .last()
-      .contains('The password field is required.')
+      .contains('The password field is required')
   })
 
   it('Rejects empty Password submission', () => {
@@ -102,7 +102,7 @@ describe('Login', function() {
     cy.get('span.validation-error')
       .should('exist')
       .should('have.length', 1)
-      .contains('The password field is required.')
+      .contains('The password field is required')
   })
 
   it('Rejects empty Username submission', () => {
@@ -120,7 +120,7 @@ describe('Login', function() {
     cy.get('span.validation-error')
       .should('exist')
       .should('have.length', 1)
-      .contains('The username field is required.')
+      .contains('The username field is required')
   })
 
   it('Bad Username and Password', () => {
