@@ -76,11 +76,10 @@ describe('Admin Tablet Navigation', function() {
 
     cy.get('.logout-link-menu-item')
       .should('exist')
-      .and('be.visible')
       .children('.menu-item')
-      .should('exist').and('be.visible')
+      .should('exist')
       .children('a')
-      .should('exist').and('be.visible')
+      .should('exist')
       .contains('Logout')
 
     cy.get('.shadow').click({force:true})
