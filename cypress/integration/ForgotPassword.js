@@ -58,7 +58,7 @@ describe('Forgot Password', function() {
       .should('exist')
       .should('have.length', 1)
       .first()
-      .contains('The email field is required.')
+      .contains('The email field is required')
 
     cy.get('input[name="email"]').type('{selectall}{backspace}me@you.com')
 
