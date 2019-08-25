@@ -17,7 +17,9 @@ describe('Admin Tablet Navigation', function() {
   })
 
   it('Has Clickable Logo', function () {
-    cy.get('.logo').should('exist').and('be.visible')
+    cy.get('.logo').should('exist')
+      .wait(50)
+      .and('be.visible')
       .and('have.attr', 'href', '/')
   })
 
