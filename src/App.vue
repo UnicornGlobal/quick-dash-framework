@@ -58,7 +58,7 @@
         return 'slideleft'
       },
       menu() {
-        let routes = Object.assign([], this.$store.getters['app/routes'][0].children)
+        const routes = Object.assign([], this.$store.getters['app/routes'][0].children)
         return routes.filter(function filter(route) {
           if (route.children) {
             route.children = route.children.filter(filter)

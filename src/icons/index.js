@@ -1,4 +1,4 @@
-let local = require.context('@/icons', true, /\.svg$/)
+const local = require.context('@/icons', true, /\.svg$/)
 
 let icons = {}
 
@@ -23,7 +23,7 @@ local.keys().forEach(function(key) {
  * default icons with an overriding icon.
  */
 try {
-  let remote = require.context('~/icons', true, /\.svg$/)
+  const remote = require.context('~/icons', true, /\.svg$/)
   remote.keys().forEach(function(key) {
     const name = /\.\/(\S+)\.svg/.exec(key)[1]
     console.log('Found custom icon', name)

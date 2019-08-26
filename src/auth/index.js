@@ -29,7 +29,7 @@ export default {
       async parseUserData(user) {
         await store.commit('app/loading', true)
 
-        let appRoute = await loadRoutes(user)
+        const appRoute = await loadRoutes(user)
         await Vue.router.addRoutes([appRoute])
 
         // 'refresh' current route
