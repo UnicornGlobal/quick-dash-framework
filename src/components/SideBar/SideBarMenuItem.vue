@@ -60,7 +60,7 @@
         return this.$route.name === this.menu.name
       },
       fullPath() {
-        return (this.base + '/' + this.menu.path).replace(/\/\//g, '/')
+        return (`${this.base}/${this.menu.path}`).replace(/\/\//g, '/')
           .replace(/\/$/, '')
       }
     },

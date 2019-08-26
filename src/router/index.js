@@ -72,7 +72,7 @@ async function getCustomRoutes() {
 }
 
 export async function loadRoutes(user) {
-  let customRoutes = await getCustomRoutes()
+  const customRoutes = await getCustomRoutes()
   let routes = [...userRoutes, ...customRoutes]
 
   /**
@@ -100,7 +100,7 @@ export function reloadRouter() {
   })
 }
 
-let router = new Router({
+const router = new Router({
   mode: 'history',
   routes: [...authRoutes]
 })

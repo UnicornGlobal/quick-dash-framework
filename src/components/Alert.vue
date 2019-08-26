@@ -34,11 +34,11 @@
       type: {
         type: String,
         required: false,
-        'default': 'success'
+        default: 'success'
       },
       dismissible: {
         type: Boolean,
-        'default': false
+        default: false
       }
     },
     mounted() {
