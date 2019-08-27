@@ -37,7 +37,7 @@
         {{ menu.meta.label }}
       </span>
     </router-link>
-    <span v-if="showHighlight && isCurrent" class="highlight">X</span>
+    <span v-if="showHighlight && isCurrent" class="highlight"></span>
 
   </div>
 </template>
