@@ -46,3 +46,5 @@ Do not commit secrets, put them in the .env file.
 ## CI
 
 There are scripts for travis included
+
+Tests are run against the master version of UnicornGlobal/strong-lumen
