@@ -1,5 +1,8 @@
 <template>
   <div class="menu-element">
+    <router-link class="logo" to="/" v-if="showLogo">
+      <quick></quick>&nbsp;Quick Dash
+    </router-link>
     <user-profile v-if="showUserProfile" :user="user"></user-profile>
     <div class="menu-items">
       <side-bar-menu-item v-for="menu in menus" :key="menu.name" :menu="menu" :base="rootPath"></side-bar-menu-item>
@@ -37,6 +40,7 @@
     components: {
       SideBarMenuItem,
       UserProfile,
+      quick: icons.quick,
       'logout-icon': icons.sign_out
     },
     computed: {
@@ -44,6 +48,13 @@
         if (this.$store.getters['app/config'].sidebar.profile) {
           return 'display: block'
         }
+      },
+      showLogo() {
+        if (this.$store.getters['app/config'].sidebar.logo) {
+          return true
+        }
+
+        return false
       },
       logoutStyle() {
         if (this.$store.getters['app/config'].sidebar.logout) {
@@ -121,5 +132,25 @@
 
   .logout-link-menu-item {
     margin-bottom: 0;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin: 0;
+    color: $white;
+    font-size: 22px;
+    text-decoration: none;
+    padding-left: 0;
+    background-color: #9C27B0;
+    height: 60px;
+    padding-left: 0.5em;
+
+    svg {
+      height: 40px;
+      width: 45px;
+      fill: $white;
+    }
   }
 </style>
