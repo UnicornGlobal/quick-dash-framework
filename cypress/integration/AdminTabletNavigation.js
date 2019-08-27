@@ -12,7 +12,7 @@ describe('Admin Tablet Navigation', function() {
     cy.server()
     let url = Cypress.env('apiUrl')
     cy.loginXhr('admin', 'admin')
-    cy.viewport('ipad-2')
+    cy.viewport('ipad-mini')
     cy.visit('/')
   })
 
@@ -20,7 +20,7 @@ describe('Admin Tablet Navigation', function() {
     cy.get('.mobile-logo').should('exist')
       .wait(50)
       .and('be.visible')
-      // .and('have.attr', 'href', '/')
+      .and('have.attr', 'href', '/')
   })
 
   it('Has a hidden Side Bar', function () {
