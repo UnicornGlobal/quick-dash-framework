@@ -31,7 +31,7 @@
     </template>
 
     <router-link v-else :to="{name: menu.name}" class="router-link" @click.native="closeSidebar">
-      <component v-if="menu.meta.icon" :is="menu.meta.icon"></component>
+      <component v-if="menu.meta.icon && showIcons" :is="menu.meta.icon"></component>
       <span class="false-icon-space" v-else></span>
       <span>
         {{ menu.meta.label }}
@@ -62,6 +62,13 @@
       fullPath() {
         return (`${this.base}/${this.menu.path}`).replace(/\/\//g, '/')
           .replace(/\/$/, '')
+      },
+      showIcons() {
+        if (this.$store.getters['app/config'].sidebar.icons) {
+          return true
+        }
+
+        return false
       }
     },
     data() {
@@ -101,23 +108,23 @@
         height: 15px;
         width: 15px;
         margin-right: 0.5em;
-        fill: $primary;
-        stroke: $primary;
+        fill: $icons;
+        stroke: $icons;
         margin-right: 10px;
       }
       &.router-link-exact-active {
         color: $black;
         svg {
-          fill: $primary;
-          stroke: $primary;
+          fill: $icons;
+          stroke: $icons;
         }
       }
       &:hover {
         background: $light-hover;
         color: $black;
         svg {
-          fill: $primary;
-          stroke: $primary;
+          fill: $icons;
+          stroke: $icons;
         }
       }
       &.toggle .toggle-icon {

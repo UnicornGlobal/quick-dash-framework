@@ -12,6 +12,7 @@
       <router-link class="mobile-logo" to="/" v-if="showMobileLogo">
         <quick></quick>&nbsp;Quick Dash
       </router-link>
+      <div class="page-title">{{pageTitle}}</div>
       <user-menu v-if="user" :user="user"></user-menu>
     </div>
   </div>
@@ -61,6 +62,10 @@
       padding-left: 1em;
       width: 100%;
     }
+  }
+
+  .page-title {
+
   }
 
   .logo {
@@ -122,12 +127,15 @@
       }
     },
     computed: {
+      pageTitle() {
+        return ''
+      },
       headerStyle() {
         if (this.$store.getters['app/config'].sidebar.position === 'right') {
           return 'flex-direction: row-reverse; justify-content: space-between;'
         }
 
-        return 'justify-content: flex-end'
+        return 'justify-content: space-between'
       },
       showLogo() {
         if (this.$store.getters['app/config'].header.logo) {

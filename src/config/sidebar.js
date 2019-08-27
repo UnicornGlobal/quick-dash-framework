@@ -4,5 +4,7 @@ export default {
   position: 'left',
   logout: true,
   logo: true,
-  profile: true
+  profile: true,
+  highlight: true,
+  icons: true
 }
