@@ -111,7 +111,7 @@
   .menu-item {
     &.active {
       background: $light-hover;
-      color: $black;
+      color: $secondary-text;
       display: flex;
     }
     a.router-link {
@@ -119,7 +119,7 @@
       padding: 1.5rem 0 1.5rem 1rem;
       display: flex;
       text-decoration: none;
-      color: $black;
+      color: $primary-text;
       align-items: center;
       border-bottom: 1px solid $line;
       svg {
