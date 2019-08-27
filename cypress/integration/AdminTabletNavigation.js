@@ -16,13 +16,6 @@ describe('Admin Tablet Navigation', function() {
     cy.visit('/')
   })
 
-  it('Has Clickable Logo', function () {
-    // cy.get('.mobile-logo').should('exist')
-      // .wait(50)
-      // .and('be.visible')
-      // .and('have.attr', 'href', '/')
-  })
-
   it('Has a hidden Side Bar', function () {
     cy.get('.shadow').should('exist').and('not.be.visible')
     cy.get('.side-bar').should('exist').and('not.be.visible')
