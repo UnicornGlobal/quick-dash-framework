@@ -33,10 +33,11 @@
     <router-link v-else :to="{name: menu.name}" class="router-link" @click.native="closeSidebar">
       <component v-if="menu.meta.icon && showIcons" :is="menu.meta.icon"></component>
       <span class="false-icon-space" v-else></span>
-      <span>
+      <span class="menu-item-label">
         {{ menu.meta.label }}
       </span>
     </router-link>
+    <span v-if="showHighlight && isCurrent" class="highlight">X</span>
 
   </div>
 </template>
@@ -69,6 +70,13 @@
         }
 
         return false
+      },
+      showHighlight() {
+        if (this.$store.getters['app/config'].sidebar.highlight) {
+          return true
+        }
+
+        return false
       }
     },
     data() {
@@ -92,12 +100,22 @@
 </script>
 
 <style lang="scss">
+  .menu-item-label {
+    flex: 1;
+  }
+  .highlight {
+    background: $accent;
+    width: 4px;
+    display: flex;
+  }
   .menu-item {
     &.active {
       background: $light-hover;
       color: $black;
+      display: flex;
     }
     a.router-link {
+      flex: 1;
       padding: 1.5rem 0 1.5rem 1rem;
       display: flex;
       text-decoration: none;
