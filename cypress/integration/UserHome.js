@@ -4,7 +4,7 @@ describe('User Home', function() {
   })
 
   beforeEach(function () {
-    cy.loginXhr('user', 'password')
+    cy.loginXhr('user', 'user')
     cy.location('href').then((address) => {
       if (address !== `${Cypress.config().baseUrl}/`) {
         cy.visit('/')
