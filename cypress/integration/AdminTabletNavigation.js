@@ -17,7 +17,7 @@ describe('Admin Tablet Navigation', function() {
   })
 
   it('Has Clickable Logo', function () {
-    cy.get('.logo').should('exist')
+    cy.get('.mobile-logo').should('exist')
       .wait(50)
       .and('be.visible')
       // .and('have.attr', 'href', '/')
@@ -102,7 +102,7 @@ describe('Admin Tablet Navigation', function() {
   it('Navigate home via Logo', function () {
     cy.get('.menu-toggle').click()
     cy.get('a.router-link[href="/account"]').click()
-    cy.get('.logo').should('exist').and('be.visible')
+    cy.get('.mobile-logo').should('exist').and('be.visible')
       .click()
 
     cy.url().should('be', '/')
