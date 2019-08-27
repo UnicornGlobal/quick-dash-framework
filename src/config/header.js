@@ -1,8 +1,13 @@
 export default {
-  profile: false,
-  name: false,
+  profile: true,
+  name: true,
   logo: false,
   mobileLogo: true,
-  avatar: false,
-  logout: false
+  avatar: true,
+  logout: false,
+  role: (user) => {
+    // Perform some custom code to populate the main role
+    // This is compatible with the strong-lumen style
+    return user.roles[1].name
+  }
 }

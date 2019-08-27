@@ -127,7 +127,7 @@
           return 'flex-direction: row-reverse; justify-content: space-between;'
         }
 
-        return 'justify-content: space-between'
+        return 'justify-content: flex-end'
       },
       showLogo() {
         if (this.$store.getters['app/config'].header.logo) {

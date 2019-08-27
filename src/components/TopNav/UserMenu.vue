@@ -15,6 +15,9 @@
       <div class="text-white" v-if="showLogout">
         <a @click.prevent="logout" href="#" class="logout-button">Logout</a>
       </div>
+      <div class="text-white" v-if="showRole">
+        {{ role }}
+      </div>
     </div>
   </div>
 </template>
@@ -27,7 +30,7 @@
   .user-menu {
     display: flex;
     height: 60px;
-    flex-direction: row-reverse;
+    flex-direction: row;
 
     a {
       color: $white;
@@ -81,6 +84,18 @@
       }
     },
     computed: {
+      showRole() {
+        if (this.$store.getters['app/config'].header.role) {
+          return true
+        }
+
+        return false
+      },
+      role() {
+        if (this.$store.getters['app/config'].header.role) {
+          return this.$store.getters['app/config'].header.role(this.user)
+        }
+      },
       showUserMenu() {
         if (this.$store.getters['app/config'].header.profile) {
           return true
