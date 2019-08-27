@@ -17,7 +17,6 @@ describe('Admin Tablet Navigation', function() {
   })
 
   it('Has a hidden Side Bar', function () {
-    cy.get('.shadow').should('exist').and('not.be.visible')
     cy.get('.side-bar').should('exist').and('not.be.visible')
   })
 
