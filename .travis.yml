@@ -24,7 +24,7 @@ stages:
 before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS strong;'
   - cp config/secrets.env.js.example config/secrets.env.js
-  - git clone "https://github.com/darrynten/strong-lumen" --branch=master ../strong-lumen
+  - git clone "https://github.com/UnicornGlobal/strong-lumen" --branch=master ../strong-lumen
   - cd ../strong-lumen
   - cp .env.example .env
   - cat .env
