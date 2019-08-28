@@ -35,7 +35,6 @@ describe('Login', function() {
       .should('be.visible')
       .should('have.attr', 'type', 'text')
       .should('have.attr', 'name', 'username')
-      .should('have.attr', 'placeholder', 'Email Address')
       .parent()
       .next()
       .children('label')
@@ -50,7 +49,6 @@ describe('Login', function() {
       .should('be.visible')
       .should('have.attr', 'type', 'password')
       .should('have.attr', 'name', 'password')
-      .should('have.attr', 'placeholder', 'Password')
   })
 
   it('Has a checked Remember Me checkbox', () => {

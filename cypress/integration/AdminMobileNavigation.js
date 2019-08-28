@@ -83,7 +83,7 @@ describe('Admin Mobile Navigation', function() {
   })
 
   it('Dot have the User Info box', function() {
-    cy.get('.user-menu').should('not.exist').and('not.be.visible')
+    cy.get('.user-menu').should('exist').and('not.be.visible')
   })
 
   it('Has the Logout link in the Side Bar', function() {
