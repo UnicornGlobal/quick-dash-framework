@@ -11,6 +11,19 @@ describe('SideBarMenuItem.vue', () => {
       $route: {
         name: 'Home',
         matched: []
+      },
+      $store: {
+        getters: {
+          'app/sidebar/open': true,
+          'app/config': {
+            sidebar: {
+              profile: true,
+              logout: true,
+              icons: true,
+              highlight: false
+            }
+          }
+        }
       }
     }
 
@@ -38,6 +51,26 @@ describe('SideBarMenuItem.vue', () => {
   it('renders menu items with children', () => {
     let localVue = createLocalVue()
 
+    let mocks = {
+      $route: {
+        name: 'Home',
+        matched: []
+      },
+      $store: {
+        getters: {
+          'app/sidebar/open': true,
+          'app/config': {
+            sidebar: {
+              profile: true,
+              logout: true,
+              icons: true,
+              highlight: false
+            }
+          }
+        }
+      }
+    }
+
     let sidebarMenuItem = shallowMount(SideBarMenuItem, {
       localVue,
       propsData: {
@@ -61,12 +94,7 @@ describe('SideBarMenuItem.vue', () => {
         }
       },
       stubs: ['router-link', 'side-bar-menu-item'],
-      mocks: {
-        $route: {
-          name: 'Home',
-          matched: []
-        }
-      }
+      mocks,
     })
 
     expect(sidebarMenuItem.vm).to.have.property('hasChildren', true)
@@ -93,6 +121,19 @@ describe('SideBarMenuItem.vue', () => {
         $route: {
           name: 'Home',
           matched: []
+        },
+        $store: {
+          getters: {
+            'app/sidebar/open': true,
+            'app/config': {
+              sidebar: {
+                profile: true,
+                logout: true,
+                icons: true,
+                highlight: false
+              }
+            }
+          }
         }
       }
     })
@@ -121,6 +162,19 @@ describe('SideBarMenuItem.vue', () => {
         $route: {
           name: 'Home',
           matched: []
+        },
+        $store: {
+          getters: {
+            'app/sidebar/open': true,
+            'app/config': {
+              sidebar: {
+                profile: true,
+                logout: true,
+                icons: true,
+                highlight: false
+              }
+            }
+          }
         }
       }
     })
@@ -159,6 +213,19 @@ describe('SideBarMenuItem.vue', () => {
         $route: {
           name: 'Home',
           matched: [{path: '/'}, {path: '/home'}]
+        },
+        $store: {
+          getters: {
+            'app/sidebar/open': true,
+            'app/config': {
+              sidebar: {
+                profile: true,
+                logout: true,
+                icons: true,
+                highlight: false
+              }
+            }
+          }
         }
       }
     })
@@ -190,7 +257,23 @@ describe('SideBarMenuItem.vue', () => {
           name: 'Home',
           matched: []
         },
-        $store: {...store, ...{ commit: sinon.spy() }}
+        $store: {
+          ...store,
+          ...{ commit: sinon.spy() },
+          ...{
+            getters: {
+              'app/sidebar/open': true,
+              'app/config': {
+                sidebar: {
+                  profile: true,
+                  logout: true,
+                  icons: true,
+                  highlight: false
+                }
+              }
+            }
+          }
+        }
       }
     })
 

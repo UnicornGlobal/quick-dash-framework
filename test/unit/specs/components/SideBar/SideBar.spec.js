@@ -7,6 +7,7 @@ let localVue = createLocalVue()
 let mocks = {
   $route: {
     name: 'Home',
+    label: 'Home',
     matched: []
   },
   $store: {
@@ -14,7 +15,9 @@ let mocks = {
       'app/config': {
         sidebar: {
           profile: true,
-          logout: true
+          logout: true,
+          icons: true,
+          highlight: false
         }
       }
     }
