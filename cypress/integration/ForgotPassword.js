@@ -28,7 +28,7 @@ describe('Forgot Password', function() {
       .children('a')
       .contains('Forgot')
       .should('be.visible')
-      .should('have.attr', 'href', '/password/reset')
+      .should('have.attr', 'href', '/password-reset')
   })
 
   it('Handles Forgot Password link', () => {
@@ -43,13 +43,13 @@ describe('Forgot Password', function() {
       .children('a')
       .contains('Forgot')
       .should('be.visible')
-      .should('have.attr', 'href', '/password/reset')
+      .should('have.attr', 'href', '/password-reset')
       .click()
 
     cy.url().should('not.include', '/login')
-    cy.url().should('include', '/password/reset')
+    cy.url().should('include', '/password-reset')
 
-    cy.get('h4').contains('Forgot Password?')
+    cy.get('h2').contains('Forgot Password')
     cy.get('input[name="email"]').should('exist')
 
     cy.get('button').click()
