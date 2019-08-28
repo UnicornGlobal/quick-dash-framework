@@ -3,7 +3,7 @@
     <div class="header" :style="headerStyle">
       <div class="menu-toggle">
         <div @click.prevent="toggleSideBar()">
-          <hamburger></hamburger>
+          <hamburger class="hamburger"></hamburger>
         </div>
       </div>
       <router-link class="logo" to="/" v-if="showLogo">
@@ -48,7 +48,7 @@
     svg {
       width: 30px;
       height: 30px;
-      fill: $white;
+      fill: $sidebar_hamburger_colour;
     }
   }
 

@@ -1,7 +1,7 @@
 <template>
   <div class="menu-element">
     <router-link class="logo" to="/" v-if="showLogo">
-      <quick></quick>&nbsp;Quick Dash
+      <component v-if="showLogo" :is="logo"></component>
     </router-link>
     <user-profile v-if="showUserProfile" :user="user"></user-profile>
     <div class="menu-items">
@@ -52,6 +52,13 @@
       showLogo() {
         if (this.$store.getters['app/config'].sidebar.logo) {
           return true
+        }
+
+        return false
+      },
+      logo() {
+        if (this.$store.getters['app/config'].sidebar.logo) {
+          return this.$store.getters['app/config'].sidebar.logo()
         }
 
         return false
@@ -128,6 +135,7 @@
   .menu-items {
     padding-bottom: 3em;
     margin-bottom: auto;
+    margin-top: $sidebar_menu_padding_top;
   }
 
   .logout-link-menu-item {
@@ -146,6 +154,7 @@
     background-color: $header_background;
     height: 60px;
     padding-left: 0.5em;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 
     svg {
       height: 40px;

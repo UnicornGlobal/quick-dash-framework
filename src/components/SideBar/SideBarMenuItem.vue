@@ -101,6 +101,7 @@
 
 <style lang="scss">
   .menu-item-label {
+    font-size: $sidebar_text_size;
     flex: 1;
   }
   .highlight {
@@ -109,6 +110,7 @@
     display: flex;
   }
   .menu-item {
+
     &.active {
       background: $light-hover;
       color: $secondary-text;
@@ -158,6 +160,7 @@
     .menu-item-with-children {
       display: flex;
       align-items: center;
+      font-size: $sidebar_text_size;
     }
 
     .sub-menu > .menu-item {
