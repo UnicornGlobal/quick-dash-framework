@@ -1,27 +1,26 @@
 <template>
   <div class="login-page">
     <div class="login-header">
-      <div class="logo"><span>Q</span></div>
+      <div class="logo" v-if="showEmojiLogo"><span>{{ emojiLogo }}</span></div>
+        <component v-if="showLogo" :is="logo"></component>
       <div class="brand">{{ appName }}</div>
     </div>
     <div class="login-form">
       <card class="card">
-        <h2>Login</h2>
+        <h2>{{ strings.header }}</h2>
         <form>
           <div>
-            <label class="required">Email Address&nbsp;</label>
-            <input v-validate="'required'" v-model="username" name="username" type="text"
-                   placeholder="Email Address" />
+            <label class="required">{{ strings.username_label }}&nbsp;</label>
+            <input v-validate="'required'" v-model="username" name="username" type="text" />
             <span v-if="errors.has('username')" class="validation-error">{{errors.first('username')}}</span>
           </div>
           <div class="password-reset-container">
-            <label class="required">Password&nbsp;</label>
+            <label class="required">{{ strings.password_label }}&nbsp;</label>
             <div class="password-box">
-              <input v-validate="'required'" v-model="password" name="password" type="password"
-                     placeholder="Password" />
-              <router-link v-if="!errors.has('password')" :to="{name: 'ResetPassword'}">Forgot</router-link>
-              <router-link v-if="errors.has('password')" style="padding-right: 30px" :to="{name: 'ResetPassword'}">
-                Forgot?
+              <input v-validate="'required'" v-model="password" name="password" type="password" />
+              <router-link v-if="!errors.has('password')" :to="{name: 'ResetPassword'}">{{ strings.forgot }}</router-link>
+              <router-link v-if="errors.has('password')" style="padding-right: 60px" :to="{name: 'ResetPassword'}">
+                {{ strings.forgot }}
               </router-link>
             </div>
             <span v-if="errors.has('password')" class="validation-error">{{errors.first('password')}}</span>
@@ -34,14 +33,14 @@
             :value="true"
             :unchecked-value="false"
           >
-            <span class="label-checkbox">Remember Me</span>
+            <span class="label-checkbox">{{ strings.remember_label }}</span>
           </label>
           <div class="login-button-wrapper">
             <button @click.prevent="signIn" class="text-uppercase login-button">
               <div class="loading" v-if="bSending">
                 <loader fill="#ffffff" width="25px" height="25px"></loader>
               </div>
-              Sign In
+              {{ strings.button }}
             </button>
           </div>
         </form>
@@ -66,6 +65,9 @@
         bSending: false
       }
     },
+    created() {
+      this.strings = require('@/i18n/en/login').default
+    },
     methods: {
       signIn() {
         return this.$validator.validateAll().then((result) => {
@@ -86,7 +88,7 @@
           error: function () {
             this.errors.add({
               field: 'username',
-              msg: 'Invalid username or password'
+              msg: this.strings.invalid_submission
             })
             this.bSending = false
           }
@@ -95,7 +97,39 @@
     },
     computed: {
       appName() {
+        if (this.$store.getters['app/config'].login.name) {
+          return this.$store.getters['app/config'].login.name
+        }
+
         return process.env.appName
+      },
+      showEmojiLogo() {
+        if (this.$store.getters['app/config'].login.emojiLogo) {
+          return true
+        }
+
+        return false
+      },
+      emojiLogo() {
+        if (this.$store.getters['app/config'].login.emojiLogo) {
+          return this.$store.getters['app/config'].login.emojiLogo()
+        }
+
+        return false
+      },
+      showLogo() {
+        if (this.$store.getters['app/config'].login.logo) {
+          return true
+        }
+
+        return false
+      },
+      logo() {
+        if (this.$store.getters['app/config'].login.logo) {
+          return this.$store.getters['app/config'].login.logo()
+        }
+
+        return false
       }
     },
     mounted() {
@@ -106,31 +140,36 @@
 
 <style lang="scss" scoped>
   .card {
-    margin-top: 0px;
     max-width: 480px;
-    padding: 0px;
+    padding: $login_box_padding;
+    margin: $login_box_margin;
     border-radius: $border-radius;
+    background-color: $login_box_background;
+    box-shadow: $login_shadow;
 
     h2 {
-      padding: 10px 20px;
+      padding: $login_header_padding;
       margin: 0px;
-      background-color: darken( $primary-light, 20);
-      color: $primary-text;
+      background-color: $login_box_header;
+      color: $login_text;
+      font-size: $login_header_text_size;
     }
-  }
-
-  form {
-    padding: 20px;
   }
   .login-page {
     .login-header {
-      min-height: 50px;
+      min-height: $login_header_height;
       padding: 10px;
-      background-color: $primary-dark;
+      background-color: $login_header;
+      border-bottom: $login_header_border;
+      box-shadow: $login_header_shadow;
+      justify-content: left;
+      align-items: center;
+      display: flex;
 
       .logo {
         display: inline-block;
         margin-right: 10px;
+        margin-left: 10px;
 
         span {
           display: flex;
@@ -142,7 +181,7 @@
           background-color: $primary;
           color: $primary-light;
           text-align: center;
-          font-size: 20px;
+          font-size: 3rem;
           font-weight: 800;
         }
       }
@@ -150,14 +189,13 @@
       .brand {
         display: inline-block;
         font-size: 18px;
-        text-transform: uppercase;
-        color: $primary-light;
+        color: $login_logo_text;
       }
     }
 
     .login-form {
       height: calc(100vh - 70px);
-      background-color: $primary;
+      background-color: $login_background;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -196,12 +234,20 @@
       }
 
       .card {
-        border: none;
-        background-color: $primary-light;
+        border: $login_box_border;
+        background-color: $login_box_background;
+        width: $login_box_min_width;
+        min-width: $login_box_min_width;
+        @media(max-width: $login_box_min_width) {
+          width: 100%;
+          min-width: 100%;
+        }
       }
 
       label {
         color: $primary-text;
+        font-size: $login_label_text_size;
+        font-weight: bold;
       }
 
       .password-reset-container {
@@ -218,18 +264,51 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 150px;
         color: $white;
-        background-color: $primary;
+        background-color: $login_button_background;
         border: none;
         border-radius: $border-radius;
         cursor: pointer;
+        min-width: $login_button_min_width;
+        min-height: $login_button_min_height;
+        margin: 0;
       }
 
       input {
         padding-left: 10px;
         margin-top: 5px;
-        border-radius: 3px;
+        border: 1px solid darken($primary, 20);
+        border-radius: $border-radius;
+      }
+
+      input[type=checkbox] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-color: $primary;
+        border: 2px solid $login_checkbox_colour;
+        display: inline-block;
+        position: relative;
+        padding: 7px !important;
+        top: 0.25rem;
+
+        &:focus {
+          border: 2px solid $login_checkbox_colour;
+          outline: $login_checkbox_colour solid 2px;
+          outline-offset: 1px;
+        }
+
+        &:checked {
+          border: 2px solid $login_checkbox_colour;
+          background-color: $login_checkbox_colour;
+          background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20d%3D%22M173.898%20439.404l-166.4-166.4c-9.997-9.997-9.997-26.206%200-36.204l36.203-36.204c9.997-9.998%2026.207-9.998%2036.204%200L192%20312.69%20432.095%2072.596c9.997-9.997%2026.207-9.997%2036.204%200l36.203%2036.204c9.997%209.997%209.997%2026.206%200%2036.204l-294.4%20294.401c-9.998%209.997-26.207%209.997-36.204-.001z%22%20fill%3D%22white%22/%3E%3C/svg%3E);
+          &:after {
+            position: absolute;
+            top: 0;
+            left: 3px;
+            padding: 0;
+          }
+        }
       }
 
       .loading {

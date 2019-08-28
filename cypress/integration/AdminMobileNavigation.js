@@ -16,8 +16,13 @@ describe('Admin Mobile Navigation', function() {
     })
   })
 
-  it('Has Clickable Logo', function () {
-    cy.get('.logo').should('exist').and('be.visible')
+  it('Has Clickable Mobile Logo', function () {
+    cy.get('.mobile-logo').should('exist').and('be.visible')
+      .and('have.attr', 'href', '/')
+  })
+
+  it('Desktop Logo must not be present', function () {
+    cy.get('.logo').should('exist').and('not.be.visible')
       .and('have.attr', 'href', '/')
   })
 
@@ -77,7 +82,7 @@ describe('Admin Mobile Navigation', function() {
     cy.get('.shadow').click({force:true})
   })
 
-  it('Does not have the User Info box', function() {
+  it('Dot have the User Info box', function() {
     cy.get('.user-menu').should('exist').and('not.be.visible')
   })
 
@@ -114,7 +119,7 @@ describe('Admin Mobile Navigation', function() {
   it('Navigate home via Logo', function () {
     cy.get('.menu-toggle').click()
     cy.get('a.router-link[href="/account"]').click()
-    cy.get('.logo').should('exist').and('be.visible')
+    cy.get('.mobile-logo').should('exist').and('be.visible')
       .click()
 
     cy.url().should('be', '/')

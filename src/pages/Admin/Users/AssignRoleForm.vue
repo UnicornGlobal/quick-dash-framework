@@ -75,7 +75,7 @@
     input:checked {
       ~ .radiomark:after {
         display: block;
-        background: $blue-1;
+        background: $primary-dark;
         top: 2px;
         left: 2px;
         width: 9px;

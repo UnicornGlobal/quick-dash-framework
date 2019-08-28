@@ -12,20 +12,12 @@ describe('Admin Tablet Navigation', function() {
     cy.server()
     let url = Cypress.env('apiUrl')
     cy.loginXhr('admin', 'admin')
-    cy.viewport('ipad-2')
+    cy.viewport('ipad-mini')
     cy.visit('/')
-  })
-
-  it('Has Clickable Logo', function () {
-    cy.get('.logo').should('exist')
-      .wait(50)
-      .and('be.visible')
-      // .and('have.attr', 'href', '/')
   })
 
   it('Has a hidden Side Bar', function () {
     cy.get('.shadow').should('exist').and('not.be.visible')
-    cy.get('.side-bar').should('exist').and('not.be.visible')
   })
 
   it('Has a Side Bar hamburger button', function () {
@@ -102,7 +94,7 @@ describe('Admin Tablet Navigation', function() {
   it('Navigate home via Logo', function () {
     cy.get('.menu-toggle').click()
     cy.get('a.router-link[href="/account"]').click()
-    cy.get('.logo').should('exist').and('be.visible')
+    cy.get('.mobile-logo').should('exist').and('be.visible')
       .click()
 
     cy.url().should('be', '/')

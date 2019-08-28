@@ -2,6 +2,9 @@ export default {
   enabled: true,
   open: true,
   position: 'left',
-  logout: false,
-  profile: true
+  logout: true,
+  logo: true,
+  profile: true,
+  highlight: true,
+  icons: true
 }

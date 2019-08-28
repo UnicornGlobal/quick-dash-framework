@@ -12,8 +12,11 @@
       <div class="user-name text-white" v-if="showUserName">
         {{ user.first_name}} {{ user.last_name }}
       </div>
-      <div class="text-white" v-if="showLogout">
+      <div class="role" v-if="showLogout">
         <a @click.prevent="logout" href="#" class="logout-button">Logout</a>
+      </div>
+      <div class="role" v-if="showRole">
+        {{ role }}
       </div>
     </div>
   </div>
@@ -27,7 +30,7 @@
   .user-menu {
     display: flex;
     height: 60px;
-    flex-direction: row-reverse;
+    flex-direction: row;
 
     a {
       color: $white;
@@ -56,13 +59,18 @@
     flex-direction: column;
     justify-content: center;
     flex: 1;
-    color: $white;
+    color: $primary-text;
 
     .user-name {
       font-weight: bold;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      color: $primary-text;
+    }
+
+    .role {
+      color: $primary-text;
     }
   }
 </style>
@@ -81,6 +89,18 @@
       }
     },
     computed: {
+      showRole() {
+        if (this.$store.getters['app/config'].header.role) {
+          return true
+        }
+
+        return false
+      },
+      role() {
+        if (this.$store.getters['app/config'].header.role) {
+          return this.$store.getters['app/config'].header.role(this.user)
+        }
+      },
       showUserMenu() {
         if (this.$store.getters['app/config'].header.profile) {
           return true

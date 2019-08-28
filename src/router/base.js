@@ -3,7 +3,8 @@ export default {
   component: require('@/App.vue').default,
   meta: {
     main: true,
-    label: 'Home'
+    label: 'Home',
+    name: 'Home'
   },
   children: []
 }

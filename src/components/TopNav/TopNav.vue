@@ -9,6 +9,10 @@
       <router-link class="logo" to="/" v-if="showLogo">
         <quick></quick>&nbsp;Quick Dash
       </router-link>
+      <router-link class="mobile-logo" to="/" v-if="showMobileLogo">
+        <quick></quick>&nbsp;Quick Dash
+      </router-link>
+      <div class="page-title">{{pageTitle}}</div>
       <user-menu v-if="user" :user="user"></user-menu>
     </div>
   </div>
@@ -60,6 +64,10 @@
     }
   }
 
+  .page-title {
+
+  }
+
   .logo {
     display: flex;
     align-items: center;
@@ -73,6 +81,26 @@
       height: 40px;
       width: 45px;
       fill: $white;
+    }
+  }
+
+  .mobile-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    color: $white;
+    font-size: 22px;
+    text-decoration: none;
+
+    svg {
+      height: 40px;
+      width: 45px;
+      fill: $white;
+    }
+
+    @media (min-width: 1025px) {
+      display: none;
     }
   }
 </style>
@@ -99,6 +127,9 @@
       }
     },
     computed: {
+      pageTitle() {
+        return ''
+      },
       headerStyle() {
         if (this.$store.getters['app/config'].sidebar.position === 'right') {
           return 'flex-direction: row-reverse; justify-content: space-between;'
@@ -108,6 +139,13 @@
       },
       showLogo() {
         if (this.$store.getters['app/config'].header.logo) {
+          return true
+        }
+
+        return false
+      },
+      showMobileLogo() {
+        if (this.$store.getters['app/config'].header.mobileLogo) {
           return true
         }
 

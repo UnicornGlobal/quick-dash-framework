@@ -33,7 +33,7 @@ describe('Make a User a Developer', function() {
   })
 
   it('Logout from Admin account', function () {
-    cy.get('a.logout-button').click()
+    cy.get('a.logout').click()
   })
 
   it('Login as User', function () {
@@ -41,7 +41,7 @@ describe('Make a User a Developer', function() {
     let url = Cypress.env('apiUrl')
     cy.route(url + '/api/me').as('getUserMe')
 
-    cy.loginXhr('user', 'password')
+    cy.loginXhr('user', 'user')
     cy.visit('/')
     cy.wait('@getUserMe')
 
@@ -97,7 +97,7 @@ describe('Make a User a Developer', function() {
   })
 
   it('Confirm User is a Developer', function () {
-    cy.loginXhr('user', 'password')
+    cy.loginXhr('user', 'user')
     cy.visit('/')
     cy.get('.side-bar').should('exist')
     cy.get('h1').contains('Welcome to Quick Dash!')

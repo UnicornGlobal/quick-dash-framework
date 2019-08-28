@@ -33,7 +33,7 @@ describe('Make a User an Admin', function() {
   })
 
   it('Logout from Admin account', function () {
-    cy.get('a.logout-button').click()
+    cy.get('a.logout').click()
   })
 
   it('Login as Test User', function () {
@@ -41,7 +41,7 @@ describe('Make a User an Admin', function() {
     let url = Cypress.env('apiUrl')
     cy.route(url + '/api/me').as('getUserMe')
 
-    cy.loginXhr('user', 'password')
+    cy.loginXhr('user', 'user')
     cy.visit('/')
     cy.wait('@getUserMe')
 
@@ -49,7 +49,7 @@ describe('Make a User an Admin', function() {
   })
 
   it('Tries to visit User Admin page and fails', function () {
-    cy.loginXhr('user', 'password')
+    cy.loginXhr('user', 'user')
     cy.visit('/admin/users')
     cy.get('h2').should('not.exist')
     cy.get('.side-bar').should('not.exist')
@@ -105,7 +105,7 @@ describe('Make a User an Admin', function() {
   })
 
   it('Login as Test User with new Admin role', function () {
-    cy.loginXhr('user', 'password')
+    cy.loginXhr('user', 'user')
     cy.visit('/')
 
     cy.get('.side-bar').should('exist').and('be.visible')
@@ -118,14 +118,14 @@ describe('Make a User an Admin', function() {
   })
 
   it('Successfully visits the Users page', function () {
-    cy.loginXhr('user', 'password')
+    cy.loginXhr('user', 'user')
     cy.visit('/admin/users')
     cy.url().should('include', '/users')
     cy.url().should('not.include', '/login')
   })
 
   it('Opens own User Details', function () {
-    cy.loginXhr('user', 'password')
+    cy.loginXhr('user', 'user')
     cy.visit('/admin/users')
 
     cy.get('a.list-row')
@@ -140,7 +140,7 @@ describe('Make a User an Admin', function() {
   })
 
   it('Revokes own Admin role', function () {
-    cy.loginXhr('user', 'password')
+    cy.loginXhr('user', 'user')
 
     cy.get('span.role-name')
       .contains('admin')
@@ -159,7 +159,7 @@ describe('Make a User an Admin', function() {
   })
 
   it('Tries to visit User Admin page again and fails', function () {
-    cy.loginXhr('user', 'password')
+    cy.loginXhr('user', 'user')
     cy.visit('/admin/users')
     cy.get('h2').should('not.exist')
     cy.get('.side-bar').should('not.exist')

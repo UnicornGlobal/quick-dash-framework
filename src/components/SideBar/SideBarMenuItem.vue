@@ -31,12 +31,13 @@
     </template>
 
     <router-link v-else :to="{name: menu.name}" class="router-link" @click.native="closeSidebar">
-      <component v-if="menu.meta.icon" :is="menu.meta.icon"></component>
+      <component v-if="menu.meta.icon && showIcons" :is="menu.meta.icon"></component>
       <span class="false-icon-space" v-else></span>
-      <span>
+      <span class="menu-item-label">
         {{ menu.meta.label }}
       </span>
     </router-link>
+    <span v-if="showHighlight && isCurrent" class="highlight"></span>
 
   </div>
 </template>
@@ -62,6 +63,20 @@
       fullPath() {
         return (`${this.base}/${this.menu.path}`).replace(/\/\//g, '/')
           .replace(/\/$/, '')
+      },
+      showIcons() {
+        if (this.$store.getters['app/config'].sidebar.icons) {
+          return true
+        }
+
+        return false
+      },
+      showHighlight() {
+        if (this.$store.getters['app/config'].sidebar.highlight) {
+          return true
+        }
+
+        return false
       }
     },
     data() {
@@ -85,39 +100,49 @@
 </script>
 
 <style lang="scss">
+  .menu-item-label {
+    flex: 1;
+  }
+  .highlight {
+    background: $accent;
+    width: 4px;
+    display: flex;
+  }
   .menu-item {
     &.active {
       background: $light-hover;
-      color: $black;
+      color: $secondary-text;
+      display: flex;
     }
     a.router-link {
+      flex: 1;
       padding: 1.5rem 0 1.5rem 1rem;
       display: flex;
       text-decoration: none;
-      color: $black;
+      color: $primary-text;
       align-items: center;
       border-bottom: 1px solid $line;
       svg {
         height: 15px;
         width: 15px;
         margin-right: 0.5em;
-        fill: $primary;
-        stroke: $primary;
+        fill: $icons;
+        stroke: $icons;
         margin-right: 10px;
       }
       &.router-link-exact-active {
         color: $black;
         svg {
-          fill: $primary;
-          stroke: $primary;
+          fill: $icons;
+          stroke: $icons;
         }
       }
       &:hover {
         background: $light-hover;
         color: $black;
         svg {
-          fill: $primary;
-          stroke: $primary;
+          fill: $icons;
+          stroke: $icons;
         }
       }
       &.toggle .toggle-icon {
