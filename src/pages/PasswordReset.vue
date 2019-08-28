@@ -1,9 +1,9 @@
 <template>
   <div class="password-reset-page">
     <div class="reset-header">
-      <h4 class="text-header">
-        {{ strings.header }}
-      </h4>
+      <div class="logo" v-if="showEmojiLogo"><span>{{ emojiLogo }}</span></div>
+        <component v-if="showLogo" :is="logo" class="svg-logo"></component>
+      <div class="brand">{{ appName }}</div>
       <p class="text">{{ strings.details }}</p>
     </div>
     <p v-if="sent" class="sent-success" style="color: white">
@@ -11,13 +11,20 @@
     </p>
     <div class="password-reset-form" v-else>
       <card class="card">
+        <h2>{{ strings.header }}</h2>
         <div>
           <label class="required">Email&nbsp;</label>
           <input v-validate="'required'" v-model="email" name="email" type="text">
           <span v-if="errors.has('email')" class="validation-error">{{errors.first('email')}}</span>
         </div>
         <div class="button-container">
-          <button @click.prevent="submit()" class="btn-submit text-uppercase" :class="sent ? 'hide' : ''">
+          <div class="quick-links">
+            <a href="/login">Sign In</a>
+            |
+            <a href="/privacy">Privacy Policy</a>
+          </div>
+
+          <button @click.prevent="submit()" class="reset-button text-uppercase" :class="sent ? 'hide' : ''">
             <div class="loading" v-if="bSending">
               <loader fill="#ffffff" width="25px" height="25px"></loader>
             </div>
@@ -46,6 +53,43 @@
     },
     mounted() {
       this.$store.commit('app/loading', false)
+    },
+    computed: {
+      appName() {
+        if (this.$store.getters['app/config'].login.name) {
+          return this.$store.getters['app/config'].login.name
+        }
+
+        return process.env.appName
+      },
+      showEmojiLogo() {
+        if (this.$store.getters['app/config'].login.emojiLogo) {
+          return true
+        }
+
+        return false
+      },
+      emojiLogo() {
+        if (this.$store.getters['app/config'].login.emojiLogo) {
+          return this.$store.getters['app/config'].login.emojiLogo()
+        }
+
+        return false
+      },
+      showLogo() {
+        if (this.$store.getters['app/config'].login.logo) {
+          return true
+        }
+
+        return false
+      },
+      logo() {
+        if (this.$store.getters['app/config'].login.logo) {
+          return this.$store.getters['app/config'].login.logo()
+        }
+
+        return false
+      }
     },
     methods: {
       submit() {
@@ -82,29 +126,60 @@
 </script>
 
 <style lang="scss" scoped>
-  h4 {
-    top: 20px;
-    left: 80px;
-    font-size: 2em;
-    align-self: flex-start;
+  .card {
+    max-width: 480px;
+    padding: $login_box_padding;
+    margin: $login_box_margin;
+    border-radius: $border-radius;
+    background-color: $login_box_background;
+    box-shadow: $login_shadow;
+
+    h2 {
+      padding: $login_header_padding;
+      margin: 0px;
+      background-color: $login_box_header;
+      color: $login_text;
+      font-size: $login_header_text_size;
+    }
   }
 
   .password-reset-page {
-    background-color: $primary;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-
     .reset-header {
-      display: flex;
-      flex-direction: column;
+      min-height: $login_header_height;
+      padding: 10px;
+      background-color: $login_header;
+      border-bottom: $login_header_border;
+      box-shadow: $login_header_shadow;
+      justify-content: left;
       align-items: center;
-      padding: 0 1em;
-      align-self: flex-start;
-      flex: 1;
+      display: flex;
+
+      .svg-logo {
+        margin: $login_logo_margin;
+      }
+      .logo {
+        display: inline-block;
+
+        span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 50px;
+          width: 50px;
+          border-radius: 100%;
+          background-color: $primary;
+          color: $primary-light;
+          text-align: center;
+          font-size: 3rem;
+          font-weight: 800;
+        }
+      }
+
+      .brand {
+        display: inline-block;
+        font-size: 18px;
+        color: $login_logo_text;
+      }
     }
 
     .text-header {
@@ -121,63 +196,78 @@
       font-size: 1em;
     }
 
-    .logo {
-      width: 275px;
-      height: 65px;
-    }
-
     .card {
-      border: none;
-      border-radius: $border-radius;
-      background-color: $primary-dark;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
+        border: $login_box_border;
+        background-color: $login_box_background;
+        width: $login_box_min_width;
+        min-width: $login_box_min_width;
+        @media(max-width: $login_box_min_width) {
+          width: 100%;
+          min-width: 100%;
+        }
     }
 
     label {
-      color: $white;
+      color: $primary-text;
+      font-size: $login_label_text_size;
+      font-weight: bold;
     }
 
     .password-reset-form {
-      width: 420px;
-      align-self: center;
-      max-width: 360px;
-      flex: 2;
-
-      @media(max-width: 480px) {
+      min-height: calc(100vh - 70px);
+      background-color: $login_background;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @media(max-width: 560px) {
         width: 100%;
+        max-width: unset;
       }
 
       .button-container {
+        margin-top: 2em;
         display: flex;
-        justify-content: flex-end;
-      }
+        justify-content: space-between;
+        align-items: baseline;
 
-      .btn-cancel {
-        color: rgb(108, 117, 140);
-        background-color: rgb(255, 255, 255);
-        border: none;
+        .quick-links {
+          a {
+            text-decoration: none;
+            color: $login_text;
+            font-weight: bold;
+            font-size: 12px;
+          }
+          a:hover {
+            text-decoration: underline;
+          }
+        }
       }
 
       .hide {
         display: none;
       }
+    }
 
-      .btn-submit {
-        color: $white;
-        background-color: $primary;
-        border: none;
-        margin-left: 15px;
-        display: flex;
-        align-items: center;
-        border-radius: $border-radius;
-        cursor: pointer;
-      }
+    button {
+      line-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $white;
+      background-color: $login_button_background;
+      border: none;
+      border-radius: $border-radius;
+      cursor: pointer;
+      min-width: $login_button_min_width;
+      min-height: $login_button_min_height;
+      margin: 0;
     }
 
     input {
-      margin: 0px 0 22px 0;
+      padding-left: 10px;
+      margin-top: 5px;
+      border: 1px solid darken($primary, 20);
+      border-radius: $border-radius;
     }
 
     .sent-success {

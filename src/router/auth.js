@@ -36,7 +36,7 @@ export default [
   },
   {
     name: 'ResetPassword',
-    path: '/password/reset',
+    path: '/password-reset',
     component: require('@/pages/PasswordReset.vue').default
   }
 ]
