@@ -143,7 +143,7 @@
     font-size: 22px;
     text-decoration: none;
     padding-left: 0;
-    background-color: $primary;
+    background-color: $header_background;
     height: 60px;
     padding-left: 0.5em;
 

@@ -102,6 +102,8 @@
       background: $white;
       z-index: 2;
       overflow-y: auto;
+      border-right: $sidebar_border;
+      box-shadow: $sidebar_shadow;
 
       @media (max-width: 420px) {
         border-right: solid 2px $primary-dark;

@@ -25,6 +25,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    background: $header_background;
     @media (max-width: 1025px) {
       display: block;
     }
@@ -56,7 +57,7 @@
     padding: 0 1em;
     display: flex;
     align-items: center;
-    background-color: $primary;
+    background-color: $header_background;
     height: 61px;
     @media (max-width: 1025px) {
       padding-left: 1em;
