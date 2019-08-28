@@ -3,7 +3,7 @@ import icons from '@/icons'
 
 const home = config.router.home.enabled ? [{
   name: 'Home',
-  path: '',
+  path: '/',
   component: config.router.home.component,
   meta: {
     main: true,

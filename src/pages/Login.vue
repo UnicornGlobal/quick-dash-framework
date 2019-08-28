@@ -2,7 +2,7 @@
   <div class="login-page">
     <div class="login-header">
       <div class="logo" v-if="showEmojiLogo"><span>{{ emojiLogo }}</span></div>
-        <component v-if="showLogo" :is="logo"></component>
+        <component v-if="showLogo" :is="logo" class="svg-logo"></component>
       <div class="brand">{{ appName }}</div>
     </div>
     <div class="login-form">
@@ -25,17 +25,17 @@
             </div>
             <span v-if="errors.has('password')" class="validation-error">{{errors.first('password')}}</span>
           </div>
-          <label>
-          <input
-            type="checkbox"
-            name="rememberMe"
-            v-model="remember"
-            :value="true"
-            :unchecked-value="false"
-          >
-            <span class="label-checkbox">{{ strings.remember_label }}</span>
-          </label>
           <div class="login-button-wrapper">
+            <label>
+            <input
+              type="checkbox"
+              name="rememberMe"
+              v-model="remember"
+              :value="true"
+              :unchecked-value="false"
+            >
+              <span class="label-checkbox">{{ strings.remember_label }}</span>
+            </label>
             <button @click.prevent="signIn" class="text-uppercase login-button">
               <div class="loading" v-if="bSending">
                 <loader fill="#ffffff" width="25px" height="25px"></loader>
@@ -155,6 +155,7 @@
       font-size: $login_header_text_size;
     }
   }
+
   .login-page {
     .login-header {
       min-height: $login_header_height;
@@ -166,10 +167,11 @@
       align-items: center;
       display: flex;
 
+      .svg-logo {
+        margin: $login_logo_margin;
+      }
       .logo {
         display: inline-block;
-        margin-right: 10px;
-        margin-left: 10px;
 
         span {
           display: flex;
@@ -229,8 +231,10 @@
       }
 
       .login-button-wrapper {
+        margin-top: 2em;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
+        align-items: baseline;
       }
 
       .card {
