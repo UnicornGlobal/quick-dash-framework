@@ -118,7 +118,7 @@
     }
     a.router-link {
       flex: 1;
-      padding: 1.5rem 0 1.5rem 1rem;
+      padding: 1.35rem 0 1.35rem 1rem;
       display: flex;
       text-decoration: none;
       color: $primary-text;
@@ -128,14 +128,13 @@
         height: $sidebar_icon_size;
         width: $sidebar_icon_size;
         fill: $sidebar_icon_colour;
-        stroke: $sidebar_icon_colour;
         margin-right: $sidebar_icon_size;
+        margin-left: 0.2rem;
       }
       &.router-link-exact-active {
         color: $sidebar_active_text_colour;
         svg {
           fill: $sidebar_active_icon_colour;
-          stroke: $sidebar_active_icon_colour;
         }
         span {
           font-family: $sidebar_active_text_font;
@@ -146,7 +145,6 @@
         color: $sidebar_active_text_colour;
         svg {
           fill: $sidebar_active_icon_colour;
-          stroke: $sidebar_active_icon_colour;
         }
       }
       &.toggle .toggle-icon {

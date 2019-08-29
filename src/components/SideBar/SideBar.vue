@@ -150,10 +150,9 @@
     color: $white;
     font-size: 22px;
     text-decoration: none;
-    padding-left: 0;
     background-color: $header_background;
     height: 60px;
-    padding-left: 0.5em;
+    padding: 1em 0.75em;
     border-bottom: 1px solid rgba(0,0,0,0.1);
 
     svg {

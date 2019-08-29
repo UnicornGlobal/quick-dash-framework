@@ -7,6 +7,9 @@ import adminRoutes from '@/router/admin'
 import authRoutes from '@/router/auth'
 import userRoutes from '@/router/user'
 import appRoute from '@/router/base'
+import config from '@/config'
+import icons from '@/icons'
+import strings from '@/i18n/en/sidebar'
 
 import { userHasRole } from '@/auth'
 
@@ -83,6 +86,22 @@ export async function loadRoutes(user) {
     routes = [...routes, ...adminRoutes]
     store.registerModule('admin', admin)
   }
+
+  /**
+   * Load the account page link as the last item
+   */
+  const account = config.router.account.enabled ? [{
+    name: 'Account',
+    path: '/account',
+    component: config.router.account.component,
+    meta: {
+      main: true,
+      label: strings.account,
+      icon: icons.account
+    }
+  }] : []
+
+  routes = [...routes, ...account]
 
   // Unique
   routes = await [...new Set(routes)]

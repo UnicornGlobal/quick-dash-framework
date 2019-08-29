@@ -1,5 +1,6 @@
 import config from '@/config'
 import icons from '@/icons'
+import strings from '@/i18n/en/sidebar'
 
 const home = config.router.home.enabled ? [{
   name: 'Home',
@@ -7,23 +8,11 @@ const home = config.router.home.enabled ? [{
   component: config.router.home.component,
   meta: {
     main: true,
-    label: 'Home',
+    label: strings.home,
     icon: icons.home
   }
 }] : []
 
-const account = config.router.account.enabled ? [{
-  name: 'Account',
-  path: '/account',
-  component: config.router.account.component,
-  meta: {
-    main: true,
-    label: 'Account',
-    icon: icons.user
-  }
-}] : []
-
 export default [
-  ...home,
-  ...account
+  ...home
 ]
