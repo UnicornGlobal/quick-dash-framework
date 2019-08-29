@@ -5,7 +5,7 @@ import store from '@/store'
 import admin from '@/store/admin'
 import adminRoutes from '@/router/admin'
 import authRoutes from '@/router/auth'
-import userRoutes from '@/router/user'
+import homeRoutes from '@/router/home'
 import appRoute from '@/router/base'
 import config from '@/config'
 import icons from '@/icons'
@@ -28,7 +28,6 @@ const reserved = [
   'auth',
   'base',
   'index',
-  'user'
 ]
 
 /**
@@ -44,7 +43,7 @@ const reserved = [
  * ~/ represents the host application `src` directory
  * @/ represents this frameworks `src` directory
  */
-async function getCustomRoutes(user) {
+async function getCustomRoutes(user, homeRoutes) {
   let custom = false
   let result = []
   try {
@@ -61,7 +60,21 @@ async function getCustomRoutes(user) {
         return
       }
 
-      console.log('Found custom routes: ', name)
+      // Override home route if available
+      // This allows for custom home pages based on role
+      if (name === 'home') {
+        console.log('Custom home route, overriding')
+        let override = custom(key).default
+        homeRoutes = override
+        // Filter out home routes based on roles
+        for (let i = 0; i < homeRoutes.length; i++) {
+          if (homeRoutes[i].role) {
+            if (!userHasRole(user, homeRoutes[i].role)) {
+              homeRoutes.splice(i, 1)
+            }
+          }
+        }
+      }
 
       // Filter out any routes that require a role that this
       // user does not have
@@ -77,7 +90,7 @@ async function getCustomRoutes(user) {
       result = [...result, ...value]
     })
 
-    return result
+    return [...homeRoutes, ...result]
   } catch (e) {
     console.error('Application level `router` folder is missing')
     return []
@@ -85,12 +98,9 @@ async function getCustomRoutes(user) {
 }
 
 export async function loadRoutes(user) {
-  const customRoutes = await getCustomRoutes(user)
-  let routes = [...userRoutes, ...customRoutes]
-
-  for (const role of user.roles) {
-    console.log(role.name)
-  }
+  const customRoutes = await getCustomRoutes(user, homeRoutes)
+  let routes = [...customRoutes]
+  console.log(routes,'zzzz')
 
   /**
    * If the user is an admin then we need to add the admin specific
