@@ -17,12 +17,12 @@ describe('Admin Tablet Navigation', function() {
   })
 
   it('Has a hidden Side Bar', function () {
-    cy.wait(100)
+    cy.wait(200)
     cy.get('.shadow').should('exist').and('not.be.visible')
   })
 
   it('Has a Side Bar hamburger button', function () {
-    cy.wait(100)
+    cy.wait(200)
     cy.get('.menu-toggle').should('exist').and('be.visible')
   })
 
