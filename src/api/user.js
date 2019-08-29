@@ -13,9 +13,9 @@ export async function logout() {
   window.location.pathname = 'login'
 }
 
-export function changeUserDetails(formData) {
+export function changeUserDetails(userId, formData) {
   console.log(formData)
-  return Vue.axios.post('api/frames', formData, {
+  return Vue.axios.post(`api/user/${userId}`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data'
     }

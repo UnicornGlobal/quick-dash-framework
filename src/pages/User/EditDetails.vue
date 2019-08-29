@@ -85,8 +85,12 @@
         }
 
         const formData = new FormData()
+        formData.append('firstName', this.user.first_name)
+        formData.append('lastName', this.user.last_name)
+        formData.append('mobile', this.user.mobile)
+        console.log(formData)
         const vm = this
-        return changeUserDetails(formData)
+        return changeUserDetails(this.user._id, formData)
           .then(res => {
             vm.$toaster.addToast({
               type: 'success',
