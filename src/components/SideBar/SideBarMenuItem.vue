@@ -125,26 +125,28 @@
       align-items: center;
       border-bottom: 1px solid $line;
       svg {
-        height: 15px;
-        width: 15px;
-        margin-right: 0.5em;
-        fill: $icons;
-        stroke: $icons;
-        margin-right: 10px;
+        height: $sidebar_icon_size;
+        width: $sidebar_icon_size;
+        fill: $sidebar_icon_colour;
+        stroke: $sidebar_icon_colour;
+        margin-right: $sidebar_icon_size;
       }
       &.router-link-exact-active {
-        color: $black;
+        color: $sidebar_active_text_colour;
         svg {
-          fill: $icons;
-          stroke: $icons;
+          fill: $sidebar_active_icon_colour;
+          stroke: $sidebar_active_icon_colour;
+        }
+        span {
+          font-family: $sidebar_active_text_font;
         }
       }
       &:hover {
         background: $light-hover;
-        color: $black;
+        color: $sidebar_active_text_colour;
         svg {
-          fill: $icons;
-          stroke: $icons;
+          fill: $sidebar_active_icon_colour;
+          stroke: $sidebar_active_icon_colour;
         }
       }
       &.toggle .toggle-icon {
