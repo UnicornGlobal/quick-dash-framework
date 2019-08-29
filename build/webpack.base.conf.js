@@ -4,6 +4,7 @@ const utils = require('./utils')
 const config = require('../config')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const vueLoaderConfig = require('./vue-loader.conf')
+const CopyPlugin = require('copy-webpack-plugin');
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -31,6 +32,9 @@ module.exports = {
     }
   },
   plugins: [
+    new CopyPlugin([
+      { from: 'src/assets/fonts', to: 'fonts' },
+    ]),
     new VueLoaderPlugin()
   ],
   module: {
