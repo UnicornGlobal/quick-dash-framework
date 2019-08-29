@@ -44,7 +44,7 @@ const reserved = [
  * ~/ represents the host application `src` directory
  * @/ represents this frameworks `src` directory
  */
-async function getCustomRoutes() {
+async function getCustomRoutes(user) {
   let custom = false
   let result = []
   try {
@@ -62,11 +62,21 @@ async function getCustomRoutes() {
       }
 
       console.log('Found custom routes: ', name)
-      const value = custom(key).default
-      console.log('val', value)
+
+      // Filter out any routes that require a role that this
+      // user does not have
+      let value = custom(key).default
+      for (let i = 0; i < value.length; i++) {
+        if (value[i].role) {
+          if (!userHasRole(user, value[i].role)) {
+            value.splice(i, 1)
+          }
+        }
+      }
+
       result = [...result, ...value]
     })
-    console.log(result)
+
     return result
   } catch (e) {
     console.error('Application level `router` folder is missing')
@@ -75,8 +85,12 @@ async function getCustomRoutes() {
 }
 
 export async function loadRoutes(user) {
-  const customRoutes = await getCustomRoutes()
+  const customRoutes = await getCustomRoutes(user)
   let routes = [...userRoutes, ...customRoutes]
+
+  for (const role of user.roles) {
+    console.log(role.name)
+  }
 
   /**
    * If the user is an admin then we need to add the admin specific
