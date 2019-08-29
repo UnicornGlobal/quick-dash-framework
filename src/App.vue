@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
     <div id="app-component" v-if="loaded">
+      <toaster></toaster>
       <transition :name="transitionStyle" v-if="enableSideBar">
         <side-bar class="side-bar"
           v-show="showSideBar"
@@ -24,13 +25,17 @@
   import SideBar from '@/components/SideBar/SideBar'
   import TopNav from '@/components/TopNav/TopNav'
   import Loader from '@/components/Loader'
+  import Toaster from '@unicorns/toaster'
 
   export default {
     name: 'app',
     components: {
       SideBar,
       TopNav,
-      Loader
+      Loader,
+      Toaster
+    },
+    created() {
     },
     computed: {
       user() {
@@ -163,7 +168,7 @@
   }
 
   .content-area {
-    padding: 1em 2em;
+    padding: 1em 1.5em;
     overflow-y: auto;
     flex: 1;
     overflow-x: hidden;

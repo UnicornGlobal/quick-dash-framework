@@ -12,3 +12,12 @@ export async function logout() {
   await localStorage.clear()
   window.location.pathname = 'login'
 }
+
+export function changeUserDetails(formData) {
+  console.log(formData)
+  return Vue.axios.post('api/frames', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+}

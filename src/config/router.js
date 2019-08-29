@@ -5,7 +5,7 @@ export default {
   },
   account: {
     enabled: true,
-    component: require('@/pages/User/Details').default
+    component: require('@/pages/User/EditDetails').default
   },
   admin: {
     enabled: false

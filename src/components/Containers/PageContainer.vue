@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    <h1>{{title}}</h1>
+    <h1 v-if="title">{{title}}</h1>
     <slot></slot>
   </div>
 </template>
@@ -16,7 +16,7 @@
     props: {
       title: {
         type: String,
-        required: true
+        required: false
       }
     }
   }
