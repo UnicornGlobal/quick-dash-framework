@@ -84,23 +84,21 @@
           return false
         }
 
-        const formData = new FormData()
-        formData.append('firstName', this.user.first_name)
-        formData.append('lastName', this.user.last_name)
-        formData.append('mobile', this.user.mobile)
-        console.log(formData)
         const vm = this
-        return changeUserDetails(this.user._id, formData)
+        return changeUserDetails(this.user._id, {
+          'firstName': this.user.first_name,
+          'lastName': this.user.last_name,
+          'mobile': this.user.mobile
+        })
           .then(res => {
             vm.$toaster.addToast({
               type: 'success',
               title: 'Success',
               message: 'User was successfully added.'
             })
-            this.reset()
-            this.$router.back()
           })
           .catch(e => {
+            console.log(e)
             vm.$toaster.addToast({
               type: 'error',
               title: 'Error',
