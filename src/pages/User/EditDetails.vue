@@ -35,7 +35,6 @@
   }
 
   .edit-section {
-    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -94,7 +93,7 @@
             vm.$toaster.addToast({
               type: 'success',
               title: 'Success',
-              message: 'User was successfully added.'
+              message: 'User was successfully updated.'
             })
           })
           .catch(e => {

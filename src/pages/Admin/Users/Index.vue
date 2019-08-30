@@ -136,7 +136,7 @@
       users() {
         const users = this.$store.getters['admin/users']
         if (users) {
-          return users.map(user => ({
+          var ret = users.map(user => ({
             id: user._id,
             username: user.username,
             first_name: user.first_name,
@@ -146,6 +146,8 @@
             is_verified: user.is_verified,
             confirmed: user.confirmed
           }))
+          console.log(ret)
+          return ret
         }
       }
     }

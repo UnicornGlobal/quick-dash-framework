@@ -92,6 +92,7 @@ async function getCustomRoutes(user, homeRoutes) {
 
     return [...homeRoutes, ...result]
   } catch (e) {
+    console.log(e)
     console.error('Application level `router` folder is missing')
     return []
   }
@@ -100,7 +101,6 @@ async function getCustomRoutes(user, homeRoutes) {
 export async function loadRoutes(user) {
   const customRoutes = await getCustomRoutes(user, homeRoutes)
   let routes = [...customRoutes]
-  console.log(routes,'zzzz')
 
   /**
    * If the user is an admin then we need to add the admin specific

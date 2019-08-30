@@ -29,7 +29,7 @@ input:not([type=checkbox]):not([type=radio]), select, textarea {
   padding-right: 10px;
 
   &::placeholder {
-    color: $primary;
+    color: $primary-text;
   }
   &:focus {
     border-color: $accent;

@@ -95,10 +95,6 @@
     background-color: $light-bg;
     padding-left: 2em;
   }
-
-  .intro {
-    max-width: 75%;
-  }
 </style>
 
 <script>
