@@ -65,10 +65,12 @@ async function getCustomRoutes(user, homeRoutes) {
       if (name === 'home') {
         console.log('Custom home route, overriding')
         let override = custom(key).default
+        console.log([override])
         homeRoutes = override
         // Filter out home routes based on roles
-        for (let i = 0; i < homeRoutes.length; i++) {
+        for (let i = 0; i <= homeRoutes.length; i++) {
           if (homeRoutes[i].role) {
+            console.log(homeRoutes[i])
             if (!userHasRole(user, homeRoutes[i].role)) {
               homeRoutes.splice(i, 1)
             }
@@ -107,6 +109,7 @@ export async function loadRoutes(user) {
    * routes _and_ the admin specific stores into the mix.
    */
   if (userHasRole(user, 'ADMIN')) {
+    console.log('ADMONX');
     routes = [...routes, ...adminRoutes]
     store.registerModule('admin', admin)
   }

@@ -8,42 +8,8 @@
     <div class="signup-form">
       <card class="card">
         <h2>{{ strings.header }}</h2>
-        <form>
-          <div>
-            <label class="required">{{ strings.username_label }}&nbsp;</label>
-            <input v-validate="'required'" v-model="username" name="username" type="text" />
-            <span v-if="errors.has('username')" class="validation-error">{{errors.first('username')}}</span>
-          </div>
-          <div class="password-reset-container">
-            <label class="required">{{ strings.password_label }}&nbsp;</label>
-            <div class="password-box">
-              <input v-validate="'required'" v-model="password" name="password" type="password" />
-              <router-link v-if="!errors.has('password')" :to="{name: 'ResetPassword'}">{{ strings.forgot }}</router-link>
-              <router-link v-if="errors.has('password')" style="padding-right: 60px" :to="{name: 'ResetPassword'}">
-                {{ strings.forgot }}
-              </router-link>
-            </div>
-            <span v-if="errors.has('password')" class="validation-error">{{errors.first('password')}}</span>
-          </div>
-          <div class="signup-button-wrapper">
-            <label>
-            <input
-              type="checkbox"
-              name="rememberMe"
-              v-model="remember"
-              :value="true"
-              :unchecked-value="false"
-            >
-              <span class="label-checkbox">{{ strings.remember_label }}</span>
-            </label>
-            <button @click.prevent="signUp" class="text-uppercase signup-button">
-              <div class="loading" v-if="bSending">
-                <loader fill="#ffffff" width="25px" height="25px"></loader>
-              </div>
-              {{ strings.button }}
-            </button>
-          </div>
-        </form>
+        <sign-me-up :options="signupOptions"></sign-me-up>
+        <form></form>
       </card>
     </div>
   </div>
@@ -51,10 +17,12 @@
 
 <script type="text/javascript">
   import Card from '@/components/Cards/Card.vue'
+  import SignMeUp from '@unicorns/sign-me-up'
 
   export default {
     components: {
-      Card
+      Card,
+      SignMeUp
     },
     data() {
       return {
@@ -62,7 +30,13 @@
         username: '',
         password: '',
         remember: true,
-        bSending: false
+        bSending: false,
+        signupOptions: {
+          title: 'Sign Up',
+          registrationAccessKey: process.env.registrationAccessKey,
+          registrationUrl: process.env.apiUrl + '/register/email',
+          login: '/login'
+        }
       }
     },
     created() {
@@ -196,7 +170,7 @@
     }
 
     .signup-form {
-      height: calc(100vh - 70px);
+      padding: 2rem;
       background-color: $login_background;
       display: flex;
       justify-content: center;
