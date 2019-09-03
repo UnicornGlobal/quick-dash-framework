@@ -19,6 +19,14 @@ export default [
     }
   },
   {
+    name: 'Signup',
+    path: '/signup',
+    component: require('@/pages/Signup.vue').default,
+    beforeEnter(to, from, next) {
+      redirectIfAuthenticated(to, from, next)
+    }
+  },
+  {
     name: 'Confirmed',
     path: '/confirmed',
     async beforeEnter(to, from, next) {
