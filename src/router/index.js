@@ -69,7 +69,7 @@ async function getCustomRoutes(user, homeRoutes) {
         homeRoutes = override
         // Filter out home routes based on roles
         for (let i = 0; i <= homeRoutes.length; i++) {
-          if (homeRoutes[i].role) {
+          if (homeRoutes && homeRoutes[i] && homeRoutes[i].role) {
             console.log(homeRoutes[i])
             if (!userHasRole(user, homeRoutes[i].role)) {
               homeRoutes.splice(i, 1)
