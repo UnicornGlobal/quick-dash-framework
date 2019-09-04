@@ -105,7 +105,7 @@
       justify-content: flex-start;
       text-decoration: none;
       color: $white;
-      background: $primary;
+      background: $accent;
 
       svg {
         width: 25px;
