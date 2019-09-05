@@ -27,7 +27,7 @@
     right: 0;
     z-index: 9999;
     background: $accent;
-    color: $primary;
+    color: $primary-text;
     padding: 0 0 0 0.5em;
     display: flex;
     flex-direction: row;
@@ -38,7 +38,7 @@
       flex-direction: column;
       justify-content: space-evenly;
       padding: 1em;
-      color: $primary;
+      color: $primary-text;
 
       h3 {
         padding: 0;
