@@ -33,7 +33,7 @@ describe('Admin Navigation', function() {
 
     cy.get('.menu-item').contains('Account')
     cy.get('.menu-item').contains('Admin Account')
-    cy.get('.menu-item').contains('Home')
+    cy.get('.menu-item').contains('Dashboard')
   })
 
   it('Has correct User Profile box', function() {

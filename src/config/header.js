@@ -12,6 +12,6 @@ export default {
       return user.roles[1].name
     }
 
-    return user.roles[0]
+    return user.roles[0].name
   }
 }
