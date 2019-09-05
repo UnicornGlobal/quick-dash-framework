@@ -18,7 +18,7 @@ describe('Admin Tablet Navigation', function() {
   })
 
   it('Has a hidden Side Bar', function () {
-    cy.wait(500)
+    cy.wait(4000)
     cy.get('.shadow').should('exist').and('not.be.visible')
   })
 
