@@ -14,15 +14,16 @@ describe('Admin Tablet Navigation', function() {
     cy.loginXhr('admin', 'admin')
     cy.viewport('ipad-mini')
     cy.visit('/')
+    cy.wait(50)
   })
 
   it('Has a hidden Side Bar', function () {
-    cy.wait(200)
+    cy.wait(500)
     cy.get('.shadow').should('exist').and('not.be.visible')
   })
 
   it('Has a Side Bar hamburger button', function () {
-    cy.wait(200)
+    cy.wait(500)
     cy.get('.menu-toggle').should('exist').and('be.visible')
   })
 
