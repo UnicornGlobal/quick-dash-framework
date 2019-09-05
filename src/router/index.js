@@ -27,7 +27,7 @@ const reserved = [
   'admin',
   'auth',
   'base',
-  'index',
+  'index'
 ]
 
 /**
@@ -64,7 +64,7 @@ async function getCustomRoutes(user, homeRoutes) {
       // This allows for custom home pages based on role
       if (name === 'home') {
         console.log('Custom home route, overriding')
-        let override = custom(key).default
+        const override = custom(key).default
         console.log([override])
         homeRoutes = override
         // Filter out home routes based on roles
@@ -80,7 +80,7 @@ async function getCustomRoutes(user, homeRoutes) {
 
       // Filter out any routes that require a role that this
       // user does not have
-      let value = custom(key).default
+      const value = custom(key).default
       for (let i = 0; i < value.length; i++) {
         if (value[i].role) {
           if (!userHasRole(user, value[i].role)) {
@@ -109,7 +109,7 @@ export async function loadRoutes(user) {
    * routes _and_ the admin specific stores into the mix.
    */
   if (userHasRole(user, 'ADMIN')) {
-    console.log('ADMONX');
+    console.log('ADMONX')
     routes = [...routes, ...adminRoutes]
     store.registerModule('admin', admin)
   }

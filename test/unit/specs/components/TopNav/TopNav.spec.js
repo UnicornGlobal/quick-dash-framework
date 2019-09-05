@@ -6,7 +6,7 @@ import store from '@/store'
 
 const localVue = createLocalVue()
 
-let mocks = {
+const mocks = {
   $auth: {
     user() {
       return {

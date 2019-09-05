@@ -6,7 +6,7 @@ import sinon from 'sinon'
 describe('roles.js', () => {
   describe('loadAndStoreAllRoles', () => {
     it('loads all roles', () => {
-      let roles = [{_id: '1', name: 'Role1'}]
+      const roles = [{_id: '1', name: 'Role1'}]
       Vue.axios = {
         get: sinon.stub().resolves({data: roles})
       }
@@ -20,7 +20,7 @@ describe('roles.js', () => {
 
   describe('loadUserRoles', () => {
     it('it loads user roles', () => {
-      let roles = [{_id: '1', name: 'Role2'}]
+      const roles = [{_id: '1', name: 'Role2'}]
       Vue.axios = {
         get: sinon.stub().resolves({data: roles})
       }

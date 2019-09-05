@@ -70,24 +70,24 @@
       PageSection
     },
     // data() {
-      // return {
-        // user: {
-          // email: ''
-        // }
-      // }
+    // return {
+    // user: {
+    // email: ''
+    // }
+    // }
     // },
     methods: {
       async save() {
-        let valid = await this.$validator.validateAll()
+        const valid = await this.$validator.validateAll()
         if (!valid) {
           return false
         }
 
         const vm = this
         return changeUserDetails(this.user._id, {
-          'firstName': this.user.first_name,
-          'lastName': this.user.last_name,
-          'mobile': this.user.mobile
+          firstName: this.user.first_name,
+          lastName: this.user.last_name,
+          mobile: this.user.mobile
         })
           .then(res => {
             vm.$toaster.addToast({

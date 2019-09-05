@@ -6,7 +6,7 @@ export default {
   },
   title: 'Personal Details',
   registrationAccessKey: process.env.registrationAccessKey,
-  registrationUrl: process.env.apiUrl + '/register/email',
+  registrationUrl: `${process.env.apiUrl}/register/email`,
   loginUrl: '/login',
   pages: [
     {

@@ -7,9 +7,9 @@ import Vue from 'vue'
 
 describe('AssignRoleForm', () => {
   it('emits success event', async () => {
-    let localVue = createLocalVue()
+    const localVue = createLocalVue()
 
-    let form = shallowMount(AssignRoleForm, {
+    const form = shallowMount(AssignRoleForm, {
       localVue,
       propsData: {
         user: {_id: '82923232'},
@@ -30,7 +30,7 @@ describe('AssignRoleForm', () => {
 
     form.setData({currentRoleId: 'successroleid'})
 
-    let assignRole = sinon.stub(RolesApi, 'assignRole').resolves({status: 'ok'})
+    const assignRole = sinon.stub(RolesApi, 'assignRole').resolves({status: 'ok'})
 
     await form.vm.assignRole().then((result) => {
       expect(form.emitted()).to.have.key('success')
@@ -40,9 +40,9 @@ describe('AssignRoleForm', () => {
   })
 
   it('emits error event', async () => {
-    let localVue = createLocalVue()
+    const localVue = createLocalVue()
 
-    let form = shallowMount(AssignRoleForm, {
+    const form = shallowMount(AssignRoleForm, {
       localVue,
       propsData: {
         user: {_id: '82923232'},

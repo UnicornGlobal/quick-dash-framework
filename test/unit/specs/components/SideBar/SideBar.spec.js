@@ -3,8 +3,8 @@ import SideBar from '@/components/SideBar/SideBar'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import sinon from 'sinon'
 
-let localVue = createLocalVue()
-let mocks = {
+const localVue = createLocalVue()
+const mocks = {
   $route: {
     name: 'Home',
     label: 'Home',
@@ -32,7 +32,7 @@ describe('SideBar.vue', () => {
   it('accepts menus and root-path props', () => {
     expect(SideBar.props).to.be.an('object')
 
-    let menu = {
+    const menu = {
       name: 'Home',
       path: '',
       meta: {
@@ -40,11 +40,11 @@ describe('SideBar.vue', () => {
       }
     }
 
-    let sidebar = shallowMount(SideBar, {
+    const sidebar = shallowMount(SideBar, {
       localVue,
       propsData: {
         user: {},
-        menus: [ menu ],
+        menus: [menu],
         rootPath: '/test'
       },
       stubs: ['router-link'],
@@ -57,7 +57,7 @@ describe('SideBar.vue', () => {
   })
 
   it('loads main menu routes', () => {
-    let sidebar = shallowMount(SideBar, {
+    const sidebar = shallowMount(SideBar, {
       localVue,
       propsData: {
         user: {},
@@ -85,7 +85,7 @@ describe('SideBar.vue', () => {
   })
 
   it('logs out', () => {
-    let sidebar = shallowMount(SideBar, {
+    const sidebar = shallowMount(SideBar, {
       localVue,
       propsData: {
         user: {},

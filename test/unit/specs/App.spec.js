@@ -8,7 +8,7 @@ const localVue = createLocalVue()
 localVue.use(Router)
 localVue.use(Vuex)
 
-let mocks = {
+const mocks = {
   $store: new Vuex.Store({
     getters: {
       loading: () => false,
@@ -77,7 +77,7 @@ describe('App.vue', () => {
   })
 
   it('Renders when loaded and authenticated', () => {
-    let app = shallowMount(App, {
+    const app = shallowMount(App, {
       localVue,
       mocks
     })
@@ -88,9 +88,9 @@ describe('App.vue', () => {
   })
 
   it('closes side bar', async () => {
-    let app = shallowMount(App, {
+    const app = shallowMount(App, {
       localVue,
-      stubs: [ 'router-view' ],
+      stubs: ['router-view'],
       mocks
     })
 
@@ -101,9 +101,9 @@ describe('App.vue', () => {
   })
 
   it('initializes side bar menu', () => {
-    let app = shallowMount(App, {
+    const app = shallowMount(App, {
       localVue,
-      stubs: [ 'router-view' ],
+      stubs: ['router-view'],
       mocks
     })
 

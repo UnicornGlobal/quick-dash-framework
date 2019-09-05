@@ -6,7 +6,7 @@ import store from '@/store'
 
 const localVue = createLocalVue()
 
-let mocks = {
+const mocks = {
   $auth: {
     user() {
       return {
@@ -53,7 +53,7 @@ describe('UserMenu.vue', () => {
       }
     })
     expect(wrapper.vm.logout).to.be.a('function')
-    let logout = sinon.stub(wrapper.vm, 'logout').resolves(true)
+    const logout = sinon.stub(wrapper.vm, 'logout').resolves(true)
     await wrapper.vm.logout().then((result) => {
       expect(result).to.equal(true)
       logout.restore()
@@ -61,7 +61,7 @@ describe('UserMenu.vue', () => {
   })
 
   it('logs out', () => {
-    let wrapper = shallowMount(UserMenu, {
+    const wrapper = shallowMount(UserMenu, {
       localVue,
       mocks,
       stubs: ['router-link'],

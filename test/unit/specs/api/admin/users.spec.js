@@ -6,7 +6,7 @@ import sinon from 'sinon'
 describe('users.js', () => {
   describe('loadAllUsers', () => {
     it('loads all users', async () => {
-      let users = [{ id: '1', name: 'Daniel' }]
+      const users = [{ id: '1', name: 'Daniel' }]
       Vue.axios = {
         get: sinon.stub().resolves({data: {users}})
       }

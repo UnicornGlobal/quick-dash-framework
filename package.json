@@ -17,8 +17,9 @@
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "cypress": "$(npm bin)/cypress run",
     "test": "npm run unit && npm run cypress",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "eslint": "node_modules/bin/eslint ."
+    "lint": "eslint --ext .js,.vue src test/unit/specs",
+    "lint_fix": "eslint --fix --ext .js,.vue src test/unit/specs",
+    "eslint": "eslint ."
   },
   "repository": {
     "type": "git",
