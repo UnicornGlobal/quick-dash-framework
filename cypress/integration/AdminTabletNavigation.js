@@ -17,13 +17,22 @@ describe('Admin Tablet Navigation', function() {
     cy.wait(50)
   })
 
+  it('Has a hidden Side Bar', function () {
+    cy.get('.shadow', {
+      timeout: 20000
+    }).should('exist').and('not.be.visible')
+  })
+
   it('Has a Side Bar hamburger button', function () {
-    cy.wait(500)
-    cy.get('.menu-toggle').should('exist').and('be.visible')
+    cy.get('.menu-toggle', {
+      timeout: 20000
+    }).should('exist').and('be.visible')
   })
 
   it('Opens and closes the Side Bar', function () {
-    cy.get('.menu-toggle').click()
+    cy.get('.menu-toggle', {
+      timeout: 10000
+    }).click()
     cy.get('.shadow').should('exist').and('be.visible')
     cy.get('.shadow').click({force:true})
     cy.get('.shadow').should('exist').and('not.be.visible')
