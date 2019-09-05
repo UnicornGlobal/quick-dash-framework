@@ -19,7 +19,7 @@ describe('Admin Tablet Navigation', function() {
 
   it('Opens and closes the Side Bar', function () {
     cy.get('.menu-toggle', {
-      timeout: 10000
+      timeout: 60000
     }).click()
     cy.get('.shadow').should('exist').and('be.visible')
     cy.get('.shadow').click({force:true})
