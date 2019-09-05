@@ -14,6 +14,5 @@ export async function logout() {
 }
 
 export function changeUserDetails(userId, formData) {
-  console.log(formData)
   return Vue.axios.post(`api/users/${userId}`, formData)
 }
