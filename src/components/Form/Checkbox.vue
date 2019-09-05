@@ -51,7 +51,7 @@
     width: 17px;
     height: 17px;
     background-color: $white;
-    border: solid 1px $grey-1;
+    border: solid 1px $primary;
     &.checked {
       background-position: center;
       background-size: contain;

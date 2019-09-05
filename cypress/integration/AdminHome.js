@@ -28,6 +28,6 @@ describe('Admin Home', function() {
       .should('exist')
       .and('have.class', 'router-link-active')
       .and('have.class', 'router-link-exact-active')
-      .contains('Home')
+      .contains('Dashboard')
   })
 })

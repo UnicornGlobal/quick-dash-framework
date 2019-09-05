@@ -72,8 +72,10 @@ describe('App.vue', () => {
   })
 
   it('Includes a SideBar, TopNav, Loader and Toast components', () => {
-    const val = App.components
-    expect(val).to.have.all.keys('SideBar', 'TopNav', 'Loader')
+    // We have to use let because the value mutates behind the scenes
+    // eslint-disable-next-line prefer-const
+    let val = App.components
+    expect(val).to.have.all.keys('SideBar', 'TopNav', 'Loader', 'Toaster')
   })
 
   it('Renders when loaded and authenticated', () => {
