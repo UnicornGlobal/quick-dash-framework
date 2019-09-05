@@ -1,20 +1,19 @@
 describe('Admin Tablet Navigation', function() {
   before(function () {
     cy.reload(true)
-    cy.loginXhr('admin', 'admin')
-    cy.server()
-    let url = Cypress.env('apiUrl')
-    cy.visit('/')
   })
 
   // Stub the thumbnail responses
   beforeEach(function () {
+    cy.viewport('ipad-mini')
     cy.server()
     let url = Cypress.env('apiUrl')
     cy.loginXhr('admin', 'admin')
-    cy.viewport('ipad-mini')
-    cy.visit('/')
-    cy.wait(50)
+    cy.location('href').then((address) => {
+      if (address !== `${Cypress.config().baseUrl}/`) {
+        cy.visit('/')
+      }
+    })
   })
 
   it('Opens and closes the Side Bar', function () {
