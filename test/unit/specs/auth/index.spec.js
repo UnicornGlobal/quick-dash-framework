@@ -4,7 +4,7 @@ import { createLocalVue } from '@vue/test-utils'
 import router from '@/router'
 import { userHasRole } from '@/auth'
 
-let localVue = createLocalVue()
+const localVue = createLocalVue()
 localVue.router = router
 if (Vue.auth) {
   Vue.auth.check = () => {

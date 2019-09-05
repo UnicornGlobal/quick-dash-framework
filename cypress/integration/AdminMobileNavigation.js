@@ -76,7 +76,7 @@ describe('Admin Mobile Navigation', function() {
       .should('have.class', 'active')
       .and('be.visible')
 
-    cy.get('.menu-item').contains('Home').and('be.visible')
+    cy.get('.menu-item').contains('Dashboard').and('be.visible')
     cy.get('.menu-item').contains('Account').and('be.visible')
     cy.get('.menu-item').contains('Admin Account').and('be.visible')
     cy.get('.shadow').click({force:true})

@@ -8,7 +8,7 @@ const localVue = createLocalVue()
 localVue.use(Router)
 localVue.use(Vuex)
 
-let mocks = {
+const mocks = {
   $store: new Vuex.Store({
     getters: {
       loading: () => false,
@@ -72,12 +72,14 @@ describe('App.vue', () => {
   })
 
   it('Includes a SideBar, TopNav, Loader and Toast components', () => {
-    const val = App.components
-    expect(val).to.have.all.keys('SideBar', 'TopNav', 'Loader')
+    // We have to use let because the value mutates behind the scenes
+    // eslint-disable-next-line prefer-const
+    let val = App.components
+    expect(val).to.have.all.keys('SideBar', 'TopNav', 'Loader', 'Toaster')
   })
 
   it('Renders when loaded and authenticated', () => {
-    let app = shallowMount(App, {
+    const app = shallowMount(App, {
       localVue,
       mocks
     })
@@ -88,9 +90,9 @@ describe('App.vue', () => {
   })
 
   it('closes side bar', async () => {
-    let app = shallowMount(App, {
+    const app = shallowMount(App, {
       localVue,
-      stubs: [ 'router-view' ],
+      stubs: ['router-view'],
       mocks
     })
 
@@ -101,9 +103,9 @@ describe('App.vue', () => {
   })
 
   it('initializes side bar menu', () => {
-    let app = shallowMount(App, {
+    const app = shallowMount(App, {
       localVue,
-      stubs: [ 'router-view' ],
+      stubs: ['router-view'],
       mocks
     })
 

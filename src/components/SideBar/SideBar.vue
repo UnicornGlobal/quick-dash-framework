@@ -1,7 +1,7 @@
 <template>
   <div class="menu-element">
     <router-link class="logo" to="/" v-if="showLogo">
-      <quick></quick>&nbsp;Quick Dash
+      <component v-if="showLogo" :is="logo"></component>
     </router-link>
     <user-profile v-if="showUserProfile" :user="user"></user-profile>
     <div class="menu-items">
@@ -56,6 +56,13 @@
 
         return false
       },
+      logo() {
+        if (this.$store.getters['app/config'].sidebar.logo) {
+          return this.$store.getters['app/config'].sidebar.logo()
+        }
+
+        return false
+      },
       logoutStyle() {
         if (this.$store.getters['app/config'].sidebar.logout) {
           return 'display: block'
@@ -98,7 +105,7 @@
       justify-content: flex-start;
       text-decoration: none;
       color: $white;
-      background: $primary;
+      background: $accent;
 
       svg {
         width: 25px;
@@ -128,6 +135,7 @@
   .menu-items {
     padding-bottom: 3em;
     margin-bottom: auto;
+    margin-top: $sidebar_menu_padding_top;
   }
 
   .logout-link-menu-item {
@@ -142,10 +150,10 @@
     color: $white;
     font-size: 22px;
     text-decoration: none;
-    padding-left: 0;
-    background-color: $primary;
+    background-color: $header_background;
     height: 60px;
-    padding-left: 0.5em;
+    padding: 1em 0.75em;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 
     svg {
       height: 40px;

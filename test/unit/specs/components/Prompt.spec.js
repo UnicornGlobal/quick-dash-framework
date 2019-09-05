@@ -10,8 +10,8 @@ describe('Prompt.vue', () => {
   })
 
   it('it cancels when cancel button is clicked', () => {
-    let localVue = createLocalVue()
-    let options = {
+    const localVue = createLocalVue()
+    const options = {
       mocks: {
         errors: new ErrorBag(),
         $http: {
@@ -21,8 +21,8 @@ describe('Prompt.vue', () => {
       localVue
     }
 
-    let prompt = shallowMount(Prompt, options)
-    let cancel = sinon.spy(prompt.vm, 'cancel')
+    const prompt = shallowMount(Prompt, options)
+    const cancel = sinon.spy(prompt.vm, 'cancel')
     prompt.setData({show: true})
     prompt.find('button.cancel-button').trigger('click')
     expect(cancel.called).to.equal(true)
@@ -31,8 +31,8 @@ describe('Prompt.vue', () => {
   })
 
   it('it calls ok when ok button is clicked', () => {
-    let localVue = createLocalVue()
-    let options = {
+    const localVue = createLocalVue()
+    const options = {
       mocks: {
         errors: new ErrorBag(),
         $http: {
@@ -42,16 +42,16 @@ describe('Prompt.vue', () => {
       localVue
     }
 
-    let prompt = shallowMount(Prompt, options)
-    let ok = sinon.stub(prompt.vm, 'ok')
+    const prompt = shallowMount(Prompt, options)
+    const ok = sinon.stub(prompt.vm, 'ok')
     prompt.setData({show: true})
     prompt.find('button.ok-button').trigger('click')
     expect(ok.called).to.equal(true)
   })
 
   it('it sends request when url is set', () => {
-    let localVue = createLocalVue()
-    let options = {
+    const localVue = createLocalVue()
+    const options = {
       mocks: {
         errors: new ErrorBag(),
         $http: {
@@ -61,8 +61,8 @@ describe('Prompt.vue', () => {
       localVue
     }
 
-    let prompt = shallowMount(Prompt, options)
-    let doAction = sinon.stub(prompt.vm, 'doAction').resolves({})
+    const prompt = shallowMount(Prompt, options)
+    const doAction = sinon.stub(prompt.vm, 'doAction').resolves({})
     prompt.setProps({url: 'api/test'})
     prompt.setData({show: true})
     prompt.vm.ok()
@@ -77,8 +77,8 @@ describe('Prompt.vue', () => {
   })
 
   it('performs get requests', () => {
-    let localVue = createLocalVue()
-    let options = {
+    const localVue = createLocalVue()
+    const options = {
       mocks: {
         errors: new ErrorBag(),
         $http: {
@@ -94,14 +94,14 @@ describe('Prompt.vue', () => {
       localVue
     }
 
-    let prompt = shallowMount(Prompt, options)
+    const prompt = shallowMount(Prompt, options)
     prompt.vm.ok()
     expect(prompt.vm.$http.get.calledWith('api/test', {params: {id: '1'}})).to.equal(true)
   })
 
   it('emits success event', () => {
-    let localVue = createLocalVue()
-    let options = {
+    const localVue = createLocalVue()
+    const options = {
       mocks: {
         errors: new ErrorBag(),
         $http: {
@@ -117,7 +117,7 @@ describe('Prompt.vue', () => {
       localVue
     }
 
-    let prompt = shallowMount(Prompt, options)
+    const prompt = shallowMount(Prompt, options)
     return prompt.vm.doAction()
       .then(() => {
         expect(prompt.emitted()).to.have.key('success')
@@ -125,10 +125,10 @@ describe('Prompt.vue', () => {
   })
 
   it('emits failed event', () => {
-    let localVue = createLocalVue()
+    const localVue = createLocalVue()
     localVue.prototype.$eventBus = new Vue()
     const spy = sinon.spy(localVue.prototype.$eventBus, '$emit')
-    let options = {
+    const options = {
       mocks: {
         errors: new ErrorBag(),
         $http: {
@@ -143,7 +143,7 @@ describe('Prompt.vue', () => {
       localVue
     }
 
-    let prompt = shallowMount(Prompt, options)
+    const prompt = shallowMount(Prompt, options)
     return prompt.vm.doAction()
       .then(() => {
         expect(spy.called).to.equal(true)

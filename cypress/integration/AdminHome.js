@@ -16,7 +16,7 @@ describe('Admin Home', function() {
 
   it('Logs in behind the scenes', function() {
     cy.url().should('not.include', '/login')
-    cy.get('.logo').contains('Quick Dash')
+    cy.get('.logo').should('exist')
   })
 
   it('Has a Sidebar', function () {
@@ -28,6 +28,6 @@ describe('Admin Home', function() {
       .should('exist')
       .and('have.class', 'router-link-active')
       .and('have.class', 'router-link-exact-active')
-      .contains('Home')
+      .contains('Dashboard')
   })
 })

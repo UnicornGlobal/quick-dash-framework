@@ -26,8 +26,8 @@
     left: 0;
     right: 0;
     z-index: 9999;
-    background: $primary;
-    color: $secondary-text;
+    background: $accent;
+    color: $primary-text;
     padding: 0 0 0 0.5em;
     display: flex;
     flex-direction: row;
@@ -38,10 +38,13 @@
       flex-direction: column;
       justify-content: space-evenly;
       padding: 1em;
+      color: $primary-text;
 
       h3 {
         padding: 0;
         margin: 0;
+        color: $primary;
+        font-weight: bold;
       }
 
       p {

@@ -12,15 +12,10 @@
   .section-details {
     flex: 1;
     @media (max-width: 555px) {
-      display: flex;
-      flex-direction: column;
       align-items: center;
     }
 
     @media (max-width: 1024px) and (min-width: 556px) {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
       align-items: center;
       margin: 0 0.5em;
     }

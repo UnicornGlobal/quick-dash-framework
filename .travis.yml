@@ -27,7 +27,6 @@ before_install:
   - git clone "https://github.com/UnicornGlobal/strong-lumen" --branch=master ../strong-lumen
   - cd ../strong-lumen
   - cp .env.example .env
-  - cat .env
   - composer self-update
   - composer validate --no-check-all --ansi
   - composer install -n

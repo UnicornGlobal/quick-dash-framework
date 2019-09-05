@@ -17,7 +17,7 @@ describe('Admin All Users', () => {
 
     store.commit('admin/users', [])
 
-    let wrapper = shallowMount(UsersPage, {
+    const wrapper = shallowMount(UsersPage, {
       localVue,
       methods: {
         loadUsers

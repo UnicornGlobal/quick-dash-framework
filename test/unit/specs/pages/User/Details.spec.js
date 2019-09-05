@@ -9,12 +9,12 @@ describe('Details.vue', () => {
   })
 
   it('gets an empty User', async () => {
-    let localVue = createLocalVue()
-    let mocks = {
+    const localVue = createLocalVue()
+    const mocks = {
       $store: store
     }
 
-    let wrapper = shallowMount(Details, {
+    const wrapper = shallowMount(Details, {
       localVue,
       mocks
     })

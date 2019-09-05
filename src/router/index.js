@@ -5,8 +5,11 @@ import store from '@/store'
 import admin from '@/store/admin'
 import adminRoutes from '@/router/admin'
 import authRoutes from '@/router/auth'
-import userRoutes from '@/router/user'
+import homeRoutes from '@/router/home'
 import appRoute from '@/router/base'
+import config from '@/config'
+import icons from '@/icons'
+import strings from '@/i18n/en/sidebar'
 
 import { userHasRole } from '@/auth'
 
@@ -24,8 +27,7 @@ const reserved = [
   'admin',
   'auth',
   'base',
-  'index',
-  'user'
+  'index'
 ]
 
 /**
@@ -41,7 +43,7 @@ const reserved = [
  * ~/ represents the host application `src` directory
  * @/ represents this frameworks `src` directory
  */
-async function getCustomRoutes() {
+async function getCustomRoutes(user, homeRoutes) {
   let custom = false
   let result = []
   try {
@@ -58,31 +60,75 @@ async function getCustomRoutes() {
         return
       }
 
-      console.log('Found custom routes: ', name)
+      // Override home route if available
+      // This allows for custom home pages based on role
+      if (name === 'home') {
+        console.log('Custom home route, overriding')
+        const override = custom(key).default
+        console.log([override])
+        homeRoutes = override
+        // Filter out home routes based on roles
+        for (let i = 0; i <= homeRoutes.length; i++) {
+          if (homeRoutes && homeRoutes[i] && homeRoutes[i].role) {
+            console.log(homeRoutes[i])
+            if (!userHasRole(user, homeRoutes[i].role)) {
+              homeRoutes.splice(i, 1)
+            }
+          }
+        }
+      }
+
+      // Filter out any routes that require a role that this
+      // user does not have
       const value = custom(key).default
-      console.log('val', value)
+      for (let i = 0; i < value.length; i++) {
+        if (value[i].role) {
+          if (!userHasRole(user, value[i].role)) {
+            value.splice(i, 1)
+          }
+        }
+      }
+
       result = [...result, ...value]
     })
-    console.log(result)
-    return result
+
+    return [...homeRoutes, ...result]
   } catch (e) {
+    console.log(e)
     console.error('Application level `router` folder is missing')
     return []
   }
 }
 
 export async function loadRoutes(user) {
-  const customRoutes = await getCustomRoutes()
-  let routes = [...userRoutes, ...customRoutes]
+  const customRoutes = await getCustomRoutes(user, homeRoutes)
+  let routes = [...customRoutes]
 
   /**
    * If the user is an admin then we need to add the admin specific
    * routes _and_ the admin specific stores into the mix.
    */
   if (userHasRole(user, 'ADMIN')) {
+    console.log('ADMONX')
     routes = [...routes, ...adminRoutes]
     store.registerModule('admin', admin)
   }
+
+  /**
+   * Load the account page link as the last item
+   */
+  const account = config.router.account.enabled ? [{
+    name: 'Account',
+    path: '/account',
+    component: config.router.account.component,
+    meta: {
+      main: true,
+      label: strings.account,
+      icon: icons.account
+    }
+  }] : []
+
+  routes = [...routes, ...account]
 
   // Unique
   routes = await [...new Set(routes)]

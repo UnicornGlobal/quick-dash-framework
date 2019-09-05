@@ -3,7 +3,7 @@
     <div class="header" :style="headerStyle">
       <div class="menu-toggle">
         <div @click.prevent="toggleSideBar()">
-          <hamburger></hamburger>
+          <hamburger class="hamburger"></hamburger>
         </div>
       </div>
       <router-link class="logo" to="/" v-if="showLogo">
@@ -25,6 +25,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    background: $header_background;
     @media (max-width: 1025px) {
       display: block;
     }
@@ -47,7 +48,7 @@
     svg {
       width: 30px;
       height: 30px;
-      fill: $white;
+      fill: $sidebar_hamburger_colour;
     }
   }
 
@@ -56,7 +57,7 @@
     padding: 0 1em;
     display: flex;
     align-items: center;
-    background-color: $primary;
+    background-color: $header_background;
     height: 61px;
     @media (max-width: 1025px) {
       padding-left: 1em;

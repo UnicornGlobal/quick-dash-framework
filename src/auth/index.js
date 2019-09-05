@@ -96,7 +96,7 @@ export default {
     })
 
     Vue.router.beforeEach(function (to, from, next) {
-      const excluded = ['Login', 'ResetPassword']
+      const excluded = ['Login', 'ResetPassword', 'Signup']
       if (excluded.includes(to.name) || Vue.auth.check()) {
         next()
       } else {

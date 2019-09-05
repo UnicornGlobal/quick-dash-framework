@@ -114,7 +114,7 @@ describe('Make a User an Admin', function() {
       .should('exist')
       .and('have.class', 'router-link-active')
       .and('have.class', 'router-link-exact-active')
-      .contains('Home')
+      .contains('Dashboard')
   })
 
   it('Successfully visits the Users page', function () {

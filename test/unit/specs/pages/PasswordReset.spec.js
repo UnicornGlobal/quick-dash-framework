@@ -7,7 +7,7 @@ import store from '@/store'
 import axios from 'axios'
 import Vue from 'vue'
 
-let mocks = {
+const mocks = {
   $http: axios,
   $auth: {
     check: sinon.stub().returns(true),
@@ -31,7 +31,7 @@ describe('PasswordReset.vue', () => {
   })
 
   it('has three methods', () => {
-    let localVue = createLocalVue()
+    const localVue = createLocalVue()
     const wrapper = shallowMount(PasswordReset, {localVue, mocks})
 
     expect(wrapper.vm.submit).to.be.a('function')
@@ -40,14 +40,14 @@ describe('PasswordReset.vue', () => {
   })
 
   it('submits successful request', async () => {
-    let localVue = createLocalVue()
+    const localVue = createLocalVue()
     localVue.prototype.$eventBus = new Vue()
     const wrapper = shallowMount(PasswordReset, {localVue, mocks})
     wrapper.setData({email: 'name@example.com', sent: false})
 
     sinon.stub(wrapper.vm.$validator, 'validateAll').resolves(true)
-    let post = sinon.stub(wrapper.vm.$http, 'post').resolves({data: {success: true}})
-    let sendRequest = sinon.spy(wrapper.vm, 'sendRequest')
+    const post = sinon.stub(wrapper.vm.$http, 'post').resolves({data: {success: true}})
+    const sendRequest = sinon.spy(wrapper.vm, 'sendRequest')
 
     await wrapper.vm.submit().then(() => {
       expect(sendRequest.called).to.equal(true)
@@ -59,14 +59,14 @@ describe('PasswordReset.vue', () => {
   })
 
   it('submits failed request', async () => {
-    let localVue = createLocalVue()
+    const localVue = createLocalVue()
     localVue.prototype.$eventBus = new Vue()
     const wrapper = shallowMount(PasswordReset, {localVue, mocks})
     wrapper.setData({email: 'name@example.com', sent: false})
 
     sinon.stub(wrapper.vm.$validator, 'validateAll').resolves(true)
-    let post = sinon.stub(wrapper.vm.$http, 'post').resolves({data: {success: false}})
-    let sendRequest = sinon.spy(wrapper.vm, 'sendRequest')
+    const post = sinon.stub(wrapper.vm.$http, 'post').resolves({data: {success: false}})
+    const sendRequest = sinon.spy(wrapper.vm, 'sendRequest')
 
     await wrapper.vm.submit().then(() => {
       expect(sendRequest.called).to.equal(true)

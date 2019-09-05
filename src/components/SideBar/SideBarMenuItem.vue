@@ -101,6 +101,7 @@
 
 <style lang="scss">
   .menu-item-label {
+    font-size: $sidebar_text_size;
     flex: 1;
   }
   .highlight {
@@ -109,6 +110,7 @@
     display: flex;
   }
   .menu-item {
+
     &.active {
       background: $light-hover;
       color: $secondary-text;
@@ -116,33 +118,33 @@
     }
     a.router-link {
       flex: 1;
-      padding: 1.5rem 0 1.5rem 1rem;
+      padding: 1.35rem 0 1.35rem 1rem;
       display: flex;
       text-decoration: none;
       color: $primary-text;
       align-items: center;
       border-bottom: 1px solid $line;
       svg {
-        height: 15px;
-        width: 15px;
-        margin-right: 0.5em;
-        fill: $icons;
-        stroke: $icons;
-        margin-right: 10px;
+        height: $sidebar_icon_size;
+        width: $sidebar_icon_size;
+        fill: $sidebar_icon_colour;
+        margin-right: $sidebar_icon_size;
+        margin-left: 0.2rem;
       }
       &.router-link-exact-active {
-        color: $black;
+        color: $sidebar_active_text_colour;
         svg {
-          fill: $icons;
-          stroke: $icons;
+          fill: $sidebar_active_icon_colour;
+        }
+        span {
+          font-family: $sidebar_active_text_font;
         }
       }
       &:hover {
         background: $light-hover;
-        color: $black;
+        color: $sidebar_active_text_colour;
         svg {
-          fill: $icons;
-          stroke: $icons;
+          fill: $sidebar_active_icon_colour;
         }
       }
       &.toggle .toggle-icon {
@@ -158,6 +160,7 @@
     .menu-item-with-children {
       display: flex;
       align-items: center;
+      font-size: $sidebar_text_size;
     }
 
     .sub-menu > .menu-item {
