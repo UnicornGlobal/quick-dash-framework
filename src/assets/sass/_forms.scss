@@ -1,3 +1,19 @@
+$form_input_background: #FFFFFF;
+$form_input_border: $primary;
+$form_input_text_colour: #000000;
+$form_input_width: 340px;
+$form_input_margin: 1rem 0 2rem;
+$form_input_border_colour: $primary;
+$form_input_box_shadow: 0 0 0 0.2rem $primary;
+
+$form_input_placeholder_colour: #999999;
+
+$form_label_colour: #000000;
+$form_label_text_size: 16px;
+$form_label_padding: 2px;
+
+$form_header_colour: $primary;
+
 //BUTTONS
 button, a.button {
   height: 40px;
