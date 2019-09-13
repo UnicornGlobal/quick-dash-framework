@@ -58,7 +58,6 @@
   import FormSection from '@/components/Form/FormSection'
   import FormGroup from '@/components/Form/FormGroup'
   import PageContainer from '@/components/Containers/PageContainer.vue'
-  import PageSection from '@/components/Containers/PageSection.vue'
 
   import { changeUserDetails } from '@/api/user'
 
@@ -66,16 +65,8 @@
     components: {
       FormGroup,
       FormSection,
-      PageContainer,
-      PageSection
+      PageContainer
     },
-    // data() {
-    // return {
-    // user: {
-    // email: ''
-    // }
-    // }
-    // },
     methods: {
       async save() {
         const valid = await this.$validator.validateAll()
