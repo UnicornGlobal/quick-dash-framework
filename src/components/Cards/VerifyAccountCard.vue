@@ -97,7 +97,7 @@
     },
     props: {
       user: {
-        tpye: Object,
+        type: Object,
         required: true
       }
     },
