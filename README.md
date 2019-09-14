@@ -48,3 +48,17 @@ Do not commit secrets, put them in the .env file.
 There are scripts for travis included
 
 Tests are run against the master version of UnicornGlobal/strong-lumen
+
+### Custom Routes vs Static Routes
+
+Load up your custom in-app (authenticated) routes in your ~/router
+folder.
+
+To include "static" routes (ones that do not require authentication
+and which do not load up in the app sidebar) add them to a special
+directory called ~/router/static
+
+Any files placed in ~/router/static will not be loaded into the
+authenticated area of the app.
+
+Examples include terms and conditions pages and contact forms.

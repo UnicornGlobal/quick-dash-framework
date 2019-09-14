@@ -39,7 +39,7 @@ export default {
         // should be shown outside of the "App.vue" component
         const staticRoutes = await loadStaticRoutes()
         if (staticRoutes.length > 0) {
-          await Vue.router.addRoutes([staticRoutes])
+          await Vue.router.addRoutes(staticRoutes)
         }
 
         // 404 Page
