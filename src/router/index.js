@@ -114,7 +114,6 @@ export async function loadStaticRoutes() {
   try {
     staticRoutes = require.context('~/router/static', true, /\.js$/)
     staticRoutes.keys().forEach(function(key) {
-      const name = /\.\/(\S+)\.js/.exec(key)[1]
       const value = staticRoutes(key).default
 
       staticResult = [...staticResult, ...value]
