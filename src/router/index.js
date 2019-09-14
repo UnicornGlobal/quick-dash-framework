@@ -100,6 +100,10 @@ async function getCustomRoutes(user, homeRoutes) {
   }
 }
 
+async function getStaticRoutes() {
+  return []
+}
+
 export async function loadRoutes(user) {
   const customRoutes = await getCustomRoutes(user, homeRoutes)
   let routes = [...customRoutes]

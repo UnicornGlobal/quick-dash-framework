@@ -32,6 +32,18 @@ export default {
         const appRoute = await loadRoutes(user)
         await Vue.router.addRoutes([appRoute])
 
+        // 404 Page
+        await Vue.router.addRoutes([
+          {
+            path: '/404',
+            component: require('@/components/404.vue').default
+          },
+          {
+            path: '*',
+            redirect: '/404'
+          }
+        ])
+
         // 'refresh' current route
         await Vue.router.replace(window.location.pathname).catch(err => { if (err.name === 'NavigationDuplicated') { return true } else { throw err } })
 
