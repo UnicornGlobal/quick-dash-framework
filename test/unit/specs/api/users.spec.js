@@ -1,8 +1,6 @@
-import { resendVerification, logout, changeUserDetails } from '@/api/user'
+import { resendVerification, changeUserDetails } from '@/api/user'
 import Vue from 'vue'
 import sinon from 'sinon'
-import { createLocalVue } from '@vue/test-utils'
-const localVue = createLocalVue()
 
 describe('user.js', () => {
   describe('resendVerification', () => {
