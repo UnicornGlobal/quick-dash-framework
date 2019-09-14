@@ -100,7 +100,7 @@ async function getCustomRoutes(user, homeRoutes) {
   }
 }
 
-async function getStaticRoutes() {
+export async function loadStaticRoutes() {
   return []
 }
 
