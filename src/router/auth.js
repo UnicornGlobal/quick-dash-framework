@@ -11,6 +11,11 @@ function redirectIfAuthenticated(to, from, next) {
 
 export default [
   {
+    name: 'Root',
+    path: '/',
+    component: require('@/App.vue').default
+  },
+  {
     name: 'Login',
     path: '/login',
     component: require('@/pages/Login.vue').default,

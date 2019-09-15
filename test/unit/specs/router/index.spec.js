@@ -6,7 +6,7 @@ describe('Router Exports', () => {
   describe('reloadRouter', () => {
     it('reloads router', () => {
       reloadRouter()
-      expect(Vue.router.options.routes).to.be.an('array').that.has.lengthOf(5)
+      expect(Vue.router.options.routes).to.be.an('array').that.has.lengthOf(6)
     })
   })
 })

@@ -62,3 +62,16 @@ Any files placed in ~/router/static will not be loaded into the
 authenticated area of the app.
 
 Examples include terms and conditions pages and contact forms.
+
+**NB** Do not add any custom routes that have the path `/`.
+
+This is a special route that redirects to `/home`.
+
+**NB** You *must* have a `home.js` file in your router directory
+that sits on the path `/home` - this is the default logged in route that
+the base route `/` will always redirect to.
+
+This may change in the future but is the convention for now.
+
+**NB** You *must* att `static:true` to the `meta` field of your static
+routes. This may change in the future but is convention for now.
