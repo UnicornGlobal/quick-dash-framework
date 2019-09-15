@@ -9,17 +9,17 @@ describe('Checkbox.vue', () => {
   })
 
   it('is unchecked by default', () => {
-    let checkbox = shallowMount(Checkbox, {localVue})
+    const checkbox = shallowMount(Checkbox, {localVue})
     expect(checkbox.vm.checked).to.equal(false)
   })
 
   it('changes checked state from prop', () => {
-    let checkbox = shallowMount(Checkbox, {localVue, propsData: {value: true}})
+    const checkbox = shallowMount(Checkbox, {localVue, propsData: {value: true}})
     expect(checkbox.vm.checked).to.equal(true)
   })
 
   it('changes checked status when clicked', () => {
-    let checkbox = shallowMount(Checkbox, {localVue})
+    const checkbox = shallowMount(Checkbox, {localVue})
     expect(checkbox.vm.checked).to.equal(false)
 
     checkbox.find('label').trigger('click')
@@ -27,7 +27,7 @@ describe('Checkbox.vue', () => {
   })
 
   it('emits input event with correct value', () => {
-    let checkbox = shallowMount(Checkbox, {localVue})
+    const checkbox = shallowMount(Checkbox, {localVue})
     checkbox.setData({checked: true})
     expect(checkbox.emitted()).to.have.all.keys('input')
     expect(checkbox.emitted('input')[0][0]).to.equal(true)

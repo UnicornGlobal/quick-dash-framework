@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Auth from '@websanova/vue-auth'
 import store from '@/store'
-import { loadRoutes, loadStaticRoutes } from '@/router'
+import { loadRoutes } from '@/router'
 
 export function userHasRole(user, role) {
   return user.roles.findIndex(userRole => userRole.name.toUpperCase() === role.toUpperCase()) > -1
