@@ -47,7 +47,10 @@ async function getCustomRoutes(user, homeRoutes) {
   let custom = false
   let result = []
   try {
-    custom = require.context('~/router', true, /\.js$/)
+    // Load everything except for the 'static' folder in the host app
+    // The static folder contains things that are outside of the App.vue
+    // This is things like contact forms or terms and conditions
+    custom = require.context('~/router', true, /^((?![\\/]static[\\/]).)*\.js$/)
     custom.keys().forEach(function(key) {
       const name = /\.\/(\S+)\.js/.exec(key)[1]
 
@@ -100,8 +103,27 @@ async function getCustomRoutes(user, homeRoutes) {
   }
 }
 
+// These are any routes available in the ~/src/router/static folder
+// These are loaded outside of the App.vue
+// These do not require authorization
+// Examples include contact forms and privacy policy pages
+// These get excluded from the getCustomRoutes require.context
 export async function loadStaticRoutes() {
-  return []
+  let staticRoutes = false
+  let staticResult = []
+  try {
+    staticRoutes = require.context('~/router/static', true, /\.js$/)
+    staticRoutes.keys().forEach(function(key) {
+      const value = staticRoutes(key).default
+
+      staticResult = [...staticResult, ...value]
+    })
+
+    return staticResult
+  } catch (e) {
+    console.log('No static routes found')
+    return []
+  }
 }
 
 export async function loadRoutes(user) {

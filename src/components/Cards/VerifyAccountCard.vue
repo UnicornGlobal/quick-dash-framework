@@ -88,16 +88,12 @@
 </style>
 
 <script>
-  import Card from '@/components/Cards/Card.vue'
   import { resendVerification } from '@/api/user'
 
   export default {
-    components: {
-      Card
-    },
     props: {
       user: {
-        tpye: Object,
+        type: Object,
         required: true
       }
     },
