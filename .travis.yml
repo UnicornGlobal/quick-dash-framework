@@ -23,7 +23,6 @@ stages:
 # Default steps within each job
 before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS strong;'
-  - cp config/secrets.env.js.example config/secrets.env.js
   - git clone "https://github.com/UnicornGlobal/strong-lumen" --branch=master ../strong-lumen
   - cd ../strong-lumen
   - cp .env.example .env
@@ -38,6 +37,7 @@ before_install:
   - nohup php -S 127.0.0.1:8000 -t public &
   - cd -
 install:
+  - cp config/secrets.env.example.js config/secrets.env.js
   - npm install
 jobs:
   include:
@@ -47,13 +47,14 @@ jobs:
       after_success:
         - codecov test/unit/coverage/lcov.info -t ${CODECOV_TOKEN}
         - echo "Done"
-    - stage: tests
-      name: "Cypress Tests"
-      script:
-        - nohup npm run dev &
-        - sleep 20
-        - ./scripts/setup_cypress.sh
-        - $(npm bin)/cypress run
+    # - stage: tests
+      # name: "Cypress Tests"
+      # script:
+        # - ./scripts/setup_environment.sh
+        # - ./scripts/setup_cypress.sh
+        # - nohup npm run dev &
+        # - sleep 30
+        # - $(npm bin)/cypress run
     - stage: build
       name: "Build"
       script: npm run build

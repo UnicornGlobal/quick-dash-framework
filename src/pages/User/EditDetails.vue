@@ -55,7 +55,6 @@
 </style>
 
 <script>
-  import FormSection from '@/components/Form/FormSection'
   import FormGroup from '@/components/Form/FormGroup'
   import PageContainer from '@/components/Containers/PageContainer.vue'
 
@@ -64,7 +63,6 @@
   export default {
     components: {
       FormGroup,
-      FormSection,
       PageContainer
     },
     methods: {

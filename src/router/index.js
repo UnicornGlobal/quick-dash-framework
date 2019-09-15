@@ -47,7 +47,10 @@ async function getCustomRoutes(user, homeRoutes) {
   let custom = false
   let result = []
   try {
-    custom = require.context('~/router', true, /\.js$/)
+    // Load everything except for the 'static' folder in the host app
+    // The static folder contains things that are outside of the App.vue
+    // This is things like contact forms or terms and conditions
+    custom = require.context('~/router', true, /^((?![\\/]static[\\/]).)*\.js$/)
     custom.keys().forEach(function(key) {
       const name = /\.\/(\S+)\.js/.exec(key)[1]
 
@@ -65,12 +68,10 @@ async function getCustomRoutes(user, homeRoutes) {
       if (name === 'home') {
         console.log('Custom home route, overriding')
         const override = custom(key).default
-        console.log([override])
         homeRoutes = override
         // Filter out home routes based on roles
         for (let i = 0; i <= homeRoutes.length; i++) {
           if (homeRoutes && homeRoutes[i] && homeRoutes[i].role) {
-            console.log(homeRoutes[i])
             if (!userHasRole(user, homeRoutes[i].role)) {
               homeRoutes.splice(i, 1)
             }
@@ -100,8 +101,27 @@ async function getCustomRoutes(user, homeRoutes) {
   }
 }
 
-export async function loadStaticRoutes() {
-  return []
+// These are any routes available in the ~/src/router/static folder
+// These are loaded outside of the App.vue
+// These do not require authorization
+// Examples include contact forms and privacy policy pages
+// These get excluded from the getCustomRoutes require.context
+export function loadStaticRoutes() {
+  let staticRoutes = false
+  let staticResult = []
+  try {
+    staticRoutes = require.context('~/router/static', true, /\.js$/)
+    staticRoutes.keys().forEach(function(key) {
+      const value = staticRoutes(key).default
+
+      staticResult = [...staticResult, ...value]
+    })
+
+    return staticResult
+  } catch (e) {
+    console.log('No static routes found')
+    return []
+  }
 }
 
 export async function loadRoutes(user) {
@@ -113,7 +133,6 @@ export async function loadRoutes(user) {
    * routes _and_ the admin specific stores into the mix.
    */
   if (userHasRole(user, 'ADMIN')) {
-    console.log('ADMONX')
     routes = [...routes, ...adminRoutes]
     store.registerModule('admin', admin)
   }
@@ -143,16 +162,18 @@ export async function loadRoutes(user) {
   return appRoute
 }
 
+const staticRoutes = loadStaticRoutes()
+
 export function reloadRouter() {
   Vue.router = new Router({
     mode: 'history',
-    routes: [...authRoutes]
+    routes: [...staticRoutes, ...authRoutes]
   })
 }
 
 const router = new Router({
   mode: 'history',
-  routes: [...authRoutes]
+  routes: [...staticRoutes, ...authRoutes]
 })
 
 router.afterEach(function (to, from) {

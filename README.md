@@ -48,3 +48,30 @@ Do not commit secrets, put them in the .env file.
 There are scripts for travis included
 
 Tests are run against the master version of UnicornGlobal/strong-lumen
+
+### Custom Routes vs Static Routes
+
+Load up your custom in-app (authenticated) routes in your ~/router
+folder.
+
+To include "static" routes (ones that do not require authentication
+and which do not load up in the app sidebar) add them to a special
+directory called ~/router/static
+
+Any files placed in ~/router/static will not be loaded into the
+authenticated area of the app.
+
+Examples include terms and conditions pages and contact forms.
+
+**NB** Do not add any custom routes that have the path `/`.
+
+This is a special route that redirects to `/home`.
+
+**NB** You *must* have a `home.js` file in your router directory
+that sits on the path `/home` - this is the default logged in route that
+the base route `/` will always redirect to.
+
+This may change in the future but is the convention for now.
+
+**NB** You *must* att `static:true` to the `meta` field of your static
+routes. This may change in the future but is convention for now.
