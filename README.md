@@ -72,3 +72,6 @@ that sits on the path `/home` - this is the default logged in route that
 the base route `/` will always redirect to.
 
 This may change in the future but is the convention for now.
+
+**NB** You *must* att `static:true` to the `meta` field of your static
+routes. This may change in the future but is convention for now.
