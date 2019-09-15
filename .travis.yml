@@ -50,9 +50,10 @@ jobs:
     - stage: tests
       name: "Cypress Tests"
       script:
+        - ./scripts/setup_environment.sh
+        - ./scripts/setup_cypress.sh
         - nohup npm run dev &
         - sleep 30
-        - ./scripts/setup_cypress.sh
         - $(npm bin)/cypress run
     - stage: build
       name: "Build"
