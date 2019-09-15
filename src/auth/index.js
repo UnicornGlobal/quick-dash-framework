@@ -33,33 +33,15 @@ export default {
         const appRoute = await loadRoutes(user)
         await Vue.router.addRoutes([appRoute])
 
-        // Add custom static routes (not in sidebar)
-        // This is things like privacy policy pages and other
-        // pages that do not require authentications and which
-        // should be shown outside of the "App.vue" component
-        const staticRoutes = await loadStaticRoutes()
-        if (staticRoutes.length > 0) {
-          await Vue.router.addRoutes(staticRoutes)
-        }
-
-        // 404 Page
-        // It's important that this is at the end of the router array
-        await Vue.router.addRoutes([
-          {
-            path: '/404',
-            component: require('@/components/404.vue').default
-          },
-          {
-            path: '*',
-            redirect: '/404'
-          }
-        ])
-
         // 'refresh' current route
         await Vue.router.replace(window.location.pathname).catch(err => { if (err.name === 'NavigationDuplicated') { return true } else { throw err } })
 
         await store.commit('auth/user', user)
         await store.commit('app/loading', false)
+
+        if (window.location.pathname === '/') {
+          Vue.router.replace('/home')
+        }
       }
     })
 
@@ -120,7 +102,9 @@ export default {
 
     Vue.router.beforeEach(function (to, from, next) {
       const excluded = ['Login', 'ResetPassword', 'Signup']
-      if (excluded.includes(to.name) || Vue.auth.check()) {
+      if (to.meta.static) {
+        next()
+      } else if (excluded.includes(to.name) || Vue.auth.check()) {
         next()
       } else {
         localStorage.clear()

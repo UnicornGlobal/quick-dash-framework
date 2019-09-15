@@ -68,12 +68,10 @@ async function getCustomRoutes(user, homeRoutes) {
       if (name === 'home') {
         console.log('Custom home route, overriding')
         const override = custom(key).default
-        console.log([override])
         homeRoutes = override
         // Filter out home routes based on roles
         for (let i = 0; i <= homeRoutes.length; i++) {
           if (homeRoutes && homeRoutes[i] && homeRoutes[i].role) {
-            console.log(homeRoutes[i])
             if (!userHasRole(user, homeRoutes[i].role)) {
               homeRoutes.splice(i, 1)
             }
@@ -108,7 +106,7 @@ async function getCustomRoutes(user, homeRoutes) {
 // These do not require authorization
 // Examples include contact forms and privacy policy pages
 // These get excluded from the getCustomRoutes require.context
-export async function loadStaticRoutes() {
+export function loadStaticRoutes() {
   let staticRoutes = false
   let staticResult = []
   try {
@@ -135,7 +133,6 @@ export async function loadRoutes(user) {
    * routes _and_ the admin specific stores into the mix.
    */
   if (userHasRole(user, 'ADMIN')) {
-    console.log('ADMONX')
     routes = [...routes, ...adminRoutes]
     store.registerModule('admin', admin)
   }
@@ -165,16 +162,18 @@ export async function loadRoutes(user) {
   return appRoute
 }
 
+const staticRoutes = loadStaticRoutes()
+
 export function reloadRouter() {
   Vue.router = new Router({
     mode: 'history',
-    routes: [...authRoutes]
+    routes: [...staticRoutes, ...authRoutes]
   })
 }
 
 const router = new Router({
   mode: 'history',
-  routes: [...authRoutes]
+  routes: [...staticRoutes, ...authRoutes]
 })
 
 router.afterEach(function (to, from) {
