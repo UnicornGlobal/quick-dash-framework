@@ -17,7 +17,7 @@
         <router-view class="content-area"></router-view>
       </div>
     </div>
-    <component :is=loaderComponent width="100px" height="100px" v-else></component>
+    <component :is="loaderComponent" width="100px" height="100px" v-else></component>
   </div>
 </template>
 
