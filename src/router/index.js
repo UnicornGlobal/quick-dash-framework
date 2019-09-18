@@ -3,9 +3,9 @@ import Router from 'vue-router'
 
 import store from '@/store'
 import admin from '@/store/admin'
-import adminRoutes from '@/router/admin'
+import baseAdminRoutes from '@/router/admin'
 import authRoutes from '@/router/auth'
-import homeRoutes from '@/router/home'
+import originalHomeRoutes from '@/router/home'
 import appRoute from '@/router/base'
 import config from '@/config'
 import icons from '@/icons'
@@ -43,15 +43,16 @@ const reserved = [
  * ~/ represents the host application `src` directory
  * @/ represents this frameworks `src` directory
  */
-async function getCustomRoutes(user, homeRoutes) {
-  let custom = false
-  let result = []
+async function getCustomRoutes(user) {
+  let customFile
+  let homeRoutes = originalHomeRoutes
+  let customRoutes = []
   try {
     // Load everything except for the 'static' folder in the host app
     // The static folder contains things that are outside of the App.vue
     // This is things like contact forms or terms and conditions
-    custom = require.context('~/router', true, /^((?![\\/]static[\\/]).)*\.js$/)
-    custom.keys().forEach(function(key) {
+    customFile = require.context('~/router', true, /^((?![\\/]static[\\/]).)*\.js$/)
+    customFile.keys().forEach(function(key) {
       const name = /\.\/(\S+)\.js/.exec(key)[1]
 
       /**
@@ -63,42 +64,46 @@ async function getCustomRoutes(user, homeRoutes) {
         return
       }
 
-      // Override home route if available
-      // This allows for custom home pages based on role
+      const value = customFile(key).default
+
+      /**
+       * Override home route if available
+       * We do these seperately so that we can always make home routes
+       * the first entry on the sidebar.
+       *
+       * TODO there should technically only be 1 home route allowed...
+       */
       if (name === 'home') {
-        console.log('Custom home route, overriding')
-        const override = custom(key).default
-        homeRoutes = override
-        // Filter out home routes based on roles
-        for (let i = 0; i <= homeRoutes.length; i++) {
-          if (homeRoutes && homeRoutes[i] && homeRoutes[i].role) {
-            if (!userHasRole(user, homeRoutes[i].role)) {
-              homeRoutes.splice(i, 1)
-            }
-          }
-        }
+        homeRoutes = filterRoutesByRole(value, user)
       }
 
-      // Filter out any routes that require a role that this
-      // user does not have
-      const value = custom(key).default
-      for (let i = 0; i < value.length; i++) {
-        if (value[i].role) {
-          if (!userHasRole(user, value[i].role)) {
-            value.splice(i, 1)
-          }
-        }
+      // Check non-home routes
+      if (name !== 'home') {
+        customRoutes = [...customRoutes, ...filterRoutesByRole(value, user)]
       }
-
-      result = [...result, ...value]
     })
 
-    return [...homeRoutes, ...result]
+    // Combine, placing the home routes at the top of the list
+    return [...homeRoutes, ...customRoutes]
   } catch (e) {
-    console.log(e)
-    console.error('Application level `router` folder is missing')
+    console.error('Application level `router` folder is missing or contents are malformed!')
     return []
   }
+}
+
+/**
+ * Filters custom routes based on required role and users available roles
+ */
+function filterRoutesByRole(routes, user) {
+  const processedRoutes = []
+
+  for (let i = 0; i < routes.length; i++) {
+    if (routes[i].role && userHasRole(user, routes[i].role)) {
+      processedRoutes.push(routes[i])
+    }
+  }
+
+  return processedRoutes
 }
 
 // These are any routes available in the ~/src/router/static folder
@@ -125,20 +130,22 @@ export function loadStaticRoutes() {
 }
 
 export async function loadRoutes(user) {
-  const customRoutes = await getCustomRoutes(user, homeRoutes)
+  const customRoutes = await getCustomRoutes(user)
   let routes = [...customRoutes]
 
   /**
    * If the user is an admin then we need to add the admin specific
    * routes _and_ the admin specific stores into the mix.
+   *
+   * These are the framework-level admin routes, not custom ones
    */
-  if (userHasRole(user, 'ADMIN')) {
-    routes = [...routes, ...adminRoutes]
+  if (config.router.admin.enabled && userHasRole(user, config.router.admin.role)) {
+    routes = [...routes, ...baseAdminRoutes]
     store.registerModule('admin', admin)
   }
 
   /**
-   * Load the account page link as the last item
+   * Load the account page link as the last item in the sidebar
    */
   const account = config.router.account.enabled ? [{
     name: 'Account',

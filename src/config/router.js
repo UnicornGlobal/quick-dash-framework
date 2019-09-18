@@ -8,6 +8,7 @@ export default {
     component: require('@/pages/User/EditDetails').default
   },
   admin: {
-    enabled: false
+    enabled: true,
+    role: 'admin'
   }
 }
