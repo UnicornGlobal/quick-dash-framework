@@ -56,12 +56,10 @@
 
 <script>
   import Modal from '@/components/Modal.vue'
-  import Loader from '@/components/Loader.vue'
 
   export default {
     components: {
-      Modal,
-      Loader
+      Modal
     },
     props: ['method', 'url', 'link-text', 'link-class', 'data', 'title', 'message', 'link-style'],
     data() {

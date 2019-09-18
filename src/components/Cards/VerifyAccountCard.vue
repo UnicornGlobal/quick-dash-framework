@@ -38,7 +38,7 @@
       flex-direction: column;
       justify-content: space-evenly;
       padding: 1em;
-      color: $primary-text;
+      color: $primary;
 
       h3 {
         padding: 0;
@@ -74,6 +74,7 @@
 
       a.dismiss {
         padding: 1em;
+        color: $primary;
       }
     }
   }

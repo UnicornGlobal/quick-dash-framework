@@ -17,7 +17,7 @@
         <router-view class="content-area"></router-view>
       </div>
     </div>
-    <loader width="100px" height="100px" v-else></loader>
+    <component :is="loaderComponent" width="100px" height="100px" v-else></component>
   </div>
 </template>
 
@@ -35,7 +35,20 @@
       Loader,
       Toaster
     },
+    data() {
+      return {
+        loaderComponent: require('@/components/Loader').default
+      }
+    },
     created() {
+      try {
+        const customLoader = require('~/components/Loader').default
+        if (customLoader) {
+          this.loaderComponent = customLoader
+        }
+      } catch (e) {
+        // No custom loader is present
+      }
     },
     computed: {
       user() {
