@@ -95,7 +95,7 @@ async function getCustomRoutes(user) {
  * Filters custom routes based on required role and users available roles
  */
 function filterRoutesByRole(routes, user) {
-  let processedRoutes = []
+  const processedRoutes = []
 
   for (let i = 0; i < routes.length; i++) {
     if (routes[i].role && userHasRole(user, routes[i].role)) {
