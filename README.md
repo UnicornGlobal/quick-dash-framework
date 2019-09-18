@@ -75,3 +75,10 @@ This may change in the future but is the convention for now.
 
 **NB** You *must* att `static:true` to the `meta` field of your static
 routes. This may change in the future but is convention for now.
+
+### Overriding Elements
+
+#### Loader
+
+If you place a `Loader.vue` file in `/src/components` it will override the
+base framework loader with your custom component.
