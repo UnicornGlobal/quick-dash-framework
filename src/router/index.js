@@ -24,7 +24,6 @@ import { userHasRole } from '@/auth'
  * `/store` folder.
  */
 const reserved = [
-  // 'admin',
   'auth',
   'base',
   'index'
