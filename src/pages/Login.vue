@@ -1,6 +1,7 @@
 <template>
   <div class="login-page">
-    <div class="login-header">
+    <component v-if="headerComponent" :is="headerComponent"></component>
+    <div v-else class="login-header">
       <div class="logo" v-if="showEmojiLogo"><span>{{ emojiLogo }}</span></div>
         <component v-if="showLogo" :is="logo" class="svg-logo"></component>
       <div class="brand">{{ appName }}</div>
@@ -46,6 +47,7 @@
         </form>
       </card>
     </div>
+    <component v-if="footerComponent" :is="footerComponent"></component>
   </div>
 </template>
 
@@ -55,6 +57,16 @@
   export default {
     components: {
       Card
+    },
+    props: {
+      headerComponent: {
+        required: false,
+        default: null
+      },
+      footerComponent: {
+        required: false,
+        default: null
+      }
     },
     data() {
       return {
@@ -197,6 +209,7 @@
 
     .login-form {
       height: calc(100vh - 70px);
+      margin-top: 70px;
       background-color: $login_background;
       display: flex;
       justify-content: center;

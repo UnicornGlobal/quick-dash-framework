@@ -1,5 +1,7 @@
 export default {
   name: 'QuickDash',
+  customHeader: null,
+  customFooter: null,
   logo: false,
   emojiLogo: () => {
     return '⚡️'

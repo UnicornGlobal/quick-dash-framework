@@ -1,6 +1,7 @@
 <template>
   <div class="signup-page">
-    <div class="signup-header">
+    <component v-if="headerComponent" :is="headerComponent"></component>
+    <div v-else class="signup-header">
       <div class="logo" v-if="showEmojiLogo"><span>{{ emojiLogo }}</span></div>
         <component v-if="showLogo" :is="logo" class="svg-logo"></component>
       <div class="brand">{{ appName }}</div>
@@ -11,6 +12,7 @@
         <form></form>
       </card>
     </div>
+    <component v-if="footerComponent" :is="footerComponent"></component>
   </div>
 </template>
 
@@ -22,6 +24,16 @@
     components: {
       Card,
       SignMeUp
+    },
+    props: {
+      headerComponent: {
+        required: false,
+        default: null
+      },
+      footerComponent: {
+        required: false,
+        default: null
+      }
     },
     created() {
       this.strings = require('@/i18n/en/signup').default
@@ -135,6 +147,7 @@
     }
 
     .signup-form {
+      margin-top: 110px;
       padding: 2rem;
       background-color: $signup_background;
       display: flex;
