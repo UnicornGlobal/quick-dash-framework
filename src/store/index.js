@@ -56,7 +56,8 @@ const reserved = [
 ]
 
 try {
-  custom = require.context('~/store', true, /\.js$/)
+  // Load everything _except_ the admin folder
+  custom = require.context('~/store', true, /^((?![\\/]admin[\\/]).)*\.js$/)
   custom.keys().forEach(function(key) {
     const name = /\.\/(\S+)\.js/.exec(key)[1]
 
