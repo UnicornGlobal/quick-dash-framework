@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import config from '@/config'
 import { logout } from '@/api/user'
 
 function redirectIfAuthenticated(to, from, next) {
@@ -21,6 +22,10 @@ export default [
     component: require('@/pages/Login.vue').default,
     beforeEnter(to, from, next) {
       redirectIfAuthenticated(to, from, next)
+    },
+    props: {
+      headerComponent: config.login.customHeader ? config.login.customHeader : null,
+      footerComponent: config.login.customFooter ? config.login.customFooter : null
     }
   },
   {
@@ -29,6 +34,10 @@ export default [
     component: require('@/pages/Signup.vue').default,
     beforeEnter(to, from, next) {
       redirectIfAuthenticated(to, from, next)
+    },
+    props: {
+      headerComponent: config.signup.customHeader ? config.signup.customHeader : null,
+      footerComponent: config.signup.customFooter ? config.signup.customFooter : null
     }
   },
   {
