@@ -5,7 +5,7 @@ let custom = false
 let external = {}
 
 // The framework level store
-let adminStore = {
+const adminStore = {
   namespaced: true,
   state: {
     ...users.state,
@@ -40,7 +40,6 @@ try {
 
 // Load the new custom stores into the namespace
 if (external) {
-  console.log([external])
   Object.keys(external).forEach(function(key) {
     adminStore.state = {
       ...adminStore.state,
