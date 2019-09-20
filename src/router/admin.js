@@ -1,6 +1,14 @@
 import config from '@/config'
 import icons from '@/icons'
 
+// Load up any custom admin routes
+let customAdminRoutes = []
+try {
+  customAdminRoutes = require('~/router/admin').default
+} catch {
+  // No custom admin routes exist
+}
+
 const users = config.admin.users ? [
   {
     name: 'AllUsers',
@@ -44,6 +52,7 @@ export default config.admin.enabled ? [
       icon: icons.admin
     },
     children: [
+      ...customAdminRoutes,
       ...users,
       ...settings
     ]

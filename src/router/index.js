@@ -24,7 +24,7 @@ import { userHasRole } from '@/auth'
  * `/store` folder.
  */
 const reserved = [
-  'admin',
+  // 'admin',
   'auth',
   'base',
   'index'
@@ -78,7 +78,8 @@ async function getCustomRoutes(user) {
       }
 
       // Check non-home routes
-      if (name !== 'home') {
+      // Skip any admin routes
+      if (name !== 'home' && name !== 'admin') {
         customRoutes = [...customRoutes, ...filterRoutesByRole(value, user)]
       }
     })
