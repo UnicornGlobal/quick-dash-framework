@@ -5,6 +5,7 @@ export default {
   mobileLogo: true,
   avatar: true,
   logout: false,
+  homeRoute: '/',
   role: (user) => {
     // Perform some custom code to populate the main role
     // This is compatible with the strong-lumen style
