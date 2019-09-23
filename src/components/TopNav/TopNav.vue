@@ -6,10 +6,10 @@
           <hamburger class="hamburger"></hamburger>
         </div>
       </div>
-      <router-link class="logo" to="/" v-if="showLogo">
+      <router-link class="logo" :to="homeRoute" v-if="showLogo">
         <quick></quick>&nbsp;Quick Dash
       </router-link>
-      <router-link class="mobile-logo" to="/" v-if="showMobileLogo">
+      <router-link class="mobile-logo" :to="homeRoute" v-if="showMobileLogo">
         <quick></quick>&nbsp;Quick Dash
       </router-link>
       <div class="page-title">{{pageTitle}}</div>
@@ -128,6 +128,9 @@
       }
     },
     computed: {
+      homeRoute() {
+        return this.$store.getters['app/config'].header.homeRoute || '/'
+      },
       pageTitle() {
         return ''
       },
