@@ -84,6 +84,55 @@ describe('SideBar.vue', () => {
     expect(menu.meta.main).to.equal(true)
   })
 
+  it('accepts a custom home route', () => {
+    const sidebar = shallowMount(SideBar, {
+      localVue,
+      propsData: {
+        user: {},
+        rootPath: '/root',
+        menus: [
+          {
+            name: 'home',
+            path: '/',
+            meta: {
+              icon: 'fa fa-home',
+              label: 'Home',
+              main: true
+            }
+          }
+        ]
+      },
+      mocks: {
+        $route: {
+          name: 'Custom',
+          label: 'Custom',
+          matched: []
+        },
+        $store: {
+          getters: {
+            'app/config': {
+              sidebar: {
+                profile: false,
+                logout: false,
+                icons: true,
+                highlight: false
+              },
+              header: {
+                homeRoute: '/home'
+              }
+            }
+          }
+        }
+      }
+    })
+    expect(sidebar.vm.rootPath).to.equal('/root')
+    expect(sidebar.vm.homeRoute).to.equal('/home')
+    expect(sidebar.vm.showUserProfile).to.equal(undefined)
+    expect(sidebar.vm.showLogo).to.equal(false)
+    expect(sidebar.vm.logo).to.equal(false)
+    expect(sidebar.vm.logoutStyle).to.equal(undefined)
+  })
+
   it('logs out', () => {
     const sidebar = shallowMount(SideBar, {
       localVue,

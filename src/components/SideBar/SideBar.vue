@@ -1,6 +1,6 @@
 <template>
   <div class="menu-element">
-    <router-link class="logo" to="/" v-if="showLogo">
+    <router-link class="logo" :to="homeRoute" v-if="showLogo" @click.native="closeSidebar">
       <component v-if="showLogo" :is="logo"></component>
     </router-link>
     <user-profile v-if="showUserProfile" :user="user"></user-profile>
@@ -44,6 +44,9 @@
       'logout-icon': icons.sign_out
     },
     computed: {
+      homeRoute() {
+        return this.$store.getters['app/config'].header.homeRoute || '/'
+      },
       showUserProfile() {
         if (this.$store.getters['app/config'].sidebar.profile) {
           return 'display: block'
@@ -70,6 +73,11 @@
       }
     },
     methods: {
+      closeSidebar() {
+        if (this.$store.getters['app/sidebar/open']) {
+          this.$store.commit('app/sidebar/open', false)
+        }
+      },
       logout() {
         return this.$auth.logout({
           makeRequest: true,
