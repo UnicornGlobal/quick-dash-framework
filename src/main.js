@@ -20,7 +20,9 @@ const start = () => {
     el: '#app',
     router,
     store,
-    template: '<router-view></router-view>',
+    render: function (createElement) {
+      return createElement('router-view')
+    },
     computed: {
       loaded() {
         return !this.$store.getters['app/loading']
