@@ -2,6 +2,7 @@
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
+const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const vueLoaderConfig = require('./vue-loader.conf')
 const CopyPlugin = require('copy-webpack-plugin');
@@ -35,7 +36,11 @@ module.exports = {
     new CopyPlugin([
       { from: 'src/assets/fonts', to: 'fonts' },
     ]),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new webpack.IgnorePlugin({
+      resourceRegExp: /^\.\/locale$/,
+      contextRegExp: /moment$/
+    })
   ],
   module: {
     rules: [
@@ -87,7 +92,7 @@ module.exports = {
               { removeUnknownsAndDefaults: true },
               { removeUselessStrokeAndFill: true },
               { removeUnusedNS: true },
-              { removeRasterImages: true },
+              { removeRasterImages: false },
               { mergePaths: true },
               { convertShapeToPath: true },
               { removeScriptElement: true }
