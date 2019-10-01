@@ -1,6 +1,6 @@
 {
   "name": "@unicorns/quick-dash-framework",
-  "version": "2.2.7",
+  "version": "2.2.9",
   "description": "Quick Dashboard Framework",
   "author": "Unicorn Global et al",
   "license": "MIT",
@@ -19,7 +19,8 @@
     "test": "npm run unit && npm run cypress",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
     "lint_fix": "eslint --fix --ext .js,.vue src test/unit/specs",
-    "eslint": "eslint ."
+    "eslint": "eslint .",
+    "report": "cross-env npm_config_report=true node build/build.js"
   },
   "repository": {
     "type": "git",
@@ -30,12 +31,14 @@
   },
   "homepage": "https://github.com/UnicornGlobal/quick-dash-framework#readme",
   "dependencies": {
-    "@unicorns/avatars": "^2.0.0",
-    "@unicorns/data-table": "^2.0.2",
-    "@unicorns/sign-me-up": "^1.0.0",
-    "@unicorns/toaster": "^2.0.1",
+    "@unicorns/avatars": "^2.0.1",
+    "@unicorns/data-table": "^2.0.4",
+    "@unicorns/sign-me-up": "^1.0.1",
+    "@unicorns/toaster": "^2.0.3",
     "@websanova/vue-auth": "^2.21.14-beta",
     "axios": "^0.19.0",
+    "moment": "^2.24.0",
+    "pikaday": "^1.8.0",
     "vee-validate": "^2.2.15",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.4",
