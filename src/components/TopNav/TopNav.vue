@@ -6,12 +6,9 @@
           <hamburger class="hamburger"></hamburger>
         </div>
       </div>
-      <router-link class="logo" :to="homeRoute" v-if="showLogo">
-        <quick></quick>&nbsp;Quick Dash
-      </router-link>
-      <router-link class="mobile-logo" :to="homeRoute" v-if="showMobileLogo">
-        <quick></quick>&nbsp;Quick Dash
-      </router-link>
+      <div class="additional-info">
+        <slot></slot>
+      </div>
       <div class="page-title">{{pageTitle}}</div>
       <user-menu v-if="user" :user="user"></user-menu>
     </div>
@@ -19,147 +16,165 @@
 </template>
 
 <style lang="scss" scoped>
-  .top-navigation {
-    height: 60px;
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background: $header_background;
-    @media (max-width: 1025px) {
-      display: block;
-    }
+.top-navigation {
+  height: 60px;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: $header_background;
+  @media (max-width: 1025px) {
+    display: block;
   }
+}
 
-  .menu-toggle {
-    width: 65px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: $white;
+.menu-toggle {
+  width: 65px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $white;
 
-    @media (min-width: 1025px) {
-      display: none;
-    }
+  @media (min-width: 1025px) {
+    display: none;
   }
+}
 
-  .menu-toggle {
-    svg {
-      width: 30px;
-      height: 30px;
-      fill: $sidebar_hamburger_colour;
-    }
+.menu-toggle {
+  svg {
+    width: 30px;
+    height: 30px;
+    fill: $sidebar_hamburger_colour;
   }
+}
 
-  .header {
+.header {
+  width: 100%;
+  padding: 0 1em;
+  display: flex;
+  align-items: center;
+  background-color: $header_background;
+  height: 61px;
+  @media (max-width: 1025px) {
+    padding-left: 1em;
     width: 100%;
-    padding: 0 1em;
-    display: flex;
-    align-items: center;
-    background-color: $header_background;
-    height: 61px;
-    @media (max-width: 1025px) {
-      padding-left: 1em;
-      width: 100%;
-    }
+  }
+}
+
+.page-title {
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  color: $white;
+  font-size: 22px;
+  text-decoration: none;
+
+  svg {
+    height: 40px;
+    width: 45px;
+    fill: $white;
+  }
+}
+
+.mobile-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  color: $white;
+  font-size: 22px;
+  text-decoration: none;
+
+  svg {
+    height: 40px;
+    width: 45px;
+    fill: $white;
   }
 
-  .page-title {
-
+  @media (min-width: 1025px) {
+    display: none;
   }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    color: $white;
-    font-size: 22px;
-    text-decoration: none;
-
-    svg {
-      height: 40px;
-      width: 45px;
-      fill: $white;
-    }
-  }
-
-  .mobile-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    color: $white;
-    font-size: 22px;
-    text-decoration: none;
-
-    svg {
-      height: 40px;
-      width: 45px;
-      fill: $white;
-    }
-
-    @media (min-width: 1025px) {
-      display: none;
-    }
-  }
+}
 </style>
 
 <script>
-  import UserMenu from '@/components/TopNav/UserMenu'
-  import icons from '@/icons'
+import UserMenu from '@/components/TopNav/UserMenu'
+import icons from '@/icons'
 
-  export default {
-    name: 'top-nav',
-    components: {
-      UserMenu,
-      hamburger: icons.hamburger,
-      quick: icons.quick
+export default {
+  name: 'top-nav',
+  components: {
+    UserMenu,
+    hamburger: icons.hamburger,
+    quick: icons.quick
+  },
+  props: {
+    user: {
+      type: Object,
+      required: true
     },
-    props: {
-      user: {
-        type: Object,
-        required: true
-      },
-      loaded: {
-        type: Boolean,
-        required: true
-      }
+    loaded: {
+      type: Boolean,
+      required: true
+    }
+  },
+  mounted() {
+    this.headerStyle = this.checkHeaderStyle()
+    window.addEventListener('resize', () => {
+      this.headerStyle = this.checkHeaderStyle()
+    })
+  },
+  data() {
+    return {
+      headerStyle: null
+    }
+  },
+  computed: {
+    homeRoute() {
+      return this.$store.getters['app/config'].header.homeRoute || '/'
     },
-    computed: {
-      homeRoute() {
-        return this.$store.getters['app/config'].header.homeRoute || '/'
-      },
-      pageTitle() {
-        return ''
-      },
-      headerStyle() {
-        if (this.$store.getters['app/config'].sidebar.position === 'right') {
-          return 'flex-direction: row-reverse; justify-content: space-between;'
-        }
-
-        return 'justify-content: space-between'
-      },
-      showLogo() {
-        if (this.$store.getters['app/config'].header.logo) {
-          return true
-        }
-
-        return false
-      },
-      showMobileLogo() {
-        if (this.$store.getters['app/config'].header.mobileLogo) {
-          return true
-        }
-
-        return false
-      }
+    pageTitle() {
+      return ''
     },
-    methods: {
-      toggleSideBar() {
-        this.$store.commit('app/sidebar/open', !this.$store.getters['app/sidebar/open'])
+    showLogo() {
+      if (this.$store.getters['app/config'].header.logo) {
+        return true
       }
+
+      return false
+    },
+    showMobileLogo() {
+      if (this.$store.getters['app/config'].header.mobileLogo) {
+        return true
+      }
+
+      return false
+    }
+  },
+  methods: {
+    toggleSideBar() {
+      this.$store.commit(
+        'app/sidebar/open',
+        !this.$store.getters['app/sidebar/open']
+      )
+    },
+
+    checkHeaderStyle() {
+      if (this.$store.getters['app/config'].sidebar.position === 'right') {
+        return 'flex-direction: row-reverse; justify-content: space-between;'
+      }
+
+      if (window.innerWidth < 1025) {
+        return 'justify-content: flex-start'
+      }
+
+      return 'justify-content: space-between'
     }
   }
+}
 </script>
