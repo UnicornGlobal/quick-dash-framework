@@ -29,7 +29,7 @@
 </style>
 
 <script>
-import TopNav from "@/components/TopNav/TopNav";
+import TopNav from '@/components/TopNav/TopNav'
 export default {
   props: {
     title: {
@@ -43,17 +43,17 @@ export default {
   },
   computed: {
     user() {
-      return this.$store.getters["auth/user"];
+      return this.$store.getters['auth/user']
     },
     loaded() {
-      return !this.$store.getters["app/loading"];
+      return !this.$store.getters['app/loading']
     },
     enableSideBar() {
       return (
-        this.$store.getters["app/sidebar/enabled"] &&
-        this.$store.getters["app/config"].sidebar.enabled
-      );
+        this.$store.getters['app/sidebar/enabled'] &&
+        this.$store.getters['app/config'].sidebar.enabled
+      )
     }
   }
-};
+}
 </script>
