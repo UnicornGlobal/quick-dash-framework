@@ -128,9 +128,6 @@ export default {
       this.headerStyle = this.checkHeaderStyle()
     })
   },
-  beforeDestroy() {
-    window.removeEventListener('resize')
-  },
   data() {
     return {
       headerStyle: null
