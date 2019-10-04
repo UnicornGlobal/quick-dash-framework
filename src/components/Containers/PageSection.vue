@@ -9,51 +9,52 @@
 </template>
 
 <style lang="scss">
-  .section-details {
-    flex: 1;
-    @media (max-width: 555px) {
-      align-items: center;
-    }
-
-    @media (max-width: 1024px) and (min-width: 556px) {
-      align-items: center;
-      margin: 0 0.5em;
-    }
+.section-details {
+  flex: 1;
+  @media (max-width: 555px) {
+    align-items: center;
   }
 
-  .page-section {
-    display: flex;
-    flex-direction: row;
-    border-bottom: 1px solid lightgray;
+  @media (max-width: 1024px) and (min-width: 556px) {
+    align-items: center;
+    margin: 0 0.5em;
+  }
+}
 
-    @media (max-width: 1024px) {
-      flex-direction: column;
-    }
+.page-section {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid lightgray;
 
-    .section-content {
-
-      @media (min-width: 1025px) {
-        max-width: 80%;
-      }
-    }
+  @media (max-width: 1024px) {
+    flex-direction: column;
   }
 
-  .page-section:last-child {
-    border-bottom: none;
+  .section-content {
+    @media (min-width: 1025px) {
+      max-width: 80%;
+    }
   }
+}
+
+.page-section:last-child {
+  border-bottom: none;
+}
 </style>
 
 <script>
-  export default {
-    props: {
-      title: {
-        type: String,
-        required: true
-      },
-      subtitle: {
-        type: String,
-        required: false
-      }
+export default {
+  props: {
+    title: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    subtitle: {
+      type: String,
+      required: false,
+      default: ''
     }
   }
+}
 </script>
