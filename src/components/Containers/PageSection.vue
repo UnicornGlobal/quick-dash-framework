@@ -47,11 +47,13 @@ export default {
   props: {
     title: {
       type: String,
-      required: true
+      required: false,
+      default: ''
     },
     subtitle: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     }
   }
 }

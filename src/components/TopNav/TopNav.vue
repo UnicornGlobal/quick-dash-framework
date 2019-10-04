@@ -110,8 +110,7 @@ export default {
   name: 'top-nav',
   components: {
     UserMenu,
-    hamburger: icons.hamburger,
-    quick: icons.quick
+    hamburger: icons.hamburger
   },
   props: {
     user: {
@@ -128,6 +127,9 @@ export default {
     window.addEventListener('resize', () => {
       this.headerStyle = this.checkHeaderStyle()
     })
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize')
   },
   data() {
     return {
