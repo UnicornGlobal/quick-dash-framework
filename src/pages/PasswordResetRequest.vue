@@ -115,7 +115,6 @@
         this.bSending = true
         this.$http.post('reset', {email: this.email})
           .then(data => {
-            console.log(data, data.response)
             if (data.response && data.response.data && data.response.data.email) {
               this.errors.add({
                 field: 'email',
@@ -134,9 +133,6 @@
               this.sent = true
               this.bSending = false
             }
-          })
-          .catch(error => {
-            console.log(error, 'ccc')
           })
           .finally(() => {
             this.bSending = false

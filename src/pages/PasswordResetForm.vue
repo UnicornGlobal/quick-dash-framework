@@ -127,7 +127,6 @@
           token: this.token
         })
           .then(data => {
-            console.log(data.data)
             if (data.data && data.data.success === false) {
               this.errors.add({
                 field: 'email',
