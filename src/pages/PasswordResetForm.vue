@@ -13,11 +13,8 @@
       <card class="card">
         <h2>Set New Password</h2>
         <div>
-          <input v-validate="'required'" v-model="email" name="email" type="text" hidden="true">
-          <span v-if="errors.has('email')" class="validation-error">{{errors.first('email')}}</span>
-        </div>
-        <div>
-          <input v-validate="'required'" v-model="password" name="password" type="text">
+          <label for="password">New Password</label>
+          <input v-validate="'required'" v-model="password" name="password" type="password">
           <span v-if="errors.has('password')" class="validation-error">{{errors.first('password')}}</span>
         </div>
         <div class="button-container">
@@ -127,15 +124,15 @@
           token: this.token
         })
           .then(data => {
-            if (data.data && data.data.success === false) {
+            if (data.data && !data.data.success) {
               this.errors.add({
-                field: 'email',
+                field: 'password',
                 msg: 'There was a problem resetting your password. Please request a new password reset link.',
                 rule: 'required'
               })
             } else if (!data.data && data.response.data && !data.response.data.success) {
               this.errors.add({
-                field: 'email',
+                field: 'password',
                 msg: 'There was a problem resetting your password',
                 rule: 'required'
               })
