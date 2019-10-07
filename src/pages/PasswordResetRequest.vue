@@ -115,19 +115,19 @@
         this.bSending = true
         this.$http.post('reset', {email: this.email})
           .then(data => {
-            if (data.response && data.response.data && data.response.data.email) {
+            if (data !== null && data.response && data.response.data && data.response.data.email) {
               this.errors.add({
                 field: 'email',
                 msg: data.response.data.email[0],
                 rule: 'required'
               })
-            } else if (data && data.data && data.data.success === false) {
+            } else if (data !== null && data.data && data.data.success === false) {
               this.errors.add({
                 field: 'email',
                 msg: 'A user with that email address does not exist',
                 rule: 'required'
               })
-            } else if (data && data.data && data.data.success === true) {
+            } else if (data !== null && data.data && data.data.success === true) {
               this.$router.push('/login?request=true')
             } else {
               this.sent = true
