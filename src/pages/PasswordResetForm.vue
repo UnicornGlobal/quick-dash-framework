@@ -1,21 +1,24 @@
 <template>
   <div class="password-reset-page">
-    <div class="reset-header">
+    <component v-if="headerComponent" :is="headerComponent"></component>
+    <div v-else class="reset-header">
       <div class="logo" v-if="showEmojiLogo"><span>{{ emojiLogo }}</span></div>
         <component v-if="showLogo" :is="logo" class="svg-logo"></component>
       <div class="brand">{{ appName }}</div>
-      <p class="text">{{ strings.details }}</p>
     </div>
     <p v-if="sent" class="sent-success" style="color: white">
       {{ strings.success }}
     </p>
     <div class="password-reset-form" v-else>
       <card class="card">
-        <h2>{{ strings.header }}</h2>
+        <h2>Set New Password</h2>
         <div>
-          <label class="required">Email&nbsp;</label>
-          <input v-validate="'required'" v-model="email" name="email" type="text">
+          <input v-validate="'required'" v-model="email" name="email" type="text" hidden="true">
           <span v-if="errors.has('email')" class="validation-error">{{errors.first('email')}}</span>
+        </div>
+        <div>
+          <input v-validate="'required'" v-model="password" name="password" type="text">
+          <span v-if="errors.has('password')" class="validation-error">{{errors.first('password')}}</span>
         </div>
         <div class="button-container">
           <div class="quick-links">
@@ -33,6 +36,7 @@
         </div>
       </card>
     </div>
+    <component v-if="footerComponent" :is="footerComponent"></component>
   </div>
 </template>
 
@@ -41,9 +45,21 @@
 
   export default {
     components: {Card},
+    props: {
+      headerComponent: {
+        required: false,
+        default: null
+      },
+      footerComponent: {
+        required: false,
+        default: null
+      }
+    },
     data() {
       return {
         email: '',
+        token: '',
+        password: '',
         sent: false,
         bSending: false
       }
@@ -53,6 +69,8 @@
     },
     mounted() {
       this.$store.commit('app/loading', false)
+      this.email = this.$route.params.email
+      this.token = this.$route.params.token
     },
     computed: {
       appName() {
@@ -102,16 +120,39 @@
       },
       sendRequest() {
         this.bSending = true
-        this.$http.post('reset', {email: this.email})
-          .then(({data}) => {
-            if (data.success === false) {
+        this.$http.post(`reset/${this.token}`, {
+          email: this.email,
+          password: this.password,
+          password_confirmation: this.password,
+          token: this.token
+        })
+          .then(data => {
+            console.log(data.data)
+            if (data.data && data.data.success === false) {
               this.errors.add({
                 field: 'email',
-                msg: 'A user with that email address does not exist',
+                msg: 'There was a problem resetting your password. Please request a new password reset link.',
                 rule: 'required'
               })
+            } else if (!data.data && data.response.data && !data.response.data.success) {
+              this.errors.add({
+                field: 'email',
+                msg: 'There was a problem resetting your password',
+                rule: 'required'
+              })
+
+              if (data.response.data.password) {
+                this.errors.add({
+                  field: 'password',
+                  msg: data.response.data.password[0],
+                  rule: 'required'
+                })
+              }
+            } else if (data && data.data && data.data.success === true) {
+              this.$router.push('/login?reset=true')
             } else {
               this.sent = true
+              this.bSending = false
             }
           })
           .finally(() => {
@@ -140,6 +181,18 @@
       background-color: $login_box_header;
       color: $login_text;
       font-size: $login_header_text_size;
+
+      @media(max-width: 999px) {
+        text-align: center;
+      }
+    }
+  }
+
+  .validation-error {
+    margin-bottom: 1rem;
+
+    @media(max-width: 999px) {
+      text-align: center;
     }
   }
 
@@ -211,6 +264,7 @@
       color: $primary-text;
       font-size: $login_label_text_size;
       font-weight: bold;
+      margin-bottom: 1rem;
     }
 
     .password-reset-form {
@@ -230,6 +284,12 @@
         justify-content: space-between;
         align-items: baseline;
 
+        @media(max-width: 999px) {
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
         .quick-links {
           a {
             text-decoration: none;
@@ -239,6 +299,10 @@
           }
           a:hover {
             text-decoration: underline;
+          }
+
+          @media(max-width: 999px) {
+            margin-bottom: 1rem;
           }
         }
       }
@@ -261,6 +325,10 @@
       min-width: $login_button_min_width;
       min-height: $login_button_min_height;
       margin: 0;
+
+      @media(max-width: 999px) {
+        width: 100%;
+      }
     }
 
     input {

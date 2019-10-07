@@ -50,6 +50,10 @@ export default {
       // Do something with response data
       return response
     }, (error) => {
+      if (window.location.pathname.includes('/password-reset')) {
+        return error
+      }
+
       if (
         error.response &&
         error.response.status === 500 &&
@@ -101,7 +105,7 @@ export default {
     })
 
     Vue.router.beforeEach(function (to, from, next) {
-      const excluded = ['Login', 'ResetPassword', 'Signup']
+      const excluded = ['Login', 'ResetPassword', 'ResetPasswordForm', 'Signup']
       if (to.meta.static) {
         next()
       } else if (excluded.includes(to.name) || Vue.auth.check()) {

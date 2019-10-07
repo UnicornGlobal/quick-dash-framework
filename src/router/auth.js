@@ -59,6 +59,19 @@ export default [
   {
     name: 'ResetPassword',
     path: '/password-reset',
-    component: require('@/pages/PasswordReset.vue').default
+    component: require('@/pages/PasswordResetRequest.vue').default,
+    props: {
+      headerComponent: config.login.customHeader ? config.login.customHeader : null,
+      footerComponent: config.login.customFooter ? config.login.customFooter : null
+    }
+  },
+  {
+    name: 'ResetPasswordForm',
+    path: '/password-reset/:email/:token',
+    component: require('@/pages/PasswordResetForm.vue').default,
+    props: {
+      headerComponent: config.login.customHeader ? config.login.customHeader : null,
+      footerComponent: config.login.customFooter ? config.login.customFooter : null
+    }
   }
 ]
