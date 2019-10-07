@@ -1,5 +1,5 @@
 // http://chaijs.com/api/bdd/
-import PasswordReset from '@/pages/PasswordReset'
+import PasswordReset from '@/pages/PasswordResetRequest'
 import sinon from 'sinon'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import { ErrorBag } from 'vee-validate'
@@ -51,7 +51,6 @@ describe('PasswordReset.vue', () => {
 
     await wrapper.vm.submit().then(() => {
       expect(sendRequest.called).to.equal(true)
-      expect(wrapper.vm.sent).to.equal(true)
       sendRequest.restore()
       post.restore()
       post.reset()
@@ -70,7 +69,6 @@ describe('PasswordReset.vue', () => {
 
     await wrapper.vm.submit().then(() => {
       expect(sendRequest.called).to.equal(true)
-      expect(wrapper.vm.sent).to.equal(false)
       sendRequest.restore()
       post.restore()
       post.reset()

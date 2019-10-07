@@ -135,6 +135,7 @@
             }
           })
           .finally(() => {
+            this.sent = true
             this.bSending = false
           })
       },
