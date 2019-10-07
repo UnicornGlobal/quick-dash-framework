@@ -124,27 +124,27 @@
           token: this.token
         })
           .then(data => {
-            if (data.data && !data.data.success) {
+            if (data !== null && data.data && !data.data.success) {
               this.errors.add({
                 field: 'password',
                 msg: 'There was a problem resetting your password. Please request a new password reset link.',
                 rule: 'required'
               })
-            } else if (!data.data && data.response.data && !data.response.data.success) {
-              this.errors.add({
-                field: 'password',
-                msg: 'There was a problem resetting your password',
-                rule: 'required'
-              })
-
-              if (data.response.data.password) {
+            } else if (data !== null && !data.data && data.response && data.response.data && !data.response.data.success) {
+              if (data.response.data.password && data.response.data.password[0]) {
                 this.errors.add({
                   field: 'password',
                   msg: data.response.data.password[0],
                   rule: 'required'
                 })
               }
-            } else if (data && data.data && data.data.success === true) {
+
+              this.errors.add({
+                field: 'password',
+                msg: 'There was a problem resetting your password',
+                rule: 'required'
+              })
+            } else if (data !== null && data.data && data.data.success === true) {
               this.$router.push('/login?reset=true')
             } else {
               this.sent = true
