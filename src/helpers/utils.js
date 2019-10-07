@@ -5,10 +5,10 @@ const moduleIfExists = (name) => {
     // }).catch(e => {
     // console.log(e)
     // })
-    console.log(name, '<<')
+    console.log('util: ', name)
     // require.ensure(name)
   } catch (e) {
-    console.log(e)
+    // console.log(e)
     // console.log('Module does not exist')
     // return false
   }
