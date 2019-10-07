@@ -10,7 +10,11 @@ export function resendVerification() {
 export async function logout() {
   await Vue.axios.post(`/logout`)
   await localStorage.clear()
-  window.location.pathname = 'login'
+  window.location.href = '/login?logout=true'
+}
+
+export async function confirmed() {
+  window.location.href = '/login?confirmed=true'
 }
 
 export function changeUserDetails(userId, formData) {

@@ -160,6 +160,10 @@
       if (this.$route.query && this.$route.query.confirmed) {
         this.message = 'You have successfully confirmed your email. Please sign in below.'
       }
+
+      if (this.$route.query && this.$route.query.logout) {
+        this.message = 'You have successfully logged out of your account.'
+      }
     }
   }
 </script>

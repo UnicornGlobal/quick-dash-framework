@@ -91,7 +91,7 @@
         })
       },
       redirectToLogin() {
-        window.location.pathname = 'login'
+        window.location.href = '/login?logout=true'
       }
     }
   }
