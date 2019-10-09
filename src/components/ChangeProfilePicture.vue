@@ -22,6 +22,22 @@
   .uploader-container:hover {
     cursor: pointer;
   }
+
+  .uploader-container:hover:after {
+    content: "CHANGE";
+    position: absolute;
+    background: black;
+    width: 100%;
+    border-radius: 150px;
+    text-align: center;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+    font-weight: bold;
+    font-size: 2rem;
+  }
 </style>
 
 <script>
