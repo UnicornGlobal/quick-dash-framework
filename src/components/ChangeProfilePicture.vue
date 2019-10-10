@@ -7,11 +7,11 @@
                    :name="user.first_name"
                    :validation="validation"
                    :styles="uploaderStyles"
-                   previewRadius="150"
+                   previewRadius="180"
                    v-model="uploadedFile">
-      <slot for="avatar-component" #preview-component></slot>
+      <slot for="avatar-component" style="margin: 15px; z-index: 2;" #preview-component></slot>
+      <profile-picture-loader #loading-component></profile-picture-loader>
     </file-uploader>
-    <progress-bar v-if="uploading" :value="progress" class="progress-bar"></progress-bar>
     <span class="validation-error">
       {{errors.first('global')}}
     </span>
@@ -38,14 +38,21 @@
     font-weight: bold;
     font-size: 2rem;
   }
+
+  .item-avatar {
+    margin: 15px;
+    z-index: 2;
+  }
 </style>
 
 <script>
   import FileUploader from '@unicorns/uploader'
+  import ProfilePictureLoader from '@/components/ProfilePictureLoader'
 
   export default {
     components: {
-      FileUploader
+      FileUploader,
+      ProfilePictureLoader
     },
     props: {
       uploadUrl: {
@@ -71,14 +78,14 @@
         uploading: false,
         uploaderStyles: {
           box: {
-            width: '150px',
-            height: '240px',
-            margin: '0.5em'
+            width: '180px',
+            height: '180px',
+            margin: '0em'
           },
           preview: {
-            width: '150px',
-            height: '240px',
-            margin: '1rem'
+            width: '180px',
+            height: '180px',
+            margin: '0'
           },
           button: {
             colour: 'green',
@@ -92,6 +99,7 @@
     },
     methods: {
       updateProgress(progress) {
+        console.log('updating', progress)
         this.uploading = true
         this.progress = progress
       },

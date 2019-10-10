@@ -1,6 +1,6 @@
 <template>
   <div class="spinner-block">
-    <svg class="spinner" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full" viewBox="9 9 91 182" :width="width" :height="height">
+    <svg class="spinner" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full" viewBox="0 0 200 200" width="180" height="180">
       <g :fill="fill">
         <path d="M 13.5 70.8 L 18.9 57.7 L 26.2 45.8 L 35.2 35.2 L 45.8 26.2 L 57.7 18.9 L 70.8 13.5 L 85.0 10.1 L
         100.0 9.0 L 100.0 21.0 L 86.8 22.0 L 74.5 24.9 L 63.1 29.6 L 52.8 35.9 L 43.7 43.7 L 35.9 52.8 L 29.6 63.1
@@ -15,19 +15,26 @@
 
 <style lang="scss" scoped>
   @keyframes roll {
-    from {
+    0% {
       transform: rotate(0deg);
       opacity: 1;
     }
-    to {
-      transform: rotate(360deg);
+    50% {
+      transform: rotate(180deg);
       opacity: 0.5;
+    }
+    100% {
+      transform: rotate(360deg);
+      opacity: 1;
     }
   }
 
   .spinner-block {
     vertical-align: middle;
     display: inline-block;
+    position: absolute;
+    z-index: 1;
+    opacity: 0.5;
   }
 
   .spinner {
@@ -38,17 +45,9 @@
 <script>
   export default {
     props: {
-      height: {
-        type: String,
-        default: '20px'
-      },
-      width: {
-        type: String,
-        default: '15px'
-      },
       fill: {
         type: String,
-        default: '#9C27B0'
+        default: '#000000'
       },
       strokeWidth: {
         type: String,
