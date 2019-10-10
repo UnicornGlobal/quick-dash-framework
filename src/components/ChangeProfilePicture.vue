@@ -8,9 +8,23 @@
                    :validation="validation"
                    :styles="uploaderStyles"
                    previewRadius="180"
+                   :instantUpload="false"
+                   fieldName="photo"
                    v-model="uploadedFile">
-      <slot for="avatar-component" style="margin: 15px; z-index: 2;" #preview-component></slot>
-      <profile-picture-loader #loading-component></profile-picture-loader>
+      <template v-slot:preview>
+        <avatar
+          v-if="user && user.first_name"
+          class="item-avatar image-holder"
+          size="150"
+          font-size="70"
+          round
+          :image="getAvatarImage"
+          :title="user.first_name"
+        />
+      </template>
+      <template v-slot:loading>
+        <profile-picture-loader />
+      </template>
     </file-uploader>
     <span class="validation-error">
       {{errors.first('global')}}
@@ -19,13 +33,17 @@
 </template>
 
 <style lang="scss">
+  .uploader-container {
+    width: 180px;
+    height: 180px;
+  }
   .uploader-container:hover {
     cursor: pointer;
   }
 
-  .uploader-container:hover:after {
+  .item-avatar:hover:after {
     content: "CHANGE";
-    position: absolute;
+    position: relative;
     background: black;
     width: 100%;
     border-radius: 150px;
@@ -37,21 +55,27 @@
     opacity: 0.8;
     font-weight: bold;
     font-size: 2rem;
+    top: -156px;
+    width: 150px;
+    z-index: 3;
+    color: white;
   }
 
   .item-avatar {
-    margin: 15px;
+    margin: 5px;
     z-index: 2;
   }
 </style>
 
 <script>
   import FileUploader from '@unicorns/uploader'
+  import Avatar from '@unicorns/avatars'
   import ProfilePictureLoader from '@/components/ProfilePictureLoader'
 
   export default {
     components: {
       FileUploader,
+      Avatar,
       ProfilePictureLoader
     },
     props: {
@@ -75,17 +99,17 @@
           }
         },
         progress: 0,
-        uploading: false,
         uploaderStyles: {
           box: {
             width: '180px',
-            height: '180px',
+            height: '250px',
             margin: '0em'
           },
           preview: {
             width: '180px',
             height: '180px',
-            margin: '0'
+            margin: '0',
+            border: '10px solid white'
           },
           button: {
             colour: 'green',
@@ -97,35 +121,22 @@
         }
       }
     },
+    computed: {
+      getAvatarImage() {
+        return process.env.apiUrl + this.user.profile_photo.file_url
+      }
+    },
     methods: {
       updateProgress(progress) {
         console.log('updating', progress)
-        this.uploading = true
         this.progress = progress
       },
       uploadImage(data) {
-        const formData = {
-          value: data.title,
-          document: data._id
-        }
-
-        uploadProfilePhoto(formData)
-
-        return this.$http.post(`${this.uploadUrl}`, formData, {
-          onUploadProgress: (event) => {
-            console.log(event)
-            this.progress = (event.total / event.uploaded) * 100
-          }
-        }).then((response) => {
-          if (response.status !== 422) {
-            this.$emit('uploaded', response.data)
-          }
-          return response
-        }).catch((error) => {
-          this.handleFailure(error)
-          return error
-        }).finally(() => {
-          this.uploading = false
+        this.$toaster.addToast({
+          type: 'success',
+          message: 'Update Avatar',
+          title: 'Success',
+          timeout: 5000
         })
       },
       handleFailure(error) {

@@ -35,6 +35,8 @@
     position: absolute;
     z-index: 1;
     opacity: 0.5;
+    top: -10px;
+    left: -10px;
   }
 
   .spinner {
