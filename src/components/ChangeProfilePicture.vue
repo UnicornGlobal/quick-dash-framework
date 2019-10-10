@@ -8,7 +8,7 @@
                    :validation="validation"
                    :styles="uploaderStyles"
                    previewRadius="180"
-                   :instantUpload="false"
+                   :instantUpload="true"
                    fieldName="photo"
                    v-model="uploadedFile">
       <template v-slot:preview>
@@ -71,6 +71,7 @@
   import FileUploader from '@unicorns/uploader'
   import Avatar from '@unicorns/avatars'
   import ProfilePictureLoader from '@/components/ProfilePictureLoader'
+  import { reloadSelf } from '@/auth'
 
   export default {
     components: {
@@ -138,6 +139,7 @@
           title: 'Success',
           timeout: 5000
         })
+        reloadSelf()
       },
       handleFailure(error) {
         this.$toaster.addToast({
