@@ -9,6 +9,7 @@
                    :styles="uploaderStyles"
                    previewRadius="180"
                    :instantUpload="true"
+                   :buttonless="true"
                    fieldName="photo"
                    v-model="uploadedFile">
       <template v-slot:preview>
@@ -65,6 +66,10 @@
     margin: 5px;
     z-index: 2;
   }
+
+  .validation-error {
+    width: 300px;
+  }
 </style>
 
 <script>
@@ -96,14 +101,14 @@
           rules: {
             required: true,
             mimes: ['image/png', 'image/jpg', 'image/jpeg'],
-            size: 8196
+            size: 4096
           }
         },
         progress: 0,
         uploaderStyles: {
           box: {
             width: '180px',
-            height: '250px',
+            height: '180px',
             margin: '0em'
           },
           preview: {
@@ -124,7 +129,9 @@
     },
     computed: {
       getAvatarImage() {
-        return process.env.apiUrl + this.user.profile_photo.file_url
+        if (this.user.profile_photo) {
+          return process.env.apiUrl + this.user.profile_photo.file_url
+        }
       }
     },
     methods: {

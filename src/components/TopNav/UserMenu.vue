@@ -91,7 +91,9 @@
     },
     computed: {
       getAvatarImage() {
-        return process.env.apiUrl + this.user.profile_photo.file_url
+        if (this.user.profile_photo) {
+          return process.env.apiUrl + this.user.profile_photo.file_url
+        }
       },
       showRole() {
         if (this.$store.getters['app/config'].header.role) {
