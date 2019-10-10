@@ -1,5 +1,8 @@
 <template>
   <page-container class="page-container">
+    <change-profile-picture
+      :user=user
+      ></change-profile-picture>
     <div class="edit-section">
       <h3>General</h3>
       <div>

@@ -4,8 +4,9 @@
       v-if="showUserAvatar"
       class="user-avatar"
       :size="40"
+      round
       :title="user.first_name"
-      backgroundColour="#4CAF50"
+      :image="getAvatarImage"
       >
     </avatar-or-initials>
     <div class="user-details">
@@ -89,6 +90,11 @@
       }
     },
     computed: {
+      getAvatarImage() {
+        if (this.user.profile_photo) {
+          return process.env.apiUrl + this.user.profile_photo.file_url
+        }
+      },
       showRole() {
         if (this.$store.getters['app/config'].header.role) {
           return true

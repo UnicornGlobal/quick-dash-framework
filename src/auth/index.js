@@ -2,9 +2,16 @@ import Vue from 'vue'
 import Auth from '@websanova/vue-auth'
 import store from '@/store'
 import { loadRoutes } from '@/router'
+import { getSelf } from '@/api/user'
 
 export function userHasRole(user, role) {
   return user.roles.findIndex(userRole => userRole.name.toUpperCase() === role.toUpperCase()) > -1
+}
+
+export function reloadSelf() {
+  getSelf().then(data => {
+    store.commit('auth/user', data)
+  })
 }
 
 export default {
