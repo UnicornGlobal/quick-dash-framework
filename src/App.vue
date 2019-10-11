@@ -123,7 +123,7 @@ export default {
     height: 100%;
     width: 300px;
     background: $white;
-    z-index: 2;
+    z-index: 10;
     overflow-y: auto;
     border-right: $sidebar_border;
     box-shadow: $sidebar_shadow;
@@ -203,7 +203,7 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1;
+  z-index: 9;
   background-color: rgba(0, 0, 0, 0.6);
 }
 </style>

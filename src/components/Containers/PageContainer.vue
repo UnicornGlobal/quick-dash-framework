@@ -16,10 +16,6 @@
   min-height: 100%;
 }
 
-.content {
-  padding: 1em 1.5em;
-}
-
 .top-nav {
   width: 100%;
   position: sticky;

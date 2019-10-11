@@ -15,7 +15,7 @@
       <template v-slot:preview>
         <avatar
           v-if="user && user.first_name"
-          class="item-avatar image-holder"
+          class="item-avatar image-holder change-profile-avatar"
           size="150"
           font-size="70"
           round
@@ -42,7 +42,7 @@
     cursor: pointer;
   }
 
-  .item-avatar:hover:after {
+  .change-profile-avatar:hover:after {
     content: "CHANGE";
     position: relative;
     background: black;
@@ -62,9 +62,13 @@
     color: white;
   }
 
-  .item-avatar {
+  .change-profile-avatar {
     margin: 5px;
     z-index: 2;
+
+    .avatar {
+      height: 156px !important;
+    }
   }
 
   .validation-error {
