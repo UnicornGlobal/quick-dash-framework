@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import config from '@/config'
-import { logout } from '@/api/user'
+import { logout, confirmed } from '@/api/user'
 
 function redirectIfAuthenticated(to, from, next) {
   if (Vue.auth && Vue.auth.check()) {
@@ -44,7 +44,7 @@ export default [
     name: 'Confirmed',
     path: '/confirmed',
     async beforeEnter(to, from, next) {
-      await logout()
+      await confirmed()
       next(false)
     }
   },
@@ -59,6 +59,19 @@ export default [
   {
     name: 'ResetPassword',
     path: '/password-reset',
-    component: require('@/pages/PasswordReset.vue').default
+    component: require('@/pages/PasswordResetRequest.vue').default,
+    props: {
+      headerComponent: config.login.customHeader ? config.login.customHeader : null,
+      footerComponent: config.login.customFooter ? config.login.customFooter : null
+    }
+  },
+  {
+    name: 'ResetPasswordForm',
+    path: '/password-reset/:email/:token',
+    component: require('@/pages/PasswordResetForm.vue').default,
+    props: {
+      headerComponent: config.login.customHeader ? config.login.customHeader : null,
+      footerComponent: config.login.customFooter ? config.login.customFooter : null
+    }
   }
 ]

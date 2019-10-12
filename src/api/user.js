@@ -7,10 +7,21 @@ export function resendVerification() {
     })
 }
 
+export function getSelf() {
+  return Vue.axios.get(`/api/me`)
+    .then((response) => {
+      return response.data
+    })
+}
+
 export async function logout() {
   await Vue.axios.post(`/logout`)
   await localStorage.clear()
-  window.location.pathname = 'login'
+  window.location.href = '/login?logout=true'
+}
+
+export async function confirmed() {
+  window.location.href = '/login?confirmed=true'
 }
 
 export function changeUserDetails(userId, formData) {

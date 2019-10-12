@@ -8,6 +8,7 @@
     </div>
     <div class="login-form">
       <card class="card">
+        <div v-if="message" class="message">{{ message }}</div>
         <h2>{{ strings.header }}</h2>
         <form>
           <div>
@@ -70,6 +71,7 @@
     },
     data() {
       return {
+        message: '',
         error: '',
         username: '',
         password: '',
@@ -146,6 +148,22 @@
     },
     mounted() {
       this.$store.commit('app/loading', false)
+
+      if (this.$route.query && this.$route.query.request) {
+        this.message = 'Please check your email for further instructions on how to reset your password.'
+      }
+
+      if (this.$route.query && this.$route.query.reset) {
+        this.message = 'You have successfully reset your password. Please sign in below.'
+      }
+
+      if (this.$route.query && this.$route.query.confirmed) {
+        this.message = 'You have successfully confirmed your email. Please sign in below.'
+      }
+
+      if (this.$route.query && this.$route.query.logout) {
+        this.message = 'You have successfully logged out of your account.'
+      }
     }
   }
 </script>
@@ -331,6 +349,14 @@
       .loading {
         transform: translate(-8px, 2px);
       }
+    }
+
+    .message {
+      padding: 1rem;
+      background: #E8F0FE;
+      border: 1px solid #cccccc;
+      margin-bottom: 1rem;
+      text-align: center;
     }
   }
 </style>

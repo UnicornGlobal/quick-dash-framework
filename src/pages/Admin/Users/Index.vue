@@ -146,7 +146,6 @@
             is_verified: user.is_verified,
             confirmed: user.confirmed
           }))
-          console.log(ret)
           return ret
         }
       }

@@ -11,6 +11,7 @@ const mocks = {
     user: sinon.stub().returns({}),
     login: sinon.stub().resolves(true)
   },
+  $route: {},
   errors: new ErrorBag(),
   $store: store
 }
@@ -65,6 +66,7 @@ describe('Login.vue', () => {
       stubs,
       mocks: {
         $store: store,
+        $route: {},
         $auth: {
           login: (conf) => {
             return Vue.axios.post()
@@ -85,7 +87,7 @@ describe('Login.vue', () => {
   it('has default data', () => {
     const defaultData = Login.data()
     expect(defaultData).to.be.an('object')
-    expect(Object.keys(defaultData)).to.have.lengthOf(5)
-    expect(defaultData).to.have.all.keys('error', 'username', 'password', 'remember', 'bSending')
+    expect(Object.keys(defaultData)).to.have.lengthOf(6)
+    expect(defaultData).to.have.all.keys('message', 'error', 'username', 'password', 'remember', 'bSending')
   })
 })

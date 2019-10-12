@@ -2,9 +2,16 @@ import Vue from 'vue'
 import Auth from '@websanova/vue-auth'
 import store from '@/store'
 import { loadRoutes } from '@/router'
+import { getSelf } from '@/api/user'
 
 export function userHasRole(user, role) {
   return user.roles.findIndex(userRole => userRole.name.toUpperCase() === role.toUpperCase()) > -1
+}
+
+export function reloadSelf() {
+  getSelf().then(data => {
+    store.commit('auth/user', data)
+  })
 }
 
 export default {
@@ -50,6 +57,14 @@ export default {
       // Do something with response data
       return response
     }, (error) => {
+      if (window.location.pathname.includes('/password-reset')) {
+        return error
+      }
+
+      if (window.location.pathname.includes('/confirmed')) {
+        Vue.router.push('/login?confirmed=true')
+      }
+
       if (
         error.response &&
         error.response.status === 500 &&
@@ -86,6 +101,15 @@ export default {
       if (
         error.response &&
         error.response.status === 500 &&
+        error.response.data.error === 'Token could not be parsed from the request.'
+      ) {
+        localStorage.clear()
+        Vue.router.push('login')
+      }
+
+      if (
+        error.response &&
+        error.response.status === 500 &&
         error.response.data.error === 'Wrong number of segments'
       ) {
         localStorage.clear()
@@ -101,7 +125,7 @@ export default {
     })
 
     Vue.router.beforeEach(function (to, from, next) {
-      const excluded = ['Login', 'ResetPassword', 'Signup']
+      const excluded = ['Login', 'ResetPassword', 'ResetPasswordForm', 'Signup', 'Confirmed']
       if (to.meta.static) {
         next()
       } else if (excluded.includes(to.name) || Vue.auth.check()) {
