@@ -4,6 +4,7 @@
       v-if="showUserAvatar"
       class="user-avatar"
       :size="40"
+      :radius="40"
       round
       :title="user.first_name"
       :image="getAvatarImage"
@@ -44,7 +45,7 @@
 
   .user-avatar {
     width: 65px;
-    height: 60px;
+    height: 65px;
     display: flex;
     justify-content: center;
     align-items: center;
