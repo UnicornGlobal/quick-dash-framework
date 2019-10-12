@@ -150,6 +150,7 @@ export default {
 
 .content {
   overflow-y: scroll;
+  margin-right: -1rem;
   height: 100%;
 }
 
