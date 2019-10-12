@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/UnicornGlobal/quick-dash-framework#readme",
   "dependencies": {
-    "@unicorns/avatars": "^2.0.3",
+    "@unicorns/avatars": "^2.1.0",
     "@unicorns/data-table": "^2.0.4",
     "@unicorns/sign-me-up": "^1.0.2",
     "@unicorns/toaster": "^2.0.3",
