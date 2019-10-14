@@ -108,6 +108,9 @@
   }
 
   .signup-page {
+    height: 100%;
+    overflow-y: scroll;
+
     .signup-header {
       min-height: $signup_header_height;
       padding: 10px;
