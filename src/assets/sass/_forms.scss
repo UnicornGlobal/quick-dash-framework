@@ -111,3 +111,8 @@ span.validation-error {
   color: $fail;
   font-size: .9em;
 }
+
+// Signup phone number input hack
+#personalmobile {
+  border: none !important;
+}

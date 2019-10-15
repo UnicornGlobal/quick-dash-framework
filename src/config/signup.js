@@ -20,6 +20,7 @@ export default {
           label: 'First Name',
           type: 'text',
           disabled: false,
+          name: 'firstName',
           required: true
         },
         {
@@ -27,6 +28,7 @@ export default {
           label: 'Last Name',
           type: 'text',
           disabled: false,
+          name: 'lastName',
           required: true
         },
         {
@@ -34,6 +36,7 @@ export default {
           label: 'Email',
           type: 'email',
           disabled: false,
+          name: 'email',
           required: true
         },
         {
@@ -41,6 +44,7 @@ export default {
           label: 'Mobile',
           type: 'phone',
           disabled: false,
+          name: 'mobile',
           required: true
         },
         {
@@ -49,6 +53,7 @@ export default {
           type: 'password',
           disabled: false,
           required: true,
+          name: 'password',
           confirm: true
         }
       ]
