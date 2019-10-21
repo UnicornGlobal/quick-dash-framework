@@ -7,6 +7,5 @@ export default {
     Vue.use(VueAxios, axios)
     Vue.axios.defaults.baseURL = process.env.apiUrl
     Vue.axios.defaults.headers.post['Content-Type'] = 'application/json'
-    Vue.axios.defaults.headers.common['Debug-Token'] = process.env.debugToken
   }
 }
