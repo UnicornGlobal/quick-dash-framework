@@ -47,11 +47,13 @@
   }
 
   .modal-wrapper{
+    max-width: 100%;
     padding: 10px;
   }
 
   .modal-container {
     position: relative;
+    max-width: 100%;
     width: 650px;
     padding: 20px 30px;
     background-color: #fff;
