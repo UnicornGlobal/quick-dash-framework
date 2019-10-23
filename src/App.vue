@@ -148,8 +148,14 @@ export default {
   }
 }
 
+.content {
+  overflow-y: scroll;
+  margin-right: -1rem;
+  height: 100%;
+}
+
 .content-area-view {
-  overflow-y: auto;
+  overflow-y: hidden;
   flex: 1;
   overflow-x: hidden;
 }

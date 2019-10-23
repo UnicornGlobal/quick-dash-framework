@@ -4,28 +4,29 @@
                    @uploaded="uploadImage"
                    @failed="handleFailure"
                    :url="uploadUrl"
-                   :name="user.first_name"
+                   :name="name"
                    :validation="validation"
                    :styles="uploaderStyles"
-                   previewRadius="180"
+                   :previewRadius="round ? 150 : 10"
                    :instantUpload="true"
                    :buttonless="true"
-                   fieldName="photo"
+                   :fieldName="fieldName"
                    v-model="uploadedFile">
       <template v-slot:preview>
         <avatar
-          v-if="user && user.first_name"
-          class="item-avatar image-holder change-profile-avatar"
+          v-if="name"
+          :class="'item-avatar image-holder change-profile-avatar ' + (round ? 'round-150' : 'round-10')"
           size="150"
-          font-size="70"
+          :radius="round ? 150 : 10"
           round
-          :image="getAvatarImage"
-          :title="user.first_name"
+          font-size="70"
+          :image="image"
+          :title="name"
         />
       </template>
-      <template v-slot:loading>
+      <slot name="loading">
         <profile-picture-loader />
-      </template>
+      </slot>
     </file-uploader>
     <span class="validation-error">
       {{errors.first('global')}}
@@ -47,7 +48,6 @@
     position: relative;
     background: black;
     width: 100%;
-    border-radius: 150px;
     text-align: center;
     height: 150px;
     display: flex;
@@ -60,6 +60,14 @@
     width: 150px;
     z-index: 3;
     color: white;
+  }
+
+  .round-10:hover:after {
+    border-radius: 10px;
+  }
+
+  .round-150:hover:after {
+    border-radius: 150px;
   }
 
   .change-profile-avatar {
@@ -93,9 +101,24 @@
         type: String,
         required: true
       },
-      user: {
-        type: Object,
+      name: {
+        type: String,
         required: true
+      },
+      round: {
+        type: Boolean,
+        required: false,
+        default: true
+      },
+      image: {
+        type: String,
+        required: false,
+        default: null
+      },
+      fieldName: {
+        type: String,
+        required: false,
+        default: 'photo'
       }
     },
     data () {
@@ -128,13 +151,6 @@
             width: '100px',
             margin: '1rem'
           }
-        }
-      }
-    },
-    computed: {
-      getAvatarImage() {
-        if (this.user.profile_photo) {
-          return process.env.apiUrl + this.user.profile_photo.file_url
         }
       }
     },
