@@ -116,7 +116,7 @@
     "portfinder": "^1.0.24",
     "require-dir": "^1.2.0",
     "rimraf": "^3.0.0",
-    "sass": "^1.22.12",
+    "sass": "^1.23.0",
     "sass-loader": "^8.0.0",
     "sass-resources-loader": "^2.0.1",
     "semver": "^6.3.0",
