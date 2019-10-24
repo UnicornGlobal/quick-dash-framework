@@ -155,7 +155,6 @@ export default {
 }
 
 .content-area-view {
-  overflow-y: hidden;
   flex: 1;
   overflow-x: hidden;
 }
