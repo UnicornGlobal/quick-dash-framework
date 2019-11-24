@@ -1,158 +1,283 @@
 <template>
   <div class="user-menu" v-if="showUserMenu">
-    <avatar-or-initials
-      v-if="showUserAvatar"
-      class="user-avatar"
-      :size="40"
-      :radius="40"
-      round
-      :title="user.first_name"
-      :image="getAvatarImage"
+    <div class="menu-dropdown" @click="dropDownOpened = !dropDownOpened">
+      <avatar-or-initials
+        v-if="showUserAvatar"
+        class="user-avatar"
+        :size="40"
+        :radius="40"
+        round
+        :title="user.first_name"
+        :image="getAvatarImage"
       >
-    </avatar-or-initials>
-    <div class="user-details">
-      <div class="user-name text-white" v-if="showUserName">
-        {{ user.first_name}} {{ user.last_name }}
+      </avatar-or-initials>
+      <svg
+        :class="dropDownOpened ? 'open' : 'closed'"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512"
+        class="toggle-icon"
+      >
+        <path
+          d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+        />
+      </svg>
+    </div>
+    <div :class="[{ active: dropDownOpened }, 'dropdown-list']">
+      <div class="user-details-wrapper">
+        <avatar-or-initials
+          v-if="showUserAvatar"
+          class="user-avatar"
+          :size="40"
+          :radius="40"
+          round
+          :title="user.first_name"
+          :image="getAvatarImage"
+        >
+        </avatar-or-initials>
+        <div class="user-details">
+          <div class="user-name text-white" v-if="showUserName">
+            {{ user.first_name }} {{ user.last_name }}
+          </div>
+          <div class="role" v-if="showRole">
+            {{ role }}
+          </div>
+        </div>
       </div>
-      <div class="role" v-if="showLogout">
-        <a @click.prevent="logout" href="#" class="logout-button">Logout</a>
-      </div>
-      <div class="role" v-if="showRole">
-        {{ role }}
+      <div class="links">
+        <ul>
+          <li v-if="account && account.enabled">
+            <router-link to="/account">Account</router-link>
+          </li>
+          <li v-for="(menu, index) in menus" :key="index">
+            <a :href="menu.link">{{ menu.label }}</a>
+          </li>
+          <li v-if="showLogout">
+            <a @click.prevent="logout" href="#">Logout</a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 </template>
 
 <style lang="scss">
-  .logout-button {
-    text-decoration: none;
-  }
+.profile-container {
+  position: relative;
+  height: 100%;
+}
 
-  .user-menu {
-    display: flex;
-    height: 60px;
-    flex-direction: row;
+.logout-button {
+  text-decoration: none;
+}
 
-    a {
-      color: $white;
-    }
+.menu-dropdown {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 
-    @media (max-width: 1024px) {
-      display: none;
-    }
-  }
+  svg {
+    height: 22px;
+    width: 22px;
+    fill: #aaaaaa;
+    transition: 0.3s ease;
 
-  .user-avatar {
-    width: 65px;
-    height: 65px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .avatar-initials {
-      background-color: $accent;
-      border: 0px solid $white;
+    &.open {
+      transform: rotate(-180deg);
     }
   }
+}
 
-  .user-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex: 1;
+.user-details-wrapper {
+  display: flex;
+}
+
+.dropdown-list {
+  position: absolute;
+  right: 0;
+  top: 60px;
+  z-index: 9999999;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.26s ease;
+  background: #fff;
+  overflow: hidden;
+  border: thin solid #f6f7f9;
+  border-radius: 3px;
+  box-shadow: 0px 4px 8px rgba(204, 204, 204, 0.5);
+  &.active {
+    transform: scaleY(1);
+  }
+}
+
+.user-details-wrapper {
+  border-bottom: 1px solid #dddddd;
+  padding: 5px;
+}
+
+.user-menu {
+  display: flex;
+  height: 60px;
+  flex-direction: row;
+  position: relative;
+
+  a {
+    color: $white;
+  }
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  color: $primary-text;
+  padding-right: 20px;
+
+  .user-name {
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: $primary-text;
+  }
 
-    .user-name {
-      font-weight: bold;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: $primary-text;
-    }
+  .role {
+    color: $primary-text;
+  }
+}
 
-    .role {
-      color: $primary-text;
+.user-avatar {
+  width: 65px;
+  height: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .avatar-initials {
+    background-color: $accent;
+    border: 0px solid $white;
+  }
+}
+
+.links {
+  padding: 20px 0;
+  ul {
+    list-style: none;
+    margin-block-end: 0px;
+    margin-block-start: 0px;
+    margin-inline-end: 0px;
+    margin-inline-start: 0px;
+    padding-inline-start: 0px;
+    li {
+      a {
+        color: #4c5459;
+        display: block;
+        padding: 5px 20px;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: 0.3s ease;
+
+        &:hover {
+          color: #000;
+          font-weight: 400;
+        }
+      }
     }
   }
+}
 </style>
 
 <script>
-  import AvatarOrInitials from '@unicorns/avatars'
-  import { reloadRouter } from '@/router'
+import AvatarOrInitials from '@unicorns/avatars'
+import { reloadRouter } from '@/router'
 
-  export default {
-    components: {
-      AvatarOrInitials
-    },
-    props: {
-      user: {
-        required: true
+export default {
+  components: {
+    AvatarOrInitials
+  },
+  props: {
+    user: {
+      required: true
+    }
+  },
+  data() {
+    return {
+      dropDownOpened: false
+    }
+  },
+  computed: {
+    getAvatarImage() {
+      if (this.user.profile_photo) {
+        return process.env.apiUrl + this.user.profile_photo.file_url
       }
     },
-    computed: {
-      getAvatarImage() {
-        if (this.user.profile_photo) {
-          return process.env.apiUrl + this.user.profile_photo.file_url
-        }
-      },
-      showRole() {
-        if (this.$store.getters['app/config'].header.role) {
-          return true
-        }
+    showRole() {
+      if (this.$store.getters['app/config'].header.role) {
+        return true
+      }
 
-        return false
-      },
-      role() {
-        if (this.$store.getters['app/config'].header.role) {
-          return this.$store.getters['app/config'].header.role(this.user)
-        }
-      },
-      showUserMenu() {
-        if (this.$store.getters['app/config'].header.profile) {
-          return true
-        }
-
-        return false
-      },
-      showUserAvatar() {
-        if (this.$store.getters['app/config'].header.avatar) {
-          return true
-        }
-
-        return false
-      },
-      showUserName() {
-        if (this.$store.getters['app/config'].header.name) {
-          return true
-        }
-
-        return false
-      },
-      showLogout() {
-        if (this.$store.getters['app/config'].header.logout) {
-          return true
-        }
-
-        return false
+      return false
+    },
+    role() {
+      if (this.$store.getters['app/config'].header.role) {
+        return this.$store.getters['app/config'].header.role(this.user)
       }
     },
-    methods: {
-      logout() {
-        return this.$auth.logout({
+    showUserMenu() {
+      if (this.$store.getters['app/config'].header.profile) {
+        return true
+      }
+
+      return false
+    },
+    showUserAvatar() {
+      if (this.$store.getters['app/config'].header.avatar) {
+        return true
+      }
+
+      return false
+    },
+    showUserName() {
+      if (this.$store.getters['app/config'].header.name) {
+        return true
+      }
+
+      return false
+    },
+    showLogout() {
+      return this.$store.getters['app/config'].usermenu.logout
+    },
+
+    menus() {
+      return this.$store.getters['app/config'].usermenu.menus
+    },
+
+    account() {
+      return this.$store.getters['app/config'].router.account
+    }
+  },
+  methods: {
+    logout() {
+      return this.$auth
+        .logout({
           makeRequest: true,
           method: 'POST',
           url: '/logout',
           success: () => {
             reloadRouter()
           }
-        }).then(() => {
+        })
+        .then(() => {
           this.redirectToLogin()
         })
-      },
-      redirectToLogin() {
-        window.location.href = '/login?logout=true'
-      }
+    },
+    redirectToLogin() {
+      window.location.href = '/login?logout=true'
     }
   }
+}
 </script>
