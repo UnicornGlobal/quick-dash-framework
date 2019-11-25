@@ -58,7 +58,7 @@ export default {
       }
     })
 
-    const redirect = function () {
+    const redirectToLogin = function () {
       if (Vue.router.currentRoute.name !== 'Login') {
         Vue.router.push('login')
       } else {
@@ -85,7 +85,7 @@ export default {
         'Token has expired and can no longer be refreshed'
       ) {
         localStorage.clear()
-        redirect()
+        redirectToLogin()
       }
 
       if (
@@ -94,12 +94,12 @@ export default {
         error.response.data.error === 'Token Signature could not be verified.'
       ) {
         localStorage.clear()
-        redirect()
+        redirectToLogin()
       }
 
       if (error.response && (error.response.status === 500) && (error.response.data.error === 'The token has been blacklisted')) {
         localStorage.clear()
-        redirect()
+        redirectToLogin()
       }
 
       if (
@@ -108,7 +108,7 @@ export default {
         error.response.data.error === 'The token has been blacklisted'
       ) {
         localStorage.clear()
-        redirect()
+        redirectToLogin()
       }
 
       if (
@@ -117,7 +117,7 @@ export default {
         error.response.data.error === 'Token could not be parsed from the request.'
       ) {
         localStorage.clear()
-        redirect()
+        redirectToLogin()
       }
 
       if (
@@ -126,12 +126,12 @@ export default {
         error.response.data.error === 'Wrong number of segments'
       ) {
         localStorage.clear()
-        redirect()
+        redirectToLogin()
       }
 
       if (Vue.auth.token() === null) {
         localStorage.clear()
-        redirect()
+        redirectToLogin()
       }
 
       return Promise.reject(error)
