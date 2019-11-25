@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Auth from '@websanova/vue-auth'
 import store from '@/store'
-import { loadRoutes } from '@/router'
-import { getSelf } from '@/api/user'
+import {loadRoutes} from '@/router'
+import {getSelf} from '@/api/user'
 
 export function userHasRole(user, role) {
   return user.roles.findIndex(userRole => userRole.name.toUpperCase() === role.toUpperCase()) > -1
@@ -41,7 +41,13 @@ export default {
         await Vue.router.addRoutes([appRoute])
 
         // 'refresh' current route
-        await Vue.router.replace(window.location.pathname).catch(err => { if (err.name === 'NavigationDuplicated') { return true } else { throw err } })
+        await Vue.router.replace(window.location.pathname).catch(err => {
+          if (err.name === 'NavigationDuplicated') {
+            return true
+          } else {
+            throw err
+          }
+        })
 
         await store.commit('auth/user', user)
         await store.commit('app/loading', false)
@@ -52,6 +58,13 @@ export default {
       }
     })
 
+    const redirectToLogin = function () {
+      if (Vue.router.currentRoute.name !== 'Login') {
+        Vue.router.push('login')
+      } else {
+        window.location.reload()
+      }
+    }
     // Add a response interceptor
     Vue.axios.interceptors.response.use((response) => {
       // Do something with response data
@@ -69,10 +82,10 @@ export default {
         error.response &&
         error.response.status === 500 &&
         error.response.data.error ===
-          'Token has expired and can no longer be refreshed'
+        'Token has expired and can no longer be refreshed'
       ) {
         localStorage.clear()
-        Vue.router.push('login')
+        redirectToLogin()
       }
 
       if (
@@ -81,12 +94,12 @@ export default {
         error.response.data.error === 'Token Signature could not be verified.'
       ) {
         localStorage.clear()
-        Vue.router.push('login')
+        redirectToLogin()
       }
 
       if (error.response && (error.response.status === 500) && (error.response.data.error === 'The token has been blacklisted')) {
         localStorage.clear()
-        Vue.router.push('login')
+        redirectToLogin()
       }
 
       if (
@@ -95,7 +108,7 @@ export default {
         error.response.data.error === 'The token has been blacklisted'
       ) {
         localStorage.clear()
-        Vue.router.push('login')
+        redirectToLogin()
       }
 
       if (
@@ -104,7 +117,7 @@ export default {
         error.response.data.error === 'Token could not be parsed from the request.'
       ) {
         localStorage.clear()
-        Vue.router.push('login')
+        redirectToLogin()
       }
 
       if (
@@ -113,12 +126,12 @@ export default {
         error.response.data.error === 'Wrong number of segments'
       ) {
         localStorage.clear()
-        Vue.router.push('login')
+        redirectToLogin()
       }
 
       if (Vue.auth.token() === null) {
         localStorage.clear()
-        Vue.router.push('login')
+        redirectToLogin()
       }
 
       return Promise.reject(error)
