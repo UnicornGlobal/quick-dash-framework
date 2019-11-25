@@ -35,11 +35,11 @@ export default {
       },
       async parseUserData(user) {
         await store.commit('app/loading', true)
-        
+
         // Add custom app routes (contained in sidebar)
         const appRoute = await loadRoutes(user)
         await Vue.router.addRoutes([appRoute])
-        
+
         // 'refresh' current route
         await Vue.router.replace(window.location.pathname).catch(err => {
           if (err.name === 'NavigationDuplicated') {
@@ -48,16 +48,16 @@ export default {
             throw err
           }
         })
-        
+
         await store.commit('auth/user', user)
         await store.commit('app/loading', false)
-        
+
         if (window.location.pathname === '/') {
           Vue.router.replace('/home')
         }
       }
     })
-    
+
     const redirect = function () {
       if (Vue.router.currentRoute.name !== 'Login') {
         Vue.router.push('login')
@@ -73,11 +73,11 @@ export default {
       if (window.location.pathname.includes('/password-reset')) {
         return error
       }
-      
+
       if (window.location.pathname.includes('/confirmed')) {
         Vue.router.push('/login?confirmed=true')
       }
-      
+
       if (
         error.response &&
         error.response.status === 500 &&
@@ -87,7 +87,7 @@ export default {
         localStorage.clear()
         redirect()
       }
-      
+
       if (
         error.response &&
         error.response.status === 500 &&
@@ -96,12 +96,12 @@ export default {
         localStorage.clear()
         redirect()
       }
-      
+
       if (error.response && (error.response.status === 500) && (error.response.data.error === 'The token has been blacklisted')) {
         localStorage.clear()
         redirect()
       }
-      
+
       if (
         error.response &&
         error.response.status === 500 &&
@@ -110,7 +110,7 @@ export default {
         localStorage.clear()
         redirect()
       }
-      
+
       if (
         error.response &&
         error.response.status === 500 &&
@@ -119,7 +119,7 @@ export default {
         localStorage.clear()
         redirect()
       }
-      
+
       if (
         error.response &&
         error.response.status === 500 &&
@@ -128,15 +128,15 @@ export default {
         localStorage.clear()
         redirect()
       }
-      
+
       if (Vue.auth.token() === null) {
         localStorage.clear()
         redirect()
       }
-      
+
       return Promise.reject(error)
     })
-    
+
     Vue.router.beforeEach(function (to, from, next) {
       const excluded = ['Login', 'ResetPassword', 'ResetPasswordForm', 'Signup', 'Confirmed']
       if (to.meta.static) {
