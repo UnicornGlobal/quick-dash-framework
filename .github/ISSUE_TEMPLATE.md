@@ -25,4 +25,4 @@ Screen Resolution:
 
 ...
 
-Alert the following people: @darrynten @tammygermany @igorsergiichuk @steveops @humanityjs @fergusdixon
+Alert the following people: @darrynten @tammygermany @igorsergiichuk @steveops @humanityjs
