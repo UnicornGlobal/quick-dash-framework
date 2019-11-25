@@ -32,4 +32,4 @@ Related issues: #
 
 ### After
 
-Notify the following people: @darrynten @tammygermany @igorsergiichuk @steveops @humanityjs @fergusdixon
+Notify the following people: @darrynten @tammygermany @igorsergiichuk @steveops @humanityjs
