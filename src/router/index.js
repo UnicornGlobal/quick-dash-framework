@@ -152,7 +152,7 @@ export async function loadRoutes(user) {
     path: '/account',
     component: config.router.account.component,
     meta: {
-      main: true,
+      main: config.sidebar.account ? true : false,
       label: strings.account,
       icon: icons.account
     }
