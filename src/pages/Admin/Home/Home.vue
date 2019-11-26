@@ -59,7 +59,6 @@
       }
     },
     mounted() {
-      console.log('<<<<<<<<<<,')
       this.loaded = true
     }
   }
