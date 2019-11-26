@@ -17,9 +17,7 @@
         </div>
       </page-section>
     </page-container>
-    x
   </div>
-  <div v-else>s</div>
 </template>
 
 <style lang="scss" scoped>

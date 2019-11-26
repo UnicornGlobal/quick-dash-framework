@@ -1,9 +1,9 @@
 // http://chaijs.com/api/bdd/
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 
-import Home from '@/pages/User/Home/Home'
+import Home from '@/pages/Admin/Home/Home'
 
-describe('User/Home.vue', () => {
+describe('Admin/Home.vue', () => {
   it('is an Object', () => {
     expect(Home).to.be.an('Object')
   })
@@ -28,7 +28,6 @@ describe('User/Home.vue', () => {
       }
     })
 
-    // The default quickdash page
-    expect(wrapper.find('h3').text()).to.equal('Core Concepts')
+    expect(wrapper.find('p').text()).to.equal('Admin Role Loaded')
   })
 })
