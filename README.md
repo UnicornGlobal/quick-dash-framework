@@ -76,7 +76,28 @@ This may change in the future but is the convention for now.
 **NB** You *must* att `static:true` to the `meta` field of your static
 routes. This may change in the future but is convention for now.
 
-### Overriding Elements
+### Config Loading
+
+The values in `/src/config/*.js` will be overridden by any values
+present in the matching file in the host app.
+
+Any additional values in the host app will be appended.
+
+### Component References
+
+All components in the framework can be accessed with the `@` import tag.
+
+All components in the host app can be accessed with the `~` import tag.
+
+Example:
+
+To load a framework component:
+
+`import component from '@/components/FrameworkComponent'`
+
+To load a component from the host app:
+
+`import component from '~/components/LocalComponent'`
 
 #### Loader
 

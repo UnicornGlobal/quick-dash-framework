@@ -5,7 +5,6 @@ import icons from '@/icons'
 let customAdminRoutes = []
 try {
   customAdminRoutes = require('~/router/admin').default
-  console.log(customAdminRoutes)
 } catch {
   // No custom admin routes exist
 }

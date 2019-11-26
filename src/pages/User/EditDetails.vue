@@ -89,7 +89,6 @@
             })
           })
           .catch(e => {
-            console.log(e)
             vm.$toaster.addToast({
               type: 'error',
               title: 'Error',
@@ -101,13 +100,11 @@
     computed: {
       user() {
         const user = this.$store.getters['auth/user']
-        console.log(user)
         return user
       },
       userDetails() {
         const user = this.$store.getters['auth/user']
 
-        console.log(user)
         return [
           {
             key: 'First Name',

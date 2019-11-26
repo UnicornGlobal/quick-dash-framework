@@ -69,11 +69,9 @@ async function getCustomRoutes(user) {
        * Override home route if available
        * We do these seperately so that we can always make home routes
        * the first entry on the sidebar.
-       *
-       * TODO there should technically only be 1 home route allowed...
        */
       if (name === 'home') {
-        homeRoutes = filterRoutesByRole(value, user)
+        homeRoutes = resolveHomeRoute(value, user)
       }
 
       // Check non-home routes
@@ -104,6 +102,65 @@ function filterRoutesByRole(routes, user) {
   }
 
   return processedRoutes
+}
+
+/**
+ * Makes sure there is only ever 1 homepage.
+ *
+ * If no valid /home route exists for the users
+ * set of roles we add a default admin homepage
+ * if they are an admin.
+ *
+ * If they are not an admin we add a default home
+ * route explaining how to set up a role-based
+ * home route configuration.
+ *
+ * If there is more than 1 home route we throw an
+ * exception because there should only ever be
+ * 1 home route loaded for a user.
+ */
+function resolveHomeRoute(routes, user) {
+  const homeRoutes = filterRoutesByRole(routes, user)
+
+  if (homeRoutes.length === 1) {
+    return homeRoutes
+  }
+
+  if (homeRoutes.length === 0 && userHasRole(user, config.router.admin.role)) {
+    return [
+      {
+        name: 'AdminHome',
+        role: 'admin',
+        path: '/home',
+        component: config.home.admin,
+        meta: {
+          main: true,
+          label: 'Dashboard',
+          icon: icons.home
+        }
+      }
+    ]
+  }
+
+  // Warn about bad role configuration
+  if (homeRoutes.length > 1) {
+    console.warn('User has a role configuration that loads multiple home routes. Falling back to default home route.')
+  }
+
+  // If there are no routes and the user is not an admin (or if multiple
+  // home routes are set) then we return the default home page
+  return [
+    {
+      name: 'Home',
+      path: '/home',
+      component: config.home.fallback,
+      meta: {
+        main: true,
+        label: 'Dashboard',
+        icon: icons.home
+      }
+    }
+  ]
 }
 
 // These are any routes available in the ~/src/router/static folder
