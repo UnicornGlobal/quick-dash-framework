@@ -134,7 +134,7 @@ function resolveHomeRoute(routes, user) {
         path: '/home',
         component: config.home.admin,
         meta: {
-          main: true,
+          main: false,
           label: 'Dashboard',
           icon: icons.home
         }
@@ -155,7 +155,7 @@ function resolveHomeRoute(routes, user) {
       path: '/home',
       component: config.home.fallback,
       meta: {
-        main: true,
+        main: false,
         label: 'Dashboard',
         icon: icons.home
       }

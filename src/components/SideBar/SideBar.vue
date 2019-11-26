@@ -155,9 +155,9 @@ export default {
 }
 
 .menu-items {
-  padding-bottom: 3em;
+  padding-bottom: 0;
   margin-bottom: auto;
-  margin-top: $sidebar_menu_padding_top;
+  margin-top: 0;
   overflow-y: scroll;
   overflow-x: hidden;
   margin-right: -1rem;
