@@ -9,6 +9,7 @@ export default {
     return icons.quick
   },
   profile: true,
+  account: true,
   highlight: true,
   icons: true
 }
