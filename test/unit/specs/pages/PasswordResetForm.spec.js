@@ -1,5 +1,5 @@
 // http://chaijs.com/api/bdd/
-import PasswordReset from '@/pages/PasswordResetRequest'
+import PasswordResetForm from '@/pages/PasswordResetForm'
 import sinon from 'sinon'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import { ErrorBag } from 'vee-validate'
@@ -9,6 +9,12 @@ import Vue from 'vue'
 
 const mocks = {
   $http: axios,
+  $route: {
+    params: {
+      email: '1@example.com',
+      token: 'lkjasfdlfsd'
+    }
+  },
   $auth: {
     check: sinon.stub().returns(true),
     user: sinon.stub().returns({}),
@@ -18,21 +24,21 @@ const mocks = {
   $store: store
 }
 
-describe('PasswordReset.vue', () => {
+describe('PasswordResetForm.vue', () => {
   it('is an Object', () => {
-    expect(PasswordReset).to.be.an('Object')
+    expect(PasswordResetForm).to.be.an('Object')
   })
 
   it('has default data', () => {
-    const defaultData = PasswordReset.data()
+    const defaultData = PasswordResetForm.data()
     expect(defaultData).to.be.an('object')
-    expect(Object.keys(defaultData)).to.have.lengthOf(3)
-    expect(defaultData).to.have.all.keys('email', 'sent', 'bSending')
+    expect(Object.keys(defaultData)).to.have.lengthOf(5)
+    expect(defaultData).to.have.all.keys('email', 'sent', 'bSending', 'token', 'password')
   })
 
   it('has three methods', () => {
     const localVue = createLocalVue()
-    const wrapper = shallowMount(PasswordReset, {localVue, mocks})
+    const wrapper = shallowMount(PasswordResetForm, {localVue, mocks})
 
     expect(wrapper.vm.submit).to.be.a('function')
     expect(wrapper.vm.sendRequest).to.be.a('function')
@@ -42,7 +48,7 @@ describe('PasswordReset.vue', () => {
   it('submits successful request', async () => {
     const localVue = createLocalVue()
     localVue.prototype.$eventBus = new Vue()
-    const wrapper = shallowMount(PasswordReset, {localVue, mocks})
+    const wrapper = shallowMount(PasswordResetForm, {localVue, mocks})
     wrapper.setData({email: 'name@example.com', sent: false})
 
     sinon.stub(wrapper.vm.$validator, 'validateAll').resolves(true)
@@ -60,7 +66,7 @@ describe('PasswordReset.vue', () => {
   it('submits failed request', async () => {
     const localVue = createLocalVue()
     localVue.prototype.$eventBus = new Vue()
-    const wrapper = shallowMount(PasswordReset, {localVue, mocks})
+    const wrapper = shallowMount(PasswordResetForm, {localVue, mocks})
     wrapper.setData({email: 'name@example.com', sent: false})
 
     sinon.stub(wrapper.vm.$validator, 'validateAll').resolves(true)
