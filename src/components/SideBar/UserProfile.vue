@@ -3,8 +3,9 @@
     <avatar-or-initials
       class="profile-avatar"
       :size="70"
-      :title="user.first_name"
-      backgroundColour="#4CAF50">
+      :radius="70"
+      round
+      :title="user.first_name">
     </avatar-or-initials>
     <h4>{{ user.first_name}} {{user.last_name}}</h4>
     <h5>{{ user.email }}</h5>
@@ -13,7 +14,7 @@
 
 <style lang="scss">
   .user-profile {
-    background-color: $primary;
+    background-color: $accent;
     height: 180px;
     padding: 1em;
     display: flex;
