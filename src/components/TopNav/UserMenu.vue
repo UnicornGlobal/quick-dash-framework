@@ -2,7 +2,6 @@
   <div class="user-menu" v-if="showUserMenu">
     <div class="menu-dropdown" @click="dropDownOpened = !dropDownOpened">
       <avatar-or-initials
-        v-if="showUserAvatar"
         class="user-avatar"
         :size="40"
         :radius="40"
@@ -23,7 +22,7 @@
       </svg>
     </div>
     <div :class="[{ active: dropDownOpened }, 'dropdown-list']">
-      <div class="user-details-wrapper">
+      <div class="user-details-wrapper" v-if="showUserName || showRole || showUserAvatar">
         <avatar-or-initials
           v-if="showUserAvatar"
           class="user-avatar"
@@ -46,7 +45,7 @@
       <div class="links">
         <ul>
           <li v-if="account && account.enabled">
-            <router-link to="/account">Account</router-link>
+            <router-link to="/account">Account Details</router-link>
           </li>
           <li v-for="(menu, index) in menus" :key="index">
             <a :href="menu.link">{{ menu.label }}</a>
@@ -87,23 +86,19 @@
   }
 }
 
-.user-details-wrapper {
-  display: flex;
-}
-
 .dropdown-list {
+  min-width: 250px;
   position: absolute;
   right: 0;
-  top: 60px;
+  top: 67px;
   z-index: 9999999;
   transform: scaleY(0);
   transform-origin: top;
   transition: transform 0.26s ease;
   background: #fff;
   overflow: hidden;
-  border: thin solid #f6f7f9;
+  border: thin solid $primary;
   border-radius: 3px;
-  box-shadow: 0px 4px 8px rgba(204, 204, 204, 0.5);
   &.active {
     transform: scaleY(1);
   }
@@ -111,7 +106,12 @@
 
 .user-details-wrapper {
   border-bottom: 1px solid #dddddd;
-  padding: 5px;
+  display: flex;
+  padding-right: 0.5rem;
+}
+
+.toggle-icon {
+  margin-left: 0.75rem;
 }
 
 .user-menu {
@@ -123,10 +123,6 @@
   a {
     color: $white;
   }
-
-  @media (max-width: 1024px) {
-    display: none;
-  }
 }
 
 .user-details {
@@ -135,7 +131,7 @@
   justify-content: center;
   flex: 1;
   color: $primary-text;
-  padding-right: 20px;
+  padding: 0.6rem 1.2rem;
 
   .user-name {
     font-weight: bold;
@@ -151,8 +147,9 @@
 }
 
 .user-avatar {
-  width: 65px;
-  height: 65px;
+  width: 40px;
+  height: 40px;
+  margin: 1rem 0rem 0.5rem 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -182,8 +179,8 @@
         transition: 0.3s ease;
 
         &:hover {
-          color: #000;
-          font-weight: 400;
+          color: $accent;
+          font-weight: bold;
         }
       }
     }
@@ -216,7 +213,7 @@ export default {
       }
     },
     showRole() {
-      if (this.$store.getters['app/config'].header.role) {
+      if (this.$store.getters['app/config'].usermenu.role) {
         return true
       }
 
@@ -228,21 +225,21 @@ export default {
       }
     },
     showUserMenu() {
-      if (this.$store.getters['app/config'].header.profile) {
+      if (this.$store.getters['app/config'].usermenu.enabled) {
         return true
       }
 
       return false
     },
     showUserAvatar() {
-      if (this.$store.getters['app/config'].header.avatar) {
+      if (this.$store.getters['app/config'].usermenu.avatar) {
         return true
       }
 
       return false
     },
     showUserName() {
-      if (this.$store.getters['app/config'].header.name) {
+      if (this.$store.getters['app/config'].usermenu.name) {
         return true
       }
 
