@@ -51,7 +51,7 @@
             <a :href="menu.link">{{ menu.label }}</a>
           </li>
           <li v-if="showLogout">
-            <a @click.prevent="logout" href="#">Logout</a>
+            <a @click.prevent="logout" href="#" class="user-menu-logout">Logout</a>
           </li>
         </ul>
       </div>

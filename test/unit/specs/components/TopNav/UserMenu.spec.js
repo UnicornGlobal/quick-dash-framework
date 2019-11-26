@@ -23,6 +23,15 @@ const mocks = {
       getters: {
         'app/sidebar/open': true,
         'app/config': {
+          usermenu: {
+            enabled: true,
+            logout: true,
+            profile: true,
+            name: true,
+            role: true,
+            avatar: true,
+            menus: []
+          },
           sidebar: {
             position: 'left'
           },
@@ -32,6 +41,12 @@ const mocks = {
             name: true,
             logout: true,
             profile: true
+          },
+          router: {
+            account: {
+              enabled: true,
+              component: require('@/pages/User/EditDetails').default
+            }
           }
         }
       }
@@ -73,7 +88,7 @@ describe('UserMenu.vue', () => {
       }
     })
 
-    const logout = wrapper.find('a.logout-button')
+    const logout = wrapper.find('a.user-menu-logout')
     expect(logout.is('a')).to.equal(true)
     sinon.stub(wrapper.vm, 'redirectToLogin').returns(true)
     logout.trigger('click')

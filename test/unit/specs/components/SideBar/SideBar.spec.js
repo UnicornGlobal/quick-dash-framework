@@ -127,7 +127,7 @@ describe('SideBar.vue', () => {
     })
     expect(sidebar.vm.rootPath).to.equal('/root')
     expect(sidebar.vm.homeRoute).to.equal('/home')
-    expect(sidebar.vm.showUserProfile).to.equal(undefined)
+    expect(sidebar.vm.showUserProfile).to.equal(false)
     expect(sidebar.vm.showLogo).to.equal(false)
     expect(sidebar.vm.logo).to.equal(false)
     expect(sidebar.vm.logoutStyle).to.equal(undefined)

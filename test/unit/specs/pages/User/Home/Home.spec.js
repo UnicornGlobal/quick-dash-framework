@@ -14,7 +14,7 @@ describe('User/Home.vue', () => {
   })
 
   it('Renders with confirmed account', () => {
-    let localVue = createLocalVue()
+    const localVue = createLocalVue()
     const wrapper = shallowMount(Home, {
       localVue,
       mocks: {
@@ -35,7 +35,7 @@ describe('User/Home.vue', () => {
   })
 
   it('Renders with unconfirmed account', () => {
-    let localVue = createLocalVue()
+    const localVue = createLocalVue()
     const wrapper = shallowMount(Home, {
       localVue,
       mocks: {

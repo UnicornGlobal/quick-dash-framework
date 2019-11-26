@@ -209,7 +209,7 @@ export async function loadRoutes(user) {
     path: '/account',
     component: config.router.account.component,
     meta: {
-      main: config.sidebar.account ? true : false,
+      main: !!config.sidebar.account,
       label: strings.account,
       icon: icons.account
     }
