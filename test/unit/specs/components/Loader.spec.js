@@ -1,6 +1,5 @@
 import Loader from '@/components/Loader.vue'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
-import Vue from 'vue'
 
 describe('Loader.vue', () => {
   it('Has expected props', () => {

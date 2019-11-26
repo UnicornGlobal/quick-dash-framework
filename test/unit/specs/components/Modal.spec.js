@@ -1,6 +1,5 @@
 import Modal from '@/components/Modal.vue'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
-import Vue from 'vue'
 
 describe('Modal.vue', () => {
   it('it emits close event when close button is clicked', () => {
