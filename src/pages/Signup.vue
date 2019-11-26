@@ -41,7 +41,6 @@
     computed: {
       signupOptions() {
         if (this.$store.getters['app/config'].signup) {
-          console.log(this.$store.getters['app/config'].signup)
           return this.$store.getters['app/config'].signup
         }
 
