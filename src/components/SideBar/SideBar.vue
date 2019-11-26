@@ -58,9 +58,7 @@ export default {
       return this.$store.getters['app/config'].header.homeRoute || '/'
     },
     showUserProfile() {
-      if (this.$store.getters['app/config'].sidebar.profile) {
-        return 'display: block'
-      }
+      return this.$store.getters['app/config'].sidebar.profile
     },
     showLogo() {
       if (this.$store.getters['app/config'].sidebar.logo) {
@@ -153,12 +151,17 @@ export default {
 .menu-element {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .menu-items {
   padding-bottom: 3em;
   margin-bottom: auto;
   margin-top: $sidebar_menu_padding_top;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-right: -1rem;
+  height: 100%;
 }
 
 .logout-link-menu-item {
