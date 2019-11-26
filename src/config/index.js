@@ -47,7 +47,13 @@ try {
 
     console.log('Found host config for ', name)
 
-    const config = remote(key).default
+    let config = remote(key).default
+
+    // Do not replace the entire object, instead modify values based
+    // on the config. If the key exists then override, otherwise append.
+    if (result[name]) {
+      config = {...result[name], ...config}
+    }
 
     result = {
       ...result,
