@@ -45,10 +45,10 @@
       <div class="links">
         <ul>
           <li v-if="account && account.enabled">
-            <router-link to="/account">Account Details</router-link>
+            <router-link to="/account" class="user-menu-account">Account Details</router-link>
           </li>
           <li v-for="(menu, index) in menus" :key="index">
-            <a :href="menu.link">{{ menu.label }}</a>
+            <a :href="menu.link" class="user-menu-link">{{ menu.label }}</a>
           </li>
           <li v-if="showLogout">
             <a @click.prevent="logout" href="#" class="user-menu-logout">Logout</a>
