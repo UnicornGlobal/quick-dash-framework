@@ -16,6 +16,10 @@
 </template>
 
 <style lang="scss" scoped>
+.additional-info {
+  flex: 1;
+}
+
 .top-navigation {
   height: 60px;
   margin: 0;

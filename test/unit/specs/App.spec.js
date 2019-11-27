@@ -8,63 +8,6 @@ const localVue = createLocalVue()
 localVue.use(Router)
 localVue.use(Vuex)
 
-const mocks = {
-  $store: new Vuex.Store({
-    getters: {
-      loading: () => false,
-      user: () => {}
-    },
-    modules: {
-      app: {
-        namespaced: true,
-        getters: {
-          config: () => {
-            return {
-              sidebar: {
-                enabled: true,
-                position: 'left'
-              }
-            }
-          },
-          routes: () => {
-            return [{
-              children: [
-                {
-                  children: [
-                    {
-                      meta: {
-                        main: true
-                      }
-                    }
-                  ]
-                }
-              ]
-            }]
-          }
-        },
-        modules: {
-          sidebar: {
-            namespaced: true,
-            getters: {
-              open: () => true
-            },
-            mutations: {
-              open: sinon.spy()
-            }
-          }
-        }
-      }
-    }
-  }),
-  $auth: {
-    ready() {
-      return true
-    }
-  }
-}
-
-mocks.$store.commit = sinon.spy()
-
 describe('App.vue', () => {
   it('The name is "app"', () => {
     expect(App).to.be.an('Object')
@@ -81,9 +24,63 @@ describe('App.vue', () => {
   it('Renders when loaded and authenticated', () => {
     const app = shallowMount(App, {
       localVue,
-      mocks
+      mocks: {
+        $store: new Vuex.Store({
+          getters: {
+            loading: () => false,
+            user: () => {}
+          },
+          modules: {
+            app: {
+              namespaced: true,
+              getters: {
+                config: () => {
+                  return {
+                    sidebar: {
+                      enabled: true,
+                      position: 'left'
+                    }
+                  }
+                },
+                routes: () => {
+                  return [{
+                    children: [
+                      {
+                        children: [
+                          {
+                            meta: {
+                              main: true
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }]
+                }
+              },
+              modules: {
+                sidebar: {
+                  namespaced: true,
+                  getters: {
+                    open: () => true
+                  },
+                  mutations: {
+                    open: sinon.spy()
+                  }
+                }
+              }
+            }
+          }
+        }),
+        $auth: {
+          ready() {
+            return true
+          }
+        }
+      }
     })
 
+    app.vm.$store.commit = sinon.spy()
     expect(app.contains('div')).to.equal(true)
     const element = app.find('.main-content')
     expect(element.is('div')).to.equal(true)
@@ -93,9 +90,64 @@ describe('App.vue', () => {
     const app = shallowMount(App, {
       localVue,
       stubs: ['router-view'],
-      mocks
+      mocks: {
+        $store: new Vuex.Store({
+          getters: {
+            loading: () => false,
+            user: () => {}
+          },
+          commit: sinon.spy(),
+          modules: {
+            app: {
+              namespaced: true,
+              getters: {
+                config: () => {
+                  return {
+                    sidebar: {
+                      enabled: true,
+                      position: 'left'
+                    }
+                  }
+                },
+                routes: () => {
+                  return [{
+                    children: [
+                      {
+                        children: [
+                          {
+                            meta: {
+                              main: true
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }]
+                }
+              },
+              modules: {
+                sidebar: {
+                  namespaced: true,
+                  getters: {
+                    open: () => true
+                  },
+                  mutations: {
+                    open: sinon.spy()
+                  }
+                }
+              }
+            }
+          }
+        }),
+        $auth: {
+          ready() {
+            return true
+          }
+        }
+      }
     })
 
+    app.vm.$store.commit = sinon.spy()
     expect(app.vm.showSideBar).to.equal(true)
     await app.vm.closeSidebar()
 
@@ -106,10 +158,209 @@ describe('App.vue', () => {
     const app = shallowMount(App, {
       localVue,
       stubs: ['router-view'],
-      mocks
+      mocks: {
+        $store: new Vuex.Store({
+          getters: {
+            loading: () => false,
+            user: () => {}
+          },
+          modules: {
+            app: {
+              namespaced: true,
+              getters: {
+                config: () => {
+                  return {
+                    sidebar: {
+                      enabled: true,
+                      position: 'left'
+                    }
+                  }
+                },
+                routes: () => {
+                  return [{
+                    children: [
+                      {
+                        children: [
+                          {
+                            meta: {
+                              main: true
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }]
+                }
+              },
+              modules: {
+                sidebar: {
+                  namespaced: true,
+                  getters: {
+                    open: () => true
+                  },
+                  mutations: {
+                    open: sinon.spy()
+                  }
+                }
+              }
+            }
+          }
+        }),
+        $auth: {
+          ready() {
+            return true
+          }
+        }
+      }
     })
 
+    app.vm.$store.commit = sinon.spy()
+
+    expect(app.find('side-bar-stub.side-bar').exists()).to.equal(false)
     expect(app.vm.showSideBar).to.equal(true)
     expect(app.vm.menu).to.be.an('array').that.has.lengthOf(1)
+    expect(app.find('div.side-bar').exists()).to.equal(false)
+  })
+
+  it('Renders sidebar on left when configured', () => {
+    const app = shallowMount(App, {
+      localVue,
+      stubs: ['router-view'],
+      mocks: {
+        $store: new Vuex.Store({
+          getters: {
+            loading: () => false,
+            user: () => {}
+          },
+          modules: {
+            app: {
+              namespaced: true,
+              getters: {
+                sidebar: () => {
+                  return {
+                    enabled: true
+                  }
+                },
+                config: () => {
+                  return {
+                    sidebar: {
+                      enabled: true,
+                      position: 'left'
+                    }
+                  }
+                },
+                routes: () => {
+                  return [{
+                    children: [
+                      {
+                        children: [
+                          {
+                            meta: {
+                              main: true
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }]
+                }
+              },
+              modules: {
+                sidebar: {
+                  namespaced: true,
+                  getters: {
+                    open: () => true,
+                    enabled: () => true
+                  },
+                  mutations: {
+                    open: sinon.spy()
+                  }
+                }
+              }
+            }
+          }
+        }),
+        $auth: {
+          ready() {
+            return true
+          }
+        }
+      }
+    })
+
+    app.vm.$store.commit = sinon.spy()
+    expect(app.find('side-bar-stub.side-bar').exists()).to.equal(true)
+    expect(app.find('side-bar-stub.side-bar[name="slideleft"').exists()).to.equal(true)
+  })
+
+  it('Renders sidebar on right when configured', () => {
+    const app = shallowMount(App, {
+      localVue,
+      stubs: ['router-view'],
+      mocks: {
+        $store: new Vuex.Store({
+          getters: {
+            loading: () => false,
+            user: () => {}
+          },
+          modules: {
+            app: {
+              namespaced: true,
+              getters: {
+                sidebar: () => {
+                  return {
+                    enabled: true
+                  }
+                },
+                config: () => {
+                  return {
+                    sidebar: {
+                      enabled: true,
+                      position: 'right'
+                    }
+                  }
+                },
+                routes: () => {
+                  return [{
+                    children: [
+                      {
+                        children: [
+                          {
+                            meta: {
+                              main: true
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }]
+                }
+              },
+              modules: {
+                sidebar: {
+                  namespaced: true,
+                  getters: {
+                    open: () => true,
+                    enabled: () => true
+                  },
+                  mutations: {
+                    open: sinon.spy()
+                  }
+                }
+              }
+            }
+          }
+        }),
+        $auth: {
+          ready() {
+            return true
+          }
+        }
+      }
+    })
+
+    app.vm.$store.commit = sinon.spy()
+    expect(app.find('side-bar-stub.side-bar').exists()).to.equal(true)
+    expect(app.find('side-bar-stub.side-bar[name="slideright"').exists()).to.equal(true)
   })
 })

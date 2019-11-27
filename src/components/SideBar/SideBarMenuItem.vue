@@ -1,7 +1,7 @@
 <template>
   <div class="menu-item" :class="{'active': isCurrent}">
     <template v-if="hasChildren && menu.children.length > 1">
-      <a href="#" @click.prevent="open = !open" class="router-link toggle">
+      <a href="#" @click.prevent="open = !open" class="router-link toggle" :class="`menu-toggle-${open ? 'open' : 'closed'}`">
         <span class="menu-item-with-children">
           <component v-if="menu.meta.icon" :is="menu.meta.icon"></component>
           <span class="false-icon-space" v-else></span>
@@ -154,7 +154,7 @@
 
     .false-icon-space {
       height: 20px;
-      margin-right: 28px;
+      margin-right: 48px;
     }
 
     .menu-item-with-children {
@@ -163,8 +163,15 @@
       font-size: $sidebar_text_size;
     }
 
+    .menu-toggle-open {
+      background: $primary;
+    }
+
+    .sub-menu {
+      background: $primary;
+    }
+
     .sub-menu > .menu-item {
-      background: $white;
       &.active {
         background: $light-hover;
         color: $black;
