@@ -11,5 +11,9 @@ export default {
   profile: true,
   account: true,
   highlight: true,
-  icons: true
+  icons: true,
+  customSideBarComponent: {
+    enabled: false,
+    component: null
+  }
 }

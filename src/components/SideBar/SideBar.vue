@@ -17,6 +17,7 @@
         :base="rootPath"
       ></side-bar-menu-item>
     </div>
+    <component v-if="showSideBarFooterComponent" :is="sideBarFooterComponent"></component>
     <div v-if="showLogout" class="logout-link-menu-item" :style="logoutStyle">
       <div class="menu-item">
         <a class="logout" @click.prevent="logout" href="#">
@@ -81,7 +82,13 @@ export default {
     },
     showLogout() {
       return this.$store.getters['app/config'].sidebar.logout
-    }
+    },
+    showSideBarFooterComponent() {
+      return this.$store.getters['app/config'].sidebar.customSideBarComponent.enabled;
+    },
+    sideBarFooterComponent() {
+      return this.$store.getters['app/config'].sidebar.customSideBarComponent.component;
+    },
   },
   methods: {
     closeSidebar() {
