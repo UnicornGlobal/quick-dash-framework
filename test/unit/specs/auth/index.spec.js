@@ -2,9 +2,7 @@
 import Vue from 'vue'
 import { createLocalVue } from '@vue/test-utils'
 import router from '@/router'
-import { userHasRole, reloadSelf } from '@/auth'
-import auth from '@/auth'
-import store from '@/store'
+import auth, { userHasRole, reloadSelf } from '@/auth'
 
 const localVue = createLocalVue()
 localVue.router = router
@@ -65,44 +63,44 @@ describe('General methods', () => {
     const originalGet = Vue.axios.get
 
     var getSelf = sinon.stub().resolves({
-      '_id': '111111111',
-      'username': 'user',
-      'first_name': 'User',
-      'last_name': 'Last',
-      'email': 'lastname@example.com',
-      'mobile': '+27822221111',
-      'about': 'Example',
-      'is_verified': 0,
-      'title': null,
-      'location': 'London, ON, Canada',
-      'company_name': 'ExtraVallis',
-      'referer': null,
-      'account_type': 'startup',
-      'facebook': null,
-      'twitter': null,
-      'linkedin': null,
-      'instagram': null,
-      'youtube': null,
-      'confirmed': false,
-      'roles': [
+      _id: '111111111',
+      username: 'user',
+      first_name: 'User',
+      last_name: 'Last',
+      email: 'lastname@example.com',
+      mobile: '+27822221111',
+      about: 'Example',
+      is_verified: 0,
+      title: null,
+      location: 'London, ON, Canada',
+      company_name: 'ExtraVallis',
+      referer: null,
+      account_type: 'startup',
+      facebook: null,
+      twitter: null,
+      linkedin: null,
+      instagram: null,
+      youtube: null,
+      confirmed: false,
+      roles: [
         {
-          '_id': '1111',
-          'name': 'startup'
+          _id: '1111',
+          name: 'startup'
         },
         {
-          '_id': '2222',
-          'name': 'user'
+          _id: '2222',
+          name: 'user'
         }
       ],
-      'primary_startup': null,
-      'startup_company': null,
-      'primary_investment': null,
-      'investment_company': null,
-      'profile_photo': null
+      primary_startup: null,
+      startup_company: null,
+      primary_investment: null,
+      investment_company: null,
+      profile_photo: null
     })
 
     Vue.axios.get = getSelf
-    const result = reloadSelf()
+    reloadSelf()
     expect(getSelf.called).to.equal(true)
     Vue.axios.get = originalGet
   })
@@ -124,7 +122,7 @@ describe('Default export', () => {
       beforeEach: sinon.stub()
     }
 
-    const result = auth.init()
+    auth.init()
 
     expect(Vue.use.called).to.equal(true)
     expect(Vue.router.beforeEach.called).to.equal(true)

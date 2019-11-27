@@ -1,7 +1,7 @@
 // http://chaijs.com/api/bdd/
 import SideBar from '@/components/SideBar/SideBar'
-import { RouterLinkStub } from '@vue/test-utils';
 import { createLocalVue, shallowMount } from '@vue/test-utils'
+
 import sinon from 'sinon'
 
 const localVue = createLocalVue()

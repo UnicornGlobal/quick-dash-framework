@@ -1,7 +1,6 @@
 // http://chaijs.com/api/bdd/
 import Details from '@/pages/User/Details'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
-import store from '@/store'
 
 describe('Details.vue', () => {
   it('is an Object', () => {
@@ -39,40 +38,40 @@ describe('Details.vue', () => {
       $store: {
         getters: {
           'auth/user': {
-            '_id': '111111111',
-            'username': 'user',
-            'first_name': 'User',
-            'last_name': 'Last',
-            'email': 'lastname@example.com',
-            'mobile': '+27822221111',
-            'about': 'Example',
-            'is_verified': 0,
-            'title': null,
-            'location': 'London, ON, Canada',
-            'company_name': 'ExtraVallis',
-            'referer': null,
-            'account_type': 'startup',
-            'facebook': null,
-            'twitter': null,
-            'linkedin': null,
-            'instagram': null,
-            'youtube': null,
-            'confirmed': false,
-            'roles': [
+            _id: '111111111',
+            username: 'user',
+            first_name: 'User',
+            last_name: 'Last',
+            email: 'lastname@example.com',
+            mobile: '+27822221111',
+            about: 'Example',
+            is_verified: 0,
+            title: null,
+            location: 'London, ON, Canada',
+            company_name: 'ExtraVallis',
+            referer: null,
+            account_type: 'startup',
+            facebook: null,
+            twitter: null,
+            linkedin: null,
+            instagram: null,
+            youtube: null,
+            confirmed: false,
+            roles: [
               {
-                '_id': '1111',
-                'name': 'startup'
+                _id: '1111',
+                name: 'startup'
               },
               {
-                '_id': '2222',
-                'name': 'user'
+                _id: '2222',
+                name: 'user'
               }
             ],
-            'primary_startup': null,
-            'startup_company': null,
-            'primary_investment': null,
-            'investment_company': null,
-            'profile_photo': null
+            primary_startup: null,
+            startup_company: null,
+            primary_investment: null,
+            investment_company: null,
+            profile_photo: null
           }
         }
       }
