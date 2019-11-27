@@ -1,28 +1,10 @@
 // http://chaijs.com/api/bdd/
 import SideBar from '@/components/SideBar/SideBar'
+import { RouterLinkStub } from '@vue/test-utils';
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import sinon from 'sinon'
 
 const localVue = createLocalVue()
-const mocks = {
-  $route: {
-    name: 'Home',
-    label: 'Home',
-    matched: []
-  },
-  $store: {
-    getters: {
-      'app/config': {
-        sidebar: {
-          profile: true,
-          logout: true,
-          icons: true,
-          highlight: false
-        }
-      }
-    }
-  }
-}
 
 describe('SideBar.vue', () => {
   it('it is an object', () => {
@@ -48,12 +30,32 @@ describe('SideBar.vue', () => {
         rootPath: '/test'
       },
       stubs: ['router-link'],
-      mocks
+      mocks: {
+        $route: {
+          name: 'Home',
+          label: 'Home',
+          matched: []
+        },
+        $store: {
+          getters: {
+            'app/config': {
+              sidebar: {
+                profile: true,
+                logout: true,
+                icons: true,
+                highlight: false
+              }
+            }
+          }
+        }
+      }
     })
 
+    expect(sidebar.find('a.logo').exists()).to.equal(false)
     expect(sidebar.vm.rootPath).to.equal('/test')
     expect(sidebar.vm.menus).to.be.an('array').that.has.lengthOf(1)
     expect(sidebar.vm.menus[0].name).to.equal('Home')
+    expect(sidebar.find('router-link.logo').exists()).to.equal(false)
   })
 
   it('loads main menu routes', () => {
@@ -73,7 +75,25 @@ describe('SideBar.vue', () => {
           }
         ]
       },
-      mocks
+      mocks: {
+        $route: {
+          name: 'Home',
+          label: 'Home',
+          matched: []
+        },
+        $store: {
+          getters: {
+            'app/config': {
+              sidebar: {
+                profile: true,
+                logout: true,
+                icons: true,
+                highlight: false
+              }
+            }
+          }
+        }
+      }
     })
     const menus = sidebar.vm.menus
     expect(menus).to.be.an('array')
@@ -151,7 +171,23 @@ describe('SideBar.vue', () => {
         ]
       },
       mocks: {
-        ...mocks,
+        $route: {
+          name: 'Home',
+          label: 'Home',
+          matched: []
+        },
+        $store: {
+          getters: {
+            'app/config': {
+              sidebar: {
+                profile: true,
+                logout: true,
+                icons: true,
+                highlight: false
+              }
+            }
+          }
+        },
         $auth: {
           user() {
             return {
@@ -169,5 +205,64 @@ describe('SideBar.vue', () => {
     sinon.stub(sidebar.vm, 'redirectToLogin').returns(true)
     logout.trigger('click')
     expect(sidebar.vm.$auth.logout.called).to.equal(true)
+  })
+
+  it('Shows logo on sidebar', () => {
+    const logoStub = sinon.stub().returns('xxx')
+
+    const sidebar = shallowMount(SideBar, {
+      localVue,
+      propsData: {
+        user: {},
+        menus: [
+          {
+            name: 'home',
+            path: '/',
+            meta: {
+              icon: 'fa fa-home',
+              label: 'Home',
+              main: true
+            }
+          }
+        ]
+      },
+      mocks: {
+        $route: {
+          name: 'Home',
+          label: 'Home',
+          matched: []
+        },
+        $store: {
+          getters: {
+            'app/sidebar/open': true,
+            'app/config': {
+              sidebar: {
+                profile: true,
+                logout: true,
+                icons: true,
+                highlight: false,
+                logo: logoStub
+              },
+              header: {
+                homeRoute: '/home'
+              }
+            }
+          },
+          commit: sinon.spy()
+        },
+        $auth: {
+          user() {
+            return {
+              first_name: 'fn',
+              last_name: 'ln'
+            }
+          },
+          logout: sinon.stub().resolves(true)
+        }
+      }
+    })
+
+    expect(logoStub.called).to.equal(true)
+    expect(sidebar.find('router-link.logo').exists()).to.equal(true)
   })
 })
