@@ -84,11 +84,15 @@ export default {
       return this.$store.getters['app/config'].sidebar.logout
     },
     showSideBarFooterComponent() {
-      return this.$store.getters['app/config'].sidebar.customSideBarComponent.enabled;
+      if (this.$store.getters['app/config'].customSideBarComponent) {
+        return this.$store.getters['app/config'].sidebar.customSideBarComponent.enabled
+      }
     },
     sideBarFooterComponent() {
-      return this.$store.getters['app/config'].sidebar.customSideBarComponent.component;
-    },
+      if (this.$store.getters['app/config'].customSideBarComponent) {
+        return this.$store.getters['app/config'].sidebar.customSideBarComponent.component
+      }
+    }
   },
   methods: {
     closeSidebar() {
