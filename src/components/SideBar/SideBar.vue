@@ -124,6 +124,9 @@ export default {
   }
 
   bottom: 0;
+  position: absolute;
+  width: 100%;
+  margin-bottom: 0;
 
   a.logout {
     height: 65px;
@@ -159,20 +162,17 @@ export default {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
 }
 
 .menu-items {
   padding-bottom: 0;
-  margin-bottom: auto;
+  //margin-bottom: auto;
   margin-top: 0;
   overflow-y: scroll;
   overflow-x: hidden;
   margin-right: -1rem;
-  height: 100%;
-}
-
-.logout-link-menu-item {
-  margin-bottom: 0;
+  //height: 100%;
 }
 
 .logo {
