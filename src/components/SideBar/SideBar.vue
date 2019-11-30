@@ -84,12 +84,12 @@ export default {
       return this.$store.getters['app/config'].sidebar.logout
     },
     showSideBarFooterComponent() {
-      if (this.$store.getters['app/config'].customSideBarFooterComponent) {
+      if (this.$store.getters['app/config'].sidebar.customSideBarFooterComponent) {
         return this.$store.getters['app/config'].sidebar.customSideBarFooterComponent.enabled
       }
     },
     sideBarFooterComponent() {
-      if (this.$store.getters['app/config'].customSideBarComponent) {
+      if (this.$store.getters['app/config'].sidebar.customSideBarFooterComponent) {
         return this.$store.getters['app/config'].sidebar.customSideBarFooterComponent.component
       }
     }
