@@ -12,7 +12,7 @@ export default {
   account: true,
   highlight: true,
   icons: true,
-  customSideBarComponent: {
+  customSideBarFooterComponent: {
     enabled: false,
     component: null
   }

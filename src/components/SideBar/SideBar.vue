@@ -84,13 +84,13 @@ export default {
       return this.$store.getters['app/config'].sidebar.logout
     },
     showSideBarFooterComponent() {
-      if (this.$store.getters['app/config'].customSideBarComponent) {
-        return this.$store.getters['app/config'].sidebar.customSideBarComponent.enabled
+      if (this.$store.getters['app/config'].customSideBarFooterComponent) {
+        return this.$store.getters['app/config'].sidebar.customSideBarFooterComponent.enabled
       }
     },
     sideBarFooterComponent() {
       if (this.$store.getters['app/config'].customSideBarComponent) {
-        return this.$store.getters['app/config'].sidebar.customSideBarComponent.component
+        return this.$store.getters['app/config'].sidebar.customSideBarFooterComponent.component
       }
     }
   },
