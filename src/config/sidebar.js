@@ -8,12 +8,15 @@ export default {
   logo: () => {
     return icons.quick
   },
-  profile: true,
   account: true,
   highlight: true,
   icons: true,
   customSideBarFooterComponent: {
     enabled: false,
     component: null
+  },
+  customSideBarHeaderComponent: {
+    enabled: true,
+    component: ''
   }
 }
