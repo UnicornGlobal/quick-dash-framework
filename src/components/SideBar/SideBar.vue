@@ -16,8 +16,8 @@
         :menu="menu"
         :base="rootPath"
       ></side-bar-menu-item>
+      <component v-if="showSideBarFooterComponent" :is="sideBarFooterComponent"></component>
     </div>
-    <component v-if="showSideBarFooterComponent" :is="sideBarFooterComponent"></component>
     <div v-if="showLogout" class="logout-link-menu-item" :style="logoutStyle">
       <div class="menu-item">
         <a class="logout" @click.prevent="logout" href="#">
@@ -171,12 +171,12 @@ export default {
 
 .menu-items {
   padding-bottom: 0;
-  //margin-bottom: auto;
+  margin-bottom: auto;
   margin-top: 0;
   overflow-y: scroll;
   overflow-x: hidden;
   margin-right: -1rem;
-  //height: 100%;
+  height: 100%;
 }
 
 .logo {
