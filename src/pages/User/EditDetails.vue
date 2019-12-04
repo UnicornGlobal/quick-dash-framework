@@ -51,7 +51,7 @@
       align-self: flex-start;
       color: $form_header_colour;
       font-weight: bold;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
     }
   }
 

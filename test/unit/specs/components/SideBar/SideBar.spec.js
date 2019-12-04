@@ -68,7 +68,6 @@ describe('SideBar.vue', () => {
             name: 'home',
             path: '/',
             meta: {
-              icon: 'fa fa-home',
               label: 'Home',
               main: true
             }
@@ -115,7 +114,6 @@ describe('SideBar.vue', () => {
             name: 'home',
             path: '/',
             meta: {
-              icon: 'fa fa-home',
               label: 'Home',
               main: true
             }
@@ -163,7 +161,6 @@ describe('SideBar.vue', () => {
             name: 'home',
             path: '/',
             meta: {
-              icon: 'fa fa-home',
               label: 'Home',
               main: true
             }
@@ -219,7 +216,6 @@ describe('SideBar.vue', () => {
             name: 'home',
             path: '/',
             meta: {
-              icon: 'fa fa-home',
               label: 'Home',
               main: true
             }
@@ -269,7 +265,7 @@ describe('SideBar.vue', () => {
   it('Shows custom components', () => {
     const customSideBarFooterComponentStub = sinon.stub().returns('xxx')
 
-    const sidebar = shallowMount(SideBar, {
+    shallowMount(SideBar, {
       localVue,
       propsData: {
         user: {},
@@ -278,7 +274,6 @@ describe('SideBar.vue', () => {
             name: 'home',
             path: '/',
             meta: {
-              icon: 'fa fa-home',
               label: 'Home',
               main: true
             }
@@ -296,9 +291,9 @@ describe('SideBar.vue', () => {
             'app/sidebar/open': true,
             'app/config': {
               sidebar: {
-                profile: true,
-                logout: true,
-                icons: true,
+                profile: false,
+                logout: false,
+                icons: false,
                 highlight: false,
                 customSideBarFooterComponent: {
                   enabled: true,
@@ -306,6 +301,7 @@ describe('SideBar.vue', () => {
                 }
               },
               header: {
+                avatar: false,
                 homeRoute: '/home'
               }
             }
