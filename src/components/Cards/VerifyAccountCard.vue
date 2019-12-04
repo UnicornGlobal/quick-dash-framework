@@ -1,36 +1,35 @@
 <template>
-  <transition name="slide">
-    <div v-if="!closed" class="verify-email">
-      <div class="instructions">
-        <h3>Email requires verification</h3>
-        <p>
-          We sent a verification email to <strong>{{ user.email }}</strong> with further instructions.
-        </p>
-      </div>
-      <div class="actions">
-        <a class="button"
-          v-if="!this.$store.getters['auth/resentVerification']"
-          @click="resendMail">
-            Resend
-        </a>
-        <a class="dismiss" @click="closed=true">X</a>
-      </div>
+  <div v-if="!closed" class="verify-email">
+    <div class="instructions">
+      <h3>Email requires verification</h3>
+      <p class="details">
+        We sent a verification email to <strong>{{ user.email }}</strong> with further instructions.
+      </p>
     </div>
-  </transition>
+    <div class="actions">
+      <a class="button"
+        v-if="!this.$store.getters['auth/resentVerification']"
+        @click="resendMail">
+          RESEND
+      </a>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
   .verify-email {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     z-index: 9999;
     background: $accent;
     color: $primary-text;
-    padding: 0 0 0 0.5em;
+    padding: 0rem 0 0rem 2.2rem;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 1023px) {
+      padding: 1rem 0 0 1.2rem;
+    }
 
     .instructions {
       flex: 2;
@@ -40,11 +39,14 @@
       padding: 1em;
       color: $primary;
 
+      .details {
+        color: $primary-light;
+      }
+
       h3 {
         padding: 0;
         margin: 0;
         color: $primary;
-        font-weight: bold;
       }
 
       p {
@@ -66,25 +68,17 @@
       }
 
       a.button {
-        margin: 1em;
+        margin: 1rem 0.25rem 1rem;
         background: $secondary-text;
         color: $primary;
         border-radius: $border-radius;
-      }
 
-      a.dismiss {
-        padding: 1em;
-        color: $primary;
+        &:active, &:hover {
+          background-color: $secondary-text;
+          color: #ffffff;
+        }
       }
     }
-  }
-
-  .slide-enter-active, .slide-leave-active {
-    transition: transform .5s;
-  }
-
-  .slide-enter, .slide-leave-to {
-    transform: translateY(20em);
   }
 </style>
 
