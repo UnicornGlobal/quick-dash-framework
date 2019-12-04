@@ -3,6 +3,10 @@
     <top-nav class="top-nav" :loaded="loaded" :user="user" :sidebar="enableSideBar" v-if="user">
       <slot name="additional-info"></slot>
     </top-nav>
+    <verify-account-card
+      v-if="!user.confirmed"
+      :user="user"
+    />
     <div class="content">
       <h1 v-if="title">{{title}}</h1>
       <slot></slot>
@@ -28,6 +32,8 @@
 
 <script>
 import TopNav from '@/components/TopNav/TopNav'
+import VerifyAccountCard from '@/components/Cards/VerifyAccountCard.vue'
+
 export default {
   props: {
     title: {
@@ -37,6 +43,7 @@ export default {
   },
 
   components: {
+    VerifyAccountCard,
     TopNav
   },
   computed: {
