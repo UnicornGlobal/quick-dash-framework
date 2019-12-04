@@ -161,7 +161,7 @@
       uploadImage(data) {
         this.$toaster.addToast({
           type: 'success',
-          message: 'Update Avatar',
+          message: 'Image upload successful',
           title: 'Success',
           timeout: 5000
         })
