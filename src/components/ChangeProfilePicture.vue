@@ -156,7 +156,6 @@
     },
     methods: {
       updateProgress(progress) {
-        console.log('updating', progress)
         this.progress = progress
       },
       uploadImage(data) {
