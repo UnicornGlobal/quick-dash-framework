@@ -1,7 +1,7 @@
 <template>
   <div class="page-section">
     <div class="section-details">
-      <h2>{{title}}</h2>
+      <h2 v-if="title">{{title}}</h2>
       <h3 v-if="subtitle">{{subtitle}}</h3>
       <slot></slot>
     </div>
