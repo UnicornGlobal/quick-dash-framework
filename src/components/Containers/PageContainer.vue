@@ -41,7 +41,6 @@ export default {
       required: false
     }
   },
-
   components: {
     VerifyAccountCard,
     TopNav
