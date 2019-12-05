@@ -8,7 +8,10 @@
     >
       <component v-if="showLogo" :is="logo"></component>
     </router-link>
-    <user-profile v-if="showUserProfile" :user="user"></user-profile>
+    <template v-if="showSideBarHeaderComponent">
+      <user-profile :user="user" v-if="!sideBarHeaderComponent"></user-profile>
+      <component :is="sideBarHeaderComponent" v-else-if="sideBarHeaderComponent"></component>
+    </template>
     <div class="menu-items">
       <side-bar-menu-item
         v-for="menu in menus"
@@ -91,6 +94,16 @@ export default {
     sideBarFooterComponent() {
       if (this.$store.getters['app/config'].sidebar.customSideBarFooterComponent) {
         return this.$store.getters['app/config'].sidebar.customSideBarFooterComponent.component
+      }
+    },
+    showSideBarHeaderComponent() {
+      if (this.$store.getters['app/config'].sidebar.customSideBarHeaderComponent) {
+        return this.$store.getters['app/config'].sidebar.customSideBarHeaderComponent.enabled
+      }
+    },
+    sideBarHeaderComponent() {
+      if (this.$store.getters['app/config'].sidebar.customSideBarHeaderComponent) {
+        return this.$store.getters['app/config'].sidebar.customSideBarHeaderComponent.component
       }
     }
   },

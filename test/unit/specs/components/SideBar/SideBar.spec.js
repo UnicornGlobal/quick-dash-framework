@@ -262,7 +262,7 @@ describe('SideBar.vue', () => {
     expect(sidebar.find('router-link.logo').exists()).to.equal(true)
   })
 
-  it('Shows custom components', () => {
+  it('Shows custom header components', () => {
     const customSideBarFooterComponentStub = sinon.stub().returns('xxx')
 
     shallowMount(SideBar, {
@@ -321,5 +321,66 @@ describe('SideBar.vue', () => {
     })
 
     expect(customSideBarFooterComponentStub.called).to.equal(true)
+  })
+
+  it('Shows custom header components', () => {
+    const customSideBarHeaderComponentStub = sinon.stub().returns('xxx')
+
+    const sidebar = shallowMount(SideBar, {
+      localVue,
+      propsData: {
+        user: {},
+        menus: [
+          {
+            name: 'home',
+            path: '/',
+            meta: {
+              icon: 'fa fa-home',
+              label: 'Home',
+              main: true
+            }
+          }
+        ]
+      },
+      mocks: {
+        $route: {
+          name: 'Home',
+          label: 'Home',
+          matched: []
+        },
+        $store: {
+          getters: {
+            'app/sidebar/open': true,
+            'app/config': {
+              sidebar: {
+                profile: true,
+                logout: true,
+                icons: true,
+                highlight: false,
+                customSideBarHeaderComponent: {
+                  enabled: true,
+                  component: customSideBarHeaderComponentStub
+                }
+              },
+              header: {
+                homeRoute: '/home'
+              }
+            }
+          },
+          commit: sinon.spy()
+        },
+        $auth: {
+          user() {
+            return {
+              first_name: 'fn',
+              last_name: 'ln'
+            }
+          },
+          logout: sinon.stub().resolves(true)
+        }
+      }
+    })
+
+    expect(customSideBarHeaderComponentStub.called).to.equal(true)
   })
 })
