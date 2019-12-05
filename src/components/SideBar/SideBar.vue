@@ -9,7 +9,7 @@
       <component v-if="showLogo" :is="logo"></component>
     </router-link>
     <template v-if="showSideBarHeaderComponent">
-      <user-profile :user="user" v-if="!sideBarHeaderComponent"></user-profile>
+      <user-profile :user="user" v-if="!sideBarHeaderComponent && showUserProfile"></user-profile>
       <component :is="sideBarHeaderComponent" v-else-if="sideBarHeaderComponent"></component>
     </template>
     <div class="menu-items">
