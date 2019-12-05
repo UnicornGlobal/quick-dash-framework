@@ -47,6 +47,18 @@ describe('Alert.vue', () => {
     })
   })
 
+  it('renders title when configured', () => {
+    const alert = shallowMount(Alert, {
+      localVue,
+      propsData: {
+        title: 'xxxx' 
+      }
+    })
+
+    expect(alert.vm.getTitle).to.be.a('function')
+    expect(alert.vm.getTitle()).to.equal('xxxx')
+  })
+
   it('emits close event when close button is clicked', () => {
     const alert = shallowMount(Alert, {localVue, propsData: {dismissible: true}})
     alert.find('div.close').trigger('click')
@@ -54,7 +66,7 @@ describe('Alert.vue', () => {
   })
 
   it('auto closes if timeout is set', () => {
-    const alert = shallowMount(Alert, {localVue, propsData: {timeOut: 2000}})
+    const alert = shallowMount(Alert, {localVue, propsData: {timeOut: 0}})
     setTimeout(() => {
       expect(alert.emitted()).to.have.all.keys('close')
     }, 2000)
