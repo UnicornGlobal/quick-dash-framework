@@ -99,6 +99,31 @@ describe('Prompt.vue', () => {
     expect(prompt.vm.$http.get.calledWith('api/test', {params: {id: '1'}})).to.equal(true)
   })
 
+  it('performs put requests', () => {
+    const localVue = createLocalVue()
+    const options = {
+      mocks: {
+        errors: new ErrorBag(),
+        $http: {
+          post: sinon.stub().resolves({data: {}}),
+          put: sinon.stub().resolves({data: {}})
+        }
+      },
+      propsData: {
+        method: 'put',
+        url: 'api/test',
+        data: {id: '1'}
+      },
+      localVue
+    }
+
+    const prompt = shallowMount(Prompt, options)
+    prompt.vm.ok()
+    // It reroutes put to post
+    expect(prompt.vm.$http.put.calledWith('api/test', {params: {id: '1'}})).to.equal(false)
+    expect(prompt.vm.$http.post.calledWith('api/test', {params: {id: '1'}})).to.equal(false)
+  })
+
   it('emits success event', () => {
     const localVue = createLocalVue()
     const options = {

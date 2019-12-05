@@ -8,7 +8,10 @@
     >
       <component v-if="showLogo" :is="logo"></component>
     </router-link>
-    <user-profile v-if="showUserProfile" :user="user"></user-profile>
+    <template v-if="showSideBarHeaderComponent">
+      <user-profile :user="user" v-if="!sideBarHeaderComponent && showUserProfile"></user-profile>
+      <component :is="sideBarHeaderComponent" v-else-if="sideBarHeaderComponent"></component>
+    </template>
     <div class="menu-items">
       <side-bar-menu-item
         v-for="menu in menus"
@@ -16,6 +19,7 @@
         :menu="menu"
         :base="rootPath"
       ></side-bar-menu-item>
+      <component v-if="showSideBarFooterComponent" :is="sideBarFooterComponent"></component>
     </div>
     <div v-if="showLogout" class="logout-link-menu-item" :style="logoutStyle">
       <div class="menu-item">
@@ -81,6 +85,26 @@ export default {
     },
     showLogout() {
       return this.$store.getters['app/config'].sidebar.logout
+    },
+    showSideBarFooterComponent() {
+      if (this.$store.getters['app/config'].sidebar.customSideBarFooterComponent) {
+        return this.$store.getters['app/config'].sidebar.customSideBarFooterComponent.enabled
+      }
+    },
+    sideBarFooterComponent() {
+      if (this.$store.getters['app/config'].sidebar.customSideBarFooterComponent) {
+        return this.$store.getters['app/config'].sidebar.customSideBarFooterComponent.component
+      }
+    },
+    showSideBarHeaderComponent() {
+      if (this.$store.getters['app/config'].sidebar.customSideBarHeaderComponent) {
+        return this.$store.getters['app/config'].sidebar.customSideBarHeaderComponent.enabled
+      }
+    },
+    sideBarHeaderComponent() {
+      if (this.$store.getters['app/config'].sidebar.customSideBarHeaderComponent) {
+        return this.$store.getters['app/config'].sidebar.customSideBarHeaderComponent.component
+      }
     }
   },
   methods: {
@@ -117,6 +141,9 @@ export default {
   }
 
   bottom: 0;
+  position: absolute;
+  width: 100%;
+  margin-bottom: 0;
 
   a.logout {
     height: 65px;
@@ -152,6 +179,7 @@ export default {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
 }
 
 .menu-items {
@@ -162,10 +190,6 @@ export default {
   overflow-x: hidden;
   margin-right: -1rem;
   height: 100%;
-}
-
-.logout-link-menu-item {
-  margin-bottom: 0;
 }
 
 .logo {

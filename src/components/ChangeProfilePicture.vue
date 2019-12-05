@@ -156,13 +156,12 @@
     },
     methods: {
       updateProgress(progress) {
-        console.log('updating', progress)
         this.progress = progress
       },
       uploadImage(data) {
         this.$toaster.addToast({
           type: 'success',
-          message: 'Update Avatar',
+          message: 'Image upload successful',
           title: 'Success',
           timeout: 5000
         })
