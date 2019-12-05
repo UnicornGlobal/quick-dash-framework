@@ -9,7 +9,6 @@
         <div class="shadow" v-show="showSideBar" @click.prevent="closeSidebar"></div>
       </transition>
       <div class="main-content" :style="layoutStyle">
-        <!-- <top-nav class="top-nav" :loaded="loaded" :user="user" :sidebar="enableSideBar" v-if="user"></top-nav> -->
         <router-view class="content-area-view"></router-view>
       </div>
     </div>
@@ -19,7 +18,6 @@
 
 <script>
 import SideBar from '@/components/SideBar/SideBar'
-import TopNav from '@/components/TopNav/TopNav'
 import Loader from '@/components/Loader'
 import Toaster from '@unicorns/toaster'
 
@@ -27,7 +25,6 @@ export default {
   name: 'app',
   components: {
     SideBar,
-    TopNav,
     Loader,
     Toaster
   },
@@ -124,7 +121,7 @@ export default {
     width: 300px;
     background: $white;
     z-index: 10;
-    overflow-y: auto;
+    overflow: hidden;
     border-right: $sidebar_border;
     box-shadow: $sidebar_shadow;
 
@@ -152,6 +149,10 @@ export default {
   overflow-y: scroll;
   margin-right: -1rem;
   height: 100%;
+
+  @media (max-width: 1023px) {
+    margin-left: -1rem;
+  }
 }
 
 .content-area-view {
@@ -194,10 +195,6 @@ export default {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
  {
   opacity: 0;
-}
-
-.top-nav {
-  width: 100%;
 }
 
 .shadow {

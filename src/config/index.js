@@ -61,7 +61,7 @@ try {
     }
   })
 } catch (e) {
-  console.error('Something errored while loading the base configuration.')
+  console.error('Something errored while loading the remote configuration.')
 }
 
 export default result
