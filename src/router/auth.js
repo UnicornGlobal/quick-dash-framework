@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import config from '@/config'
-import { logout, confirmed } from '@/api/user'
+import { logout } from '@/api/auth'
 
 function redirectIfAuthenticated(to, from, next) {
   if (Vue.auth && Vue.auth.check()) {
@@ -42,11 +42,9 @@ export default [
   },
   {
     name: 'Confirmed',
-    path: '/confirmed',
-    async beforeEnter(to, from, next) {
-      await confirmed()
-      next(false)
-    }
+    path: '/confirmed/:token',
+    component: require('@/pages/Confirm.vue').default,
+    props: true
   },
   {
     name: 'Logout',

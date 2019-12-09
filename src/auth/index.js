@@ -60,7 +60,7 @@ export default {
 
     const redirectToLogin = function () {
       if (Vue.router.currentRoute.name !== 'Login') {
-        Vue.router.push('login')
+        Vue.router.push('/login')
       } else {
         window.location.reload()
       }
@@ -72,10 +72,6 @@ export default {
     }, (error) => {
       if (window.location.pathname.includes('/password-reset')) {
         return error
-      }
-
-      if (window.location.pathname.includes('/confirmed')) {
-        Vue.router.push('/login?confirmed=true')
       }
 
       if (
