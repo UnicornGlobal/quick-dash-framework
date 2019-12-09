@@ -1,4 +1,4 @@
-import { resendVerification, logout } from '@/api/auth'
+import { resendVerification } from '@/api/auth'
 import Vue from 'vue'
 import sinon from 'sinon'
 
