@@ -24,12 +24,6 @@
   </transition>
 </template>
 
-<script>
-  export default {
-    name: 'Modal'
-  }
-</script>
-
 <style lang="scss">
   .modal-mask {
     position: fixed;
@@ -75,8 +69,8 @@
   }
 
   .modal-body {
-    margin: 20px 0px 20px 8px;
-    padding-bottom: 2rem;
+    margin: 20px 0px 0px 8px;
+    padding-bottom: 1rem;
     @media (max-width: 480px) {
       margin: 0;
     }

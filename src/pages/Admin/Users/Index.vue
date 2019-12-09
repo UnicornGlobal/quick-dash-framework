@@ -1,5 +1,5 @@
 <template>
-  <page-container class="page-container" title="Manage Users">
+  <page-container title="">
     <page-section title="All Users" subtitle="Select a User to manage Roles.">
       <card class="card">
         <data-table v-if="users" :dataset="users" :options="tableConfig" class="data-table"></data-table>

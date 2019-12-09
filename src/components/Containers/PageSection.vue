@@ -19,15 +19,24 @@
     align-items: center;
     margin: 0 0.5em;
   }
+
+  h2 {
+    @media (max-width: 1024px) {
+      margin: 1.5rem 1rem 0.5rem;
+    }
+  }
 }
 
 .page-section {
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid lightgray;
+  padding: 1rem;
 
   @media (max-width: 1024px) {
     flex-direction: column;
+    padding-top: 0;
+    padding-right: 0;
   }
 
   .section-content {

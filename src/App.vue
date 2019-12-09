@@ -147,6 +147,7 @@ export default {
 
 .content {
   overflow-y: scroll;
+  overflow-x: hidden;
   margin-right: -1rem;
   height: 100%;
 
