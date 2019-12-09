@@ -33,7 +33,7 @@ describe('PasswordResetForm.vue', () => {
     const defaultData = PasswordResetForm.data()
     expect(defaultData).to.be.an('object')
     expect(Object.keys(defaultData)).to.have.lengthOf(5)
-    expect(defaultData).to.have.all.keys('email', 'sent', 'bSending', 'token', 'password')
+    expect(defaultData).to.have.all.keys('email', 'sent', 'sending', 'token', 'password')
   })
 
   it('has three methods', () => {

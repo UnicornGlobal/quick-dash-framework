@@ -25,7 +25,7 @@
           </div>
 
           <button @click.prevent="submit()" class="reset-button text-uppercase" :class="sent ? 'hide' : ''">
-            <div class="loading" v-if="bSending">
+            <div class="loading" v-if="sending">
               <loader fill="#ffffff" width="25px" height="25px"></loader>
             </div>
             {{ strings.button }}
@@ -58,7 +58,7 @@
         token: '',
         password: '',
         sent: false,
-        bSending: false
+        sending: false
       }
     },
     created() {
@@ -116,7 +116,7 @@
         })
       },
       sendRequest() {
-        this.bSending = true
+        this.sending = true
         this.$http.post(`reset/${this.token}`, {
           email: this.email,
           password: this.password,
@@ -148,11 +148,11 @@
               this.$router.push('/login?reset=true')
             } else {
               this.sent = true
-              this.bSending = false
+              this.sending = false
             }
           })
           .finally(() => {
-            this.bSending = false
+            this.sending = false
           })
       },
       goBack() {
