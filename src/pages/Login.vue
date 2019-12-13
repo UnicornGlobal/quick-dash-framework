@@ -172,7 +172,7 @@
       }
 
       if (this.$route.query && this.$route.query.invalidconfirmation) {
-        this.message = 'Bad login confirmation token provided. Please contact support.'
+        this.message = 'Bad login confirmation token provided. Please contact support or request a new one.'
       }
     }
   }
