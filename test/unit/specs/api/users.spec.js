@@ -1,16 +1,20 @@
-import { resendVerification, changeUserDetails } from '@/api/user'
+import { changeUserDetails, getSelf } from '@/api/user'
 import Vue from 'vue'
 import sinon from 'sinon'
 
-describe('user.js', () => {
-  describe('resendVerification', () => {
-    it('resends verification email', async () => {
+describe('api/users.js', () => {
+  describe('getSelf', () => {
+    it('gets own details', async () => {
       Vue.axios = {
-        get: sinon.stub().resolves({ data: null })
+        get: sinon.stub().resolves({
+          data: {
+            '_id': 'a12321b'
+          }
+        })
       }
 
-      await resendVerification().then(res => {
-        expect(res).to.equal(null)
+      await getSelf().then(res => {
+        expect(res._id).to.equal('a12321b')
       })
     })
   })

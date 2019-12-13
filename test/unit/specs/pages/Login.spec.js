@@ -29,7 +29,7 @@ describe('Login.vue', () => {
     expect(wrapper.vm.signIn).to.be.a('function')
     expect(wrapper.vm.sendSignInRequest).to.be.a('function')
 
-    expect(wrapper.vm.bSending).to.equal(false)
+    expect(wrapper.vm.sending).to.equal(false)
     sinon.stub(wrapper.vm.$validator, 'validateAll').resolves(true)
     const sendSignInRequest = sinon.spy(wrapper.vm, 'sendSignInRequest')
 
@@ -45,7 +45,7 @@ describe('Login.vue', () => {
     expect(wrapper.vm.signIn).to.be.a('function')
     expect(wrapper.vm.sendSignInRequest).to.be.a('function')
 
-    expect(wrapper.vm.bSending).to.equal(false)
+    expect(wrapper.vm.sending).to.equal(false)
     sinon.stub(wrapper.vm.$validator, 'validateAll').resolves(false)
     const sendSignInRequest = sinon.spy(wrapper.vm, 'sendSignInRequest')
 
@@ -88,6 +88,6 @@ describe('Login.vue', () => {
     const defaultData = Login.data()
     expect(defaultData).to.be.an('object')
     expect(Object.keys(defaultData)).to.have.lengthOf(6)
-    expect(defaultData).to.have.all.keys('message', 'error', 'username', 'password', 'remember', 'bSending')
+    expect(defaultData).to.have.all.keys('message', 'error', 'username', 'password', 'remember', 'sending')
   })
 })

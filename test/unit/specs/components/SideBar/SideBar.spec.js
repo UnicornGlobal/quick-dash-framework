@@ -326,7 +326,7 @@ describe('SideBar.vue', () => {
   it('Shows custom header components', () => {
     const customSideBarHeaderComponentStub = sinon.stub().returns('xxx')
 
-    const sidebar = shallowMount(SideBar, {
+    shallowMount(SideBar, {
       localVue,
       propsData: {
         user: {},

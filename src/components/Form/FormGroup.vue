@@ -4,10 +4,11 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
   div.form-group {
     width: 100%;
-    padding: 0.5em;
+    padding: 0.5em 0;
+    margin-bottom: 1rem;
 
     &.divider {
       width: 100%;

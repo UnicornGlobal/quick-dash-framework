@@ -21,7 +21,7 @@
       </page-section>
       <page-section title="User Roles">
         <card>
-          <div class="button-section">
+          <div class="button-section" style="margin-bottom: 1rem; height: 2rem; display: block; text-align: right;">
             <button type="submit" @click.prevent="showRolesForm = true">Add Role</button>
           </div>
           <template v-if="userRoles">

@@ -39,7 +39,7 @@
               <span class="label-checkbox">{{ strings.remember_label }}</span>
             </label>
             <button @click.prevent="signIn" class="text-uppercase login-button">
-              <div class="loading" v-if="bSending">
+              <div class="loading" v-if="sending">
                 <loader fill="#ffffff" width="25px" height="25px"></loader>
               </div>
               {{ strings.button }}
@@ -76,7 +76,7 @@
         username: '',
         password: '',
         remember: true,
-        bSending: false
+        sending: false
       }
     },
     created() {
@@ -92,19 +92,21 @@
         })
       },
       sendSignInRequest() {
-        this.bSending = true
+        this.sending = true
         return this.$auth.login({
           url: 'login',
-          rememberMe: this.remember,
           redirect: '/',
           fetchUser: true,
-          data: {username: this.username, password: this.password},
+          data: {
+            username: this.username,
+            password: this.password
+          },
           error: function () {
             this.errors.add({
               field: 'username',
               msg: this.strings.invalid_submission
             })
-            this.bSending = false
+            this.sending = false
           }
         })
       }
@@ -149,6 +151,10 @@
     mounted() {
       this.$store.commit('app/loading', false)
 
+      if (this.$route.query && this.$route.query.welcome) {
+        this.message = 'Your account has been created and an email with a confirmation link has been sent to you. Please click the link in the email to proceed to the next step.'
+      }
+
       if (this.$route.query && this.$route.query.request) {
         this.message = 'Please check your email for further instructions on how to reset your password.'
       }
@@ -163,6 +169,10 @@
 
       if (this.$route.query && this.$route.query.logout) {
         this.message = 'You have successfully logged out of your account.'
+      }
+
+      if (this.$route.query && this.$route.query.invalidconfirmation) {
+        this.message = 'Bad login confirmation token provided. Please contact support or request a new one.'
       }
     }
   }

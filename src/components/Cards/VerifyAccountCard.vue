@@ -83,7 +83,7 @@
 </style>
 
 <script>
-  import { resendVerification } from '@/api/user'
+  import { resendVerification } from '@/api/auth'
 
   export default {
     props: {
