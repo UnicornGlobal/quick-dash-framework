@@ -76,6 +76,10 @@ This may change in the future but is the convention for now.
 **NB** You *must* att `static:true` to the `meta` field of your static
 routes. This may change in the future but is convention for now.
 
+#### Allow Any Role
+
+To allow any role on a route just set role to `false`
+
 ### Config Loading
 
 The values in `/src/config/*.js` will be overridden by any values
