@@ -96,6 +96,10 @@ function filterRoutesByRole(routes, user) {
   const processedRoutes = []
 
   for (let i = 0; i < routes.length; i++) {
+    if (routes[i].role === false) {
+      processedRoutes.push(routes[i])
+    }
+
     if (routes[i].role && userHasRole(user, routes[i].role)) {
       processedRoutes.push(routes[i])
     }
