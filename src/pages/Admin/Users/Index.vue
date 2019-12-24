@@ -10,13 +10,11 @@
 <script>
   import PageContainer from '@/components/Containers/PageContainer'
   import PageSection from '@/components/Containers/PageSection'
-  import Card from '@/components/Cards/Card'
   import DataTable from '@unicorns/data-table'
   import { loadAllUsers } from '@/api/admin/users'
 
   export default {
     components: {
-      Card,
       DataTable,
       PageContainer,
       PageSection
