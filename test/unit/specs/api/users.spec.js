@@ -8,7 +8,7 @@ describe('api/users.js', () => {
       Vue.axios = {
         get: sinon.stub().resolves({
           data: {
-            '_id': 'a12321b'
+            _id: 'a12321b'
           }
         })
       }

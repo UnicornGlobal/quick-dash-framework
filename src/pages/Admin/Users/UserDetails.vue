@@ -1,29 +1,35 @@
 <template>
   <div>
-    <page-container v-if="userDetails" title="User Details">
-      <page-section title="User Details">
-        <card>
-          <div>
+    <page-container v-if="userDetails">
+      <page-section>
+        <card style="margin: 1rem; border: 1px solid lightgrey; display: flex; flex-direction: row; flex-wrap: wrap;">
+          <div style="width: 200px">
             <p class="detail-title">Users First Name</p>
             <p>{{userDetails.first_name}}</p>
+          </div>
+          <div style="width: 200px">
             <p class="detail-title">Users Last Name</p>
             <p>{{userDetails.last_name}}</p>
+          </div>
+          <div style="width: 200px">
             <p class="detail-title">Email</p>
             <p>{{userDetails.email}}</p>
+          </div>
+          <div style="width: 200px">
             <p class="detail-title">Phone</p>
             <p>{{userDetails.mobile ? userDetails.mobile : '-'}}</p>
+          </div>
+          <div style="width: 200px">
             <p class="detail-title">Confirmed</p>
             <p>{{userDetails.confirmed ? 'yes' : 'no'}}</p>
-            <p class="detail-title">Verified</p>
-            <p>{{userDetails.is_verified ? 'yes' : 'no'}}</p>
           </div>
         </card>
       </page-section>
       <page-section title="User Roles">
-        <card>
-          <div class="button-section" style="margin-bottom: 1rem; height: 2rem; display: block; text-align: right;">
-            <button type="submit" @click.prevent="showRolesForm = true">Add Role</button>
-          </div>
+        <div class="button-section" style="margin-bottom: 1rem; margin-top: -1.5rem; height: 2rem; display: block; text-align: right; margin-right: 2rem;">
+          <button type="submit" @click.prevent="showRolesForm = true" style="background: green">Add Role</button>
+        </div>
+        <card style="margin: 1rem; border: 1px solid lightgrey; padding: 0;">
           <template v-if="userRoles">
             <ul v-if="userRoles.length">
               <li class="user-role" v-for="role in userRoles">
@@ -34,6 +40,7 @@
                         link-text="Revoke"
                         message="Are you sure you want to revoke this role?"
                         link-class="link"
+                        link-style="padding: 0.6rem 1.15rem;"
                         @success="loadUserRoles"
                         :url="'api/admin/users/' + userId +'/roles/revoke/' + role._id">
                 </prompt>

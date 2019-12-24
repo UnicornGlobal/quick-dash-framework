@@ -38,7 +38,6 @@
 
   .label {
     margin-left: 0.5em;
-    font-family: 'Montserrat-Regular', sans-serif;
     font-size: 0.9rem;
   }
 

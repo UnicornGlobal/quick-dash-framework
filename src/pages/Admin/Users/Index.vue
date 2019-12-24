@@ -1,10 +1,8 @@
 <template>
-  <page-container title="">
-    <page-section title="All Users" subtitle="Select a User to manage Roles.">
-      <card class="card">
-        <data-table v-if="users" :dataset="users" :options="tableConfig" class="data-table"></data-table>
-        <loader v-else width="80" height="80"></loader>
-      </card>
+  <page-container>
+    <page-section>
+      <data-table v-if="users" :dataset="users" :options="tableConfig" class="data-table"></data-table>
+      <loader v-else width="80" height="80"></loader>
     </page-section>
   </page-container>
 </template>
@@ -44,13 +42,6 @@
             filtering: {
               enabled: true,
               filters: [
-                {
-                  type: 'checkbox',
-                  field: 'is_verified',
-                  text: 'Include Not Verified',
-                  enabled: true,
-                  value: true
-                },
                 {
                   type: 'checkbox',
                   field: 'confirmed',
@@ -106,19 +97,11 @@
             },
             {
               type: 'boolean',
-              name: 'Verified',
-              field: 'is_verified',
-              header: true,
-              secondary: true,
-              grow: 1
-            },
-            {
-              type: 'boolean',
               name: 'Confirmed',
               field: 'confirmed',
               header: true,
               secondary: true,
-              grow: 1
+              grow: 0
             }
           ]
         }
@@ -143,7 +126,6 @@
             last_name: user.last_name,
             email: user.email,
             phone: user.mobile,
-            is_verified: user.is_verified,
             confirmed: user.confirmed
           }))
           return ret
