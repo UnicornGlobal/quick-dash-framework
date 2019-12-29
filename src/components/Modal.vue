@@ -40,7 +40,8 @@
   }
 
   .modal-wrapper{
-    position: absolute;
+    position: fixed;
+    z-index: 9999;
     width: 100%;
     height: 100%;
     top: 0;

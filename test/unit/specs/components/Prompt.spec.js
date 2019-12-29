@@ -1,11 +1,10 @@
 import Prompt from '@/components/Prompt.vue'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import { ErrorBag } from 'vee-validate'
-import Vue from 'vue'
 
 describe('Prompt.vue', () => {
   it('has methods and data', () => {
-    expect(Prompt.data()).to.be.an('object').that.has.all.keys('show', 'bSending', 'requestMethod')
+    expect(Prompt.data()).to.be.an('object').that.has.all.keys('show', 'sending', 'requestMethod')
     expect(Prompt.methods).to.be.an('object').that.has.all.keys('cancel', 'ok', 'doAction')
   })
 
@@ -149,12 +148,15 @@ describe('Prompt.vue', () => {
       })
   })
 
-  it('emits failed event', () => {
+  it('handles failed requests', () => {
     const localVue = createLocalVue()
-    localVue.prototype.$eventBus = new Vue()
-    const spy = sinon.spy(localVue.prototype.$eventBus, '$emit')
+    const toastSpy = {
+      addToast: sinon.stub().returns(true)
+    }
+
     const options = {
       mocks: {
+        $toaster: toastSpy,
         errors: new ErrorBag(),
         $http: {
           post: sinon.stub().rejects({message: 'server error'})
@@ -171,10 +173,8 @@ describe('Prompt.vue', () => {
     const prompt = shallowMount(Prompt, options)
     return prompt.vm.doAction()
       .then(() => {
-        expect(spy.called).to.equal(true)
-        spy.resetHistory()
-        spy.restore()
-        expect(prompt.vm.bSending).to.equal(false)
+        expect(toastSpy.addToast.called).to.equal(true)
+        expect(prompt.vm.sending).to.equal(false)
       })
   })
 })

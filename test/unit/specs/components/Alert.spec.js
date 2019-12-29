@@ -51,7 +51,7 @@ describe('Alert.vue', () => {
     const alert = shallowMount(Alert, {
       localVue,
       propsData: {
-        title: 'xxxx' 
+        title: 'xxxx'
       }
     })
 

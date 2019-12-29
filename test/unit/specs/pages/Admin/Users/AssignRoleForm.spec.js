@@ -41,6 +41,9 @@ describe('AssignRoleForm', () => {
 
   it('emits error event', async () => {
     const localVue = createLocalVue()
+    const toastSpy = {
+      addToast: sinon.stub().returns(true)
+    }
 
     const form = shallowMount(AssignRoleForm, {
       localVue,
@@ -49,7 +52,7 @@ describe('AssignRoleForm', () => {
         roles: []
       },
       mocks: {
-        $toaster: ToasterEvents
+        $toaster: toastSpy
       }
     })
 
@@ -64,8 +67,9 @@ describe('AssignRoleForm', () => {
     }
 
     await form.vm.assignRole().then(() => {
+      expect(toastSpy.addToast.called).to.equal(true)
+      expect(form.vm.sending).to.equal(false)
       expect(form.emitted()).to.have.key('error')
-      sinon.assert.called(Vue.axios.post)
     })
   })
 })

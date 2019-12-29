@@ -18,9 +18,9 @@
         </p>
       </div>
       <div slot="footer" class="text-right">
-        <button @click.prevent="cancel()" :disabled="bSending" class="btn-blue cancel-button">Cancel</button>
-        <button @click.prevent="ok()" :disabled="bSending" class="btn-pink ok-button">
-          <loader fill="#ffffff" class="load" v-if="bSending"></loader>
+        <button @click.prevent="cancel()" :disabled="sending" class="btn-blue cancel-button">Cancel</button>
+        <button @click.prevent="ok()" :disabled="sending" class="btn-pink ok-button">
+          <loader fill="#ffffff" class="load" v-if="sending"></loader>
           Ok
         </button>
       </div>
@@ -38,6 +38,7 @@
   }
   button{
     margin-left: 4px;
+    padding: 0.5rem 2rem;
   }
 
   h4.header{
@@ -51,6 +52,7 @@
   .ok-button {
     display: flex;
     align-items: center;
+    background: green;
   }
 </style>
 
@@ -65,7 +67,7 @@
     data() {
       return {
         show: false,
-        bSending: false,
+        sending: false,
         requestMethod: (this.method || 'GET').toLowerCase()
       }
     },
@@ -94,7 +96,7 @@
           this.requestMethod = 'post'
         }
 
-        this.bSending = true
+        this.sending = true
         return this.$http[this.requestMethod](this.url, params)
           .then((response) => {
             this.$emit('success', response.data)
@@ -102,14 +104,21 @@
           })
           .catch((error) => {
             this.$emit('failed', error.response)
-            this.$eventBus.$emit('toast', {
+            this.show = false
+            let message = 'Unknown error'
+            if (error.response && error.response.data && error.response.data.error) {
+              message = error.response.data.error
+            }
+
+            this.$toaster.addToast({
               type: 'error',
-              message: error.message,
-              title: 'Error'
+              title: 'Error',
+              message,
+              timeOut: 2000
             })
           })
           .finally(() => {
-            this.bSending = false
+            this.sending = false
           })
       }
     }

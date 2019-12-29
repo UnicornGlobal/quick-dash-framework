@@ -7,7 +7,7 @@
         <span class="role-name">{{role.name}}</span>
       </label>
       <div class="button-block">
-        <button type="submit" v-if="currentRoleId" @click.prevent="assignRole">
+        <button type="submit" v-if="currentRoleId" @click="assignRole" style="background: green;">
           <loader v-if="sending" fill="#ffffff" strokeEdges="#ffffff"></loader>
           <span>Assign</span>
         </button>
@@ -39,12 +39,17 @@
           .catch(
             (error) => {
               this.$emit('error', error)
-              // this.$toaster.addToast({
-              //   type: 'error',
-              //   title: 'Error',
-              //   message: 'Failed to assign role',
-              //   timeOut: 5000
-              // })
+              let message = 'Unknown error'
+              if (error.response && error.response.data && error.response.data.error) {
+                message = error.response.data.error
+              }
+
+              this.$toaster.addToast({
+                type: 'error',
+                title: 'Error',
+                message: message,
+                timeOut: 2000
+              })
             })
           .finally(() => {
             this.sending = false
@@ -107,8 +112,8 @@
   }
 
   .button-block {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
+    display: block;
+    text-align: right;
+    margin: 0;
   }
 </style>
