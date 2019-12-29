@@ -15,10 +15,8 @@
             Body
           </slot>
         </div>
-        <div class="modal-footer">
-          <slot name="footer">
-          </slot>
-        </div>
+        <slot name="footer" class="modal-footer">
+        </slot>
       </div>
     </div>
   </transition>

@@ -165,6 +165,7 @@
           title: 'Success',
           timeout: 5000
         })
+        this.$emit('success', data)
         reloadSelf()
       },
       handleFailure(error) {
@@ -174,6 +175,7 @@
           title: 'Error',
           timeout: 5000
         })
+        this.$emit('error', error)
       }
     }
   }
