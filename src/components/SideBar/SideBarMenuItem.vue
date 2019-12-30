@@ -1,5 +1,5 @@
 <template>
-  <div class="menu-item" :class="{'active': isCurrent}">
+  <div class="menu-item" :class="{'active': isCurrent}" :style="reverseHighlight ? 'flex-direction: row-reverse;': ''">
     <template v-if="hasChildren && menu.children.length > 1">
       <a href="#" @click.prevent="open = !open" class="router-link toggle" :class="`menu-toggle-${open ? 'open' : 'closed'}`">
         <span class="menu-item-with-children">
@@ -37,7 +37,7 @@
         {{ menu.meta.label }}
       </span>
     </router-link>
-    <span v-if="showHighlight && isCurrent" class="highlight"></span>
+    <span v-if="showHighlight && isCurrent" :class="reverseHighlight ? 'highlight-right' : 'highlight-left'"></span>
 
   </div>
 </template>
@@ -66,6 +66,13 @@
       },
       showIcons() {
         if (this.$store.getters['app/config'].sidebar.icons) {
+          return true
+        }
+
+        return false
+      },
+      reverseHighlight() {
+        if (this.$store.getters['app/config'].sidebar.highlightPosition === 'left') {
           return true
         }
 
@@ -104,7 +111,13 @@
     font-size: $sidebar_text_size;
     flex: 1;
   }
-  .highlight {
+  .highlight-left {
+    background: $accent;
+    width: 4px;
+    margin-right: -4px;
+    display: flex;
+  }
+  .highlight-right {
     background: $accent;
     width: 4px;
     display: flex;

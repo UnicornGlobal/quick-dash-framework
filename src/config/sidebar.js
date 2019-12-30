@@ -10,6 +10,7 @@ export default {
   },
   account: true,
   highlight: true,
+  highlightPosition: 'right',
   icons: true,
   customSideBarFooterComponent: {
     enabled: false,
