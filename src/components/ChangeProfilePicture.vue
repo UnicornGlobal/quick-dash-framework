@@ -165,15 +165,17 @@
           title: 'Success',
           timeout: 5000
         })
+        this.$emit('success', data)
         reloadSelf()
       },
       handleFailure(error) {
         this.$toaster.addToast({
           type: 'error',
-          message: error.message,
+          message: error.response.data.logo[0],
           title: 'Error',
           timeout: 5000
         })
+        this.$emit('error', error)
       }
     }
   }
