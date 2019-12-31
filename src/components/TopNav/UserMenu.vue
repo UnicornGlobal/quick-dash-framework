@@ -259,6 +259,7 @@ export default {
   },
   methods: {
     logout() {
+      this.$store.commit('app/loading', true)
       return this.$auth
         .logout({
           makeRequest: true,
