@@ -111,9 +111,13 @@ export default {
   flex-direction: row;
 
   .main-content {
-    width: 100%;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    @media (min-width: 1025px) {
+      width: calc(100% - 300px);
+    }
   }
 
   .side-bar {
@@ -124,6 +128,7 @@ export default {
     overflow: hidden;
     border-right: $sidebar_border;
     box-shadow: $sidebar_shadow;
+    display: block;
 
     @media (max-width: 420px) {
       border-right: solid 2px $primary-dark;

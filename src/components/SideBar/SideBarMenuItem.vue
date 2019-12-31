@@ -37,7 +37,7 @@
         {{ menu.meta.label }}
       </span>
     </router-link>
-    <span v-if="showHighlight && isCurrent" :class="reverseHighlight ? 'highlight-right' : 'highlight-left'"></span>
+    <span v-if="showHighlight && isCurrent" :class="reverseHighlight ? 'highlight-left' : 'highlight-right'"></span>
 
   </div>
 </template>
@@ -115,7 +115,7 @@
     background: $accent;
     width: 4px;
     margin-right: -4px;
-    display: flex;
+    position:relative;
   }
   .highlight-right {
     background: $accent;
