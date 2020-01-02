@@ -89,6 +89,27 @@ async function getCustomRoutes(user) {
   }
 }
 
+function shouldAllowRoute(route, user) {
+  if (route.role === false) {
+    return true
+  }
+
+  if (route.role && route.role.indexOf('|') > -1) {
+    const pieces = route.role.split('|')
+    for (let x = 0; x < pieces.length; x++) {
+      if (userHasRole(user, pieces[x])) {
+        return true
+      }
+    }
+  }
+
+  if (route.role && userHasRole(user, route.role)) {
+    return true
+  }
+
+  return false
+}
+
 /**
  * Filters custom routes based on required role and users available roles
  */
@@ -96,12 +117,11 @@ function filterRoutesByRole(routes, user) {
   const processedRoutes = []
 
   for (let i = 0; i < routes.length; i++) {
-    if (routes[i].role === false) {
+    if (shouldAllowRoute(routes[i], user)) {
+      console.log('yfg')
       processedRoutes.push(routes[i])
-    }
-
-    if (routes[i].role && userHasRole(user, routes[i].role)) {
-      processedRoutes.push(routes[i])
+    } else {
+      console.log('dzf')
     }
   }
 
