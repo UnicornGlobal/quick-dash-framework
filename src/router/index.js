@@ -90,19 +90,22 @@ async function getCustomRoutes(user) {
 }
 
 function shouldAllowRoute(route, user) {
+  // If set to false there is no role requirement
   if (route.role === false) {
     return true
   }
 
-  if (route.role && route.role.indexOf('|') > -1) {
-    const pieces = route.role.split('|')
-    for (let x = 0; x < pieces.length; x++) {
-      if (userHasRole(user, pieces[x])) {
+  // If there are multiple roles seperated by pipes
+  if (route.role && route.role.indexOf('|') !== -1) {
+    const roles = route.role.split('|')
+    for (const role in roles) {
+      if (userHasRole(user, roles[role])) {
         return true
       }
     }
   }
 
+  // If there is one role and it matches
   if (route.role && userHasRole(user, route.role)) {
     return true
   }
@@ -118,10 +121,7 @@ function filterRoutesByRole(routes, user) {
 
   for (let i = 0; i < routes.length; i++) {
     if (shouldAllowRoute(routes[i], user)) {
-      console.log('yfg')
       processedRoutes.push(routes[i])
-    } else {
-      console.log('dzf')
     }
   }
 
