@@ -7,6 +7,7 @@ import baseAdminRoutes from '@/router/admin'
 import authRoutes from '@/router/auth'
 import originalHomeRoutes from '@/router/home'
 import appRoute from '@/router/base'
+import fourOhFourRoute from '@/router/404'
 import config from '@/config'
 import icons from '@/icons'
 import strings from '@/i18n/en/sidebar'
@@ -28,18 +29,6 @@ const reserved = [
   'base',
   'index'
 ]
-
-const fourOhFourRoute = {
-  name: 'FourOhFour',
-  path: '*',
-  component: {
-    template: '',
-    created: () => {
-      // This file should exist in the host project
-      window.location.href = '/404.html'
-    }
-  }
-}
 
 /**
  * Custom routes
