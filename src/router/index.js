@@ -29,6 +29,18 @@ const reserved = [
   'index'
 ]
 
+const fourOhFourRoute = {
+  name: 'FourOhFour',
+  path: '*',
+  component: {
+    template: '',
+    created: () => {
+      // This file should exist in the host project
+      window.location.href = '/404.html'
+    }
+  }
+}
+
 /**
  * Custom routes
  *
@@ -239,7 +251,7 @@ export async function loadRoutes(user) {
     }
   }] : []
 
-  routes = [...routes, ...account]
+  routes = [...routes, ...account, fourOhFourRoute]
 
   // Unique
   routes = await [...new Set(routes)]
