@@ -7,6 +7,7 @@ import baseAdminRoutes from '@/router/admin'
 import authRoutes from '@/router/auth'
 import originalHomeRoutes from '@/router/home'
 import appRoute from '@/router/base'
+import fourOhFourRoute from '@/router/404'
 import config from '@/config'
 import icons from '@/icons'
 import strings from '@/i18n/en/sidebar'
@@ -89,6 +90,30 @@ async function getCustomRoutes(user) {
   }
 }
 
+function shouldAllowRoute(route, user) {
+  // If set to false there is no role requirement
+  if (route.role === false) {
+    return true
+  }
+
+  // If there are multiple roles seperated by pipes
+  if (route.role && route.role.indexOf('|') !== -1) {
+    const roles = route.role.split('|')
+    for (const role in roles) {
+      if (userHasRole(user, roles[role])) {
+        return true
+      }
+    }
+  }
+
+  // If there is one role and it matches
+  if (route.role && userHasRole(user, route.role)) {
+    return true
+  }
+
+  return false
+}
+
 /**
  * Filters custom routes based on required role and users available roles
  */
@@ -96,11 +121,7 @@ function filterRoutesByRole(routes, user) {
   const processedRoutes = []
 
   for (let i = 0; i < routes.length; i++) {
-    if (routes[i].role === false) {
-      processedRoutes.push(routes[i])
-    }
-
-    if (routes[i].role && userHasRole(user, routes[i].role)) {
+    if (shouldAllowRoute(routes[i], user)) {
       processedRoutes.push(routes[i])
     }
   }
@@ -219,7 +240,7 @@ export async function loadRoutes(user) {
     }
   }] : []
 
-  routes = [...routes, ...account]
+  routes = [...routes, ...account, fourOhFourRoute]
 
   // Unique
   routes = await [...new Set(routes)]
