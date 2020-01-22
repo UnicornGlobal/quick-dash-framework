@@ -61,8 +61,6 @@ export default {
     const redirectToLogin = function () {
       if (Vue.router.currentRoute.name !== 'Login') {
         Vue.router.push('/login')
-      } else {
-        window.location.reload()
       }
     }
     // Add a response interceptor

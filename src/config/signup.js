@@ -1,4 +1,5 @@
 export default {
+  id: 'signup-page',
   name: 'QuickDash',
   customHeader: null,
   customFooter: null,
