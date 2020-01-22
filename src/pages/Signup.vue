@@ -1,5 +1,5 @@
 <template>
-  <div class="signup-page">
+  <div class="signup-page" id="signup-page">
     <component v-if="headerComponent" :is="headerComponent"></component>
     <div v-else class="signup-header">
       <div class="logo" v-if="showEmojiLogo"><span>{{ emojiLogo }}</span></div>
