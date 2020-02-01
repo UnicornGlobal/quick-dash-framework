@@ -209,7 +209,7 @@ export default {
   computed: {
     getAvatarImage() {
       if (this.user.profile_photo) {
-        return process.env.apiUrl + this.user.profile_photo.file_url
+        return this.user.profile_photo.file_url
       }
     },
     showRole() {
