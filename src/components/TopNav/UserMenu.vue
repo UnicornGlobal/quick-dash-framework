@@ -209,7 +209,7 @@ export default {
   computed: {
     getAvatarImage() {
       if (this.user.profile_photo) {
-				if this.user.profile_photo.file_url.includes('http') {
+				if (this.user.profile_photo.file_url.includes('http')) {
         	return this.user.profile_photo.file_url
 				} else {
 					return process.env.apiUrl + this.user.profile_photo.file_url
