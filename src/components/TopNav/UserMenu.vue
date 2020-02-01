@@ -209,12 +209,10 @@ export default {
   computed: {
     getAvatarImage() {
       if (this.user.profile_photo) {
-        if (this.user.profile_photo.file_url.includes('http')) {
+        if (this.user.profile_photo.file_url.match('/^https?\:\/\//')) {
           return this.user.profile_photo.file_url
-        } else {
-          return process.env.apiUrl + this.user.profile_photo.file_url
         }
-      }
+      return process.env.apiUrl + this.user.profile_photo.file_url
     },
     showRole() {
       if (this.$store.getters['app/config'].usermenu.role) {
