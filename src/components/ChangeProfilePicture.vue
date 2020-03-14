@@ -3,6 +3,7 @@
     <file-uploader @progress="updateProgress"
                    @uploaded="uploadImage"
                    @failed="handleFailure"
+                   :cropping="cropping"
                    :url="uploadUrl"
                    :name="name"
                    :validation="validation"
@@ -25,7 +26,7 @@
         />
       </template>
       <slot name="loading">
-        <profile-picture-loader />
+        <profile-picture-loader/>
       </slot>
     </file-uploader>
     <span class="validation-error">
@@ -39,6 +40,7 @@
     width: 180px;
     height: 180px;
   }
+
   .uploader-container:hover {
     cursor: pointer;
   }
@@ -88,7 +90,7 @@
   import FileUploader from '@unicorns/uploader'
   import Avatar from '@unicorns/avatars'
   import ProfilePictureLoader from '@/components/ProfilePictureLoader'
-  import { reloadSelf } from '@/auth'
+  import {reloadSelf} from '@/auth'
 
   export default {
     components: {
@@ -119,9 +121,13 @@
         type: String,
         required: false,
         default: 'photo'
+      },
+      cropping: {
+        default: false,
+        required: false
       }
     },
-    data () {
+    data() {
       return {
         uploadedFile: null,
         validation: {
