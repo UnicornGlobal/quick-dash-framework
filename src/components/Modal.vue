@@ -2,7 +2,7 @@
   <transition name="modal">
     <div class="modal-wrapper">
       <div class="modal-mask" @click.prevent="$emit('close')"></div>
-      <div class="modal-container">
+      <div class="modal-container" style="overflow-y: auto">
         <div class="modal-header">
           <slot name="header">
             Header
