@@ -99,6 +99,10 @@
       ProfilePictureLoader
     },
     props: {
+      reload: {
+        type: Boolean,
+        default: true
+      },
       uploadUrl: {
         type: String,
         required: true
@@ -172,7 +176,9 @@
           timeout: 5000
         })
         this.$emit('success', data)
-        reloadSelf()
+        if (this.reload) {
+          reloadSelf()
+        }
       },
       handleFailure(error) {
         this.$toaster.addToast({
