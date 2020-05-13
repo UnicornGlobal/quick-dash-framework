@@ -14,6 +14,13 @@ export function reloadSelf() {
   })
 }
 
+export async function clearCookies() {
+  await document.cookie.split(';').forEach(function(c) {
+    const n = c.trim().split('=')[0]
+    document.cookie = `${n}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;`
+  })
+}
+
 export default {
   init: () => {
     Vue.use(Auth, {
@@ -78,6 +85,7 @@ export default {
         error.response.data.error ===
         'Token has expired and can no longer be refreshed'
       ) {
+        clearCookies()
         localStorage.clear()
         redirectToLogin()
       }
@@ -87,11 +95,13 @@ export default {
         error.response.status === 500 &&
         error.response.data.error === 'Token Signature could not be verified.'
       ) {
+        clearCookies()
         localStorage.clear()
         redirectToLogin()
       }
 
       if (error.response && (error.response.status === 500) && (error.response.data.error === 'The token has been blacklisted')) {
+        clearCookies()
         localStorage.clear()
         redirectToLogin()
       }
@@ -101,6 +111,7 @@ export default {
         error.response.status === 500 &&
         error.response.data.error === 'The token has been blacklisted'
       ) {
+        clearCookies()
         localStorage.clear()
         redirectToLogin()
       }
@@ -110,6 +121,7 @@ export default {
         error.response.status === 500 &&
         error.response.data.error === 'Token could not be parsed from the request.'
       ) {
+        clearCookies()
         localStorage.clear()
         redirectToLogin()
       }
@@ -119,11 +131,13 @@ export default {
         error.response.status === 500 &&
         error.response.data.error === 'Wrong number of segments'
       ) {
+        clearCookies()
         localStorage.clear()
         redirectToLogin()
       }
 
       if (Vue.auth.token() === null) {
+        clearCookies()
         localStorage.clear()
         redirectToLogin()
       }
@@ -138,6 +152,7 @@ export default {
       } else if (excluded.includes(to.name) || Vue.auth.check()) {
         next()
       } else {
+        clearCookies()
         localStorage.clear()
         next({name: 'Login'})
       }

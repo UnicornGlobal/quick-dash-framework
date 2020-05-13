@@ -39,6 +39,7 @@
 
 <script type="text/javascript">
   import Card from '@/components/Cards/Card.vue'
+  import { clearCookies } from '@/auth'
 
   export default {
     components: {Card},
@@ -110,6 +111,7 @@
       submit() {
         return this.$validator.validateAll().then((valid) => {
           if (valid) {
+            clearCookies()
             localStorage.clear()
             return this.sendRequest()
           }
