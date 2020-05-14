@@ -199,6 +199,8 @@
   .login-page {
     height: 100%;
     overflow-y: scroll;
+    overflow-x: hidden;
+    margin-right: -1rem;
 
     .login-header {
       min-height: $login_header_height;
