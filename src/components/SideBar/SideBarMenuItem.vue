@@ -125,7 +125,7 @@
   .menu-item {
 
     &.active {
-      background: $light-hover;
+      background: $primary-light;
       color: $secondary-text;
       display: flex;
     }
@@ -154,7 +154,7 @@
         }
       }
       &:hover {
-        background: $light-hover;
+        background: $primary-light;
         color: $sidebar_active_text_colour;
         svg {
           fill: $sidebar_active_icon_colour;
@@ -177,16 +177,16 @@
     }
 
     .menu-toggle-open {
-      background: $primary;
+      background: $sidebar_sub_menu_background;
     }
 
     .sub-menu {
-      background: $primary;
+      background: $sidebar_sub_menu_background;
     }
 
     .sub-menu > .menu-item {
       &.active {
-        background: $light-hover;
+        background: $primary-light;
         color: $black;
       }
     }

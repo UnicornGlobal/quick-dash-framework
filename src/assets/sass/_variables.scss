@@ -2,10 +2,10 @@
 
 //COLORS
 
-$primary: #9C27B0;
-$primary-dark: #7B1FA2;
-$primary-light: #E1BEE7;
-$accent: #4CAF50;
+$primary: #5DB0FF;
+$primary-dark: darken(#5DB0FF, 33%);
+$primary-light: lighten(#5DB0FF, 30%);
+$accent: darken(#5DB0FF, 20%);
 $icons: #FFFFFF;
 $primary-text: #212121;
 $secondary-text: #fff;
@@ -93,10 +93,11 @@ $sidebar-shadow: none;
 $sidebar_text_size: 1rem;
 $sidebar_menu_padding_top: 0em;
 $sidebar_hamburger_colour: #FFFFFF;
-$sidebar_icon_colour: #AAAAAA;
+$sidebar_icon_colour: $primary;
 $sidebar_icon_size: 20px;
 $sidebar_active_text_colour: $accent;
 $sidebar_active_icon_colour: $accent;
 $sidebar_active_text_font: 'Montserrat-SemiBold';
+$sidebar_sub_menu_background: $primary-light;
 
 @import "./_forms.scss";

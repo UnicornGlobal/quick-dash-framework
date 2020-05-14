@@ -155,10 +155,6 @@ export default {
   overflow-x: hidden;
   margin-right: -1rem;
   height: 100%;
-
-  @media (max-width: 1023px) {
-    margin-left: -1rem;
-  }
 }
 
 .content-area-view {

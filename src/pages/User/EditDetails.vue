@@ -1,8 +1,13 @@
 <template>
   <page-container class="page-container">
     <change-profile-picture
-      :user=user
-      ></change-profile-picture>
+      :cropping="{enabled: true, shape: 'round', minHeight: 250, minWidth: 250, maxHeight: 5000, maxWidth: 5000}"
+      :name="user.first_name"
+      :upload-url="uploadUrl"
+      :round="true"
+      :image="profileImage"
+      style="margin: 0 2rem;"
+    ></change-profile-picture>
     <div class="edit-section">
       <h3>General</h3>
       <div>
@@ -38,6 +43,7 @@
   }
 
   .edit-section {
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -62,11 +68,18 @@
   import PageContainer from '@/components/Containers/PageContainer.vue'
 
   import { changeUserDetails } from '@/api/user'
+  import ChangeProfilePicture from '@/components/ChangeProfilePicture'
 
   export default {
     components: {
       FormGroup,
-      PageContainer
+      PageContainer,
+      ChangeProfilePicture
+    },
+    data() {
+      return {
+        uploadUrl: `${process.env.apiUrl}/api/upload/photo`
+      }
     },
     methods: {
       async save() {
@@ -101,6 +114,17 @@
       user() {
         const user = this.$store.getters['auth/user']
         return user
+      },
+      profileImage () {
+        if (this.user.profile_photo && this.user.profile_photo.file_url) {
+          if (this.user.profile_photo.file_url.match(/^https?:\/\//)) {
+            return this.user.profile_photo.file_url
+          }
+
+          return process.env.apiUrl + this.user.profile_photo.file_url
+        }
+
+        return ''
       },
       userDetails() {
         const user = this.$store.getters['auth/user']
