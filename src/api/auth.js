@@ -1,11 +1,10 @@
 import Vue from 'vue'
-
 import { clearCookies } from '@/auth'
 
 export async function logout() {
-  await Vue.axios.post(`/logout`)
-  await localStorage.clear()
   await clearCookies()
+  await localStorage.clear()
+  await Vue.axios.post(`/logout`)
   window.location.href = '/login?logout=true'
 }
 

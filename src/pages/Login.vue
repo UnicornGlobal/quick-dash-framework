@@ -239,8 +239,7 @@
     }
 
     .login-form {
-      height: calc(100vh - 70px);
-      margin-top: 70px;
+      height: calc(100vh - #{$login_header_height});
       background-color: $login_background;
       display: flex;
       justify-content: center;
