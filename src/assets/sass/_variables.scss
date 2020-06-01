@@ -35,7 +35,7 @@ $colors-map: (
   fail: $fail
 );
 
-$border-radius: 2em;
+$border-radius: 4px;
 
 // LOGIN PAGE
 
@@ -50,7 +50,7 @@ $login_box_header: #FFFFFF;
 $login_box_background: #FFFFFF;
 $login_box_border: 1px solid darken($light-bg, 10);
 $login_text: #000000;
-$login_label_text_size: 0.75rem;
+$login_label_text_size: 0.9rem;
 $login_shadow: 0 20px 44px 0 rgba(119,135,139,0.6);
 $login_button_background: $primary;
 $login_button_min_width: 250px;
@@ -61,6 +61,7 @@ $login_box_margin: 0;
 $login_checkbox_colour: $login_button_background;
 $login_logo_text: #FFFFFF;
 $login_logo_margin: 1em;
+$login_mobile_header_margin: 0;
 
 $signup_header: #FFFFFF;
 $signup_header_height: 95px;

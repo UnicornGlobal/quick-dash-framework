@@ -9,12 +9,12 @@
     <div class="login-form">
       <card class="card">
         <div v-if="message" class="message">{{ message }}</div>
-        <h2>{{ strings.header }}</h2>
         <form>
           <div>
-            <label class="required">{{ strings.username_label }}&nbsp;</label>
-            <input v-validate="'required'" v-model="username" name="username" type="text" />
+            <label class="required">{{ strings.username_label }}&nbsp;
             <span v-if="errors.has('username')" class="validation-error">{{errors.first('username')}}</span>
+            </label>
+            <input v-validate="'required'" v-model="username" name="username" type="text" />
           </div>
           <div class="password-reset-container">
             <label class="required">{{ strings.password_label }}&nbsp;</label>
@@ -101,12 +101,13 @@
             username: this.username,
             password: this.password
           },
-          error: function () {
+          error: function (e) {
             this.errors.add({
               field: 'username',
               msg: this.strings.invalid_submission
             })
             this.sending = false
+            return true
           }
         })
       }
@@ -242,13 +243,19 @@
 
     .login-form {
       height: calc(100vh - #{$login_header_height});
+      padding-bottom: $login_header_height;
       background-color: $login_background;
       display: flex;
       justify-content: center;
       align-items: center;
-      @media(max-width: 560px) {
+
+      @media(max-width: $login_box_min_width) {
+        border: 0;
         width: 100%;
+        min-width: 100%;
         max-width: unset;
+        padding-bottom: 0;
+        margin-top: $login_mobile_header_margin;
       }
 
       .logo-holder {
@@ -280,6 +287,15 @@
         display: flex;
         justify-content: space-between;
         align-items: baseline;
+
+        @media(max-width: $login_box_min_width) {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        label {
+          margin: 1rem;
+        }
       }
 
       .card {
@@ -288,8 +304,13 @@
         width: $login_box_min_width;
         min-width: $login_box_min_width;
         @media(max-width: $login_box_min_width) {
+          border: 0;
+          height: 100%;
           width: 100%;
           min-width: 100%;
+          justify-content: space-evenly;
+          display: flex;
+          flex-direction: column;
         }
       }
 

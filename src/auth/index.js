@@ -65,9 +65,18 @@ export default {
       }
     })
 
-    const redirectToLogin = function () {
-      if (Vue.router.currentRoute.name !== 'Login') {
-        Vue.router.push('/login')
+    const redirectToLogin = async function () {
+      if (
+        Vue.router.currentRoute.name !== 'Login' &&
+        !window.location.pathname.includes('login')
+      ) {
+        await Vue.router.replace('/login').catch(err => {
+          if (err.name === 'NavigationDuplicated') {
+            return true
+          } else {
+            throw err
+          }
+        })
       }
     }
     // Add a response interceptor
@@ -75,6 +84,13 @@ export default {
       // Do something with response data
       return response
     }, (error) => {
+      if (
+        error.response &&
+        error.response.status === 401
+      ) {
+        console.log('401')
+      }
+
       if (window.location.pathname.includes('/password-reset')) {
         return error
       }
@@ -136,7 +152,7 @@ export default {
         redirectToLogin()
       }
 
-      if (Vue.auth.token() === null) {
+      if (Vue.auth.token() === null && Vue.router.currentRoute.name !== 'Login') {
         clearCookies()
         localStorage.clear()
         redirectToLogin()

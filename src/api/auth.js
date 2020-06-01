@@ -5,7 +5,13 @@ export async function logout() {
   await clearCookies()
   await localStorage.clear()
   await Vue.axios.post(`/logout`)
-  window.location.href = '/login?logout=true'
+  await Vue.router.replace('/login?logout=true').catch(err => {
+    if (err.name === 'NavigationDuplicated') {
+      return true
+    } else {
+      throw err
+    }
+  })
 }
 
 export function resendVerification() {
