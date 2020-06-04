@@ -4,6 +4,8 @@ export default {
   customFooter: null,
   remember: true,
   logo: false,
+  showSignup: true,
+  signupUrl: '/signup',
   emojiLogo: () => {
     return '⚡️'
   }

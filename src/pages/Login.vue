@@ -20,8 +20,7 @@
             <label class="required">{{ strings.password_label }}&nbsp;</label>
             <div class="password-box">
               <input v-validate="'required'" v-model="password" name="password" type="password" />
-              <router-link v-if="!errors.has('password')" :to="{name: 'ResetPassword'}">{{ strings.forgot }}</router-link>
-              <router-link v-if="errors.has('password')" style="padding-right: 80px" :to="{name: 'ResetPassword'}">
+              <router-link v-if="errors.has('password') || errors.has('username')" :to="{name: 'ResetPassword'}">
                 {{ strings.forgot }}
               </router-link>
             </div>

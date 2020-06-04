@@ -1,6 +1,7 @@
 export default {
   header: 'Sign In',
   button: 'Sign In',
+  signup: 'Sign Up',
   forgot: 'Forgot?',
   remember_label: 'Remember Me',
   username_label: 'Email',
