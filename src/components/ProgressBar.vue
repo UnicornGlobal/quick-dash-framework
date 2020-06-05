@@ -20,7 +20,7 @@
   .progress-wrapper {
     height: 10px;
     position: relative;
-    background: colour("primary", "dark")
+    background: colour(primary, dark)
     border-radius: 25px;
     overflow: hidden;
 
@@ -28,7 +28,7 @@
       border-radius: 25px;
       display: block;
       height: 100%;
-      background-color: colour("primary", "light")
+      background-color: colour(primary, light)
       position: relative;
       overflow: hidden;
 

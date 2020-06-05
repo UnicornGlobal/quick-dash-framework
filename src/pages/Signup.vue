@@ -133,8 +133,8 @@
           height: 50px;
           width: 50px;
           border-radius: 100%;
-          background-color: colour("primary");
-          color: colour("primary", "light");
+          background-color: colour(primary);
+          color: colour(primary, light);
           text-align: center;
           font-size: 3rem;
           font-weight: 800;
@@ -166,7 +166,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        color: colour("icons");
+        color: colour(icons);
       }
 
       .password-box {
@@ -180,7 +180,7 @@
           text-decoration: none;
           padding-right: 10px;
           font-size: 13px;
-          color: colour("primary", "dark");
+          color: colour(primary, dark);
         }
       }
 
@@ -203,7 +203,7 @@
       }
 
       label {
-        color: colour("primary", "text");
+        color: colour(primary, text);
         font-size: $signup_label_text_size;
         font-weight: bold;
       }
@@ -222,7 +222,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: colour("white");
+        color: colour(white);
         background-color: $signup_button_background;
         border: none;
         border-radius: $border-radius;
@@ -235,7 +235,7 @@
       input {
         padding-left: 10px;
         margin-top: 5px;
-        border: 1px solid darken(colour("primary"), 20);
+        border: 1px solid colour(primary, dark);
         border-radius: $border-radius;
       }
 
@@ -243,7 +243,7 @@
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
-        background-color: colour("primary");
+        background-color: colour(primary);
         border: 2px solid $signup_checkbox_colour;
         display: inline-block;
         position: relative;

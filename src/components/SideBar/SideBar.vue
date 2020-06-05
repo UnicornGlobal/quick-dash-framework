@@ -152,23 +152,23 @@ export default {
     align-items: center;
     justify-content: flex-start;
     text-decoration: none;
-    color: colour("white");
-    background: colour("primary", "dark");
+    color: colour(white);
+    background: colour(primary, dark);
 
     svg {
       width: 25px;
       height: 25px;
-      fill: colour("white");
-      stroke: colour("white");
+      fill: colour(white);
+      stroke: colour(white);
       stroke-width: 10;
       padding-right: 8px;
     }
 
     &:hover {
-      color: colour("primary", "light");
+      color: colour(primary, light);
       svg {
-        fill: colour("primary", "light");
-        stroke: colour("primary", "light");
+        fill: colour(primary, light);
+        stroke: colour(primary, light);
         stroke-width: 15;
       }
     }
@@ -197,7 +197,7 @@ export default {
   align-items: center;
   justify-content: left;
   margin: 0;
-  color: colour("white");
+  color: colour(white);
   font-size: 22px;
   text-decoration: none;
   background-color: $header_background;
@@ -208,7 +208,7 @@ export default {
   svg {
     height: 40px;
     width: 45px;
-    fill: colour("white");
+    fill: colour(white);
   }
 }
 </style>

@@ -41,7 +41,7 @@
       }
 
       .key {
-        color: colour("primary", "dark");
+        color: colour(primary, dark);
         font-weight: bolder;
         @media (max-width: 700px) AND (min-width: 481px)  {
           font-size: 3.0vw;

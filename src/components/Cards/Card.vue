@@ -10,6 +10,6 @@
     background-color: #fff;
     border-radius: 0;
     overflow: hidden;
-    color: colour("primary", "text")
+    color: colour(primary, text)
   }
 </style>

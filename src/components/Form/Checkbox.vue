@@ -31,7 +31,7 @@
 <style lang="scss" scoped>
   label {
     cursor: pointer;
-    color: colour("black");
+    color: colour(black);
     display: flex;
     align-items: center;
   }
@@ -49,14 +49,14 @@
     display: inline-block;
     width: 17px;
     height: 17px;
-    background-color: colour("white");
-    border: solid 1px colour("primary");
+    background-color: colour(white);
+    border: solid 1px colour(primary);
     &.checked {
       background-position: center;
       background-size: contain;
       background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAMAAAC6CgRnAAAAXVBMVEUAAAApYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv8pYv/2zOY8AAAAHnRSTlMAAgcIDg8QHB4iIyYsLS5KUFJncHGMnquy1+jp+/2Kg20AAAAAYUlEQVQoU93NRw6AMAxE0aG30HsCvv8xcbKKRHwA+BtL8xYGflkzRxJ1RIeALXGTTFfhT8neu6sc1T7FJ9EYJix2G6DuNyE1FtcQAbnDIAGZEYlRi8Q/NV1VmBi3UqLv9gCRVwlMbEtv8QAAAABJRU5ErkJggg==);
-      background-color: colour("white");
-      border-color: colour("primary");
+      background-color: colour(white);
+      border-color: colour(primary);
     }
   }
 </style>

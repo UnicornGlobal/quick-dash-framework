@@ -41,20 +41,20 @@ $border-radius: 4px;
 
 // LOGIN PAGE
 
-$login_header: colour("primary");
+$login_header: colour(primary);
 $login_header_height: 95px;
 $login_header_shadow: none;
 $login_header_border: 0px;
 $login_header_padding: 0 0 1.5rem;
 $login_header_text_size: 1rem;
-$login_background: colour("background", "light");
+$login_background: colour(background, light);
 $login_box_header: #FFFFFF;
 $login_box_background: #FFFFFF;
-$login_box_border: 1px solid colour("background", "dark");
+$login_box_border: 1px solid colour(background, dark);
 $login_text: #000000;
 $login_label_text_size: 0.9rem;
 $login_shadow: 0 20px 44px 0 rgba(119,135,139,0.6);
-$login_button_background: colour("primary");
+$login_button_background: colour(primary);
 $login_button_min_width: 250px;
 $login_button_min_height: 50px;
 $login_box_min_width: 650px;
@@ -71,14 +71,14 @@ $signup_header_shadow: none;
 $signup_header_border: 0px;
 $signup_header_padding: 0 0 1.5rem;
 $signup_header_text_size: 1rem;
-$signup_background: colour("background", "light");
+$signup_background: colour(background, light);
 $signup_box_header: #FFFFFF;
 $signup_box_background: #FFFFFF;
-$signup_box_border: 1px solid colour("background", "dark");
-$signup_text: colour("primary");
+$signup_box_border: 1px solid colour(background, dark);
+$signup_text: colour(primary);
 $signup_label_text_size: 0.85rem;
 $signup_shadow: 0 20px 44px 0 rgba(119,135,139,0.6);
-$signup_button_background: colour("primary");
+$signup_button_background: colour(primary);
 $signup_button_min_width: 280px;
 $signup_button_min_height: 90px;
 $signup_box_min_width: 650px;
@@ -89,18 +89,18 @@ $signup_logo_text: #5C5C5C;
 $signup_logo_margin: 0 2rem;
 $signup_input_margin: 0.5rem;
 
-$header_background: colour("primary");
+$header_background: colour(primary);
 
 $sidebar_border: 0;
 $sidebar-shadow: none;
 $sidebar_text_size: 1rem;
 $sidebar_menu_padding_top: 0em;
 $sidebar_hamburger_colour: #FFFFFF;
-$sidebar_icon_colour: colour("primary");
+$sidebar_icon_colour: colour(primary);
 $sidebar_icon_size: 20px;
-$sidebar_active_text_colour: colour("primary", "dark");
-$sidebar_active_icon_colour: colour("primary", "dark");
+$sidebar_active_text_colour: colour(primary, dark);
+$sidebar_active_icon_colour: colour(primary, dark);
 $sidebar_active_text_font: 'Montserrat-SemiBold';
-$sidebar_sub_menu_background: colour("primary", "light");
+$sidebar_sub_menu_background: colour(primary, light);
 
 @import "./_forms.scss";

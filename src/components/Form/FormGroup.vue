@@ -12,7 +12,7 @@
 
     &.divider {
       width: 100%;
-      border-top: solid 1px colour("primary", "darker");
+      border-top: solid 1px colour(primary, darker);
     }
 
     &.controls-box {

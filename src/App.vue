@@ -123,7 +123,7 @@ export default {
   .side-bar {
     height: 100%;
     width: 300px;
-    background: colour("white");
+    background: colour(white);
     z-index: 10;
     overflow: hidden;
     border-right: $sidebar_border;
@@ -131,7 +131,7 @@ export default {
     display: block;
 
     @media (max-width: 420px) {
-      border-right: solid 2px colour("primary", "dark");
+      border-right: solid 2px colour(primary, dark);
       position: fixed;
       display: flex;
       flex-direction: column;

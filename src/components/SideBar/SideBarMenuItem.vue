@@ -112,21 +112,21 @@
     flex: 1;
   }
   .highlight-left {
-    background: colour("primary", "dark");
+    background: colour(primary, dark);
     width: 4px;
     margin-right: -4px;
     position:relative;
   }
   .highlight-right {
-    background: colour("primary", "dark");
+    background: colour(primary, dark);
     width: 4px;
     display: flex;
   }
   .menu-item {
 
     &.active {
-      background: colour("primary", "light");
-      color: colour("secondary", "text");
+      background: colour(primary, light);
+      color: colour(secondary, text);
       display: flex;
     }
     a.router-link {
@@ -134,9 +134,9 @@
       padding: 1.35rem 0 1.35rem 1rem;
       display: flex;
       text-decoration: none;
-      color: colour("primary", "text");
+      color: colour(primary, text);
       align-items: center;
-      border-bottom: 1px solid colour("primary", "darker");
+      border-bottom: 1px solid colour(primary, darker);
       svg {
         height: $sidebar_icon_size;
         width: $sidebar_icon_size;
@@ -154,7 +154,7 @@
         }
       }
       &:hover {
-        background: colour("primary", "light");
+        background: colour(primary, light);
         color: $sidebar_active_text_colour;
         svg {
           fill: $sidebar_active_icon_colour;
@@ -186,8 +186,8 @@
 
     .sub-menu > .menu-item {
       &.active {
-        background: colour("primary", "light");
-        color: colour("black");
+        background: colour(primary, light);
+        color: colour(black);
       }
     }
 

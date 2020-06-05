@@ -1,6 +1,6 @@
 // stylelint-disable color-no-hex, function-max-empty-lines, value-list-max-empty-lines
 
-$colour-palette-data: (
+$color-palette-data: (
   white: (
     base: #ffffff
   ),
@@ -73,7 +73,7 @@ $colour-palette-data: (
   )
 );
 
-$color-palette-data: $colour-palette-data;
+$colour-palette-data: $color-palette-data;
 
 /// Returns the color value for a given color name and group.
 ///
@@ -84,7 +84,8 @@ $color-palette-data: $colour-palette-data;
 /// @return {Color} The color value.
 
 @function color($hue, $value: base, $for-background: null) {
-  $fetched-color: map-get(map-get($color-palette-data, $hue), $value);
+  $map: map-get($color-palette-data, $hue);
+  $fetched-color: map-get($map, $value);
 
   @if map-has-key($color-palette-data, $fetched-color) {
     $fetched-color: map-get(map-get($color-palette-data, $fetched-color), $value);
