@@ -42,7 +42,7 @@
   }
 
   h4.header{
-    border-bottom: 1px solid $primary-dark;
+    border-bottom: 1px solid colour("primary", "dark")
   }
 
   .load {

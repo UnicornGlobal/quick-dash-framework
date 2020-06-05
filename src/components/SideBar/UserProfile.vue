@@ -14,7 +14,7 @@
 
 <style lang="scss">
   .user-profile {
-    background-color: $accent;
+    background-color: colour("primary", "dark");
     height: 180px;
     padding: 1em;
     display: flex;
@@ -35,8 +35,8 @@
       align-items: center;
 
       .avatar-initials {
-        background-color: $accent;
-        border: 0px solid $white;
+        background-color: colour("primary", "dark");
+        border: 0px solid colour("white");
 
         span {
           font-size: 1.5em;

@@ -19,8 +19,8 @@
 <style lang="scss" scoped>
   .verify-email {
     z-index: 9999;
-    background: $accent;
-    color: $primary-text;
+    background: colour("primary", "dark");
+    color: colour("primary", "text");
     padding: 0rem 0 0rem 2.2rem;
     display: flex;
     flex-direction: row;
@@ -37,16 +37,16 @@
       flex-direction: column;
       justify-content: space-evenly;
       padding: 1em;
-      color: $primary;
+      color: colour("primary");
 
       .details {
-        color: $primary-light;
+        color: colour("primary", "light");
       }
 
       h3 {
         padding: 0;
         margin: 0;
-        color: $primary;
+        color: colour("primary");
       }
 
       p {
@@ -69,12 +69,12 @@
 
       a.button {
         margin: 1rem 0.25rem 1rem;
-        background: $secondary-text;
-        color: $primary;
+        background: colour("secondary", "text");
+        color: colour("primary");
         border-radius: $border-radius;
 
         &:active, &:hover {
-          background-color: $secondary-text;
+          background-color: colour("secondary", "text");
           color: #ffffff;
         }
       }

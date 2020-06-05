@@ -41,7 +41,7 @@
       }
 
       .key {
-        color: $primary-dark;
+        color: colour("primary", "dark");
         font-weight: bolder;
         @media (max-width: 700px) AND (min-width: 481px)  {
           font-size: 3.0vw;
@@ -61,7 +61,7 @@
           font-size: 4.4vw;
         }
         .card{
-          margin: 0
+          margin: 0;
         }
       }
     }

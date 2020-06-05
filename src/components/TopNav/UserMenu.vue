@@ -97,7 +97,7 @@
   transition: transform 0.26s ease;
   background: #fff;
   overflow: hidden;
-  border: thin solid $primary;
+  border: thin solid colour("primary");
   border-radius: 3px;
   &.active {
     transform: scaleY(1);
@@ -121,7 +121,7 @@
   position: relative;
 
   a {
-    color: $white;
+    color: colour("white");
   }
 }
 
@@ -130,7 +130,7 @@
   flex-direction: column;
   justify-content: center;
   flex: 1;
-  color: $primary-text;
+  color: colour("primary", "text");
   padding: 0.6rem 1.2rem;
 
   .user-name {
@@ -138,11 +138,11 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: $primary-text;
+    color: colour("primary", "text");
   }
 
   .role {
-    color: $primary-text;
+    color: colour("primary", "text");
   }
 }
 
@@ -155,8 +155,8 @@
   align-items: center;
 
   .avatar-initials {
-    background-color: $accent;
-    border: 0px solid $white;
+    background-color: colour("primary", "dark");
+    border: 0px solid colour("white");
   }
 }
 
@@ -179,7 +179,7 @@
         transition: 0.3s ease;
 
         &:hover {
-          color: $accent;
+          color: colour("primary", "dark");
           font-weight: bold;
         }
       }

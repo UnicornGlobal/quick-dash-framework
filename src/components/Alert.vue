@@ -86,30 +86,30 @@
     }
 
     &.danger {
-      background: lighten($fail, 25%);
+      background: colour("fail", "light");
 
       .title {
-        color: $fail;
+        color: colour("fail");
       }
     }
     &.warning {
-      background: lighten($warn, 40%);
+      background: colour("warning", "light");
 
       .title {
-        color: $warn;
+        color: colour("warning");
       }
     }
     &.info {
       .title {
-        color: $primary-text;
+        color: colour("primary", "text");
       }
     }
 
     &.success {
-      background: lighten($success, 40%);
+      background: colour("success", "light");
 
       .title {
-        color: $success;
+        color: colour("success");
       }
     }
 
@@ -117,16 +117,16 @@
       width: 16px;
       height: 16px;
       &.danger path {
-        fill: $fail;
+        fill: colour("error");
       }
       &.warning path {
-        fill: $warn;
+        fill: colour("warning");
       }
       &.info path {
-        fill: $primary;
+        fill: colour("primary");
       }
       &.success path {
-        fill: $success;
+        fill: colour("success");
       }
     }
   }

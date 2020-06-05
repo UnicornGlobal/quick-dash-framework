@@ -1,0 +1,130 @@
+// stylelint-disable color-no-hex, function-max-empty-lines, value-list-max-empty-lines
+
+$colour-palette-data: (
+  white: (
+    base: #ffffff
+  ),
+
+  black: (
+    base: #000000
+  ),
+
+  primary: (
+    base: #5DB0FF,
+    dark: darken(#5DB0FF, 20%),
+    darker: darken(#5DB0FF, 30%),
+    light: lighten(#5DB0FF, 20%),
+    lighter: lighten(#5DB0FF, 30%),
+    text: #3e4e57
+  ),
+
+  secondary: (
+    base: #47c1bf,
+    dark: #00848e,
+    darker: #003135,
+    light: #b7ecec,
+    lighter: #e0f5f5,
+    text: #405352
+  ),
+
+  success: (
+    base: #50b83c,
+    dark: #108043,
+    darker: #173630,
+    light: #bbe5b3,
+    lighter: #e3f1df,
+    text: #414f3e
+  ),
+
+  warning: (
+    base: #f49342,
+    dark: #c05717,
+    darker: #4a1504,
+    light: #ffc58b,
+    lighter: #fcebdb,
+    text: #594430
+  ),
+
+  error: (
+    base: #ed6347,
+    dark: #bf0711,
+    darker: #330101,
+    light: #fead9a,
+    lighter: #fbeae5,
+    text: #583c35
+  ),
+
+  background: (
+    base: #dfe3e8,
+    dark: #c4cdd5,
+    darker: #a4ada5,
+    light: #f4f6f8,
+    lighter: #f9fafb
+  ),
+
+  icons: (
+    base: #ffffff,
+    dark: #173630,
+    darker: #173630,
+    light: #e3f1df,
+    lighter: #e3f1df,
+    hover: #637381,
+    selected: #bf0711
+  )
+);
+
+$color-palette-data: $colour-palette-data;
+
+/// Returns the color value for a given color name and group.
+///
+/// @param {String} $hue - The color's hue.
+/// @param {String} $value - The darkness/lightness of the color. Defaults to base.
+/// @param {Color} $for-background - The background color on which this color will
+/// appear. Applies a multiply filter to ensure appropriate contrast.
+/// @return {Color} The color value.
+
+@function color($hue, $value: base, $for-background: null) {
+  $fetched-color: map-get(map-get($color-palette-data, $hue), $value);
+
+  @if map-has-key($color-palette-data, $fetched-color) {
+    $fetched-color: map-get(map-get($color-palette-data, $fetched-color), $value);
+  }
+
+  @if $for-background != null {
+    $fetched-color: color-multiply($fetched-color, $for-background);
+  }
+
+  @if type-of($fetched-color) == color {
+    @return $fetched-color;
+  } @else {
+    @error 'Color `#{$hue} - #{$value}` not found. Available colors: #{available-names($color-palette-data)}';
+  }
+}
+
+// Alias
+@function colour($hue, $value: base, $for-background: null) {
+  @return color($hue, $value, $for-background);
+}
+
+
+/// Darkens the foreground color by the background color. This is the same as the
+/// “multiply” filter in graphics apps.
+///
+/// @param {Color} $foreground - The color to darken.
+/// @param {Color} $background - The background to base darkening on.
+/// @return {Color} The modified color.
+
+@function color-multiply($foreground, $background: null) {
+  @if $background == null {
+    $background: #ffffff;
+  }
+
+  @return $foreground * $background / 255;
+}
+
+// Alias
+@function colour-multiply($foreground, $background: null) {
+  @return color-multiply($foreground, $background);
+}
+
+// stylelint-enable color-no-hex, function-max-empty-lines, value-list-max-empty-lines

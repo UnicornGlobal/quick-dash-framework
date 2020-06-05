@@ -112,21 +112,21 @@
     flex: 1;
   }
   .highlight-left {
-    background: $accent;
+    background: colour("primary", "dark");
     width: 4px;
     margin-right: -4px;
     position:relative;
   }
   .highlight-right {
-    background: $accent;
+    background: colour("primary", "dark");
     width: 4px;
     display: flex;
   }
   .menu-item {
 
     &.active {
-      background: $primary-light;
-      color: $secondary-text;
+      background: colour("primary", "light");
+      color: colour("secondary", "text");
       display: flex;
     }
     a.router-link {
@@ -134,9 +134,9 @@
       padding: 1.35rem 0 1.35rem 1rem;
       display: flex;
       text-decoration: none;
-      color: $primary-text;
+      color: colour("primary", "text");
       align-items: center;
-      border-bottom: 1px solid $line;
+      border-bottom: 1px solid colour("primary", "darker");
       svg {
         height: $sidebar_icon_size;
         width: $sidebar_icon_size;
@@ -154,7 +154,7 @@
         }
       }
       &:hover {
-        background: $primary-light;
+        background: colour("primary", "light");
         color: $sidebar_active_text_colour;
         svg {
           fill: $sidebar_active_icon_colour;
@@ -186,19 +186,19 @@
 
     .sub-menu > .menu-item {
       &.active {
-        background: $primary-light;
-        color: $black;
+        background: colour("primary", "light");
+        color: colour("black");
       }
     }
 
     .closed {
       transition: transform .25s;
-      transform: rotate(-90deg)
+      transform: rotate(-90deg);
     }
 
     .open {
       transition: transform .35s;
-      transform: rotate(0deg)
+      transform: rotate(0deg);
     }
   }
 </style>

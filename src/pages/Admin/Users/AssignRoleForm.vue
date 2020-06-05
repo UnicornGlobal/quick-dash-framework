@@ -80,7 +80,7 @@
     input:checked {
       ~ .radiomark:after {
         display: block;
-        background: $primary-dark;
+        background: colour("primary", "dark");
         top: 2px;
         left: 2px;
         width: 9px;

@@ -16,7 +16,7 @@
 
 <style lang="scss">
 .page-container {
-  background-color: $light-bg;
+  background-color: colour("background", "light");
   min-height: 100%;
   height: 100%;
   padding-bottom: 4rem;

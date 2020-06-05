@@ -38,7 +38,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: $white;
+  color: colour("white");
 
   @media (min-width: 1025px) {
     display: none;
@@ -74,14 +74,14 @@
   align-items: center;
   justify-content: center;
   margin: 0;
-  color: $white;
+  color: colour("white");
   font-size: 22px;
   text-decoration: none;
 
   svg {
     height: 40px;
     width: 45px;
-    fill: $white;
+    fill: colour("white");
   }
 }
 
@@ -90,14 +90,14 @@
   align-items: center;
   justify-content: center;
   margin: 0;
-  color: $white;
+  color: colour("white");
   font-size: 22px;
   text-decoration: none;
 
   svg {
     height: 40px;
     width: 45px;
-    fill: $white;
+    fill: colour("white");
   }
 
   @media (min-width: 1025px) {

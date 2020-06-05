@@ -22,7 +22,7 @@
 
 <style lang="scss" scoped>
   .home-page.content-area {
-    background-color: $light-bg;
+    background-color: colour("background", "light");
     padding-left: 2em;
   }
 </style>

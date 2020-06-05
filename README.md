@@ -1,8 +1,15 @@
 # @unicorns/quick-dash-framework
 
-Do not base your projects on this one.
+*v3.x* is *NOT* compatible with v2.x you will need to upgrade your
+host application to support the new v3 functionality.
 
-This is the base framework package.
+## v3.x Changelog
+
+
+
+Do not base new projects on this one.
+
+This is the base framework package that should be included as a dependency.
 
 Use or fork https://github.com/UnicornGlobal/quick-dash for your
 projects.

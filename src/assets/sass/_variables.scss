@@ -1,58 +1,60 @@
-@import "./_fonts.scss";
+// @import "./_fonts.scss";
+@import 'variables/palette';
+@import 'variables/typography';
 
 //COLORS
 
-$primary: #5DB0FF;
-$primary-dark: darken(#5DB0FF, 33%);
-$primary-light: lighten(#5DB0FF, 30%);
-$accent: darken(#5DB0FF, 20%);
-$icons: #FFFFFF;
-$primary-text: #212121;
-$secondary-text: #fff;
-$black: #000;
-$divider: #BDBDBD;
-$black: rgb(0, 0, 0);
-$white: rgb(255, 255, 255);
-$success: #8BC34A;
-$warn: #FF5722;
-$fail: #FF5252;
-$light-bg: rgb(244,244,248);
-$line: rgb(245,245,245);
-$light-hover: rgb(246,246,246);
-
-$colors-map: (
-  primary: $primary,
-  primary-dark: $primary-dark,
-  primary-light: $primary-light,
-  accent: $accent,
-  icons: $icons,
-  primary-text: $primary-text,
-  secondary-text: $secondary-text,
-  divider: $divider,
-  black: $black,
-  white: $white,
-  success: $success,
-  fail: $fail
-);
+// $primary: #5DB0FF;
+// $primary-dark: darken(#5DB0FF, 33%);
+// $primary-light: lighten(#5DB0FF, 30%);
+// $accent: darken(#5DB0FF, 20%);
+// $icons: #FFFFFF;
+// $primary-text: #212121;
+// $secondary-text: #fff;
+// $black: #000;
+// $divider: #BDBDBD;
+// $black: rgb(0, 0, 0);
+// $white: rgb(255, 255, 255);
+// $success: #8BC34A;
+// $warn: #FF5722;
+// $fail: #FF5252;
+// $light-bg: rgb(244,244,248);
+// $line: rgb(245,245,245);
+// $light-hover: rgb(246,246,246);
+//
+// $colors-map: (
+//   primary: $primary,
+//   primary-dark: $primary-dark,
+//   primary-light: $primary-light,
+//   accent: $accent,
+//   icons: $icons,
+//   primary-text: $primary-text,
+//   secondary-text: $secondary-text,
+//   divider: $divider,
+//   black: $black,
+//   white: $white,
+//   success: $success,
+//   fail: $fail
+// );
 
 $border-radius: 4px;
 
 // LOGIN PAGE
 
-$login_header: $primary;
+$login_header: colour("primary");
 $login_header_height: 95px;
 $login_header_shadow: none;
 $login_header_border: 0px;
 $login_header_padding: 0 0 1.5rem;
 $login_header_text_size: 1rem;
-$login_background: $light-bg;
+$login_background: colour("background", "light");
 $login_box_header: #FFFFFF;
 $login_box_background: #FFFFFF;
-$login_box_border: 1px solid darken($light-bg, 10);
+$login_box_border: 1px solid colour("background", "dark");
 $login_text: #000000;
 $login_label_text_size: 0.9rem;
 $login_shadow: 0 20px 44px 0 rgba(119,135,139,0.6);
-$login_button_background: $primary;
+$login_button_background: colour("primary");
 $login_button_min_width: 250px;
 $login_button_min_height: 50px;
 $login_box_min_width: 650px;
@@ -69,14 +71,14 @@ $signup_header_shadow: none;
 $signup_header_border: 0px;
 $signup_header_padding: 0 0 1.5rem;
 $signup_header_text_size: 1rem;
-$signup_background: $light-bg;
+$signup_background: colour("background", "light");
 $signup_box_header: #FFFFFF;
 $signup_box_background: #FFFFFF;
-$signup_box_border: 1px solid darken($light-bg, 10);
-$signup_text: $primary;
+$signup_box_border: 1px solid colour("background", "dark");
+$signup_text: colour("primary");
 $signup_label_text_size: 0.85rem;
 $signup_shadow: 0 20px 44px 0 rgba(119,135,139,0.6);
-$signup_button_background: $primary;
+$signup_button_background: colour("primary");
 $signup_button_min_width: 280px;
 $signup_button_min_height: 90px;
 $signup_box_min_width: 650px;
@@ -87,18 +89,18 @@ $signup_logo_text: #5C5C5C;
 $signup_logo_margin: 0 2rem;
 $signup_input_margin: 0.5rem;
 
-$header_background: $primary;
+$header_background: colour("primary");
 
 $sidebar_border: 0;
 $sidebar-shadow: none;
 $sidebar_text_size: 1rem;
 $sidebar_menu_padding_top: 0em;
 $sidebar_hamburger_colour: #FFFFFF;
-$sidebar_icon_colour: $primary;
+$sidebar_icon_colour: colour("primary");
 $sidebar_icon_size: 20px;
-$sidebar_active_text_colour: $accent;
-$sidebar_active_icon_colour: $accent;
+$sidebar_active_text_colour: colour("primary", "dark");
+$sidebar_active_icon_colour: colour("primary", "dark");
 $sidebar_active_text_font: 'Montserrat-SemiBold';
-$sidebar_sub_menu_background: $primary-light;
+$sidebar_sub_menu_background: colour("primary", "light");
 
 @import "./_forms.scss";

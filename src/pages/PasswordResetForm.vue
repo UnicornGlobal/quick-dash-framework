@@ -218,8 +218,8 @@
           height: 50px;
           width: 50px;
           border-radius: 100%;
-          background-color: $primary;
-          color: $primary-light;
+          background-color: colour("primary");
+          color: colour("primary", "light");
           text-align: center;
           font-size: 3rem;
           font-weight: 800;
@@ -234,13 +234,13 @@
     }
 
     .text-header {
-      color: $white;
+      color: colour("white");
       padding-top: 10px;
       margin-bottom: 0;
     }
 
     .text {
-      color: $white;
+      color: colour("white");
       font-size: 20px;
       top: 100px;
       left: 82px;
@@ -259,7 +259,7 @@
     }
 
     label {
-      color: $primary-text;
+      color: colour("primary", "text");
       font-size: $login_label_text_size;
       font-weight: bold;
       margin-bottom: 1rem;
@@ -315,7 +315,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: $white;
+      color: colour("white");
       background-color: $login_button_background;
       border: none;
       border-radius: $border-radius;
@@ -332,13 +332,13 @@
     input {
       padding-left: 10px;
       margin-top: 5px;
-      border: 1px solid darken($primary, 20);
+      border: 1px solid colour("primary", "dark");
       border-radius: $border-radius;
     }
 
     .sent-success {
       font-size: 18px;
-      color: $success;
+      color: colour("success");
     }
 
     .loading {
