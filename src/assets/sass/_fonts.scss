@@ -30,19 +30,19 @@ Enable the specific ones you want to use, do not enable all!
 }
 **/
 
-@font-face {
-  font-family: 'Montserrat-Regular';
-  src: url('/fonts/Montserrat-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat-SemiBold';
-  src: url('/fonts/Montserrat-SemiBold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
-}
+// @font-face {
+//   font-family: 'Montserrat-Regular';
+//   src: url('/fonts/Montserrat-Regular.ttf') format('truetype');
+//   font-weight: 400;
+//   font-style: normal;
+// }
+//
+// @font-face {
+//   font-family: 'Montserrat-SemiBold';
+//   src: url('/fonts/Montserrat-SemiBold.ttf') format('truetype');
+//   font-weight: 600;
+//   font-style: normal;
+// }
 
 /**
 @font-face {
@@ -103,11 +103,11 @@ Enable the specific ones you want to use, do not enable all!
 }
 **/
 
-html * {
-  font-family: 'Montserrat-Regular', sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  text-align: left;
-  box-sizing: border-box;
-}
+// html * {
+//   font-family: 'Montserrat-Regular', sans-serif;
+//   font-size: 1rem;
+//   font-weight: 400;
+//   line-height: 1.5;
+//   text-align: left;
+//   box-sizing: border-box;
+// }

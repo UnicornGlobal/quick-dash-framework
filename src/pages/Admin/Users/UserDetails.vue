@@ -83,10 +83,6 @@
     }
   }
 
-  .detail-title {
-    font-family: "Montserrat-SemiBold", sans-serif;
-  }
-
   .button-section {
     display: flex;
     justify-content: flex-end;

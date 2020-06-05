@@ -1,0 +1,9 @@
+$unit: 100ms;
+
+$duration-data: (
+  fast: $unit,
+  base: $unit * 2,
+  slow: $unit * 3,
+  slower: $unit * 4,
+  slowest: $unit * 5,
+);
