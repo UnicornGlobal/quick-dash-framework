@@ -1,0 +1,9 @@
+// Access with `something: background(primary)`
+$backgrounds-data: (
+  base: colour(background),
+  dark: colour(background, darker),
+  primary: colour(primary),
+  gradiant: linear-gradient(to bottom, lighten(colour(primary), 2%), darken(colour(primary), 2%)),
+  transparent: rgba(0, 0, 0, 0),
+  none: none
+);

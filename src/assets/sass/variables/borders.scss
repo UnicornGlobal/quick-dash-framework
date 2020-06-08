@@ -1,5 +1,12 @@
 $borders-data: (
   base: 1px solid colour(primary),
+  light: 1px solid colour(primary, light),
   dark: 1px solid colour(primary, dark),
-  transparent: 1px solid transparent
+  transparent: 1px solid transparent,
+  none: none,
+  thick: 4px solid colour(primary),
+  white: 1px solid colour(white),
+  hover: 1px solid colour(primary, light),
+  focus: 1px solid colour(primary, lighter),
+  active: 1px solid colour(primary, light)
 );

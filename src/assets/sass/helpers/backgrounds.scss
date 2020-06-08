@@ -1,0 +1,14 @@
+/// Returns the default background.
+/// @param {String} $variant [base] - The background variant key.
+/// @return {List} The background value.
+
+@function background($variant: base) {
+  $fetched-value: map-get($backgrounds-data, $variant);
+
+  @if $fetched-value {
+    @return $fetched-value;
+  } @else {
+    @error 'Background variant `#{$variant}` not found. Available variants: #{available-names($backgrounds-data)}';
+  }
+}
+

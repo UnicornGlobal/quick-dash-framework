@@ -5,7 +5,8 @@
       <div class="logo" v-if="showEmojiLogo"><span>{{ emojiLogo }}</span></div>
         <component v-if="showLogo" :is="logo" class="svg-logo"></component>
       <div class="brand">{{ appName }}</div>
-      <button @click.prevent="signUp" class="text-uppercase login-button">
+      <div class="spacer" style="flex: 2"></div>
+      <button @click.prevent="signUp" class="text-uppercase signup-button">
         Sign Up
       </button>
     </div>
@@ -182,6 +183,11 @@
 </script>
 
 <style lang="scss">
+
+  button.signup-button {
+    @include button-outline();
+  }
+
   .login-page {
     height: 100%;
     overflow-y: scroll;
@@ -315,8 +321,8 @@
         margin-left: 5px;
       }
 
-      button {
-        @include button-filled(colour(primary), colour(secondary));
+      button.login-button {
+        @include button-filled();
       }
 
       input {
