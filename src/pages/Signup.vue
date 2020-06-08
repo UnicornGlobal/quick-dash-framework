@@ -93,7 +93,7 @@
     max-width: 480px;
     padding: $signup_box_padding;
     margin: $signup_box_margin;
-    border-radius: $border-radius;
+    border-radius: border-radius();
     background-color: $signup_box_background;
     box-shadow: $signup_shadow;
 
@@ -225,7 +225,7 @@
         color: colour(white);
         background-color: $signup_button_background;
         border: none;
-        border-radius: $border-radius;
+        border-radius: border-radius();
         cursor: pointer;
         min-width: $signup_button_min_width;
         min-height: $signup_button_min_height;
@@ -236,7 +236,7 @@
         padding-left: 10px;
         margin-top: 5px;
         border: 1px solid colour(primary, dark);
-        border-radius: $border-radius;
+        border-radius: border-radius();
       }
 
       input[type=checkbox] {

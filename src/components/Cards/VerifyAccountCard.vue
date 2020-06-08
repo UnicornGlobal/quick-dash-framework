@@ -71,7 +71,7 @@
         margin: 1rem 0.25rem 1rem;
         background: colour(secondary, text);
         color: colour(primary);
-        border-radius: $border-radius;
+        border-radius: border-radius();
 
         &:active, &:hover {
           background-color: colour(secondary, text);

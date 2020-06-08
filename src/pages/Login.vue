@@ -6,9 +6,9 @@
         <component v-if="showLogo" :is="logo" class="svg-logo"></component>
       <div class="brand">{{ appName }}</div>
       <div class="spacer" style="flex: 2"></div>
-      <button @click.prevent="signUp" class="text-uppercase signup-button">
-        Sign Up
-      </button>
+      <router-link to="/signup" tag="button" class="text-uppercase signup-button">
+        {{ strings.signup }}
+      </router-link>
     </div>
     <div class="login-form">
       <card class="card">
@@ -269,7 +269,6 @@
           right: 0;
           text-decoration: none;
           padding-right: 10px;
-          font-size: 13px;
           color: colour(primary, dark);
         }
       }
@@ -329,7 +328,7 @@
         padding-left: 10px;
         margin-top: 5px;
         border: 1px solid colour(primary, dark);
-        border-radius: $border-radius;
+        border-radius: border-radius();
       }
 
       input[type=checkbox] {

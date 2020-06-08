@@ -153,7 +153,7 @@
     max-width: 480px;
     padding: $login_box_padding;
     margin: $login_box_margin;
-    border-radius: $border-radius;
+    border-radius: border-radius();
     background-color: $login_box_background;
     box-shadow: $login_shadow;
 
@@ -279,7 +279,7 @@
       color: colour(white);
       background-color: $login_button_background;
       border: none;
-      border-radius: $border-radius;
+      border-radius: border-radius();
       cursor: pointer;
       min-width: $login_button_min_width;
       min-height: $login_button_min_height;
@@ -290,7 +290,7 @@
       padding-left: 10px;
       margin-top: 5px;
       border: 1px solid colour(primary, "dark");
-      border-radius: $border-radius;
+      border-radius: border-radius();
     }
 
     .sent-success {
