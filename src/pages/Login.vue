@@ -5,6 +5,9 @@
       <div class="logo" v-if="showEmojiLogo"><span>{{ emojiLogo }}</span></div>
         <component v-if="showLogo" :is="logo" class="svg-logo"></component>
       <div class="brand">{{ appName }}</div>
+      <button @click.prevent="signUp" class="text-uppercase login-button">
+        Sign Up
+      </button>
     </div>
     <div class="login-form">
       <card class="card">
@@ -178,29 +181,12 @@
   }
 </script>
 
-<style lang="scss" scoped>
-  .card {
-    max-width: 480px;
-    padding: $login_box_padding;
-    margin: $login_box_margin;
-    border-radius: $border-radius;
-    background-color: $login_box_background;
-    box-shadow: $login_shadow;
-
-    h2 {
-      padding: $login_header_padding;
-      margin: 0px;
-      background-color: $login_box_header;
-      color: $login_text;
-      font-size: $login_header_text_size;
-    }
-  }
-
+<style lang="scss">
   .login-page {
     height: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
-    margin-right: -1rem;
+    margin-right: -1.5rem;
 
     .login-header {
       min-height: $login_header_height;
@@ -215,6 +201,7 @@
       .svg-logo {
         margin: $login_logo_margin;
       }
+
       .logo {
         display: inline-block;
 
@@ -329,18 +316,7 @@
       }
 
       button {
-        line-height: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: colour(white);
-        background-color: $login_button_background;
-        border: none;
-        border-radius: $border-radius;
-        cursor: pointer;
-        min-width: $login_button_min_width;
-        min-height: $login_button_min_height;
-        margin: 0;
+        @include button-filled(colour(primary), colour(secondary));
       }
 
       input {

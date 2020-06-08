@@ -1,4 +1,17 @@
 @mixin button-filled($button-color, $focus-color, $outline-color: null) {
+  line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: colour(white);
+  background-color: $login_button_background;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+  min-width: $login_button_min_width;
+  min-height: $login_button_min_height;
+  margin: 0;
+
   $border-color: darken($button-color, 10%);
   $active-color: darken($button-color, 15%);
 
