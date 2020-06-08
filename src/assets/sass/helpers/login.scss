@@ -1,0 +1,18 @@
+@function login($element, $value: null) {
+  @if map-has-key($login-data, $element) {
+    $details: map-get($login-data, $element);
+
+    $fetched-element: $details;
+
+    @if type-of($details) == map {
+      @if map-has-key($details, $value) {
+        $fetched-element: map-get($details, $value);
+      }
+    }
+
+    @return $fetched-element;
+  } @else {
+    @error 'Login element `#{$element} - #{$value}` not found. Available: #{available-names($login-data)}';
+  }
+}
+

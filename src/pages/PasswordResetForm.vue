@@ -167,18 +167,18 @@
 <style lang="scss" scoped>
   .card {
     max-width: 480px;
-    padding: $login_box_padding;
-    margin: $login_box_margin;
+    padding: login(box, padding);
+    margin: login(box, margin);
     border-radius: border-radius();
-    background-color: $login_box_background;
-    box-shadow: $login_shadow;
+    background-color: login(box, background);
+    box-shadow: login(shadow);
 
     h2 {
-      padding: $login_header_padding;
+      padding: login(header, padding);
       margin: 0px;
-      background-color: $login_box_header;
-      color: $login_text;
-      font-size: $login_header_text_size;
+      background-color: login(box, header);
+      color: login(text, color);
+      font-size: login(header, text);
 
       @media(max-width: 999px) {
         text-align: center;
@@ -196,17 +196,17 @@
 
   .password-reset-page {
     .reset-header {
-      min-height: $login_header_height;
+      min-height: login(header, height);
       padding: 10px;
-      background-color: $login_header;
-      border-bottom: $login_header_border;
-      box-shadow: $login_header_shadow;
+      background-color: login(header, background);
+      border-bottom: login(header, border);
+      box-shadow: login(header, shadow);
       justify-content: left;
       align-items: center;
       display: flex;
 
       .svg-logo {
-        margin: $login_logo_margin;
+        margin: login(logo, margin);
       }
       .logo {
         display: inline-block;
@@ -229,7 +229,7 @@
       .brand {
         display: inline-block;
         font-size: 18px;
-        color: $login_logo_text;
+        color: login(logo, text);
       }
     }
 
@@ -248,11 +248,11 @@
     }
 
     .card {
-        border: $login_box_border;
-        background-color: $login_box_background;
-        width: $login_box_min_width;
-        min-width: $login_box_min_width;
-        @media(max-width: $login_box_min_width) {
+        border: login(box, border);
+        background-color: login(box, background);
+        width: login(box, width);
+        min-width: login(box, width);
+        @media(max-width: login(box, width)) {
           width: 100%;
           min-width: 100%;
         }
@@ -260,14 +260,14 @@
 
     label {
       color: colour(primary, text);
-      font-size: $login_label_text_size;
+      font-size: login(text, label);
       font-weight: bold;
       margin-bottom: 1rem;
     }
 
     .password-reset-form {
       min-height: calc(100vh - 70px);
-      background-color: $login_background;
+      background-color: login(background);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -291,7 +291,7 @@
         .quick-links {
           a {
             text-decoration: none;
-            color: $login_text;
+            color: login(text, color);
             font-weight: bold;
             font-size: 12px;
           }
@@ -316,12 +316,12 @@
       align-items: center;
       justify-content: center;
       color: colour(white);
-      background-color: $login_button_background;
+      background-color: colour(primary);
       border: none;
       border-radius: border-radius();
       cursor: pointer;
-      min-width: $login_button_min_width;
-      min-height: $login_button_min_height;
+      min-width: $button_min_width;
+      min-height: $button_min_height;
       margin: 0;
 
       @media(max-width: 999px) {

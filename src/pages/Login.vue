@@ -195,17 +195,17 @@
     margin-right: -1.5rem;
 
     .login-header {
-      min-height: $login_header_height;
+      min-height: login(header, height);
       padding: 10px;
-      background-color: $login_header;
-      border-bottom: $login_header_border;
-      box-shadow: $login_header_shadow;
+      background-color: login(header, background);
+      border-bottom: login(header, border);
+      box-shadow: login(header, shadow);
       justify-content: left;
       align-items: center;
       display: flex;
 
       .svg-logo {
-        margin: $login_logo_margin;
+        margin: login(logo, margin);
       }
 
       .logo {
@@ -229,25 +229,25 @@
       .brand {
         display: inline-block;
         font-size: 18px;
-        color: $login_logo_text;
+        color: login(logo, text);
       }
     }
 
     .login-form {
-      height: calc(100vh - #{$login_header_height});
-      padding-bottom: $login_header_height;
-      background-color: $login_background;
+      height: calc(100vh - #{login(header, height)});
+      padding-bottom: login(header, height);
+      background-color: login(background);
       display: flex;
       justify-content: center;
       align-items: center;
 
-      @media(max-width: $login_box_min_width) {
+      @media(max-width: login(box, width)) {
         border: 0;
         width: 100%;
         min-width: 100%;
         max-width: unset;
         padding-bottom: 0;
-        margin-top: $login_mobile_header_margin;
+        margin-top: login(mobile, margin);
       }
 
       .logo-holder {
@@ -279,7 +279,7 @@
         justify-content: space-between;
         align-items: baseline;
 
-        @media(max-width: $login_box_min_width) {
+        @media(max-width: login(box, width)) {
           flex-direction: column;
           align-items: center;
         }
@@ -290,11 +290,11 @@
       }
 
       .card {
-        border: $login_box_border;
-        background-color: $login_box_background;
-        width: $login_box_min_width;
-        min-width: $login_box_min_width;
-        @media(max-width: $login_box_min_width) {
+        border: login(box, border);
+        background-color: login(box, background);
+        width: login(box, width);
+        min-width: login(box, width);
+        @media(max-width: login(box, width)) {
           border: 0;
           height: 100%;
           width: 100%;
@@ -307,7 +307,7 @@
 
       label {
         color: colour(primary, text);
-        font-size: $login_label_text_size;
+        font-size: login(text, size);
         font-weight: bold;
       }
 
@@ -336,21 +336,21 @@
         -moz-appearance: none;
         appearance: none;
         background-color: colour(primary);
-        border: 2px solid $login_checkbox_colour;
+        border: 2px solid login(checkbox);
         display: inline-block;
         position: relative;
         padding: 7px !important;
         top: 0.25rem;
 
         &:focus {
-          border: 2px solid $login_checkbox_colour;
-          outline: $login_checkbox_colour solid 2px;
+          border: 2px solid login(checkbox);
+          outline: login(checkbox) solid 2px;
           outline-offset: 1px;
         }
 
         &:checked {
-          border: 2px solid $login_checkbox_colour;
-          background-color: $login_checkbox_colour;
+          border: 2px solid login(checkbox);
+          background-color: login(checkbox);
           background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20d%3D%22M173.898%20439.404l-166.4-166.4c-9.997-9.997-9.997-26.206%200-36.204l36.203-36.204c9.997-9.998%2026.207-9.998%2036.204%200L192%20312.69%20432.095%2072.596c9.997-9.997%2026.207-9.997%2036.204%200l36.203%2036.204c9.997%209.997%209.997%2026.206%200%2036.204l-294.4%20294.401c-9.998%209.997-26.207%209.997-36.204-.001z%22%20fill%3D%22white%22/%3E%3C/svg%3E);
           &:after {
             position: absolute;
