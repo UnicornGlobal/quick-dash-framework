@@ -1,3 +1,7 @@
+// stylelint-enable color-no-hex, function-max-empty-lines, value-list-max-empty-lines
+// UK and US spelling alias
+$colour-palette-data: $color-palette-data;
+
 /// Returns the color value for a given color name and group.
 ///
 /// @param {String} $hue - The color's hue.

@@ -12,3 +12,17 @@
     @error 'Spacing variant `#{$variant}` not found. Available variants: #{available-names($spacing-data)}';
   }
 }
+
+/// Returns the widths of the specified column.
+/// @param {String} $name - The column name.
+/// @return {Number} The width for the column.
+
+@function layout-width($name, $value: base) {
+  $fetched-value: map-get(map-get($layout-width-data, $name), $value);
+
+  @if type-of($fetched-value) != null {
+    @return $fetched-value;
+  } @else {
+    @error 'Column `#{$name} - #{$value}` not found. Available columns: #{available-names($layout-width-data)}';
+  }
+}

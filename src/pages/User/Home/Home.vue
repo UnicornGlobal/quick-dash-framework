@@ -92,7 +92,7 @@
 
 <style lang="scss">
   .home-page.content-area {
-    background-color: colour(background, light);
+    background-color: color(background, light);
     padding-left: 2em;
   }
 </style>

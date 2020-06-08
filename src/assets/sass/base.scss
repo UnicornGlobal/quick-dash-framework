@@ -1,57 +1,55 @@
-@import "./_fonts.scss";
+html,
+body {
+  @include text-style-body;
+  @include text-emphasis-normal;
+  font-family: font-family();
+}
 
-html, body {
-  height: 100%;
-  padding: 0;
+html {
+  position: relative;
+  box-sizing: border-box;
+  font-size: ($base-font-size / $default-browser-font-size) * 100%;
+  -webkit-font-smoothing: antialiased;
+
+  // This needs to come after -webkit-font-smoothing
+  // stylelint-disable-next-line declaration-block-properties-order
+  -moz-osx-font-smoothing: grayscale;
+
+  text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100%;
   margin: 0;
-  background-color: colour(white);
-  color: colour(primary, text);
-  overflow: hidden;
+  padding: 0;
+  background-color: color(background, light);
 }
 
-//TEXT
-// @each $color, $value in $colors-map {
-  // .text-#{$color} {
-    // color: #{$value}
-  // }
-// }
-
-.strong {
-  font-weight: bold;
+* {
+  box-sizing: inherit;
 }
 
-h1 {
-  font-size: 2em;
-  margin: 0.15em 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 400;
 }
 
-h2 {
-  font-size: 1.5em;
-  margin: 0.15em 0;
-}
-
-h3 {
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-h4 {
-  font-size: 1.4em;
-}
-
-h5 {
-  font-size: 0.9em;
-}
-
-h6 {
-  font-size: 0.8em;
-}
-
-a.link {
-  margin: 3px;
-  background: #f44336;
-  color: white !important;
-  padding: 4px;
+a:not([data-unstyled]) {
+  color: color(primary);
   text-decoration: none;
-  border-radius: 2px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    outline: none;
+    color: color(primary, dark);
+  }
 }

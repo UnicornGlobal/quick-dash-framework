@@ -1,4 +1,4 @@
-import '@/assets/sass/base.scss'
+// import '@/assets/sass/base.scss'
 
 import Vue from 'vue'
 import Router from 'vue-router'

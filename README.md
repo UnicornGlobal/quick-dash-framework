@@ -5,6 +5,30 @@ host application to support the new v3 functionality.
 
 ## v3.x Changelog
 
+## Vue v3
+
+The entire framework has been updated to the latest Vue 3.
+
+You need to upgrade your host application to be compatible with v3.
+
+You can see the UnicornGlobal/quick-dash project template to see the
+new structure your host app should be following.
+
+Overview: https://dev.to/blacksonic/the-vue-3-upgrade-guide-4dc4
+
+## Style
+
+Styles have been completely reworked.
+
+Host applications can replace their local v2 `_variables.scss` file with
+the new, modular `variables` folder, and can override the variables from
+the host app.
+
+## Validation
+
+The new Vee Validate in v3 is not compatible with v2 apps.
+
+See the Vee Validation documentation for upgrading to v3
 
 
 Do not base new projects on this one.

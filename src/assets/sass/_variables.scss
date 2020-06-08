@@ -1,14 +1,20 @@
 // @import "./_fonts.scss";
-@import 'helpers';
 @import 'variables/palette';
+@import "helpers/palette.scss";
+@import "helpers/spacing.scss";
+@import "helpers/utilities.scss";
+@import 'variables/spacing';
+@import 'variables/layout';
 @import 'variables/typography';
 @import 'variables/radius';
 @import 'variables/borders';
 @import 'variables/duration';
 @import 'variables/easing';
 @import 'variables/shadows';
-@import 'variables/spacing';
 @import 'variables/z-index';
+@import 'helpers';
+@import 'mixins';
+@import 'base';
 
 //COLORS
 
