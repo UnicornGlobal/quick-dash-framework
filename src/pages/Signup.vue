@@ -7,7 +7,7 @@
       <div class="brand">{{ appName }}</div>
     </div>
     <div class="signup-form">
-      <card class="card">
+      <card class="signup-card">
         <sign-me-up :options="signupOptions"></sign-me-up>
         <form></form>
       </card>
@@ -88,41 +88,36 @@
   }
 </script>
 
-<style lang="scss" scoped>
-  .card {
-    max-width: 480px;
-    padding: $signup_box_padding;
-    margin: $signup_box_margin;
-    border-radius: border-radius();
-    background-color: $signup_box_background;
-    box-shadow: $signup_shadow;
+<style lang="scss">
+  @import '../assets/sass/mixins/buttons';
+  @import '../assets/sass/mixins/layout';
 
-    h2 {
-      padding: $signup_header_padding;
-      margin: 0px;
-      background-color: $signup_box_header;
-      color: $signup_text;
-      font-size: $signup_header_text_size;
-    }
+  .signup-card {
+    width: login(box, width);
+    min-width: login(box, width);
+    max-width: login(box, width);
+    background-color: login(box, background);
   }
 
   .signup-page {
     height: 100%;
     overflow-y: scroll;
+    overflow-x: hidden;
+    margin-right: -1.5rem;
 
     .signup-header {
-      min-height: $signup_header_height;
-      padding: 10px;
-      background-color: $signup_header;
-      border-bottom: $signup_header_border;
-      box-shadow: $signup_header_shadow;
-      justify-content: left;
-      align-items: center;
-      display: flex;
+      @include flex-row;
+
+      min-height: login(header, height);
+      padding: spacing(tight);
+      background-color: login(header, background);
+      border-bottom: login(header, border);
+      box-shadow: login(header, shadow);
 
       .svg-logo {
         margin: $signup_logo_margin;
       }
+
       .logo {
         display: inline-block;
 
@@ -149,12 +144,12 @@
     }
 
     .signup-form {
-      margin-top: 110px;
-      padding: 2rem;
-      background-color: $signup_background;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex-center;
+
+      height: calc(100vh - #{login(header, height)});
+      padding: login(header, height) 0;
+      background-color: login(background);
+
       @media(max-width: 560px) {
         width: 100%;
         max-width: unset;
@@ -202,12 +197,6 @@
         }
       }
 
-      label {
-        color: colour(primary, text);
-        font-size: $signup_label_text_size;
-        font-weight: bold;
-      }
-
       .password-reset-container {
         margin-top: 35px;
         margin-bottom: 5px;
@@ -217,56 +206,8 @@
         margin-left: 5px;
       }
 
-      button {
-        line-height: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: colour(white);
-        background-color: $signup_button_background;
-        border: none;
-        border-radius: border-radius();
-        cursor: pointer;
-        min-width: $signup_button_min_width;
-        min-height: $signup_button_min_height;
-        margin: 0;
-      }
-
-      input {
-        padding-left: 10px;
-        margin-top: 5px;
-        border: 1px solid colour(primary, dark);
-        border-radius: border-radius();
-      }
-
-      input[type=checkbox] {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background-color: colour(primary);
-        border: 2px solid $signup_checkbox_colour;
-        display: inline-block;
-        position: relative;
-        padding: 7px !important;
-        top: 0.25rem;
-
-        &:focus {
-          border: 2px solid $signup_checkbox_colour;
-          outline: $signup_checkbox_colour solid 2px;
-          outline-offset: 1px;
-        }
-
-        &:checked {
-          border: 2px solid $signup_checkbox_colour;
-          background-color: $signup_checkbox_colour;
-          background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20d%3D%22M173.898%20439.404l-166.4-166.4c-9.997-9.997-9.997-26.206%200-36.204l36.203-36.204c9.997-9.998%2026.207-9.998%2036.204%200L192%20312.69%20432.095%2072.596c9.997-9.997%2026.207-9.997%2036.204%200l36.203%2036.204c9.997%209.997%209.997%2026.206%200%2036.204l-294.4%20294.401c-9.998%209.997-26.207%209.997-36.204-.001z%22%20fill%3D%22white%22/%3E%3C/svg%3E);
-          &:after {
-            position: absolute;
-            top: 0;
-            left: 3px;
-            padding: 0;
-          }
-        }
+      button.signup-button {
+        @include button-filled();
       }
 
       .loading {

@@ -4,6 +4,7 @@ export default {
   customHeader: null,
   customFooter: null,
   logo: false,
+  showLogin: true,
   emojiLogo: () => {
     return '⚡️'
   },
@@ -40,14 +41,14 @@ export default {
           name: 'email',
           required: true
         },
-        {
-          id: 'mobile',
-          label: 'Mobile',
-          type: 'phone',
-          disabled: false,
-          name: 'mobile',
-          required: true
-        },
+        // {
+          // id: 'mobile',
+          // label: 'Mobile',
+          // type: 'phone',
+          // disabled: false,
+          // name: 'mobile',
+          // required: true
+        // },
         {
           id: 'password',
           label: 'Password',
