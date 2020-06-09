@@ -26,6 +26,9 @@ export default [
     props: {
       headerComponent: config.login.customHeader ? config.login.customHeader : null,
       footerComponent: config.login.customFooter ? config.login.customFooter : null
+    },
+    meta: {
+      auth: false
     }
   },
   {
@@ -50,7 +53,12 @@ export default [
     name: 'Logout',
     path: '/logout',
     async beforeEnter(to, from, next) {
-      await logout()
+      await logout({
+        makeRequest: true,
+        redirect: {
+          name: 'Login'
+        }
+      })
       next(false)
     }
   },

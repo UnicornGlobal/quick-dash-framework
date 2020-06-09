@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import Auth from '@websanova/vue-auth'
+import auth from '@websanova/vue-auth'
 import store from '@/store'
-import {loadRoutes} from '@/router'
-import {getSelf} from '@/api/user'
+import { loadRoutes } from '@/router'
+import { getSelf } from '@/api/user'
 
 export function userHasRole(user, role) {
   return user.roles.findIndex(userRole => userRole.name.toUpperCase() === role.toUpperCase()) > -1
@@ -23,10 +23,11 @@ export async function clearCookies() {
 
 export default {
   init: () => {
-    Vue.use(Auth, {
+    Vue.use(auth, {
       auth: require('@websanova/vue-auth/drivers/auth/bearer'),
       http: require('@websanova/vue-auth/drivers/http/axios.1.x'),
       router: require('@websanova/vue-auth/drivers/router/vue-router.2.x'),
+      stores: ['storage'],
       refreshData: {
         enabled: true,
         url: 'refresh',
@@ -35,12 +36,14 @@ export default {
           'Content-Type': 'text/plain'
         }
       },
-      fetchData: {
+      // fetchData: {
+      fetchUser: {
         enabled: true,
         url: 'api/me',
         method: 'GET'
       },
       async parseUserData(user) {
+        console.log('parse')
         await store.commit('app/loading', true)
 
         // Add custom app routes (contained in sidebar)
@@ -70,6 +73,7 @@ export default {
         })
       }
     }
+
     // Add a response interceptor
     Vue.axios.interceptors.response.use((response) => {
       // Do something with response data

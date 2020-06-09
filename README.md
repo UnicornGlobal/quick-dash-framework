@@ -7,16 +7,18 @@ host application to support the new v3 functionality.
 
 ## Vue v3
 
-The entire framework has been updated to the latest Vue 3.
+The entire framework has been updated to use the composition API which
+will be available in the final Vue 3 release.
 
-You need to upgrade your host application to be compatible with v3.
+You need to upgrade your host application to be compatible with the
+composition API.
 
 You can see the UnicornGlobal/quick-dash project template to see the
 new structure your host app should be following.
 
 Overview: https://dev.to/blacksonic/the-vue-3-upgrade-guide-4dc4
 
-## Style
+## Styles
 
 Styles have been completely reworked.
 

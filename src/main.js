@@ -2,6 +2,7 @@ import '@/assets/sass/base.scss'
 
 import Vue from 'vue'
 import Router from 'vue-router'
+import VueCompositionApi from '@vue/composition-api'
 
 import router from '@/router'
 import store from '@/store'
@@ -11,6 +12,7 @@ import lib from '@/lib'
 
 Vue.config.productionTip = false
 
+Vue.use(VueCompositionApi)
 Vue.use(Router)
 Vue.router = router
 
