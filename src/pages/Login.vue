@@ -197,14 +197,13 @@
     margin-right: -1.5rem;
 
     .login-header {
+      @include flex-row;
+
       min-height: login(header, height);
       padding: spacing(tight);
       background-color: login(header, background);
       border-bottom: login(header, border);
       box-shadow: login(header, shadow);
-      justify-content: left;
-      align-items: center;
-      display: flex;
 
       .svg-logo {
         margin: login(logo, margin);

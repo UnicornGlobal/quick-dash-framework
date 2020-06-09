@@ -1,0 +1,36 @@
+$login-data: (
+  background: colour(primary),
+  checkbox: colour(primary),
+  shadow: shadow(),
+  header: (
+    background: colour(primary),
+    height: 95px,
+    shadow: shadow(transparent),
+    border: border(none),
+    padding: 0 0 1.5rem,
+    margin: 0,
+    text: 1rem,
+    color: colour(white)
+  ),
+  box: (
+    header: colour(white),
+    background: colour(white),
+    border: border(),
+    shadow: shadow(),
+    width: 650px,
+    padding: spacing(loose),
+    margin: 0
+  ),
+  mobile: (
+    margin: 0
+  ),
+  text: (
+    label: 1rem,
+    color: colour(primary, text),
+    size: 1rem
+  ),
+  logo: (
+    margin: 0 2rem,
+    text: colour(white)
+  )
+);
