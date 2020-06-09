@@ -6,8 +6,8 @@
 
 <style lang="scss" scoped>
   .card {
-    padding: 0.7rem 1.2rem 1.5rem;
-    background-color: #fff;
+    padding: spacing(loose);
+    background-color: colour(white);
     border-radius: 0;
     overflow: hidden;
     color: colour(primary, text)

@@ -14,6 +14,10 @@ $form_label_padding: 2px;
 
 $form_header_colour: colour(primary);
 
+label {
+  margin: spacing(tight) spacing(none);
+}
+
 //BUTTONS
 button, a.button {
   height: 40px;
@@ -35,22 +39,26 @@ input:not([type=checkbox]):not([type=radio]), select, textarea {
   &:not(textarea) {
     height: 40px;
   }
+
   &:not([type=file]) {
     width: 100%;
   }
+
   background-color: colour(icons);
-  border: solid 1px colour(primary);
+  border: border();
+  border-radius: border-radius();
   color: colour(primary, text);
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: spacing() spacing(tight);
 
   &::placeholder {
     color: colour(primary, text);
   }
+
   &:focus {
     border-color: colour(primary, dark);
     outline: none;
   }
+
   &[aria-invalid=true] {
     border-color: colour(error);
     color: colour(error);
@@ -68,17 +76,16 @@ input[type=checkbox] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-color: colour(icons);
-  border: 2px solid colour(primary);
+  background:: colour(white);
+  border: border(thick);
   display: inline-block;
   position: relative;
   padding: 7px !important;
   top: 0.25rem;
 
   &:focus {
-    border: 2px solid colour(primary);
     outline: colour(primary) solid 2px;
-    outline-offset: 1px;
+    outline-offset: -2px;
   }
 
   &:checked {

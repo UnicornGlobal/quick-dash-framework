@@ -8,7 +8,8 @@ const baseWebpackConfig = require('./webpack.base.conf')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const env = process.env.NODE_ENV === 'testing'
@@ -31,11 +32,11 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
   optimization: {
     minimize: true,
-    minimizer: [new UglifyJsPlugin({
+    minimizer: [new TerserPlugin({
       sourceMap: true,
       parallel: true,
       extractComments: true,
-      uglifyOptions: {
+      terserOptions: {
         topLevel: true,
         compress: {
           drop_console: true,

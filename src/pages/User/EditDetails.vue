@@ -55,7 +55,7 @@
 
     h3 {
       align-self: flex-start;
-      color: $form_header_colour;
+      color: colour(primary, text);
       font-weight: bold;
       font-size: 1.5rem;
     }

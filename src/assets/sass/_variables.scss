@@ -1,8 +1,6 @@
 // @import "./_fonts.scss";
+// @import "helpers";
 @import 'variables/palette';
-@import "helpers/palette.scss";
-@import "helpers/spacing.scss";
-@import "helpers/utilities.scss";
 @import 'variables/spacing';
 @import 'variables/layout';
 @import 'variables/buttons';
@@ -15,8 +13,7 @@
 @import 'variables/z-index';
 @import 'variables/backgrounds';
 @import 'variables/buttons';
-@import 'helpers';
-@import 'mixins';
+// @import 'mixins';
 
 //COLORS
 
@@ -68,15 +65,16 @@ $login-data: (
     border: border(none),
     padding: 0 0 1.5rem,
     margin: 0,
-    text: 1rem
+    text: 1rem,
+    color: colour(white)
   ),
   box: (
     header: colour(white),
     background: colour(white),
-    border: border(dark),
+    border: border(),
     shadow: shadow(),
     width: 650px,
-    padding: 2rem,
+    padding: spacing(loose),
     margin: 0
   ),
   mobile: (
@@ -84,7 +82,8 @@ $login-data: (
   ),
   text: (
     label: 1rem,
-    color: colour(primary, text)
+    color: colour(primary, text),
+    size: 1rem
   ),
   logo: (
     margin: 0 2rem,
@@ -154,4 +153,4 @@ $sidebar_active_icon_colour: colour(primary, dark);
 $sidebar_active_text_font: 'Montserrat-SemiBold';
 $sidebar_sub_menu_background: colour(primary, light);
 
-@import "./_forms.scss";
+// @import "./_forms.scss";

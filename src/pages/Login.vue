@@ -11,7 +11,7 @@
       </router-link>
     </div>
     <div class="login-form">
-      <card class="card">
+      <card class="login-card">
         <div v-if="message" class="message">{{ message }}</div>
         <form>
           <div>
@@ -183,6 +183,8 @@
 </script>
 
 <style lang="scss">
+  @import '../assets/sass/mixins/buttons';
+  @import '../assets/sass/mixins/layout';
 
   button.signup-button {
     @include button-outline();
@@ -196,7 +198,7 @@
 
     .login-header {
       min-height: login(header, height);
-      padding: 10px;
+      padding: spacing(tight);
       background-color: login(header, background);
       border-bottom: login(header, border);
       box-shadow: login(header, shadow);
@@ -212,9 +214,8 @@
         display: inline-block;
 
         span {
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          @include flex-center;
+
           height: 50px;
           width: 50px;
           border-radius: 100%;
@@ -228,21 +229,20 @@
 
       .brand {
         display: inline-block;
-        font-size: 18px;
-        color: login(logo, text);
+        font-size: 24px;
+        color: login(header, color);
       }
     }
 
     .login-form {
+      @include flex-center;
+
       height: calc(100vh - #{login(header, height)});
       padding-bottom: login(header, height);
       background-color: login(background);
-      display: flex;
-      justify-content: center;
-      align-items: center;
 
       @media(max-width: login(box, width)) {
-        border: 0;
+        border: border(none);
         width: 100%;
         min-width: 100%;
         max-width: unset;
@@ -250,17 +250,9 @@
         margin-top: login(mobile, margin);
       }
 
-      .logo-holder {
-        margin: 2.5em 2em 0.5em 0.5em;
-        padding: 1em;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: colour(icons);
-      }
-
       .password-box {
         position: relative;
+
         a {
           position: absolute;
           display: inline-block;
@@ -274,7 +266,7 @@
       }
 
       .login-button-wrapper {
-        margin-top: 2em;
+        margin-top: spacing(extra-loose);
         display: flex;
         justify-content: space-between;
         align-items: baseline;
@@ -283,17 +275,15 @@
           flex-direction: column;
           align-items: center;
         }
-
-        label {
-          margin: 1rem;
-        }
       }
 
-      .card {
+      .login-card {
         border: login(box, border);
         background-color: login(box, background);
         width: login(box, width);
         min-width: login(box, width);
+
+        // Makes fullscreen on mobile
         @media(max-width: login(box, width)) {
           border: 0;
           height: 100%;
@@ -303,12 +293,6 @@
           display: flex;
           flex-direction: column;
         }
-      }
-
-      label {
-        color: colour(primary, text);
-        font-size: login(text, size);
-        font-weight: bold;
       }
 
       .password-reset-container {
@@ -322,43 +306,6 @@
 
       button.login-button {
         @include button-filled();
-      }
-
-      input {
-        padding-left: 10px;
-        margin-top: 5px;
-        border: 1px solid colour(primary, dark);
-        border-radius: border-radius();
-      }
-
-      input[type=checkbox] {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background-color: colour(primary);
-        border: 2px solid login(checkbox);
-        display: inline-block;
-        position: relative;
-        padding: 7px !important;
-        top: 0.25rem;
-
-        &:focus {
-          border: 2px solid login(checkbox);
-          outline: login(checkbox) solid 2px;
-          outline-offset: 1px;
-        }
-
-        &:checked {
-          border: 2px solid login(checkbox);
-          background-color: login(checkbox);
-          background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20d%3D%22M173.898%20439.404l-166.4-166.4c-9.997-9.997-9.997-26.206%200-36.204l36.203-36.204c9.997-9.998%2026.207-9.998%2036.204%200L192%20312.69%20432.095%2072.596c9.997-9.997%2026.207-9.997%2036.204%200l36.203%2036.204c9.997%209.997%209.997%2026.206%200%2036.204l-294.4%20294.401c-9.998%209.997-26.207%209.997-36.204-.001z%22%20fill%3D%22white%22/%3E%3C/svg%3E);
-          &:after {
-            position: absolute;
-            top: 0;
-            left: 3px;
-            padding: 0;
-          }
-        }
       }
 
       .loading {

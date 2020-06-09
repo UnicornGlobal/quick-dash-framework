@@ -170,7 +170,7 @@
     .reset-header {
       min-height: login(header, height);
       padding: 10px;
-      background-color: login(header);
+      background-color: login(header, background);
       border-bottom: login(header, border);
       box-shadow: login(header, shadow);
       justify-content: left;

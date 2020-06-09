@@ -6,3 +6,9 @@
   min-width: 0;
   max-width: 100%;
 }
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

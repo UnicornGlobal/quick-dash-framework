@@ -1,7 +1,7 @@
 $typography-condensed: em(640px);
 
 $font-family-data: (
-  base: #{-apple-system, 'BlinkMacSystemFont', 'San Francisco', 'Roboto', 'Segoe UI', 'Helvetica Neue', sans-serif},
+  base: #{'Montserrat-Regular', -apple-system, 'BlinkMacSystemFont', 'San Francisco', 'Roboto', 'Segoe UI', 'Helvetica Neue', sans-serif},
   monospace: #{Monaco, Consolas, 'Lucida Console', monospace}
 );
 

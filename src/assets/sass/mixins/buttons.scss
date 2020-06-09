@@ -10,7 +10,10 @@
   min-height: $button_min_height;
   cursor: pointer;
   text-decoration: none;
-  box-shadow: none;
+  box-shadow: shadow();
+  text-shadow: 0 0 1px colour(primary, light);
+  // font-weight: bold;
+  font-size: 16px;
 }
 
 @mixin button-filled() {
