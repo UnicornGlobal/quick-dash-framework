@@ -8,7 +8,7 @@
   .card {
     padding: spacing(loose);
     background-color: colour(white);
-    border-radius: 0;
+    border-radius: border-radius();
     overflow: hidden;
     color: colour(primary, text)
   }

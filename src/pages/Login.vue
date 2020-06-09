@@ -31,14 +31,14 @@
             <span v-if="errors.has('password')" class="validation-error">{{errors.first('password')}}</span>
           </div>
           <div class="login-button-wrapper">
-            <label>
-            <input
-              type="checkbox"
-              name="rememberMe"
-              v-model="remember"
-              :value="true"
-              :unchecked-value="false"
-            >
+            <label v-if="showRemember">
+              <input
+                type="checkbox"
+                name="rememberMe"
+                v-model="remember"
+                :value="true"
+                :unchecked-value="false"
+              >
               <span class="label-checkbox">{{ strings.remember_label }}</span>
             </label>
             <button @click.prevent="signIn" class="text-uppercase login-button">
@@ -139,6 +139,13 @@
       },
       showLogo() {
         if (this.$store.getters['app/config'].login.logo) {
+          return true
+        }
+
+        return false
+      },
+      showRemember() {
+        if (this.$store.getters['app/config'].login.remember) {
           return true
         }
 
@@ -303,17 +310,13 @@
         }
       }
 
-      .password-reset-container {
-        margin-top: 35px;
-        margin-bottom: 5px;
-      }
-
       .label-checkbox {
         margin-left: 5px;
       }
 
       button.login-button {
         @include button-filled();
+        width: 100%;
       }
 
       .loading {

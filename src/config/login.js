@@ -2,7 +2,7 @@ export default {
   name: 'QuickDash',
   customHeader: null,
   customFooter: null,
-  remember: true,
+  remember: false,
   logo: false,
   showSignup: true,
   signupUrl: '/signup',

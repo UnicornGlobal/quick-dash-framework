@@ -42,12 +42,12 @@ export default {
           required: true
         },
         // {
-          // id: 'mobile',
-          // label: 'Mobile',
-          // type: 'phone',
-          // disabled: false,
-          // name: 'mobile',
-          // required: true
+        // id: 'mobile',
+        // label: 'Mobile',
+        // type: 'phone',
+        // disabled: false,
+        // name: 'mobile',
+        // required: true
         // },
         {
           id: 'password',
