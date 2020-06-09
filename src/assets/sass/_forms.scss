@@ -15,6 +15,7 @@ $form_label_padding: 2px;
 $form_header_colour: colour(primary);
 
 label {
+  display: block;
   margin: spacing(tight) spacing(none);
 }
 

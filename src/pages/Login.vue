@@ -15,8 +15,8 @@
         <div v-if="message" class="message">{{ message }}</div>
         <form>
           <div>
-            <label class="required">{{ strings.username_label }}&nbsp;
-            <span v-if="errors.has('username')" class="validation-error">{{errors.first('username')}}</span>
+            <label class="required username-input-label">{{ strings.username_label }}&nbsp;
+              <span v-if="errors.has('username')" class="validation-error">{{errors.first('username')}}</span>
             </label>
             <input v-validate="'required'" v-model="username" name="username" type="text" />
           </div>
@@ -185,6 +185,15 @@
 <style lang="scss">
   @import '../assets/sass/mixins/buttons';
   @import '../assets/sass/mixins/layout';
+
+  .username-input-label {
+    display: flex;
+
+    span {
+      flex: 2;
+      text-align: right;
+    }
+  }
 
   button.signup-button {
     @include button-outline();
