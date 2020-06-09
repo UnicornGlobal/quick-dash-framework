@@ -8,5 +8,6 @@ export default {
   signupUrl: '/signup',
   emojiLogo: () => {
     return '⚡️'
-  }
+  },
+  background: require('~/assets/images/login.jpg').default
 }
